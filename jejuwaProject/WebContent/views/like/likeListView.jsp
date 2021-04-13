@@ -23,93 +23,13 @@
 </style>
 </head>
 <body>
-	<!-- myPageMenubar include -->
 
-
-
+	<%@ include file = "../common/mypageMenubar.jsp" %>
+	
     <div class="wrap">       
         
         <div class="content" >
-            <div class="content_1">
-                <div class="myPageAll">
-                    <h3 align="center" style="margin-top: 30px;">
-                        <a href="" style="color: black; font-weight: bold;" id="myPageHead"" id="myPageHead">마이페이지</a>
-                    </h3>
-                    <br><br><br>
-                    <ul class="myPageBar">
-                        <li>
-                            <h2 id="Menu"><a>예약정보</a></h2>
-                            <ul>
-                                <li class="subMenu">
-                                    <a href="">예약조회</a>
-                                </li>
-                                <li class="subMenu">
-                                    <a href="">취소내역</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <h2 id="Menu"><a>구매혜택</a></h2>
-                            <ul>
-                                <li class="subMenu">
-                                    <a href="">쿠폰조회</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <h2 id="Menu"><a>좋아요</a></h2>
-                        </li>
-
-                        <li>
-                            <h2 id="Menu"><a>활동내역</a></h2>
-                            <ul>
-                                <li class="subMenu">
-                                    <a href="">최근 본 상품</a>
-                                </li>
-                                <li class="subMenu">
-                                    <a href="">나의 리뷰 내역</a>
-                                </li>
-                                <li class="subMenu">
-                                    <a href="">1:1 문의내역</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <h2 id="Menu"><a>회원정보</a></h2>
-                            <ul>
-                                <li class="subMenu">
-                                    <a href="">개인정보수정</a>
-                                </li>
-                                <li class="subMenu">
-                                    <a href="">회원탈퇴</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                        
-                </div>
-            </div>
-
-            <!-- 강동원님 반갑습니다 영역 -->
             <div class="content_2">
-                <div class="userBox">
-                    <div class="userimg">
-                        <span></span>
-                        <img src="../resources/images/user.png" alt="user" id="userIcon">
-                    </div>
-                    <p class="welcome" style="position: absolute; top: 12px;">
-                        (사용자이름)님 반갑습니다.
-                    </p>   
-                </div>
-
-
-
-
-
-                <!-- 여기서부터 예약조회!!!! 위에는 다 include 처리하기 -->
                 <div class="outer">
                     <h3>좋아요</h3>
                     <hr>
@@ -141,10 +61,6 @@
             </div>
         </div>
     </div>
-
-
-
-
 
 </body>
 </html>

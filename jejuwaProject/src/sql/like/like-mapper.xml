@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<properties>
+	<entry key="좋아요여부">
+		SELECT 
+		  FROM TLIKE
+		 WHERE MEM_NO = ?
+		   AND P_CODE = ?
+		  
+	</entry>
+</properties>
