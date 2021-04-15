@@ -1,0 +1,17 @@
+.memberUpdate_wrap{
+    width:1000px;
+    margin:auto;
+}
+
+
+tr>*{
+    border:1px solid gray;
+}
+
+tr{
+    height: 20px;
+}
+
+.btn_Area{
+    text-align: right;
+}

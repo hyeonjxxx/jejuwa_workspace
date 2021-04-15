@@ -1,0 +1,55 @@
+.content_wrap{width: 1000px; height:800px;  margin: auto;}
+
+/* 메인이미지 */
+#main_img{
+width: 100%;
+margin: auto;
+
+}
+
+/* 상품리스트 */
+.medium{
+padding-top:70px;
+margin: 10px;
+}
+
+.medieum-font{
+padding: 10px;
+font-size: large;
+font-weight: bolder;
+}
+
+.product-list{
+margin: 0px auto;
+display: flex;
+}
+
+.product-list2{
+margin: 0px auto;
+}
+
+.product {
+display: block;
+color: #545454;
+text-decoration: none;
+float: left;
+margin-left: 10px;
+margin-right: 10px;
+}
+
+.product-name{
+font-weight: 700;
+font-size: medium;
+padding: 5px;
+margin:5px;
+}
+
+.product-price{
+font-weight: 700;
+font-size: large;
+margin-left: 10px;
+}
+
+#price-won{
+font-size: small;
+}
