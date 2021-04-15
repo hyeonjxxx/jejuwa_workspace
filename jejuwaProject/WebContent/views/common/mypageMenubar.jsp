@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>마이페이지 메뉴바</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" typd="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,79 +15,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <scrip src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    
-    <style>
-    	
-        div{box-sizing: border-box;}
-		ul, li, em{list-style: none;}
-		ul{
-		    display: block;
-		    margin-block-start: 1em;
-		    margin-block-end: 1em;
-		    margin-inline-start: 0px;
-		    margin-inline-end: 0px;
-		    padding-inline-start: 40px;
-		    }
-		li{display: list-item;}
-		*{box-sizing: border-box;}
-		
-		
-		.myPageAll a{text-decoration: none; margin: -30px;}
-		.myPageAll ul {margin-top: -5px;}
-		.myPageAll ul li{margin-top: 10px;}
-		.wrap{width: 1000px; height:800px;  margin: auto; margin-top: 50px;}
-		
-		.wrap>div{width: 100%;}
-		.content{height: 100%;}
-		
-		
-		.content>div{height: 100%; float: left;}
-		.content_1{width: 25%;}
-		.content_2{width: 75%;}
-		
-		#Menu a{
-		    padding-top: 10px;
-		    font-size: 20px;
-		    line-height: 24px;
-		    letter-spacing: -1px;
-		    color: black;
-		    margin-left: -2px;
-		    font-weight: bold;
-		    }
-		.content_1 li a{
-		    font-size: 13px;
-		    color: black;
-		    letter-spacing: -0.8px;
-		    }
-		.content_1 li a:hover, #Menu a:hover{color: orange;}
-		
-		/*.myPageAll{border: 1px solid red; position: relative; top: 100px;}*/
-		#myPageHead{margin: auto; margin-left: -20px; position: relative; top: 10px;}
-		.myPageBar{margin: auto; margin-left: 30px; border: 1px solid gray; width: 170px; height: 550px;}
-		
-		.userBox{
-		    font-size: 11px;
-		    line-height: 20px;
-		    position: relative;
-		    height: 51px;
-		    padding: 8px 0 0 30px;
-		    background-color: orange;
-		    margin-top: 20px;
-		    }
-		
-		
-		#userIcon{width: 40px;}    
-		
-		.welcome{
-		    font-size: 15px;
-		    padding-left: 60px;
-		    position: absolute;
-		    font-weight: bold;
-    
-}
-    </style>
+
+    <!-- 마이페이지메뉴바 css -->
+    <link rel="stylesheet" typd="text/css" href="../../resources/css/mypageMenubar.css">
+
 
 </head>
 <body>
@@ -158,7 +91,7 @@
                 <div class="userBox">
                     <div class="userimg">
                         <span></span>
-                        <img src="../resources/images/user.png" alt="user" id="userIcon">
+                        <img src="../../resources/images/user.png" alt="user" id="userIcon">
                     </div>
                     <p class="welcome" style="position: absolute; top: 12px;">
                         (사용자이름)님 반갑습니다.

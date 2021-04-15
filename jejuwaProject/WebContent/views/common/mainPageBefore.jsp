@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>메인페이지 로그인 전</title>
-<!-- header css -->
+    <!-- header css -->
     <link rel="stylesheet" type="text/css" href="../../resources/css/headerBefore.css">
 
     <!-- content css-->

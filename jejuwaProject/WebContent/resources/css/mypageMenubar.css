@@ -1,0 +1,68 @@
+    	
+        div{box-sizing: border-box;}
+		ul, li, em{list-style: none;}
+		ul{
+		    display: block;
+		    margin-block-start: 1em;
+		    margin-block-end: 1em;
+		    margin-inline-start: 0px;
+		    margin-inline-end: 0px;
+		    padding-inline-start: 40px;
+		    }
+		li{display: list-item;}
+		*{box-sizing: border-box;}
+		
+		
+		.myPageAll a{text-decoration: none; margin: -30px;}
+		.myPageAll ul {margin-top: -5px;}
+		.myPageAll ul li{margin-top: 10px;}
+		.wrap{width: 1000px; height:800px;  margin: auto; margin-top: 50px;}
+		
+		.wrap>div{width: 100%;}
+		.content{height: 100%;}
+		
+		
+		.content>div{height: 100%; float: left;}
+		.content_1{width: 25%;}
+		.content_2{width: 75%;}
+		
+		#Menu a{
+		    padding-top: 10px;
+		    font-size: 20px;
+		    line-height: 24px;
+		    letter-spacing: -1px;
+		    color: black;
+		    margin-left: -2px;
+		    font-weight: bold;
+		    }
+		.content_1 li a{
+		    font-size: 13px;
+		    color: black;
+		    letter-spacing: -0.8px;
+		    }
+		.content_1 li a:hover, #Menu a:hover{color: orange;}
+		
+		/*.myPageAll{border: 1px solid red; position: relative; top: 100px;}*/
+		#myPageHead{margin: auto; margin-left: -20px; position: relative; top: 10px;}
+		.myPageBar{margin: auto; margin-left: 30px; border: 1px solid gray; width: 170px; height: 550px;}
+		
+		.userBox{
+		    font-size: 11px;
+		    line-height: 20px;
+		    position: relative;
+		    height: 51px;
+		    padding: 8px 0 0 30px;
+		    background-color: orange;
+		    margin-top: 20px;
+		    }
+		
+		
+		#userIcon{width: 40px;}    
+		
+		.welcome{
+		    font-size: 15px;
+		    padding-left: 60px;
+		    position: absolute;
+		    font-weight: bold;
+    
+}
