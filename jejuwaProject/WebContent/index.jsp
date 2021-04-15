@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-	제주와 인덱스 페이지 잘 보이나?
+<body>	
+	<%@ include file = "views/common/mainPageBefore.jsp" %>
 </body>
 </html>

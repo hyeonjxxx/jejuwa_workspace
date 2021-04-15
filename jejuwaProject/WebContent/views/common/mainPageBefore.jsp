@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>메인페이지 로그인 전</title>
     <!-- header css -->
-    <link rel="stylesheet" type="text/css" href="../../resources/css/headerBefore.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/headerBefore.css?v=3">
 
     <!-- content css-->
-    <link rel="stylesheet" type="text/css" href="../../resources/css/content.css">    
+    <link rel="stylesheet" type="text/css" href="../../resources/css/content.css?v=3">    
 
     <!-- footer css -->
-    <link rel="stylesheet" type="text/css" href="../../resources/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="../../resources/css/footer.css?v=3">
 
     <!-- footer fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
