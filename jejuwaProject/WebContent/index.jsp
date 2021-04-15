@@ -8,5 +8,6 @@
 </head>
 <body>	
 	<%@ include file = "views/common/mainPageBefore.jsp" %>
+	
 </body>
 </html>
