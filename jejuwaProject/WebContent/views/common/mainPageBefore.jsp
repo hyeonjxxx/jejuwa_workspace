@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/content.css">    
 
     <!-- footer css -->
-    <link rel="stylesheet" type="text/css" href="<%= contextPath %>resources/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/footer.css">
 
     <!-- footer fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
