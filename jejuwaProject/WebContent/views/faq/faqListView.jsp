@@ -29,18 +29,19 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     
         <!-- FAQ CSS -->
-        <link rel="stylesheet" type="text/css"  href="../../resources/css/faqListView.css">
+        <link rel="stylesheet" type="text/css"  href="<%=request.getContextPath() %>/resources/css/faqListView.css">
     
         <!-- FAQ SERVICE CSS -->
         <link rel="stylesheet" href="borderFAQ.css">
 
 </head>
 <body>
-	<%@ include file="../common/custmorMenubar.jsp" %>
-	
+
+	<%@ include file = "../common/adminPageMenubar.jsp" %>
+		
     <div class="outer">
         <br>
-        <h2>공지사항 관리</h2>
+        <h2>FAQ 관리</h2>
         <div class="divisionLine"></div>
         <br>
         

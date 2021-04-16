@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>	
-	<%@ include file = "views/common/mainPage.jsp" %>
+	<%@ include file = "views/mypage/myPageReservation.jsp" %>
 	
 </body>
 </html>

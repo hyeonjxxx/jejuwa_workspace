@@ -92,7 +92,7 @@
 </head>
 <body>
 
-	<%@ include file = "headerLogin.jsp" %>
+	<%@ include file = "../common/managerMenubar.jsp" %>
 	
 	 <div class="wrap">       
         <div class="content" >
@@ -161,14 +161,10 @@
                 <div class="userBox">
                     <div class="userimg">
                         <span></span>
-                        <img src="../../resources/images/user.png" alt="user" id="userIcon">
+                        <img src="<%=request.getContextPath() %>/resources/images/user.png" alt="user" id="userIcon">
                     </div>
                     <p class="welcome" style="position: absolute; top: 12px;">
                         (사용자이름)님 반갑습니다.
                     </p>   
                 </div>
-            </div>
-		</div>
-    </div>
-</body>
-</html>
+        

@@ -1,0 +1,132 @@
+    .myPageResercation{
+        position: absolute;
+    }
+
+    .mypageContents>h3{margin-top: 60px; font-size: 20px; font-weight: bold;}
+    
+    
+    .mypageStep {
+        overflow: hidden;
+        width: 100%;
+        margin-top: 10px;
+        border-radius: 10px;
+        background-color: lightgray;
+        }
+    .mypageStep li {
+        float: left;
+        position: relative;
+        width: 20%;
+        height: 117px;
+        font-size: 20px;
+        line-height: 6;
+        }
+    .mypageStep li:first-child {background: none;}
+    .mypageStep em{
+        position: absolute;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        top: 25px;
+        font-style: normal;
+        font-size: 40px;
+        line-height: 50px;
+        font-weight: 500;
+        }    
+    .mypageStep span{
+        position: absolute;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        top: 70px;
+        font-size: 16px;
+        line-height: 22px;
+        }
+
+    #img1, #img2, #img3{
+        margin-left: 120px;
+        margin-top: 33px;
+        inline-size: 40px;
+        
+        } 
+
+    #period{
+        float: left;
+        margin-right: 20px;
+        font-size: 15px;
+        line-height: 10px;
+        font-weight: 700;
+        }
+
+    .searchPeriod_field{
+        font-size: 14px;
+        border: 0;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        margin: 20px 0 0;
+        padding: 20px;
+        background: lightgray;
+        box-sizing: border-box;
+        border-radius: 5px;
+        }
+
+    .selectMonth{
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+        position: relative;
+        left: -10px;
+        top: -8px;
+        
+        }
+
+    .selectMonth li{
+        list-style: none;
+        box-sizing: border-box;
+        float: left;
+        height: 28px;
+        padding-left: 10px;
+
+        }
+    
+    .selectMonth li{font-size: 10px};
+
+
+    .selectRange{
+        word-spacing: -1px;
+        font-size: 14px;
+        float: left;
+        margin-left: 20px;
+        margin: 0;
+        padding: 0;
+        
+        }
+    
+    .selectRange select{
+        padding: 0 0 0 8px;
+        border-radius: 5px;
+        height: 30px;
+        padding-right: 0;
+        vertical-align: middle;
+        width: 70px;
+
+        }
+    #btnLookup{
+        line-height: 20px;
+        position: absolute;
+        top: 50px;
+        right : 40px;
+
+        }
+    #btnLookup:hover{background:orange; color:white; border: none}
+    .on button:hover{background:orange; color:white; border: none};
+
+
+    .outer{margin: auto;}
+
+    .list *{padding: 10px; text-align: center;}
+    
+    

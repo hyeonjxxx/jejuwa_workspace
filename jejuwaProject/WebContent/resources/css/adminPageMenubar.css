@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+*{box-sizing: border-box; 
+    /* border: 1px solid black; */
+   }
+   
+   .wrap{
+       width: 1100px; height: 1000px;
+       margin: auto;
+       border: 1px solid gray;
+   }
+   
+   #header{height: 10%;}
+   #container{height: 90%;}
+   
+   /* 헤더 */
+   #header>div, #container>div{height: 100%; float: left;}
+   
+   /* 컨테이너 */
+   .menu{width:20%}
+   .content{width: 80%;}
+   
+   /*a 공통 */
+   #header2 a{ color:white; text-decoration: none;}
+   #header2 a:hover{background-color: orange; color: white; outline: none;}
+   .menu a{ color: black; text-decoration: none; outline: none;}
+   a:hover{color: orange;}
+   
+   /* 상단바 */
+   #header{
+       background-color: lightgray;
+       border-bottom: 1px solid gray;
+   }
+   
+   #header1 *{
+       height: 100%;
+       outline: none;
+   }
+   #header2{
+       height: 100%;
+       padding-top: 40px;
+   }
+   
+   
+   /*  */
+   /* 관리자off 부분에도 동일한 스타일 적용했어요!*/
+   .topbtn{
+       background-color: dimgrey; 
+       color: white;
+       border-radius: 7%;
+       padding:8px; 
+       font-size: 12px;
+       margin: 0 10px;
+   }
+   
+   /* menubar */
+   .menu{
+       padding: 35px;
+       padding-top: 50px;
+       background-color: lightgray;
+       border-right: 1px solid gray;
+   }
+   .submenu,.stop{
+       margin-bottom: 15px;
+       font-size: large;
+       font-weight: bold;
+       cursor: pointer;
+   }
+   p{display: none; font-size: 15px;}
+   

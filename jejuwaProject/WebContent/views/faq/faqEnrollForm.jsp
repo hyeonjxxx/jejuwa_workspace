@@ -4,14 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../resources/css/faqEnrollForm.css">
+<title>FAQ 등록페이지</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/faqEnrollForm.css">
+<!-- common  -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- content css-->
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/product/css/productEnrollForm.css">
 </head>
 <body>
 
+	<%@ include file = "../common/adminPageMenubar.jsp" %>
+	
     <div class="outer">
+
         <br>
-        <h2>공지사항 등록</h2>
+        <h2>FAQ 등록</h2>
         <div class="divisionLine"></div>
         <br>
         
