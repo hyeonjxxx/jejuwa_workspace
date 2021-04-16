@@ -12,12 +12,15 @@
 <body>
 
 	<%@ include file="../common/managerMenubar.jsp" %>
-	<%@ include file="../common/footer.jsp" %>
+	
     
 	
     <img src="<%= contextPath %>/resources/images/jejuwa_icon.png" alt="">
     
     <img src="<%= contextPath %>/resources/images/corpIntroduce_img.png" alt="">
     <img src="" alt="">
+    
+    
+    <%@ include file="../common/footer.jsp" %>
 </body>
 </html>
