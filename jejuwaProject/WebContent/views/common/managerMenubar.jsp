@@ -41,7 +41,7 @@
         <div id="header">
             <div id="header_1">
                 <a href="">
-                <img id="logo_img" src="../resources/images/제주와 로고.png" alt="">
+                <img id="logo_img" src="<%=request.getContextPath()%>/resources/images/제주와 로고.png" alt="">
                 </a>
             </div>
 
@@ -50,7 +50,7 @@
                     
                     <div id="search_btn" style="width: 10%;">
                         <!--<input type="submit" value="검색">-->
-                        <button><img style="width: 100%; height: 100%;" src="../resources/images/돋보기.png"></button>
+                        <button><img style="width: 100%; height: 100%;" src="<%=request.getContextPath()%>/resources/images/돋보기.png"></button>
                     </div>
                     
                     <div id="search_text">
@@ -81,10 +81,10 @@
         <br clear=" both"> <br>
 
     <div class="navWrap" align="center">
-        <div class="menu"><a href="">투어</a></div>
+        <div class="menu"><a href="">투어/티켓</a></div>
         <div class="menu"><a href="">티켓</a></div>
         <div class="menu"><a href="">맛집</a></div>
-        <div class="menu"><a href="">할인기획전</div>
+        <div class="menu"><a href="">고객센터</div>
     
     </div>
 

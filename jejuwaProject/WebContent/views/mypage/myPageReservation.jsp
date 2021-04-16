@@ -27,7 +27,6 @@
 
 	<div class="wrap">       
         <div class="content" >
-            
 
             <!-- 강동원님 반갑습니다 영역 -->
             <div class="myPageResercation">

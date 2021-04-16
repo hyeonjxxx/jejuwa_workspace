@@ -65,7 +65,7 @@
 		
 		/*.myPageAll{border: 1px solid red; position: relative; top: 100px;}*/
 		#myPageHead{margin: auto; margin-left: -20px; position: relative; top: 10px;}
-		.myPageBar{margin: auto; margin-left: 30px; border: 1px solid gray; width: 170px; height: 550px;}
+		.myPageBar{margin: auto; margin-left: 10px; border: 1px solid gray; width: 170px; height: 550px;}
 		
 		.userBox{
 		    font-size: 11px;
