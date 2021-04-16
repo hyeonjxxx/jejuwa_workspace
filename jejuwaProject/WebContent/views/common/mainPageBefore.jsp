@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath(); 
+%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>메인페이지 로그인 전</title>
     <!-- header css -->
-    <link rel="stylesheet" type="text/css" href="../../resources/css/headerBofore.css">
+    <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/headerBofore.css">
 
     <!-- content css-->
-    <link rel="stylesheet" type="text/css" href="../../resources/css/content.css">    
+    <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/content.css">    
 
     <!-- footer css -->
-    <link rel="stylesheet" type="text/css" href="../../resources/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="<%= contextPath %>resources/css/footer.css">
 
     <!-- footer fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -40,7 +43,7 @@
         <div id="header">
             <div id="header_1">
                 <a href="">
-                <img id="logo_img" src="../../resources/images/jejuwa_icon.png" alt="">
+                <img id="logo_img" src="<%= contextPath %>/resources/images/jejuwa_icon.png" alt="">
                 </a>
             </div>
 
@@ -49,7 +52,7 @@
                     
                     <div id="search_btn" style="width: 10%;">
                         <!--<input type="submit" value="검색">-->
-                        <button><img style="width: 100%; height: 100%;" src="../../resources/images/magnifier.png"></button>
+                        <button><img style="width: 100%; height: 100%;" src="<%= contextPath %>/resources/images/magnifier.png"></button>
                     </div>
                     
                     <div id="search_text">
@@ -86,14 +89,14 @@
     <div id="img_jejumain">
             <div style="position: absolute;">
                 <a href="#" class="left_click">
-                <div style="position: relative; top: 150px; left: 30px;"><img src="../../resources/images/left_ch.png"></img></div></a>
+                <div style="position: relative; top: 150px; left: 30px;"><img src="<%= contextPath %>/resources/images/left_ch.png"></img></div></a>
             </div>
             <div style="position: absolute;">
                 <a href="#" class="left_click">
-                <div style="position: relative; top: 150px; left: 850px;"><img src="../../resources/images/right_ch.png"></img></a></div>
+                <div style="position: relative; top: 150px; left: 850px;"><img src="<%= contextPath %>/resources/images/right_ch.png"></img></a></div>
             </div>
             
-            <img src="../../resources/images/jeju_main.jpg" id="main_img"></img>
+            <img src="<%= contextPath %>/resources/images/jeju_main.jpg" id="main_img"></img>
         
     </div>
 
@@ -105,17 +108,17 @@
         <div class="product-list">
             <div class="product-list2" >
                 <a href="#" class="product">
-                <img src="../../resources/images/reco_1.png" alt="" width="245">
+                <img src="/jejuwa/resources/images/reco_1.png" alt="" width="245">
                 <div class="product-name">제주시티투어</div>
                 <div class="product-price">128,000 <label for="" id="price-won">원 </div></a>
 
                 <a href="#" class="product">
-                <img src="../../resources/images/reco_1.png" alt="" width="245">
+                <img src="/jejuwa/resources/images/reco_1.png" alt="" width="245">
                 <div class="product-name">제주시티투어</div>
                 <div class="product-price">128,000 <label for="" id="price-won">원</div></a>
 
                 <a href="#" class="product">
-                <img src="../../resources/images/reco_1.png" alt="" width="245">
+                <img src="/jejuwa/resources/images/reco_1.png" alt="" width="245">
                 <div class="product-name">제주시티투어</div>
                 <div class="product-price">128,000 <label for="" id="price-won">원</div></a>
         </div>
@@ -130,17 +133,17 @@
             <div class="product-list">
                 <div class="product-list2" >
                     <a href="#" class="product">
-                    <img src="../../resources/images/reco_1.png" alt="" width="245">
+                    <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
                     <div class="product-name">제주시티투어</div>
                     <div class="product-price">128,000 <label for="" id="price-won">원</label></div></a>
     
                     <a href="#" class="product">
-                    <img src="../../resources/images/reco_1.png" alt="" width="245">
+                    <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
                     <div class="product-name">제주시티투어</div>
                     <div class="product-price">128,000 <label for="" id="price-won">원 </div></a>
     
                     <a href="#" class="product">
-                    <img src="../../resources/images/reco_1.png" alt="" width="245">
+                    <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
                     <div class="product-name">제주시티투어</div>
                     <div class="product-price">128,000 <label for="" id="price-won">원</div></a>
             </div>
@@ -151,7 +154,7 @@
                 <div class="customer_center_left" style="margin-top:6px";>
                     <a href="">공지사항</a>
                     <a href="" style="margin-left:20px;">공지사항 업데이트</a>
-                    <a href="" style="margin-left:40px;">더보기<img src="../resources/images/right_ch.png" height="20"></a>
+                    <a href="" style="margin-left:40px;">더보기<img src="/jejuwa/resources/images/right_ch.png" height="20"></a>
                 </div>
                 <div class="customer_center_right">
                 <button type="button" class="btn btn-warning btn-oneOnOne"><a href="">1:1문의하기</a></button>
@@ -173,7 +176,7 @@
                 <div class="corp_info_cs">
                     <dd>
                         <p>
-                            <span id="cs1"><img src="../resources/images/jejuwa_icon.png" width="70">1522-5223</span>
+                            <span id="cs1"><img src="<%= contextPath %>/resources/images/jejuwa_icon.png" width="70">1522-5223</span>
                             <span style="margin-left: 10px;">월~금 09:00 ~ 18:00</span>
                             <span style="margin-left: 10px;">점심시간 12:00 ~ 13:00</span>
                         </p>
