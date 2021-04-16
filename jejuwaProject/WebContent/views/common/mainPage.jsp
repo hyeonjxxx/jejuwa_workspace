@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String contextPath = request.getContextPath(); 
-%>    
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/headerBofore.css">
 
     <!-- content css-->
-    <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/common/content.css">    
+    <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/common/content.css">
 
     <!-- footer css -->
     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/common/footer.css">
@@ -23,7 +23,7 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-        
+
     <!-- footer jQuery -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -37,7 +37,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-	
+
 <body>
     <div class="wrap">
         <div id="header">
@@ -49,57 +49,59 @@
 
             <div id="header_2">
                 <form action="" id="search_form">
-                    
+
                     <div id="search_btn" style="width: 10%;">
                         <!--<input type="submit" value="검색">-->
                         <button><img style="width: 100%; height: 100%;" src="<%= contextPath %>/resources/images/돋보기.png"></button>
                     </div>
-                    
+
                     <div id="search_text">
                         <input type="search" name="keyword">
                     </div>
-                    
+
                 </form>
             </div>
 
             <div id="header_3">
                 <div>
-                
+
                 <!-- 로그인 전
                 	<ul id="info_1">
-                        <li><a href="">로그인</a></li> 
-                        <li><a href="">회원가입</a></li>  
-                    </ul>	
+                        <li><a href="">로그인</a></li>
+                        <li><a href="">회원가입</a></li>
+                    </ul>
                 -->
-                
+
                 <!-- 로그인 후 -->
 
-                
+
                     <ul id="info_1">
-                        <li><a href="">xxx님 환영합니다</a></li> 
-                        <li><a href="">로그아웃</a></li> 
-                        <li><a href="">관리자</a></li> 
+                        <li><a href="">xxx님 환영합니다</a></li>
+                        <li><a href="">로그아웃</a></li>
+                        <li><a href="">관리자</a></li>
                     </ul>
 
-                 
-                </div>    
-                
+
+                </div>
+
                 <div>
                     <ul id="info_2">
-                        
+
                     </ul>
 
                 </div>
             </div>
         </div>
-    
+
         <br clear=" both"> <br>
 
     <div class="navWrap" align="center">
         <div class="menu"><a href="">투어/티켓</a></div>
         <div class="menu"><a href="">티켓</a></div>
         <div class="menu"><a href="">맛집</a></div>
+
         <div class="menu"><a href="">고객센터</a></div>
+
     
     </div>
 
@@ -114,9 +116,9 @@
                 <a href="#" class="left_click">
                 <div style="position: relative; top: 150px; left: 850px;"><img src="<%= contextPath %>/resources/images/right_ch.png"></img></a></div>
             </div>
-            
+
             <img src="<%= contextPath %>/resources/images/jeju_main.jpg" id="main_img"></img>
-        
+
     </div>
 
      <!-- 추천상품 -->
@@ -155,12 +157,12 @@
                     <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
                     <div class="product-name">제주시티투어</div>
                     <div class="product-price">128,000 <label for="" id="price-won">원</label></div></a>
-    
+
                     <a href="#" class="product">
                     <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
                     <div class="product-name">제주시티투어</div>
                     <div class="product-price">128,000 <label for="" id="price-won">원 </div></a>
-    
+
                     <a href="#" class="product">
                     <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
                     <div class="product-name">제주시티투어</div>
@@ -168,6 +170,6 @@
             </div>
         </div>
         <%@ include file="../common/footer.jsp" %>
-	
+
 </body>
 </html>
