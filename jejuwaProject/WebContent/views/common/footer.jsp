@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String contextPath = request.getContextPath(); 
-%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
         <!-- footer css -->
-        <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/footer.css">
+        <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/resources/css/footer.css">
 
         <!-- footer fonts-->
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -38,7 +35,7 @@
                 <div class="customer_center_left" style="margin-top:6px;">
                     <a href="">공지사항</a>
                     <a href="" style="margin-left:20px;">공지사항 업데이트</a>
-                    <a href="" style="margin-left:40px;">더보기<img src="<%= contextPath %>/resources/images/right_ch.png" height="20"></a>
+                    <a href="" style="margin-left:40px;">더보기<img src="<%= request.getContextPath() %>/resources/images/right_ch.png" height="20"></a>
                 </div>
                 <div class="customer_center_right">
                 <button type="button" class="btn btn-warning btn-oneOnOne"><a href="">1:1문의하기</a></button>
@@ -49,7 +46,7 @@
             <div id="footer" class="footer_wrap">
                 <div class="footer_service_support">
                     <ul class="footer_service_inf">
-                        <li><a href="<%=contextPath %>/corpInt.cor">회사소개</a></li>
+                        <li><a href="<%=request.getContextPath() %>/corpInt.cor">회사소개</a></li>
                         <li><a href="">채용</a></li>
                         <li><a href="">공고</a></li>
                         <li><a href="">이용약관</a></li>
@@ -60,7 +57,7 @@
                 <div class="corp_info_cs">
                     <dd>
                         <p>
-                            <span id="cs1"><img src="<%= contextPath %>/resources/images/jejuwa_icon.png" width="70">1522-5223</span>
+                            <span id="cs1"><img src="<%= request.getContextPath() %>/resources/images/jejuwa_icon.png" width="70">1522-5223</span>
                             <span style="margin-left: 10px;">월~금 09:00 ~ 18:00</span>
                             <span style="margin-left: 10px;">점심시간 12:00 ~ 13:00</span>
                         </p>

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath(); 
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +13,11 @@
 
 	<%@ include file="../common/managerMenubar.jsp" %>
 	<%@ include file="../common/footer.jsp" %>
-	
-    <img src="../../resources/images/jejuwa_icon.png" alt="">
-    <img src="../../resources/images/corpIntroduce_img.png" alt="">
     
+	
+    <img src="<%= contextPath %>/resources/images/jejuwa_icon.png" alt="">
+    
+    <img src="<%= contextPath %>/resources/images/corpIntroduce_img.png" alt="">
+    <img src="" alt="">
 </body>
 </html>
