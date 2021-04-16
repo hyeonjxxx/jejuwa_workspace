@@ -8,9 +8,11 @@
 </head>
 <body>
 
-	<%@ include file="../common/customerMenubar.jsp" %>
+	<%@ include file="../common/managerMenubar.jsp" %>
+	<%@ include file="../common/footer.jsp" %>
 	
     <img src="../../resources/images/jejuwa_icon.png" alt="">
     <img src="../../resources/images/corpIntroduce_img.png" alt="">
+    
 </body>
 </html>
