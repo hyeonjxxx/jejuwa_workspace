@@ -1,0 +1,50 @@
+    
+/* *{border: 1px solid red;} */
+
+.outer{
+    height: 890px; width: 860px;
+    margin: 20px;
+}
+.title{font-size: 24px; font-weight: bold;}
+.divisionLine{
+    width: 90%; height: 5px;  
+    background-color: lightgray;
+    margin-top: 10px;
+}    
+
+/* 입력폼 */
+#pdfEnrollForm table {margin:30px 30px;}         
+#pdfEnrollForm input{margin:10px; border: 1px solid silver;}
+select, span{margin-left: 10px;}
+td, span{font-size: 14px; padding: 3px 0;}
+
+               
+/* 버튼 */
+.btnArea{width: 690px; margin: 100px 70px}
+.btnArea div:hover{background-color: orange;}
+#btnEnroll:hover{background-color: orange;}
+#btnEnroll{border: none;}
+
+.btnArea a, #btnEnroll a{
+    text-decoration: none; 
+    color:white; 
+
+    line-height: 25px;
+    display: block;
+  }
+
+  .btnArea div, #btnEnroll{ 
+    background-color: dimgray;
+    width: 100px;    
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    float:right;
+    margin-left: 30px;
+  }
+            
+
+  /* modal */
+
+  #updateBtn:hover, #go:hover, #back:hover{background-color: orange;}        
+  #go, #back {background-color: dimgray; color: white;} 

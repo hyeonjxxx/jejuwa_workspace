@@ -1,0 +1,75 @@
+
+/* *{border: 1px solid red;} */
+
+.outer{
+border: 1px solid blue;
+height: 900px; width: 800px;
+margin: auto;
+margin-top: 10px;
+}
+
+
+/* 구분선 */
+.divisionLine{
+    width: 90%; height: 5px; 
+    background-color: lightgray; }
+
+    
+/* 검색바 */
+.searchArea{
+    width: 700px;
+    margin-bottom: 10px;
+}
+.searchArea>span *{
+    padding:4px;
+}
+.searchArea>span>input{
+    width: 300px;
+    margin-left: 5px;
+}
+
+/* 테이블 */
+.listArea{text-align:center;}
+.listArea>table{
+    border:1px solid lightgray;
+    border-collapse: collapse;
+    }
+.listArea>table>thead{background:lightgray;}
+.listArea>table>tbody>tr:hover{
+    background:orange;
+    cursor:pointer;
+}
+.listArea>table *{
+    border:1px solid rgb(189, 189, 189);
+    padding:3px;}
+
+
+/* 버튼 + 페이징 구역*/
+.bottomArea{
+    margin: 15px;
+    margin-left: 95px;
+}
+.bottomArea *{float:left;}
+
+
+/* 버튼 */
+.btn a{
+text-decoration: none; 
+text-align: center;
+color:white; 
+background-color: dimgray;
+display: block;
+padding:7px;
+border-radius:4px;
+width:70px;
+
+}
+.btn a:hover{background-color: orange;}
+
+
+/* 페이징 구역 */
+.pagingArea{
+    margin-left:120px;
+    margin-right: 120px;
+}
+.pagingArea *{margin-right: 5px; margin-top: 9px;}
