@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- header css -->
-    <link rel="stylesheet" type="text/css" href="header.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/common/header.css">
 
     <!-- content css-->
-    <link rel="stylesheet" type="text/css" href="content.css">    
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/common/content.css">    
 
     <!-- footer css -->
-    <link rel="stylesheet" type="text/css" href="footer.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/common/footer.css">
 
     <!-- footer fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
