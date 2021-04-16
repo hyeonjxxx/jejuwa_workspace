@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+.mypageContents>h3, .mypageContentsLike>h3, .titleArea>h3 {margin-top: 60px; font-size: 20px; font-weight: bold;}
+
+.mypageStep{
+    overflow: hidden;
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 10px;
+    background-color: lightgray;
+    }
+.mypageStep li{
+    float: left;
+    position: relative;
+    width: 20%;
+    height: 117px;
+    font-size: 20px;
+    line-height: 6;
+    }
+.mypageStep li:first-child {background: none;}
+.mypageStep em{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    top: 25px;
+    font-style: normal;
+    font-size: 40px;
+    line-height: 50px;
+    font-weight: 500;
+    }    
+.mypageStep span{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    top: 70px;
+    font-size: 16px;
+    line-height: 22px;
+    }
+
+#img1, #img2, #img3{
+    margin-left: 120px;
+    margin-top: 33px;
+    inline-size: 40px;
+    
+    } 
+#okLike li{float: left; margin-left: 10px;}
+
+#nolike{width: 600px; text-align: center;}    
+
+.footerArea{
+    font-size: 14px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    }
+
+.left{
+    font-size: 14px;
+    line-height: 20px;
+    width: 47%;
+    float: left;            
+    }
+.right{
+    font-size: 14px;
+    line-height: 20px;
+    width: 47%;
+    float: right;
+    position: relative;
+    top: 13px;
+    }
+
+.titleArea{
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding: 36px 0 7px;
+    border-bottom: 1px solid lightgray;
+    padding-top: 25px;
+
+    }
+
+.leftHead{
+    float: left;
+    font-size: 20px;
+    line-height: 20px;
+    }
+.rightHead{
+    float: left;
+    font-size: 20px;
+    line-height: 7px;
+    
+    }
+
+.left p, .right p {margin: 10px;}

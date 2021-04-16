@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>메인페이지 로그인 전</title>
     <!-- header css -->
-    <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/headerBofore.css">
+    <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/common/header.css">
 
     <!-- content css-->
     <link rel="stylesheet" type="text/css" href="<%= contextPath %>/resources/css/common/content.css">
@@ -99,7 +99,6 @@
         <div class="menu"><a href="">투어/티켓</a></div>
         <div class="menu"><a href="">티켓</a></div>
         <div class="menu"><a href="">맛집</a></div>
-
         <div class="menu"><a href="">고객센터</a></div>
 
     
@@ -142,7 +141,7 @@
                 <img src="/jejuwa/resources/images/reco_1.png" alt="" width="245">
                 <div class="product-name">제주시티투어</div>
                 <div class="product-price">128,000 <label for="" id="price-won">원</div></a>
-        </div>
+            </div>
 
         </div>
 
@@ -167,8 +166,9 @@
                     <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
                     <div class="product-name">제주시티투어</div>
                     <div class="product-price">128,000 <label for="" id="price-won">원</div></a>
+                </div>
             </div>
-        </div>
+
         <%@ include file="../common/footer.jsp" %>
 
 </body>

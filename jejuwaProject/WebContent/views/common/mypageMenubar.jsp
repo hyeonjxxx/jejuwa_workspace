@@ -155,7 +155,8 @@
                         
                 </div>
             </div>
-
+			
+			<br><br>
             <!-- 강동원님 반갑습니다 영역 -->
             <div class="content_2">
                 <div class="userBox">

@@ -23,11 +23,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
     <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
-
-
-    <!-- 마이페이지메뉴바 -->
-    <link rel="stylesheet" href="01.myPageMenubar.css">
-
     <style>
         .wrap{width: 1000px; height:800px;  margin: auto;}        
         .wrap>div{width: 100%;}

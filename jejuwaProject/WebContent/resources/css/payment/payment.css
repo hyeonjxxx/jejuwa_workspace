@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+.paymentPage{
+    margin-top: 50px;
+}
+
+#pHead{
+    background-color: rgba(250, 214, 72);
+    padding: 10px 30px 10px 30px; 
+    width: 1000px; 
+    margin:auto;
+    font-weight: bold;
+    font-size: 30px;
+    }
+.outer{width: 1000px; margin: auto;}
+.outer >li{
+    float : left;
+    padding: 20px 30px 10px 30px; 
+    width : 350px; 
+    height : 450px; 
+    list-style: none; 
+    display: block;
+    position: relative;
+    margin-left: 40px;
+    margin-bottom: 40px;
+    }
+
+
+#inforMationTravel{
+    float : left;
+    padding: 20px 30px 10px 30px; 
+    width : 350px; 
+    height : 300px; 
+    list-style: none; 
+    background-color: lightgray;
+    display: block;
+    position: relative;
+    margin-left: 40px;
+    margin-bottom: 40px;
+}   
+
+#inforMationTravel table{
+    position: relative;
+    top: 25px;
+    border: 2px solid lightgray;
+}
+
+#discount{
+    float : left;
+    width : 350px; 
+    height : 300px; 
+    list-style: none; 
+    background-color: lightgray;
+    display: block;
+    position: relative;
+    margin-left: 40px;
+    margin-bottom: 40px;
+    position: relative;
+    top: -150px;
+}
+     
+#resultCash{
+    margin-top: 40px; 
+    margin-left: 20px; 
+    font-size: 20px; 
+    font-weight: bold;
+    background-color: rgba(250, 214, 72);
+    height: 80px;
+    position: relative;
+    top: -330px;
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
+#resultCash #amount{
+    margin-top: -45px; 
+    margin-right: 20px; 
+    float:right; 
+    font-size: 20px; 
+    font-weight: bold;
+    }
+
+#paymentMethod, #pInfo{height: 300px;}
