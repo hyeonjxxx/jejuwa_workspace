@@ -8,9 +8,7 @@
 </head>
 <body>
 
-	<%@ include file="../common/menubar.jsp" %>
-	<%@ include file="../common/menubar.jsp" %>
-	<%@ include file="../common/menubar.jsp" %>
+	<%@ include file="../common/customerMenubar.jsp" %>
 	
     <img src="../../resources/images/jejuwa_icon.png" alt="">
     <img src="../../resources/images/corpIntroduce_img.png" alt="">

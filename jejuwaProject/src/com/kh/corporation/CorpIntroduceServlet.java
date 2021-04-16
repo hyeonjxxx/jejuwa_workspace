@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CorpIntroduceServlet
  */
-@WebServlet("/CorpInt.cor")
+@WebServlet("/corpInt.cor")
 public class CorpIntroduceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +27,7 @@ public class CorpIntroduceServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
+		request.getRequestDispatcher("views/corporation/corpIntroduce.jsp").forward(request, response);
 	}
 
 	/**

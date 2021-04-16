@@ -165,7 +165,7 @@
             <div id="footer" class="footer_wrap">
                 <div class="footer_service_support">
                     <ul class="footer_service_inf">
-                        <li><a href="">회사소개</a></li>
+                        <li><a href="<%=contextPath %>/corpInt.cor">회사소개</a></li>
                         <li><a href="">채용</a></li>
                         <li><a href="">공고</a></li>
                         <li><a href="">이용약관</a></li>
