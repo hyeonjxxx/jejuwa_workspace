@@ -19,6 +19,8 @@
 	
     
 	<div class="introduce_wrap">
+        <br>
+        <br>
         <img src="<%= contextPath %>/resources/images/jejuwa_icon.png">
         
         <img src="<%= contextPath %>/resources/images/corpIntroduce_img.png"style="width:1000px;">

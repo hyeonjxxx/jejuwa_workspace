@@ -49,7 +49,7 @@
                         <li><a href="<%=request.getContextPath() %>/corpInt.cor">회사소개</a></li>
                         <li><a href="">채용</a></li>
                         <li><a href="">공고</a></li>
-                        <li><a href="">이용약관</a></li>
+                        <li><a href="<%=request.getContextPath()%>/terms.cor">이용약관</a></li>
                         <li><a href="">개인정보처리방침</a></li>
                         <li><a href="">취소 및 환불정책</a></li>
                     </ul>
