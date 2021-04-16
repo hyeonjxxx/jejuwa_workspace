@@ -99,7 +99,7 @@
         <div class="menu"><a href="">투어</a></div>
         <div class="menu"><a href="">티켓</a></div>
         <div class="menu"><a href="">맛집</a></div>
-        <div class="menu"><a href="">할인기획전</div>
+        <div class="menu"><a href="">할인기획전</a></div>
     
     </div>
 
