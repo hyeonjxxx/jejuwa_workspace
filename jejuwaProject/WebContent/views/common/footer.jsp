@@ -38,7 +38,7 @@
                 <div class="customer_center_left" style="margin-top:6px;">
                     <a href="">공지사항</a>
                     <a href="" style="margin-left:20px;">공지사항 업데이트</a>
-                    <a href="" style="margin-left:40px;">더보기<img src="../../resources/images/right_ch.png" height="20"></a>
+                    <a href="" style="margin-left:40px;">더보기<img src="<%= contextPath %>/resources/images/right_ch.png" height="20"></a>
                 </div>
                 <div class="customer_center_right">
                 <button type="button" class="btn btn-warning btn-oneOnOne"><a href="">1:1문의하기</a></button>
@@ -60,7 +60,7 @@
                 <div class="corp_info_cs">
                     <dd>
                         <p>
-                            <span id="cs1"><img src="../../resources/images/jejuwa_icon.png" width="70">1522-5223</span>
+                            <span id="cs1"><img src="<%= contextPath %>/resources/images/jejuwa_icon.png" width="70">1522-5223</span>
                             <span style="margin-left: 10px;">월~금 09:00 ~ 18:00</span>
                             <span style="margin-left: 10px;">점심시간 12:00 ~ 13:00</span>
                         </p>
