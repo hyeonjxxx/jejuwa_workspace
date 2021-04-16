@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>	
+<body>
 	<%@ include file = "views/mypage/myPafdklsjfakljdflkaservation.jsp" %>
-	
+
 </body>
 </html>
