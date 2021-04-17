@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import = "java.util.ArrayList, com.kh.faq.model.vo.Faq"%>
+<%
+	ArrayList<Faq> list = (ArrayList<Faq>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,9 +46,7 @@
         <br>
         <h2>FAQ 관리</h2>
         <div class="divisionLine"></div>
-        <br>
         
-        <br><br><br><br><br><br><br><br>
         
 
         <div class="area1">
@@ -79,84 +80,45 @@
                     <tr>
                         <th width="30" ><input type="checkbox"></th>
                         <th width="70">번호</th>
-                        <th width="100">구분</th>
                         <th width="400">제목</th>
+                        <th width="100">구분</th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>취소/결제</td>
-                        <td>예약, 취소는 어떻게 하나요?</td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>맛집</td>
-                        <td>예약, 취소는 어떻게 하나요?</td>
-                        
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>맛집</td>
-                        <td>예약, 취소는 어떻게 하나요?</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>맛집</td>
-                        <td>예약, 취소는 어떻게 하나요?</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>맛집</td>
-                        <td>예약, 취소는 어떻게 하나요?</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>맛집</td>
-                        <td>예약, 취소는 어떻게 하나요?</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>맛집</td>
-                        <td>예약, 취소는 어떻게 하나요?</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>맛집</td>
-                        <td>예약, 취소는 어떻게 하나요?</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>맛집</td>
-                        <td>예약, 취소는 어떻게 하나요?</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>맛집</td>
-                        <td>예약, 취소는 어떻게 하나요?</td>
-                    </tr>
-                    
-                    
+                
+                <%if(list.isEmpty()){ %>
+                	<tr>
+                		<td colspan = "5">존재하는 FAQ가 없습니다.</td>
+                	</tr>
+                
+                <%}else{ %>
+                	<%for(Faq f : list){ %>
+	                    <tr>
+	                        <td><input type="checkbox"></td>
+	                        <td><%=f.getFaqNo()%></td>
+	                        <td><%=f.getqCategory() %></td>
+	                        <td><%=f.getFaqTitle() %></td>
+	                        
+	                    </tr>
+	                <%} %>
+                <%} %>   
 
                 </tbody>
 
             </table>
 
         </div>
-
-       
+		
+		<!-- 
+		<script>
+			$(function(){
+				$(".listArea>tbody>tr").click(function(){
+					location.href = ""
+				})
+			})
+		</script>
+       -->
         <!-- 버튼, 페이징 구역 -->
         <div class="bottomArea">
 

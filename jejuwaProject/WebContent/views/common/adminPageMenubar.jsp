@@ -77,15 +77,10 @@
             <div class="content">
                 
 
-            </div>                   
-
-        </div>
-
-       
+            
+   
         
-        
-    </div>
-
+    
 
 
     <script>
