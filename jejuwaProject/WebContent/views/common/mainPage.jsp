@@ -67,7 +67,7 @@
 
                 <!-- 로그인 전
                 	<ul id="info_1">
-                        <li><a href="">로그인</a></li>
+                        <li><a href="<%= contextPath %>/login.me">로그인</a></li>
                         <li><a href="">회원가입</a></li>
                     </ul>
                 -->
