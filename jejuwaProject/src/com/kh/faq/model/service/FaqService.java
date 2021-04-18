@@ -20,4 +20,15 @@ public class FaqService {
 		
 		return list;
 	}
+	
+	
+	public ArrayList<Faq> selectFaqUserList(){
+		Connection conn = getConnection();
+		
+		ArrayList<Faq> list = new FaqDao().selectFaqUserList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
 }

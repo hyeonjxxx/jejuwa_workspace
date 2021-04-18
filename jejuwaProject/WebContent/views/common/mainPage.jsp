@@ -96,7 +96,7 @@
         <br clear=" both"> <br>
 
     <div class="navWrap" align="center">
-        <div class="menu"><a href="">투어/티켓</a></div>
+        <div class="menu"><a href="">투어</a></div>
         <div class="menu"><a href="">티켓</a></div>
         <div class="menu"><a href="">맛집</a></div>
         <div class="menu"><a href="">고객센터</a></div>

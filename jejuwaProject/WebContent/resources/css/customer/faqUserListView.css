@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+
+div {border: 1px  ;}
+
+/* 전체 랩 */
+.reviewList-wrap{width: 700px;margin: auto; margint-top:50px}
+
+/*  테이블 랩 */
+.reviewList-wrap table { 
+    text-align: center;
+    margin: auto;
+    width: 680px;
+    
+
+}
+#title-wrap {
+    padding-top: 20px;
+    margin: 5px;
+    margin-left: 30px;
+
+}
+/* 총 게시글 수 */
+
+.review-sum{
+
+    font-size: small;
+    margin-left: 30px;
+    
+}
+.search-wrap{ 
+    float: right;
+    width: 300px;
+}
+
+
+.clear {clear:both; height:0; overflow:hidden;}
+
+.review-table{
+    padding: 20px;
+    margin: 10px;
+    margin-top: 10px;
+}
+
+.FAQ{margin-left: -40px;}
+.FAQ ul li{float: left;}
+.FAQ ul li a{margin-left: 40px;}
+.FAQ ul li a:hover{background-color: orange;}

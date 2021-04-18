@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
    <!-- boardMenu css -->
-    <link rel="stylesheet" type="text/css" href="/jejuwa/boardMenu.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/customerBoardMenu.css">
 
     <!-- boardMenu fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -18,6 +18,8 @@
     
 </head>
 <body>
+	<%@ include file = "../common/managerMenubar.jsp" %>
+	
 	<div class="board_menu">       
         <div class="board_menu_list">                 
             <h2 id="customer_center"><a>고객센터</a></h2>
@@ -37,6 +39,6 @@
             </ul>                  
         </div>
     
-    </div>
+
 </body>
 </html>
