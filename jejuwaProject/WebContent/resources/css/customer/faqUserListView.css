@@ -46,3 +46,5 @@ div {border: 1px  ;}
 .FAQ ul li{float: left;}
 .FAQ ul li a{margin-left: 40px;}
 .FAQ ul li a:hover{background-color: orange;}
+
+.answer{display : none;}

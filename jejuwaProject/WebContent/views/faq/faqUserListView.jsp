@@ -44,19 +44,23 @@
     <h2>자주하는 문의(FAQ)</h2>
     </div>
     <br>
-    <div class="review-sum" align="left">
-        <span></span>
-    </div>
-    <div class="FAQ">
+    <div class="review-sum" align="right">
+        <form action="" method="GET" >
+            <fieldset>
+                <select name = "searchKey">
+                    <option value="title">제목</option>
+                    <option value="qstatus">구분</option>
+                </select>
 
-    	<ul>
-            <li><a class = "btn btn-danger" href="">관광지/레저</a></li>
-            <li><a class = "btn btn-danger" href="">맛집</a></li>
-            <li><a class = "btn btn-danger" href="">쿠폰</a></li>
-            <li><a class = "btn btn-danger" href="">취소/결제</a></li>
-    	</ul>
-       
+                <label>검색어</label>
+                    <input type = "text" id="searchKeyword" name = "search" >
+                    <input type ="submit" value="검색">
+            </fieldset>
+        </form>
+
     </div>
+
+
     <div class="clear"></div>
     <div class="review-table">
     <table class="table table-hover">
@@ -70,20 +74,46 @@
         <tbody>
         	<% if(list.isEmpty()){ %>
         		<tr>
-        			<td clospan="5"> 존재하는 공지사항이 없습니다 </td>
+        			<td colspan="3"> 존재하는 공지사항이 없습니다 </td>
         		</tr>
         	<%}else{ %>
         		<%for (Faq f : list){ %>
-            		<tr>
-                		<td><%=f.getFaqNo()%></td>
-                		<td><%=f.getqCategory() %></td>
-                		<td><%=f.getFaqTitle() %></td>
+            		<tr class = "question">
+                		<td width ="30px"><%=f.getFaqNo()%></td>
+                		<td width = "250px"><%=f.getFaqTitle() %></td>
+                		<td width = "100px"><%=f.getqCategory()%></td>
+            		</tr>
+            		
+            		<tr class="answer">
+            			<th colspan="3"><%=f.getFaqContent() %></th>
             		</tr>
             	<%} %>
             <%} %>
             
         </tbody>
     </table>
+    
+    <script>
+        $(function(){
+            $(".question").click(function(){
+            	
+            	var $p = $(this).next(); // jQuery 방식으로 선택한 요소를 담아둘 때 변수명 앞에 $를 붙인다.
+                
+                if($p.css("display") == "none"){
+                    $(this).siblings("p").slideUp();
+                    $p.slideDown(); // 보여지게
+                    
+                }else{
+                    $p.slideUp(); //  사라지게
+                }
+				
+				/*
+                // slideDown 또는 slideUp 시킬 p 요소
+                
+				*/
+            })
+        })
+    </script>
 </div>
     <br><br>
 </div>

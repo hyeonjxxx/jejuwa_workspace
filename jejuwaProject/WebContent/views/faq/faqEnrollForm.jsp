@@ -29,7 +29,7 @@
         <br><br>
 
         <div class="enrollForm">
-                <form action="">
+                <form action="<%=contextPath%>/">
                     <table align="center" id="enrollTable">
                         <tr>
                             <th>구분</th>
@@ -51,7 +51,7 @@
                         <tr>
                             <th>내용</th>
                             <td colspan="2">
-                                <textarea name="" id="" cols="85" rows="30" style="resize:none;" placeholder="내용을 입력해주세요" ></textarea>
+                                <textarea name="content" cols="85" rows="30" style="resize:none;" placeholder="내용을 입력해주세요" ></textarea>
                             </td>
                         </tr>
                     </table>

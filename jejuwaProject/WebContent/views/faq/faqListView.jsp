@@ -48,6 +48,10 @@
         <div class="divisionLine"></div>
         
         
+        <!--로그인했고, 로그인한 사용자가 admin일 경우 보여지는 div-->
+       
+        
+        
 
         <div class="area1">
 
