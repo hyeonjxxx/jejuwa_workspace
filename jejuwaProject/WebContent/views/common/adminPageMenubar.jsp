@@ -40,7 +40,7 @@
             <div id="header2">
                 <span class="topbtn">관리자on</span>
                 <a href="#" class=topbtn>로그아웃</a>
-                <a href="#" class=topbtn style="margin-left: 700px;">홈페이지</a>     
+                <a href="<%=contextPath %>" class=topbtn style="margin-left: 700px;">홈페이지</a>     
             </div>
             
         </div>

@@ -5,9 +5,8 @@
 	<entry key="selectFaqList">
 		SELECT
 		        FAQ_NO
-		      , Q_CATEGORY
 		      , FAQ_TITLE
-		      		      
+		      , Q_CATEGORY
 		   FROM FAQ
 		  WHERE FAQ_STATUS = 'Y'
 	</entry>
@@ -41,6 +40,18 @@
 		     )
 	</entry>
 	
+	
+	
+	<entry key="selectFaq">
+		SELECT
+		        FAQ_NO
+		      , FAQ_TITLE
+		      , FAQ_CONTENT
+		      , Q_CATEGORY
+		   FROM FAQ
+		  WHERE FAQ_NO = ?
+		    AND FAQ_STATUS = 'Y'
+	</entry>
 </properties>
 
 

@@ -32,7 +32,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     
         <!-- FAQ CSS -->
-        <link rel="stylesheet" type="text/css"  href="<%=request.getContextPath() %>/resources/css/faqListView.css">
+        <link rel="stylesheet" type="text/css"  href="<%=request.getContextPath() %>/resources/css/faq/faqListView.css">
     
         <!-- FAQ SERVICE CSS -->
         <link rel="stylesheet" href="borderFAQ.css">
@@ -79,13 +79,12 @@
 
         <!-- 공지사항 리스트 테이블 -->
         <div class="listArea">
-            <table align="center" id="memberList">
+            <table align="center" class="faqList">
                 <thead>
                     <tr>
-                        <th width="30" ><input type="checkbox"></th>
                         <th width="70">번호</th>
-                        <th width="400">제목</th>
                         <th width="100">구분</th>
+                        <th width="400">제목</th>
                         
                     </tr>
                 </thead>
@@ -99,7 +98,6 @@
                 <%}else{ %>
                 	<%for(Faq f : list){ %>
 	                    <tr>
-	                        <td><input type="checkbox"></td>
 	                        <td><%=f.getFaqNo()%></td>
 	                        <td><%=f.getqCategory() %></td>
 	                        <td><%=f.getFaqTitle() %></td>
@@ -114,24 +112,17 @@
 
         </div>
 		
-		<!-- 
-		<script>
-			$(function(){
-				$(".listArea>tbody>tr").click(function(){
-					location.href = ""
-				})
-			})
-		</script>
-       -->
+    <script>
+    	$(function(){
+    		$(".faqList>tbody>tr").click(function(){
+    			location.href = '<%=contextPath%>/detail.fa?fno=' + $(this).children().eq(0).text(); 
+    		})
+    	})
+    </script>
+    
         <!-- 버튼, 페이징 구역 -->
         <div class="bottomArea">
-
-            <!-- 버튼 (선택삭제) -->
-            <div align="right" class="btn">
-                <a href="" id="btn1">선택삭제</a>
-            </div>                
-            
-    
+                           
             <!-- 페이징  -->
             <div align="center" class="pagingArea">
                         
@@ -155,6 +146,8 @@
 		</div>
 
     </div>
+    
+
 	
 </body>
 </html>

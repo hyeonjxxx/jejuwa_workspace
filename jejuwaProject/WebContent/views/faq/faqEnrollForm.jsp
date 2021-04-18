@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FAQ 등록페이지</title>
+<title>FAQ 관리자 등록페이지</title>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/faqEnrollForm.css">
 <!-- common  -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -13,7 +13,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!-- content css-->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/product/css/productEnrollForm.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/faq/faqEnrollForm.css">
 </head>
 <body>
 
@@ -30,7 +30,7 @@
 
         <div class="enrollForm">
                 <form action="<%=contextPath%>/">
-                    <table align="center" id="enrollTable">
+                    <table align="center" id="enrollTable" align = "center" border = "1">
                         <tr>
                             <th>구분</th>
                             <td colspan="2">
@@ -51,7 +51,7 @@
                         <tr>
                             <th>내용</th>
                             <td colspan="2">
-                                <textarea name="content" cols="85" rows="30" style="resize:none;" placeholder="내용을 입력해주세요" ></textarea>
+                                <textarea style = "width: 100%;" name="content" cols="85" rows="30" style="resize:none;" placeholder="내용을 입력해주세요" ></textarea>
                             </td>
                         </tr>
                     </table>

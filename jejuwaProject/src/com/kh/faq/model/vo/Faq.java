@@ -21,6 +21,13 @@ public class Faq {
 	
 	
 
+	public Faq(String faqTitle, String faqContent, String qCategory) {
+		super();
+		this.faqTitle = faqTitle;
+		this.faqContent = faqContent;
+		this.qCategory = qCategory;
+	}
+
 	public Faq(int faqNo, String faqTitle, String faqContent, String qCategory) {
 		super();
 		this.faqNo = faqNo;

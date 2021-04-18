@@ -49,4 +49,13 @@ public class FaqService {
 		return result;
 		
 	}
+	
+	
+	public Faq selectFaq(int faqNo) {
+		Connection conn = getConnection();
+		Faq f = new FaqDao().selectFaq(conn, faqNo);
+		
+		close(conn);
+		return f;
+	}
 }
