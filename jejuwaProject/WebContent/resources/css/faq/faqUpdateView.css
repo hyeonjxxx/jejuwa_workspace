@@ -1,0 +1,38 @@
+    
+/* *{border: 1px solid red;} */
+
+.outer{
+    height: 890px; width: 800px;
+    margin: 20px;
+
+}
+
+.divisionLine{
+    width: 800px; height: 5px;  
+    background-color: lightgray;
+    margin-top: 10px;
+}    
+
+/*상세보기폼*/
+#detailArea {margin: 30px; width: 750px; border: 1px solid red;}
+#updateForm th{width: 70px; text-align: center;}
+#updateForm td{padding-left: 10px;}
+
+
+/* 입력폼 */
+     
+
+select, span{margin-left: 10px;}
+
+
+               
+/* 버튼 */
+
+
+       
+
+/* modal */
+
+#updateBtn:hover, #go:hover, #back:hover{background-color: orange;}        
+#go, #back {background-color: dimgray; color: white;} 
+  

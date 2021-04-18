@@ -143,5 +143,28 @@ public class FaqDao {
 		
 	}
 	
-	
+	public int updateFaq(Connection conn, Faq f) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateFaq");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, f.getqCategory());
+			pstmt.setString(2, f.getFaqTitle());
+			pstmt.setString(3, f.getFaqContent());
+			pstmt.setInt(4, f.getFaqNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
 }

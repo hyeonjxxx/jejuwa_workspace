@@ -12,16 +12,16 @@ import com.kh.faq.model.service.FaqService;
 import com.kh.faq.model.vo.Faq;
 
 /**
- * Servlet implementation class FaqUpdateServlet
+ * Servlet implementation class FaqUpdateFormServlet
  */
-@WebServlet("/update.fa")
-public class FaqUpdateServlet extends HttpServlet {
+@WebServlet("/updateForm.fa")
+public class FaqUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FaqUpdateServlet() {
+    public FaqUpdateFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,29 +30,12 @@ public class FaqUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
 		int faqNo = Integer.parseInt(request.getParameter("fno"));
-		String qCategory = request.getParameter("category");
-		String faqTitle = request.getParameter("title");
-		String faqContent = request.getParameter("content");
 		
+		Faq f = new FaqService().selectFaq(faqNo);
 		
-		Faq f = new Faq();
-		f.setFaqNo(faqNo);
-		f.setqCategory(qCategory);
-		f.setFaqTitle(faqTitle);
-		f.setFaqContent(faqContent);
-		
-		
-		int result = new FaqService().updateFaq(f);
-		
-		if(result>0) {
-			
-			request.getSession().setAttribute("alertMsg", "성공적으로 수정됐습니다.");
-			response.sendRedirect(request.getContextPath() + "/detail.fa?fno=" + faqNo);
-		}
-		
+		request.setAttribute("f", f);
+		request.getRequestDispatcher("views/faq/faqUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

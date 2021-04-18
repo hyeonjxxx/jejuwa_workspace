@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>FAQ 관리자 등록페이지</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/faqEnrollForm.css">
+
 <!-- common  -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -16,7 +16,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!-- content css-->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>//resources/css/faq/faqDetailVeiw.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/faq/faqDetailView.css">
 </head>
 <body>
 
@@ -57,7 +57,7 @@
 
             <!-- 버튼 (수정하기) -->
             <div class="btn">
-                <a href="" id="btn1" class = "btn btn-warning">수정하기</a>
+                <a href="<%=contextPath %>/updateForm.fa?fno=<%=f.getFaqNo() %>" id="btn1" class = "btn btn-warning">수정하기</a>
             </div> 
              <!-- 버튼 (삭제하기) -->
             <div class="btn">

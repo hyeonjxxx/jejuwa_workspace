@@ -52,6 +52,17 @@
 		  WHERE FAQ_NO = ?
 		    AND FAQ_STATUS = 'Y'
 	</entry>
+	
+	<entry key="updateFaq">
+		UPDATE
+			   FAQ
+		   SET 
+		       Q_CATEGORY = ?, 
+		       FAQ_TITLE = ?, 
+		       FAQ_CONTENT = ?
+		 WHERE FAQ_NO = ? 
+	</entry>
+	
 </properties>
 
 
