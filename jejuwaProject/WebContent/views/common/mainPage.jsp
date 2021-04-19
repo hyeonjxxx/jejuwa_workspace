@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.member.model.vo.Member"%>
 <%
 	String contextPath = request.getContextPath();
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	// 로그인 전  managerMenubar.jsp  로딩시 : null
+	// 로그인 성공후 managerMenbubar.jsp 로딩시 : 로그인한 회원의 정보들이 담겨있는 객체
 %>
 <!DOCTYPE html>
 <html>
@@ -65,21 +68,20 @@
             <div id="header_3">
                 <div>
 
-                <!-- 로그인 전
+					<!-- 로그인 전 --> 
+					<% if(loginUser == null){ %>
                 	<ul id="info_1">
-                        <li><a href="<%= contextPath %>/login.me">로그인</a></li>
+                        <li><a href="<%= request.getContextPath() %>/login.me">로그인</a></li>
                         <li><a href="">회원가입</a></li>
                     </ul>
-                -->
-
-                <!-- 로그인 후 -->
-
-
+                    <% } else{ %>
+                    <!--  로그인 후    -->  
                     <ul id="info_1">
-                        <li><a href="">xxx님 환영합니다</a></li>
-                        <li><a href="">로그아웃</a></li>
-                        <li><a href="<%=contextPath%>/admin.go">관리자</a></li>
+                        <li><a href=""><%= loginUser.getMemName() %>님 환영합니다</a></li>
+                        <li><a href="<%= request.getContextPath() %>/logout.me">로그아웃</a></li>
+                        <li><a href="">관리자</a></li>
                     </ul>
+                    <% } %>
 
 
                 </div>

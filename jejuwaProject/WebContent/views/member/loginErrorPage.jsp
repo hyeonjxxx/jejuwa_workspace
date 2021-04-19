@@ -49,7 +49,7 @@
                     <input type="password" name="memPwd" id="memPwd" placeholder="비밀번호를 입력해주세요.">
                     </div>
                     <br>
-                    <div style="color:red; font-size:12px; display:none;" >
+                    <div style="color:red; font-size:12px; " >
                         <p>
                         <%= loginError %>
                         </p>
