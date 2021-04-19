@@ -13,6 +13,7 @@ button{background-color:orange; border: 1px solid orange;}
 #header_2{width: 55%;}
 #header_3{width: 25%;}
 
+a { text-decoration: none; } 
 
 /* 세부_검색창폼만들기 */
 #header_2{position: relative;}
@@ -57,47 +58,36 @@ button{background-color:orange; border: 1px solid orange;}
     }
 
 
-#info_2 *{
-    float: left;
-    display: block;
-    text-decoration: none;
-    list-style-type: none;
+    #search_text{
+        float: left;
+        
+    }
+    /* 아이콘영역 시작 */
+
+    #icon0{
+        float: right;
+        margin: auto;
+        padding: 10px;
+        text-align:center;
+        margin-right: 43px;
+        margin-top: 10px;
+    }
+    
+
+    
+    #icon0>div{
+        margin: 7px;
+        
+    }
+    #icon0 p {
+        font-size: x-small;
+        margin: auto;
+        margin-top: 4px;
 
     }
 
-figure{
-    display: inline-block;
-    
-}
-
-figcaption{
-    position: absolute;
-    bottom:-20px
-}
-#mp{
-    position: absolute;
-    top: 70px;
-    left: 25px;
-
-}
-
-#cart{
-    position: absolute;
-    top: 70px;
-    left: 80px;
-
-}
-
-#like{
-    position: absolute;
-    top: 70px;
-    left: 130px;
-
-}
-
-#cp{
-    position: absolute;
-    top: 70px;
-    left: 180px;
-
-}
+    .coupon{
+        float: left;
+    }
+    /* clean으로 비워주기 */
+    .clear {clear:both; height:0; overflow:hidden;}
