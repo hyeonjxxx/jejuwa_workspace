@@ -9,11 +9,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import com.kh.faq.model.vo.Faq;
-import com.kh.test.model.Test;
 
 public class FaqDao {
 
