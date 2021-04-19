@@ -33,9 +33,7 @@ public class ProductListViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		ArrayList<Product> list = new ProductService().selectProductList();
-		
-		System.out.println(list);
-		
+				
 		request.setAttribute("list", list);			
 		request.getRequestDispatcher("views/product/productListView.jsp").forward(request, response);
 		
