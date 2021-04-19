@@ -50,7 +50,7 @@
             <div class="btnArea">
                 <!-- <div id="deleteBtn"><a href="">삭 제</a></div> -->
                 <button type="button" id="deleteBtn" data-toggle="modal" data-target="#myModal">삭 제</button>
-                <button id="enrollBtn"><a href="<%=request.getContextPath() %>/enrollForm.pdt">등 록</a></button>
+                <button id="enrollBtn"><a href="<%=request.getContextPath() %>/enroll.pdt">등 록</a></button>
             </div>
     
     
@@ -140,17 +140,6 @@
             <!-- 페이징  -->
             <div align="center" class="pagingArea">
                     
-                    <button>&laquo;</button>
-                    <button>&lt;</button>			
-
-                        <button disabled>1</button>				
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5</button>			
-                
-                    <button>&gt;</button>
-                    <button>&raquo;</button>
 
              </div>
 			

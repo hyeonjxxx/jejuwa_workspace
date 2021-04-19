@@ -94,7 +94,7 @@
 
         <!-- 버튼 -->
         <div align="right" class="btnArea">
-            <div id="btnBack"><a href="">목록으로</a></div>
+            <div id="btnBack"><a href="<%=request.getContextPath()%>/list.pdt">목록으로</a></div>
             <!-- Button to Open the Modal -->
             <button type="button" id="btnEnroll" data-toggle="modal" data-target="#myModal">등 록</button>
         </div>
