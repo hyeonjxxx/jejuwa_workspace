@@ -9,14 +9,7 @@
 <meta charset="UTF-8">
 <title>FAQ 사용자 게시판</title>
 
-<!-- header css -->
-<link rel="stylesheet" type="text/css" href="header.css">
 
-<!-- content css-->
-<link rel="stylesheet" type="text/css" href="cs-reviewList.css">    
-
-<!-- footer css -->
-<link rel="stylesheet" type="text/css" href="footer.css">
 
 <!-- footer fonts-->
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -118,5 +111,6 @@
     <br><br>
 </div>
 	
+	<%@ include file = "../common/footer.jsp" %>
 </body>
 </html>

@@ -54,15 +54,18 @@
        
         <!-- 버튼 구역 -->
         <div class="bottomArea" align="center">
-
+			
+			<!-- 버튼 (목록가기) -->
+			<a href="<%= contextPath %>/list.fa" class="btn btn-secondary btn-sm">목록가기</a>
+			
             <!-- 버튼 (수정하기) -->
-            <div class="btn">
-                <a href="<%=contextPath %>/updateForm.fa?fno=<%=f.getFaqNo() %>" id="btn1" class = "btn btn-warning">수정하기</a>
-            </div> 
+            
+            <a href="<%=contextPath %>/updateForm.fa?fno=<%=f.getFaqNo() %>" id="btn1" class = "btn btn-warning btn-sm">수정하기</a>
+            
              <!-- 버튼 (삭제하기) -->
-            <div class="btn">
-                <a href="" id="btn2" class = "btn btn-danger">삭제하기</a> 
-            </div>   
+            
+            <a href="<%=contextPath %>/delete.fa?fno=<%=f.getFaqNo() %>" id="btn2" class = "btn btn-danger btn-sm">삭제하기</a> 
+             
 			
 		</div>
 
