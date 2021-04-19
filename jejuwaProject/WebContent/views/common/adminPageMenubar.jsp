@@ -13,6 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     
     <!-- css -->
     <link rel="stylesheet" href="<%= contextPath %>/resources/css/adminPageMenubar.css">
@@ -37,7 +38,7 @@
         <!-- 헤더 -->
         <div id="header" >
             <div id="header1">
-                <a href="관리자 홈페이지"><img src="<%= contextPath %>/resources/image/톱니바퀴.png" style="padding: 15px;"></a>
+                <a href="관리자 홈페이지"><img src="<%= contextPath %>/resources/images/톱니바퀴.png" style="padding: 15px;"></a>
             </div>
 
             <!-- 로그인 전 div -->
