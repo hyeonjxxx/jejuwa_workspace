@@ -38,7 +38,7 @@
         <!-- 헤더 -->
         <div id="header" >
             <div id="header1">
-                <a href="관리자 홈페이지"><img src="<%= contextPath %>/resources/image/톱니바퀴.png" style="padding: 15px;"></a>
+                <a href="관리자 홈페이지"><img src="<%= contextPath %>/resources/images/톱니바퀴.png" style="padding: 15px;"></a>
             </div>
 
             <!-- 로그인 전 div -->
@@ -88,7 +88,7 @@
             <!-- 내용  -->
             <div class="content">
                 
-\
+
 
     <script>
         $(function(){
