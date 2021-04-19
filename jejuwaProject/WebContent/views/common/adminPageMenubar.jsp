@@ -69,8 +69,8 @@
                 
                     <div class="submenu">상품 관리</div>
                     <p>
-                        <a href="">상품 조회</a> <br>
-                        <a href="">상품 등록</a> <br>
+                        <a href="<%=contextPath%>/list.pdt">상품 조회</a> <br>
+                        <a href="<%=contextPath%>/enroll.pdt">상품 등록</a> <br>
                         <a href="">주문내역 관리</a> <br>
                     </p>
         

@@ -1,1 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+
+<properties>
+
+	<entry key="selectProductList">
+		SELECT 
+		        P_CODE
+		      , P_NAME
+		      , PRICE
+		      , P_STOCK
+		      , P_STATUS
+		   FROM PRODUCT 
+		  ORDER
+		     BY P_CODE DESC
+	</entry>
+
+	<entry key="insertProduct">
+		INSERT 
+		  INTO PRODUCT
+		  (
+		       LOCAL_CODE
+		     , THEME_CODE 		  
+		     , P_CODE
+		     , P_NAME
+		     , DEATIL_PATH		     
+		     , PRICE 
+		     , P_STOCK
+		     , BASIC_PATH
+		  )
+		  VALUES
+		  (
+		    , ?
+		    , ?
+		    , 'JEJUWA'||LPAD(SEQ_PNO.NEXTVAL, 5, '0')
+		    , ?
+		    , ?
+		    , ?
+		    , ?
+		    , ?
+		  )
+	
+	</entry>
+	
+	<entry key="세부이미지 첨부">
+	
+	</entry>
+	
+	<entry key="상품테이블 수정">
+		UPDATE
+				PRODUCT
+			SET LOCAL_CODE = ?
+		      , THEME_CODE = ? 		  
+		      , P_NAME = ?
+		      , DEATIL_PATH = ?		     
+		      , PRICE = ? 
+		      , P_STOCK = ?
+		      , BASIC_PATH = ?
+		  WHERE P_CODE = ?   	
+	</entry>
+	
+	<entry key="세부이미지 수정">
+	
+	</entry>
+
+
+</properties>

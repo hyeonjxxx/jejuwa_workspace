@@ -1,23 +1,28 @@
 package com.kh.product.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.product.model.service.ProductService;
+import com.kh.product.model.vo.Product;
+
 /**
- * Servlet implementation class ProductEnrollFormServlet
+ * Servlet implementation class ProductListViewServlet
  */
-@WebServlet("/enroll.pdt")
-public class ProductEnrollFormServlet extends HttpServlet {
+@WebServlet("/list.pdt")
+public class ProductListViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductEnrollFormServlet() {
+    public ProductListViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +32,14 @@ public class ProductEnrollFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("views/product/productEnrollForm.jsp").forward(request, response);
+		ArrayList<Product> list = new ProductService().selectProductList();
+		
+		System.out.println(list);
+		
+		request.setAttribute("list", list);			
+		request.getRequestDispatcher("views/product/productListView.jsp").forward(request, response);
+		
+		
 		
 	}
 
