@@ -33,4 +33,47 @@ public class NoticeService {
 		close(conn);
 		return list;
 	}
+	
+	/**
+	 * 공지사항 조회수 증가
+	 * @param noticeNo 조회수 증가시킬 공지사항 번호
+	 * @return
+	 */
+	public int increaseCount(int noticeNo) {
+		Connection conn = getConnection();
+		int result = new NoticeDao().increaseCount(conn, noticeNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * 공지사항 insert(테이블 내에 첨부파일 따로 관리)
+	 * @param n 매개변수가 담긴 Notice객체
+	 * @return
+	 */
+	public int insertNotice(Notice n) {
+		Connection conn = getConnection();
+		int result = new NoticeDao().insertNotice(conn, n);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

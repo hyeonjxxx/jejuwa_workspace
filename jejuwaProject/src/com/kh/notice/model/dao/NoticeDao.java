@@ -55,6 +55,12 @@ public class NoticeDao {
 		return listCount;
 	}
 	
+	/**
+	 * 공지사항 리스트 조회
+	 * @param conn
+	 * @param pi
+	 * @return
+	 */
 	public ArrayList<Notice> selectList(Connection conn, PageInfo pi){
 		// select문 => ResultSet(여러행)
 		ArrayList<Notice> list = new ArrayList<>();
@@ -90,6 +96,68 @@ public class NoticeDao {
 		}
 		return list;
 	}
+	
+	/**
+	 * 공지사항 상세조회시 조회수 증가
+	 * @param conn
+	 * @param noticeNo
+	 * @return
+	 */
+	public int increaseCount(Connection conn, int noticeNo) {
+		// update문 => 처리된 행 수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setInt(1, noticeNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	/**
+	 * 상세조회 요청 (해야함)
+	 */
+	
+	
+	/**
+	 * 공지사항 insert(테이블 내에 첨부파일 따로 관리)
+	 * @param conn
+	 * @param n
+	 * @return
+	 */
+	public int insertNotice(Connection conn, Notice n) {
+		// insert => 처리된 행수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql문
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeContent());
+			pstmt.setString(3, n.getOriginFileName()); // Q
+			pstmt.setString(4, n.getFilePath()); // Q
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	
 	
 	
 

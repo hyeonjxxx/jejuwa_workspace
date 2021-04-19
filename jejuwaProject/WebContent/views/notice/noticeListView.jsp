@@ -82,8 +82,16 @@
 	                 <% } %>   
                     
                 </tbody>
-
             </table>
+            
+            <script>
+            	// 상세보기 요청
+            	$(function(){
+            		$(".listArea>tbody>tr").click(function(){
+            			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children().eq(1).text();
+            		})
+            	})
+            </script>
 
         </div>
 
@@ -130,7 +138,7 @@
 
             <!-- 로그인 && 로그인한 사용자가 글 작성자인 경우 -->
             <div align="right" class="btn">
-                <a href="" id="btn2">등 록</a> 
+                <a href="<%= contextPath %>/enrollForm.no" id="btn2">등 록</a> 
             </div>   
 			
 		</div>
