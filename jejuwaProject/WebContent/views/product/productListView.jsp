@@ -11,7 +11,7 @@
 <title>Insert title here</title>
     
     <!-- content css-->
-    <link rel="stylesheet" type="text/css" href="../../resources/css/product/productListView.css">   
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/productListView.css">   
 
     <!-- modal icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
@@ -42,7 +42,7 @@
                     </select>
                     
                     <input type="search" name="keyword" id="keyword">
-                    <button type="submit"><img src="../../resources/images/lookup.png" width="25" align="right"></button>
+                    <button type="submit"><img src="<%=request.getContextPath() %>/resources/images/lookup.png" width="25" align="right"></button>
                 </form>    
             </div>
             
@@ -50,7 +50,7 @@
             <div class="btnArea">
                 <!-- <div id="deleteBtn"><a href="">삭 제</a></div> -->
                 <button type="button" id="deleteBtn" data-toggle="modal" data-target="#myModal">삭 제</button>
-                <button id="enrollBtn"><a href="<%= contextPath %>/enrollForm.pdt">등 록</a></button>
+                <button id="enrollBtn"><a href="<%=request.getContextPath() %>/enrollForm.pdt">등 록</a></button>
             </div>
     
     
@@ -129,9 +129,10 @@
             })
             </script>
             
+        </div>
             
             <br><br>
-    
+            
         <!-- 페이징 구역 -->
         <div class="bottomArea">
    
@@ -154,8 +155,6 @@
              </div>
 			
 		</div>
-
-        </div>
     </div>
 </body>
 </html>

@@ -116,20 +116,21 @@
       margin: 10px 0 15px 9px;
   }
   
-/* 버튼 + 페이징 구역*/
+/* 버튼 + 페이징 구역
 .bottomArea{
     margin: 15px;
     margin-left: 50px;
 }
 .bottomArea *{float:left;}
-
+*/
 
   
 /* 페이징  */
 .pagingArea{
     margin-left:90px;
-    margin-right: 90px;
+   /* margin-right: 90px;*/
 }
+/*
 .pagingArea *{margin-right: 5px; margin-top: 9px; border-radius:3px; }
-
+*/
             
