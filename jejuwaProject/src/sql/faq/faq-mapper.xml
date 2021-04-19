@@ -2,13 +2,28 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+	<entry key="selectListCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM FAQ
+		 WHERE FAQ_STATUS = 'Y' 
+	</entry>
+	
 	<entry key="selectFaqList">
-		SELECT
-		        FAQ_NO
-		      , FAQ_TITLE
-		      , Q_CATEGORY
-		   FROM FAQ
-		  WHERE FAQ_STATUS = 'Y'
+		SELECT *
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		                SELECT
+		                        FAQ_NO
+		                      , FAQ_TITLE
+		                      , Q_CATEGORY
+		                   FROM FAQ
+		                  WHERE FAQ_STATUS = 'Y'
+		                        )A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="selectFaqUserList">

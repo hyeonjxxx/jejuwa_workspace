@@ -8,16 +8,26 @@ import static com.kh.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.faq.model.dao.FaqDao;
 import com.kh.faq.model.vo.Faq;
 
 public class FaqService {
+	
+	public int selectListCount() {
+		Connection conn = getConnection();
+		int listCount = new FaqDao().selectListCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
 
-	public ArrayList<Faq> selectFaqList(){
+	public ArrayList<Faq> selectFaqList(PageInfo pi){
 		
 		Connection conn = getConnection();
 		
-		ArrayList<Faq> list = new FaqDao().selectFaqList(conn);
+		ArrayList<Faq> list = new FaqDao().selectFaqList(conn, pi);
 		
 		close(conn);
 		

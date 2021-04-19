@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "java.util.ArrayList, com.kh.faq.model.vo.Faq"%>
+    pageEncoding="UTF-8" import = "java.util.ArrayList, com.kh.faq.model.vo.Faq, com.kh.common.model.vo.PageInfo"%>
 <%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Faq> list = (ArrayList<Faq>)request.getAttribute("list");
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -121,31 +127,34 @@
     </script>
     
         <!-- 버튼, 페이징 구역 -->
-        <div class="bottomArea">
+        
                            
             <!-- 페이징  -->
             <div align="center" class="pagingArea">
-                        
-                    <button>&lt;</button>			
-                
-                        <button disabled>1</button>				
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5</button>			
-                
-                    <button>&gt;</button>
-
+				<% if(currentPage != 1) { %>
+            	<button onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%=currentPage-1%>';">이전</button>
+			<% } %>
+			
+			<% for(int p=startPage; p<=endPage; p++) { %>
+				
+				<% if(currentPage == p){ %>
+            		<button disabled><%= p %></button>
+            	<% }else{ %>
+            		<button onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%= p %>';"><%= p %></button>
+            	<% } %>
+            	
+			<% } %>
+			
+			<% if(currentPage != maxPage){ %>
+            	<button onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%=currentPage+1%>';">다음</button>
+			<% } %>
              </div>
 
-             <!-- 버튼 (등록) -->
-            <div align="right" class="btn">
-                <a href="" id="btn2">등 록</a> 
-            </div>   
+    
 			
 		</div>
 
-    </div>
+    
     
 
 	

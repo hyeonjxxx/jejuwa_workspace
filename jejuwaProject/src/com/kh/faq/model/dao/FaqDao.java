@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.faq.model.vo.Faq;
 
 public class FaqDao {
@@ -27,7 +28,35 @@ public class FaqDao {
 		}
 	}
 	
-	public ArrayList<Faq> selectFaqList(Connection conn){
+	public int selectListCount(Connection conn) {
+		// select문 => ResultSet객체 (총게시글갯수 == 정수)
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
+		
+	}
+	
+	public ArrayList<Faq> selectFaqList(Connection conn, PageInfo pi){
 		// select문
 		
 		ArrayList<Faq> list = new ArrayList<>();
@@ -37,6 +66,8 @@ public class FaqDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
