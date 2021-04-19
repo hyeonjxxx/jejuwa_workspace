@@ -78,7 +78,7 @@
                     <ul id="info_1">
                         <li><a href="">xxx님 환영합니다</a></li>
                         <li><a href="">로그아웃</a></li>
-                        <li><a href="">관리자</a></li>
+                        <li><a href="<%=contextPath%>/admin.go">관리자</a></li>
                     </ul>
 
 
