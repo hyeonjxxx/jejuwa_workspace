@@ -58,7 +58,6 @@ public class LoginPageServlet extends HttpServlet {
 			session.setAttribute("loginUser", m);
 
 			response.sendRedirect(request.getContextPath());
-			System.out.println(m);
 			
 		}
 		

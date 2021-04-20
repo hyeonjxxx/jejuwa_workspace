@@ -71,10 +71,10 @@
 					<!-- 로그인 전 --> 
 					<% if(loginUser == null){ %>
                 	<ul id="info_1">
-                        <li><a href="<%= request.getContextPath() %>/login.me">로그인</a></li>
+                        <li><a href="<%= request.getContextPath() %>/views/member/loginPage.jsp">로그인</a></li>
                         <li><a href="">회원가입</a></li>
                     </ul>
-                    <% } else if(loginUser.getStatus().equals("A")){ %>
+                    <% } else { if(loginUser.getStatus().equals("A")){ %>
                     <!--  로그인 후    -->  
                     <ul id="info_1">
                         <li><a href=""><%= loginUser.getMemName() %>님 환영합니다</a></li>
@@ -86,15 +86,8 @@
                         <li><a href=""><%= loginUser.getMemName() %>님 환영합니다</a></li>
                         <li><a href="<%= request.getContextPath() %>/logout.me">로그아웃</a></li>
                     </ul>
-                    <% } %>
+                    <% }} %>
 
-
-                </div>
-
-                <div>
-                    <ul id="info_2">
-
-                    </ul>
 
                 </div>
             </div>
