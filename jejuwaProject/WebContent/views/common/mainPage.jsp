@@ -74,12 +74,17 @@
                         <li><a href="<%= request.getContextPath() %>/login.me">로그인</a></li>
                         <li><a href="">회원가입</a></li>
                     </ul>
-                    <% } else{ %>
+                    <% } else if(loginUser.getStatus().equals("A")){ %>
                     <!--  로그인 후    -->  
                     <ul id="info_1">
                         <li><a href=""><%= loginUser.getMemName() %>님 환영합니다</a></li>
                         <li><a href="<%= request.getContextPath() %>/logout.me">로그아웃</a></li>
-                        <li><a href="">관리자</a></li>
+                        <li><a href="<%=request.getContextPath()%>/admin.go">관리자</a></li>
+                    </ul>
+                    <% } else{ %>
+                    <ul id="info_1">
+                        <li><a href=""><%= loginUser.getMemName() %>님 환영합니다</a></li>
+                        <li><a href="<%= request.getContextPath() %>/logout.me">로그아웃</a></li>
                     </ul>
                     <% } %>
 
