@@ -1,13 +1,9 @@
-.login_wrap{
-    width:600px;
-    margin:auto;
-}
 
 .login_main>*{
     margin: auto;
     box-sizing:border-box;
+    height: 100%;
     float:left;
-    width:600px;
 }
 
 .login_title{
@@ -22,12 +18,12 @@
 
 .login_content>input{
     height: 40px;
-    width: 350px;
+    width: 300px;
 }
 
 .slide_img{
     width:200px;
-    height:350px;
+    height:300px;
     overflow: hidden;
 }
 

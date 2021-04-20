@@ -35,30 +35,32 @@
 
         <!-- 로그인창 -->
         <div class="login_main">
-                <form action="<%= request.getContextPath()%>/login.me" id="loginForm" method="post">
-                    <!-- 로그인 타이틀 -->
-                    <div class="login_title">
-                        안녕하세요
-                        <br><img src="<%=request.getContextPath()%>/resources/images/jejuwa_icon.png" alt="" style="width:130px; height:70px;">입니다.
-                    </div>
-                    <!-- 로그인 입력내용 -->
-                    <div class="login_content">
-                    로그인 후 다양한 서비스를 이용하실 수 있습니다.
-                    <br><br>
-                    <input type="text" name="memId" id="memId" placeholder="아이디를 입력해주세요.">
-                    <input type="password" name="memPwd" id="memPwd" placeholder="비밀번호를 입력해주세요.">
-                    </div>
-                    <br>
-                    <div style="color:red; font-size:12px; display:none;" >
-                        <p>
-                        <%= loginError %>
-                        </p>
-                    </div>
+                <div class="loginForm">
+                    <form action="<%= request.getContextPath()%>/login.me" method="post">
+                        <!-- 로그인 타이틀 -->
+                        <div class="login_title">
+                            안녕하세요
+                            <br><img src="<%=request.getContextPath()%>/resources/images/jejuwa_icon.png" alt="" style="width:130px; height:70px;">입니다.
+                        </div>
+                        <!-- 로그인 입력내용 -->
+                        <div class="login_content">
+                        로그인 후 다양한 서비스를 이용하실 수 있습니다.
+                        <br><br>
+                        <input type="text" name="memId" id="memId" placeholder="아이디를 입력해주세요.">
+                        <input type="password" name="memPwd" id="memPwd" placeholder="비밀번호를 입력해주세요.">
+                        </div>
+                        <br>
+                        <div style="color:red; font-size:12px; display:none;" >
+                            <p>
+                            <%= loginError %>
+                            </p>
+                        </div>
 
-                    <div class="btn_login">
-                        <button id="btnAgree" type="submit" class="btn btn-warning" style="width: 350px; color:white; font-weight:600;" >로그인하기</button>
-                    </div>
-                </form>
+                        <div class="btn_login">
+                            <button id="btnAgree" type="submit" class="btn btn-warning" style="width: 350px; color:white; font-weight:600;" >로그인하기</button>
+                        </div>
+                    </form>
+                </div>
         
             <!-- 우측 상품 섬네일 -->
             <div class="login_slide">
@@ -68,7 +70,7 @@
                     </div>
                     <div class="slide_img">
                         <a href="">
-                            <img id = "thumb_img" src="<%=request.getContextPath()%>/resources/images/jeju_main.jpg">
+                            <img id = "thumb_img" style="height: 300px;" src="<%=request.getContextPath()%>/resources/images/jeju_main.jpg">
                         </a>
                     </div>
                 </div>
