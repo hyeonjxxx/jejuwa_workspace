@@ -51,7 +51,7 @@ public class AdminpageLoginServlet extends HttpServlet {
 			//request.getRequestDispatcher("/views/common/adminPageMenubar.jsp").forward(request, response);
 			//System.out.println(m);
 			
-			request.getSession().setAttribute("adminUser", m);
+			request.getSession().setAttribute("loginUser", m);
 			request.getRequestDispatcher("views/common/adminPageMenubar.jsp").forward(request, response);
 		}
 

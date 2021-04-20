@@ -37,7 +37,7 @@ public class AdminMainPageServlet extends HttpServlet {
 		
 		// Q. 세션에 담겨있는 값을 가져와서 멤버 객체 loginuser에 담기 (?)
 		HttpSession session = request.getSession();
-		Member adminUser = (Member)session.getAttribute("loginUser");
+		Member loginUser = (Member)session.getAttribute("loginUser");
 		
 		// Q. loginUser 객체를 담아서 전달,,?
 		//request.setAttribute("loginUser", adminUser);
@@ -45,7 +45,7 @@ public class AdminMainPageServlet extends HttpServlet {
 		//System.out.println(adminUser);
 		//session.setAttribute("adminUser", adminUser);
 		//response.sendRedirect(request.getContextPath() + "/admin.go");
-		session.setAttribute("adminUser", adminUser);
+		session.setAttribute("loginUser", loginUser);
 		request.getRequestDispatcher("views/common/adminPageMenubar.jsp").forward(request, response);
 		
 	}

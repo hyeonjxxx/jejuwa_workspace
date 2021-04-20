@@ -4,7 +4,7 @@
 <%
 	String contextPath = request.getContextPath(); 
 	//Member loginUser = (Member)request.getAttribute("loginUser");
-	Member adminUser = (Member)session.getAttribute("adminUser");
+	Member loginUser = (Member)session.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -45,7 +45,7 @@
             </div>
 
             <!-- 로그인 전 div -->
-            <% if(adminUser == null) { %>
+            <% if(loginUser == null) { %>
             <div id="header2">
                 <span class="topbtn">관리자off</span>
                 <a href="#" class="topbtn" data-toggle="modal" data-target="#myModal">로그인</a>
@@ -56,7 +56,7 @@
             <div id="header2">
                 <span class="topbtn">관리자on</span>
                 <a href="<%= contextPath %>/logout.ad" class="topbtn">로그아웃</a>
-                <a href="<%=contextPath %>" class=topbtn style="margin-left: 700px;">홈페이지</a>     
+                <a href="<%=contextPath %>/jejuwa.go" class=topbtn style="margin-left: 700px;">홈페이지</a>     
             </div>
             <% } %>
             
