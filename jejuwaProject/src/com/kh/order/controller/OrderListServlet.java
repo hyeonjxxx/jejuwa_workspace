@@ -61,7 +61,7 @@ public class OrderListServlet extends HttpServlet {
 		}
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		ArrayList<Order> list = new OrderService().selectOrderList();
+		ArrayList<Order> list = new OrderService().selectList(pi);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);

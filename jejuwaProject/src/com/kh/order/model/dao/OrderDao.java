@@ -71,16 +71,16 @@ public class OrderDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Order(rset.getInt("order_no"),
-								   rset.getDate("order_date"),
-								   rset.getInt("amount"),
-								   rset.getDate("travel_date"),
-								   rset.getString("mem_name"),
+				list.add(new Order(rset.getInt("ORDER_NO"),
+								   rset.getDate("ORDER_DATE"),
+								   rset.getInt("AMOUNT"),
+								   rset.getDate("TRAVEL_DATE"),
+								   rset.getString("MEM_NAME"),
 								   rset.getString("TRAVEL_EMAIL"),
-								   rset.getString("O.STATUS"),
+								   rset.getString("STATUS"),
 								   rset.getString("C_REASON"),
 								   rset.getInt("MEM_NO"),
-								   rset.getString("p_name")));
+								   rset.getString("P_NAME")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
