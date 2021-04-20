@@ -64,6 +64,7 @@
 		   AND MEM_PWD = ?		
 	</entry>
 	
+	
 	<entry key="insertMember">
 		INSERT
 		  INTO MEMBER
@@ -89,6 +90,7 @@
 		       , ?
 		       )
 	</entry>
+	
 	
 	
 	<entry key="updateMember">

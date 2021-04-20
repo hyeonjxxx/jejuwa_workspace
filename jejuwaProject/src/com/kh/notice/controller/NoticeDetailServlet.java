@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.notice.model.service.NoticeService;
+import com.kh.notice.model.vo.Notice;
 
 /**
  * Servlet implementation class NoticeDetailServlet
@@ -38,9 +39,17 @@ public class NoticeDetailServlet extends HttpServlet {
 		// 1. 조회수 증가
 		int result = new NoticeService().increaseCount(noticeNo);
 		
+		// 2. 공지사항 상세조회
 		if(result > 0) { // 유효한 공지사항 번호 => 상세 조회
+			Notice n = new NoticeService().selectNotice(noticeNo);
+			request.setAttribute("n", n);
+			request.getRequestDispatcher("views/notice/noticeDetailView.jsp").forward(request, response);
 			
-		}else { // 유효하지 않은 공지사항 번호 => errorMsg
+		}else { // 유효하지 않은 공지사항 번호 => alertMsg "공지사항 조회에 실패하였습니다."
+			// 에러페이지 따로 만들어야할지 그냥 alert로 띄울지
+			request.setAttribute("alertMsg", "공지사항 조회에 실패하였습니다.");
+			request.getRequestDispatcher("");
+			
 			
 		}
 	}

@@ -61,8 +61,8 @@ public class NoticeInsertServlet extends HttpServlet {
 			// Q. 하나의 첨부파일만 업로드 가능한 공지사항 테이블
 			// 파일을 담는 과정 질문..
 			// 첨부파일이 있다면 변수에 담기
-			String orgFileName = ""; // null로 초기화 해야할까?
-			String filePath = ""; // null ?
+			String orgFileName = null; // null로 초기화 해야할까?(DB에 왜 안올라가지,,,)
+			String filePath = null; // null ?
 			if(multiRequest.getOriginalFileName("upfile") != null) {
 				orgFileName = multiRequest.getOriginalFileName("upfile");
 				filePath = "resources/notice_upfiles/" + multiRequest.getFilesystemName("upfile"); // 파일 경로/수정명 개념
@@ -72,10 +72,19 @@ public class NoticeInsertServlet extends HttpServlet {
 			n.setNoticeTitle(noticeTitle);
 			n.setNoticeContent(noticeContent);
 			
+			/*
 			if(!orgFileName.equals("")) {
 				n.setOriginFileName(orgFileName);
 				n.setFilePath(filePath);
 			}
+			*/
+			if(orgFileName != null) {
+				n.setOriginFileName(orgFileName);
+				n.setFilePath(filePath);
+			}
+			
+			// System.out.println(n); => originFileName=null, filePath=null
+			
 			
 			// 4.공지사항 작성 요청 및 결과 받기
 			int result = new NoticeService().insertNotice(n);
@@ -87,6 +96,7 @@ public class NoticeInsertServlet extends HttpServlet {
 			}else { // 게시글 등록 실패 => alertMsg "공지사항 등록에 실패하였습니다."
 				request.getSession().setAttribute("alertMsg", "공지사항 등록에 실패하였습니다.");
 				response.sendRedirect(request.getContextPath() + "/list.no?currentPage=1");
+				// 추후 수정 : 공지사항 등록에 실패했을 시 등록중인 페이지 포워딩
 				
 			}
 			

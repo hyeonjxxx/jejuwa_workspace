@@ -79,7 +79,7 @@
 		                        <td><%= n.getEnrollDate() %></td>
 		                    </tr>
 		                <% } %>
-	                 <% } %>   
+	                <% } %>   
                     
                 </tbody>
             </table>
@@ -87,7 +87,7 @@
             <script>
             	// 상세보기 요청
             	$(function(){
-            		$(".listArea>tbody>tr").click(function(){
+            		$("#memberList>tbody>tr").click(function(){
             			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children().eq(1).text();
             		})
             	})

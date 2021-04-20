@@ -55,6 +55,7 @@ public class NoticeDao {
 		return listCount;
 	}
 	
+	
 	/**
 	 * 공지사항 리스트 조회
 	 * @param conn
@@ -86,8 +87,7 @@ public class NoticeDao {
 									rset.getInt("NOTICE_COUNT"),
 									rset.getString("ORG_FILENAME"),
 									rset.getString("FILE_PATH")));
-			}
-			
+			}			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -96,36 +96,6 @@ public class NoticeDao {
 		}
 		return list;
 	}
-	
-	/**
-	 * 공지사항 상세조회시 조회수 증가
-	 * @param conn
-	 * @param noticeNo
-	 * @return
-	 */
-	public int increaseCount(Connection conn, int noticeNo) {
-		// update문 => 처리된 행 수
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("increaseCount");
-		
-		try {
-			pstmt = conn.prepareStatement(sql); // 미완성 sql
-			pstmt.setInt(1, noticeNo);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		return result;
-	}
-	
-	
-	/**
-	 * 상세조회 요청 (해야함)
-	 */
 	
 	
 	/**
@@ -155,6 +125,66 @@ public class NoticeDao {
 		}
 		return result;
 	}
+	
+	
+	/**
+	 * 공지사항 상세조회시 조회수 증가
+	 * @param conn
+	 * @param noticeNo
+	 * @return
+	 */
+	public int increaseCount(Connection conn, int noticeNo) {
+		// update문 => 처리된 행 수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setInt(1, noticeNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	public Notice selectNotice(Connection conn, int noticeNo) {
+		// select문 => ResultSet(한 행)
+		Notice n = null;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성
+			pstmt.setInt(1, noticeNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				n = new Notice(rset.getInt("NOTICE_NO"),
+							   rset.getString("NOTICE_TITLE"),
+							   rset.getString("NOTICE_CONTENT"),
+							   rset.getDate("ENROLL_DATE"),
+							   rset.getString("ORG_FILENAME"),
+							   rset.getString("FILE_PATH"));
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return n;
+	}
+	
+	
+
 	
 	
 	

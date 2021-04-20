@@ -42,6 +42,19 @@ public class Notice {
 		this.originFileName = originFileName;
 		this.filePath = filePath;
 	}
+	
+	
+	// 공지사항 상세조회용 생성자
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, Date enrollDate, String originFileName,
+			String filePath) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.enrollDate = enrollDate;
+		this.originFileName = originFileName;
+		this.filePath = filePath;
+	}
 
 	public int getNoticeNo() {
 		return noticeNo;
