@@ -18,5 +18,23 @@ public class MemberService {
 		
 		return loginMember;
 	}
+	
+	
+	/**
+	 * 관리자 페이지에서 관리자로 로그인
+	 * @param memId
+	 * @param memPwd
+	 * @return
+	 */
+	public Member adminLogin(String memId, String memPwd) {
+		Connection conn = getConnection();
+		
+		Member loginMember = new MemberDao().adminLogin(conn, memId, memPwd);
+		
+		close(conn);
+		return loginMember;
+		
+	}
+	
 
 }

@@ -66,5 +66,47 @@ public class MemberDao {
 		
 		return m;
 	}
+	
+	/**
+	 * 관리자 페이지에서 관리자로 로그인
+	 * @param conn
+	 * @param memId
+	 * @param memPwd
+	 * @return
+	 */
+	public Member adminLogin(Connection conn, String memId, String memPwd) {
+		// select문 => ResultSet(한 행)
+		Member m = null;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("AdminLogin");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setString(1, memId);
+			pstmt.setString(2, memPwd);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getInt("MEM_NO"),
+							   rset.getString("MEM_ID"),
+							   rset.getString("MEM_PWD"),
+							   rset.getString("MEM_NAME"),
+							   rset.getString("PHONE"),
+							   rset.getString("EMAIL"),
+							   rset.getString("MEM_BIRTH"),
+							   rset.getDate("ENROLL_DATE"),
+							   rset.getDate("MODIFY_DATE"),
+							   rset.getString("STATUS"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return m;
+	}
 
 }

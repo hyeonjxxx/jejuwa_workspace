@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.model.vo.Member" %>
 <%
 	String contextPath = request.getContextPath(); 
+	Member loginUser = (Member)request.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -42,18 +44,20 @@
             </div>
 
             <!-- 로그인 전 div -->
-            <!-- <div id="header2">
+            <% if(loginUser == null) { %>
+            <div id="header2">
                 <span class="topbtn">관리자off</span>
-                <a href="#" class=topbtn>로그인</a>
-                <a href="#" class=topbtn style="margin-left: 700px;">홈페이지</a>     
-            </div> -->
-
+                <a href="#" class="topbtn" data-toggle="modal" data-target="#myModal">로그인</a>
+                <a href="<%=contextPath %>" class=topbtn style="margin-left: 700px;">홈페이지</a>     
+            </div>
+			<% } else {%>
             <!-- 로그인 후 div -->
             <div id="header2">
                 <span class="topbtn">관리자on</span>
-                <a href="#" class=topbtn>로그아웃</a>
+                <a href="<%= request.getContextPath() %>/logout.ad" class="topbtn">로그아웃</a>
                 <a href="<%=contextPath %>" class=topbtn style="margin-left: 700px;">홈페이지</a>     
             </div>
+            <% } %>
             
         </div>
 
@@ -107,5 +111,43 @@
         })
 
     </script>
+    
+    <!-- 로그인 모달 -->
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal" align="center" >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content" >
+              
+                <!-- Modal body -->
+                <br>
+                <div class="modal-body">
+                    <span><i class="bi bi-person-circle"></i></span> 관리자 로그인
+                </div>
+                
+                <form action="<%=contextPath%>/login.ad" method="post">
+                    <div class="input-group mb-3" id="modalContent1">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                      </div>
+                      <input name="memId" id="memId" size="25" type="text" placeholder="아이디" required>
+                    </div>
+                    <div class="input-group mb-3" id="modalContent2">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="bi bi-key"></i></span>
+                        </div>
+                        <input name="memPwd" id="memPwd" size="25" type="password" placeholder=" 비밀번호" required>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div id="modalFooter">
+                      <button type="submit" id="okBtn" class="btn btn-warning">로그인</button>
+                      <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">취 소</button>
+                    </div>
+                </form>
+                               
+              </div>
+            </div>
+          </div>
+    
 </body>
 </html>
