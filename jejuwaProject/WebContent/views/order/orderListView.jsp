@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "java.util.ArrayList, com.kh.order.model.vo.Order"%>
+    pageEncoding="UTF-8" import = "java.util.ArrayList, com.kh.order.model.vo.Order, 
+    com.kh.common.model.vo.PageInfo"%>
 <%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 %>
 <!DOCTYPE html>
 <html>
@@ -122,7 +129,7 @@
 	                                            </tr>
 	                                            <tr>
 	                                                <th>상품명</th>
-	                                                <td>xxx</td>
+	                                                <td><%= o.getpCode() %></td>
 	                                            </tr>
 	                                            <tr>
 	                                                <th>결제금액</th>
@@ -175,13 +182,23 @@
             <br><br>
     
             <div align="center" class="pagingArea">
-    
-                <button>이전</button>
-    
-                <button>X</button>
-                <button>X</button>
-    
-                <button>다음</button>
+				<% if(currentPage != 1) { %>
+            		<button onclick="location.href='<%=contextPath%>/list.or?currentPage=<%=currentPage-1%>';">이전</button>
+				<% } %>
+			
+				<% for(int p=startPage; p<=endPage; p++) { %>
+				
+					<% if(currentPage == p){ %>
+            			<button disabled><%= p %></button>
+            		<% }else{ %>
+            			<button onclick="location.href='<%=contextPath%>/list.or?currentPage=<%= p %>';"><%= p %></button>
+            		<% } %>
+            	
+				<% } %>
+			
+				<% if(currentPage != maxPage){ %>
+            		<button onclick="location.href='<%=contextPath%>/list.or?currentPage=<%=currentPage+1%>';">다음</button>
+				<% } %>
     
             </div>
 

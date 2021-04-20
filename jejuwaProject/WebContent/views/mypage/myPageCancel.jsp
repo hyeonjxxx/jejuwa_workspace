@@ -57,11 +57,11 @@
                                 
                                 <td width=800 >
                                     상품명 <br>
-                                    <a href="" style="color: orange;">취소내역상세보기</a>
+                                    <a href="<%=contextPath %>/detail.mpc" style="color: orange;">취소내역상세보기</a>
                                 </td>
                                 <td width=200>
                                     <div>예약확정</div>
-                                    <input id="datepicker" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal">다시예약하기</input>
+                                    <input id="datepicker" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal" value="다시예약하기"></input>
                                 </td>
 
                             </tr>

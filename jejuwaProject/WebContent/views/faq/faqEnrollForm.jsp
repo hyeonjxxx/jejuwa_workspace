@@ -28,12 +28,12 @@
         <br><br>
 
         <div class="enrollForm">
-                <form action="<%=contextPath%>/">
+                <form action="<%=contextPath%>/insert.fa" method = "post">
                     <table align="center" id="enrollTable" align = "center" border = "1">
                         <tr>
                             <th>구분</th>
                             <td colspan="2">
-                                <select name="faqStatus" id="">
+                                <select name="category" id="">
                                     <option value="place">관광지/레저</option>
                                     <option value="taste">맛집</option>
                                     <option value="coupon">쿠폰</option>
@@ -54,23 +54,12 @@
                             </td>
                         </tr>
                     </table>
+		            <div class="btn">
+		                <button type = "submit">작성하기</button>
+		                <button type = "reset">취소하기</button> 
+		            </div> 
                 </form>
         </div>
-
-       
-        <!-- 버튼 구역 -->
-        <div class="bottomArea">
-
-            <!-- 버튼 (목록으로) -->
-            <div class="btn">
-                <a href="" id="btn1">목록으로</a>
-            </div> 
-             <!-- 버튼 (등 록) -->
-            <div class="btn">
-                <a href="" id="btn2">등 록</a> 
-            </div>   
-			
-		</div>
 
     </div>
 

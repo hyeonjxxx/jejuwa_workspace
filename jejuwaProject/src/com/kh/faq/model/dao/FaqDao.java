@@ -131,6 +131,8 @@ public class FaqDao {
 			pstmt.setString(2, f.getFaqTitle());
 			pstmt.setString(3, f.getFaqContent());
 			
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

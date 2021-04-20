@@ -56,8 +56,7 @@
         <div class="bottomArea" align="center">
 			
 			<!-- 버튼 (목록가기) -->
-			<a href="<%= contextPath %>/list.fa" class="btn btn-secondary btn-sm">목록가기</a>
-			
+			<a href="<%= contextPath %>/list.fa?currentPage=1" class="btn btn-secondary btn-sm">목록가기</a>
             <!-- 버튼 (수정하기) -->
             
             <a href="<%=contextPath %>/updateForm.fa?fno=<%=f.getFaqNo() %>" id="btn1" class = "btn btn-warning btn-sm">수정하기</a>

@@ -92,7 +92,7 @@
 </head>
 <body>
 
-	<%@ include file = "../common/managerMenubar.jsp" %>
+	<%@ include file = "../common/loginUserMenubar.jsp" %>
 	
 	 <div class="wrap">       
         <div class="content" >
@@ -107,10 +107,10 @@
                             <h2 id="Menu"><a>예약정보</a></h2>
                             <ul>
                                 <li class="subMenu">
-                                    <a href="">예약조회</a>
+                                    <a href="<%=contextPath%>/views/mypage/myPageReservation.jsp">예약조회</a>
                                 </li>
                                 <li class="subMenu">
-                                    <a href="">취소내역</a>
+                                    <a href="<%=contextPath%>/views/mypage/myPageCancel.jsp">취소내역</a>
                                 </li>
                             </ul>
                         </li>
@@ -125,7 +125,7 @@
                         </li>
 
                         <li>
-                            <h2 id="Menu"><a>좋아요</a></h2>
+                            <h2 id="Menu"><a href="<%=contextPath%>/views/mypage/myPageLike.jsp">좋아요</a></h2>
                         </li>
 
                         <li>

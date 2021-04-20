@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-
+	
+	<entry key="selectListCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM TORDER
+		  
+	</entry>
+	
 	<entry key="selectOrderList">
 		SELECT
 		        ORDER_NO
@@ -13,10 +19,39 @@
 		      , O.STATUS
 		      , C_REASON
 		      , MEM_NO
+		      , P_NAME
 		  FROM TORDER O
-		  JOIN MEMBER M USING (MEM_NO)	  
+		  JOIN MEMBER M USING (MEM_NO)
+          JOIN PRODUCT P USING (P_CODE) 
 	</entry>
 	
+		<entry key="selectList">
+		SELECT 
+				*
+		  FROM (
+		        SELECT 
+		                ROWNUM RNUM
+		              , A.*
+		        FROM (
+		                SELECT
+						        ORDER_NO
+						      , ORDER_DATE
+						      , AMOUNT
+						      , TRAVEL_DATE
+						      , MEM_NAME
+						      , TRAVEL_EMAIL
+						      , O.STATUS
+						      , C_REASON
+						      , MEM_NO
+						      , P_NAME
+		                   FROM TORDER O
+                           JOIN MEMBER M USING (MEM_NO)
+                           JOIN PRODUCT P USING (P_CODE)  
+		               )A
+		        )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+
 	
 	
 </properties>

@@ -55,8 +55,8 @@
         
         
         <!--로그인했고, 로그인한 사용자가 admin일 경우 보여지는 div-->
-       
         
+
         
 
         <div class="area1">
@@ -149,7 +149,10 @@
             	<button onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%=currentPage+1%>';">다음</button>
 			<% } %>
              </div>
-
+	
+            <div align="right" class="btn">
+                <a href="<%= contextPath %>/enrollForm.fa" id="btn2">등 록</a> 
+            </div> 
     
 			
 		</div>

@@ -179,15 +179,15 @@
                     <ul id="info_1">
                         <li><a href="">xxx님 환영합니다</a></li> 
                         <li><a href="">로그아웃</a></li> 
-                        <li><a href="">관리자</a></li> 
+                        
                     </ul>
                 </div>    
                <!-- 아이콘영역 -->
                 <div id="icon0">
                     <div class="coupon">
-                            <a href="">
+                            <a href="<%= contextPath %>/list.mp">
                                 <img src="<%= contextPath %>/resources/images/마이페이지.png" width="40px" alt="">
-                            <p>마이페이지</p>
+                            <p><a href = "<%= contextPath %>/list.mp">마이페이지</a></p>
                             </a>
                     </div>
                     <div class="coupon">
