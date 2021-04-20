@@ -2,6 +2,7 @@ package com.kh.faq.controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,8 +41,8 @@ public class FaqInsertServlet extends HttpServlet {
 		String qCategory = request.getParameter("category");
 		
 		HttpSession session = request.getSession();
-		Member loginUser = (Member)session.getAttribute("loginUser");
-		int memNo = loginUser.getMemNo(); // 로그인한 회원번호 필요함
+		//Member loginUser = (Member)session.getAttribute("loginUser");
+		//int memNo = loginUser.getMemNo(); // 로그인한 회원번호 필요함
 	
 		Faq f = new Faq();
 		f.setFaqTitle(faqTitle);
@@ -52,7 +53,7 @@ public class FaqInsertServlet extends HttpServlet {
 		
 		if(result>0) {
 			session.setAttribute("alertMsg", "성공적으로 공지사항이 등록되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.fa");
+			response.sendRedirect(request.getContextPath() + "/list.fa?currentPage=1");
 			
 		}
 		

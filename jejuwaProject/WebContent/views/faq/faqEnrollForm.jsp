@@ -34,10 +34,10 @@
                             <th>구분</th>
                             <td colspan="2">
                                 <select name="category" id="">
-                                    <option value="place">관광지/레저</option>
-                                    <option value="taste">맛집</option>
-                                    <option value="coupon">쿠폰</option>
-                                    <option value="cancle">취소/결제</option>
+                                    <option value="관광지/레저">관광지/레저</option>
+                                    <option value="맛집">맛집</option>
+                                    <option value="쿠폰">쿠폰</option>
+                                    <option value="취소/결제">취소/결제</option>
                                 </select>
                             </td>
                         </tr>

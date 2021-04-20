@@ -53,11 +53,17 @@
         <h2>FAQ 관리</h2>
         <div class="divisionLine"></div>
         
-        
+        <!-- != 로 변경해야됨 -->
+ 
+        <% if(loginUser != null){ %>
         <!--로그인했고, 로그인한 사용자가 admin일 경우 보여지는 div-->
         
+	        <div align="right" style="width:850px">
+	            <a href="<%= contextPath %>/enrollForm.fa" class="btn btn-secondary btn-sm">글작성</a>
+	            <br><br>
+	        </div>
+		<%} %>
 
-        
 
         <div class="area1">
 
@@ -67,10 +73,10 @@
                
                 <span href="" >
                     <select name="faqStatus" id="">
-                        <option value="place">관광지/레저</option>
-                        <option value="taste">맛집</option>
-                        <option value="coupon">쿠폰</option>
-                        <option value="cancle">취소/결제</option>
+                        <option value="관광지/레저">관광지/레저</option>
+                        <option value="맛집">맛집</option>
+                        <option value="쿠폰">쿠폰</option>
+                        <option value="취소/결제">취소/결제</option>
                     </select>
                     <select name="memberStatus" id="">
                         <option value="title">제목</option>
