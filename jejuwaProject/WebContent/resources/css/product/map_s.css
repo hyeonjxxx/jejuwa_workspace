@@ -1,0 +1,170 @@
+/* mapBtn */
+.ss{
+    position: absolute;
+    top: 28.2%;
+    left: 73%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 2.5px 5px 2.5px 5px;
+    border-radius: 4px;
+    box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px;
+    border: 1px solid var(--gray-100);
+    outline: none;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: -0.32px;
+    white-space: nowrap;
+    color: var(--gray-800);
+    background-color: white;
+}
+.hd{
+    position: absolute;
+    top: 2.6%;
+    left: 62.4%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 2.5px 5px 2.5px 5px;
+    border-radius: 4px;
+    box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px;
+    border: 1px solid var(--gray-100);
+    outline: none;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: -0.32px;
+    white-space: nowrap;
+    color: var(--gray-800);
+    background-color: white;
+}
+
+.jj{
+    position: absolute;
+    top: 7.3%;
+    left: 32.1%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 2.5px 5px 2.5px 5px;
+    border-radius: 4px;
+    box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px;
+    border: 1px solid var(--gray-100);
+    outline: none;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: -0.32px;
+    white-space: nowrap;
+    color: var(--gray-800);
+    background-color: white;
+}
+.aw{
+    position: absolute;
+    top: 22.5%;
+    left: 10.7%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 2.5px 5px 2.5px 5px;
+    border-radius: 4px;
+    box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px;
+    border: 1px solid var(--gray-100);
+    outline: none;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: -0.32px;
+    white-space: nowrap;
+    color: var(--gray-800);
+    background-color: white;
+}
+.hl{
+    position: absolute;
+    top: 48.2%;
+    left: -2.2%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 2.5px 5px 2.5px 5px;
+    border-radius: 4px;
+    box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px;
+    border: 1px solid var(--gray-100);
+    outline: none;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: -0.32px;
+    white-space: nowrap;
+    color: var(--gray-800);
+    background-color: white;    
+}
+.jm{
+    position: absolute;
+    top: 65.5%;
+    left: 30.5%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 2.5px 5px 2.5px 5px;
+    border-radius: 4px;
+    box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px;
+    border: 1px solid var(--gray-100);
+    outline: none;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: -0.32px;
+    white-space: nowrap;
+    color: var(--gray-800);
+    background-color: white;
+}
+.sg{
+    position: absolute;
+    top: 48.8%;
+    left: 48.2%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 2.5px 5px 2.5px 5px;
+    border-radius: 4px;
+    box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px;
+    border: 1px solid var(--gray-100);
+    outline: none;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: -0.32px;
+    white-space: nowrap;
+    color: var(--gray-800);
+    background-color: white;
+}
+.ps{
+    position: absolute;
+    top: 54.2%;
+    left: 72.6%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 2.5px 5px 2.5px 5px;
+    border-radius: 4px;
+    box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px;
+    border: 1px solid var(--gray-100);
+    outline: none;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: -0.32px;
+    white-space: nowrap;
+    color: var(--gray-800);
+    background-color: white;  
+}

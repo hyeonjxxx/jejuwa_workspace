@@ -13,18 +13,18 @@
 </head>
 <body>
 
-	<%@ include file="../common/managerMenubar.jsp" %> 
+	<%@ include file="../common/loginUserMenubar.jsp" %> 
 
     <div class="content_wrap">
 
     
         <div class="searchBar">     
-            <form action="" id="search_form" method="post">
-                <div id="search_text">
+            <form action="" id="searchForm" method="post">
+                <div id="searchBox">
                     <input type="search" name="keyword" placeholder="[추천상품]제주시티투어">
                 </div>
                     
-                <div id="search_btn">
+                <div id="searchBtn">
                     <button type=""><img src="<%=request.getContextPath()%>/resources/images/loupe_c.png" width="30"></button>
                 </div>              
             </form>
