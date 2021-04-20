@@ -48,7 +48,7 @@
             <% if(loginUser == null) { %>
             <div id="header2">
                 <span class="topbtn">관리자off</span>
-                <a href="#" class="topbtn" data-toggle="modal" data-target="#myModal">로그인</a>
+                <a href="#" class="topbtn" data-toggle="modal" data-target="#loginModal">로그인</a>
                 <a href="<%=contextPath %>" class=topbtn style="margin-left: 700px;">홈페이지</a>     
             </div>
 			<% } else {%>
@@ -115,7 +115,7 @@
     
     <!-- 로그인 모달 -->
         <!-- The Modal -->
-        <div class="modal fade" id="myModal" align="center" >
+        <div class="modal fade" id="loginModal" align="center" >
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content" >
               
