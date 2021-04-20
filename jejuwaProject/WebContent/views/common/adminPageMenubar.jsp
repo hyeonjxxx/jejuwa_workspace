@@ -3,7 +3,8 @@
 <%@ page import="com.kh.member.model.vo.Member" %>
 <%
 	String contextPath = request.getContextPath(); 
-	Member loginUser = (Member)request.getAttribute("loginUser");
+	//Member loginUser = (Member)request.getAttribute("loginUser");
+	Member adminUser = (Member)session.getAttribute("adminUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,11 +41,11 @@
         <!-- 헤더 -->
         <div id="header" >
             <div id="header1">
-                <a href="관리자 홈페이지"><img src="<%= contextPath %>/resources/images/톱니바퀴.png" style="padding: 15px;"></a>
+                <a href="<%=contextPath%>/admin.go"><img src="<%= contextPath %>/resources/images/톱니바퀴.png" style="padding: 15px;"></a>
             </div>
 
             <!-- 로그인 전 div -->
-            <% if(loginUser == null) { %>
+            <% if(adminUser == null) { %>
             <div id="header2">
                 <span class="topbtn">관리자off</span>
                 <a href="#" class="topbtn" data-toggle="modal" data-target="#myModal">로그인</a>
@@ -54,7 +55,7 @@
             <!-- 로그인 후 div -->
             <div id="header2">
                 <span class="topbtn">관리자on</span>
-                <a href="<%= request.getContextPath() %>/logout.ad" class="topbtn">로그아웃</a>
+                <a href="<%= contextPath %>/logout.ad" class="topbtn">로그아웃</a>
                 <a href="<%=contextPath %>" class=topbtn style="margin-left: 700px;">홈페이지</a>     
             </div>
             <% } %>

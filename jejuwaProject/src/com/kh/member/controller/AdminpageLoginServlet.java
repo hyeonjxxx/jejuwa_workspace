@@ -36,19 +36,23 @@ public class AdminpageLoginServlet extends HttpServlet {
 		String memId = request.getParameter("memId");
 		String memPwd = request.getParameter("memPwd");
 		
-		Member loginMember = new MemberService().adminLogin(memId, memPwd);
+		Member m = new MemberService().adminLogin(memId, memPwd);
 		
-		if(loginMember == null) { // 로그인 실패
+		if(m == null) { // 로그인 실패
 			// errorMsg "관리자 로그인에 실패했습니다."
 			request.getSession().setAttribute("alertMsg", "관리자 로그인에 실패했습니다.");
 			response.sendRedirect(request.getContextPath() + "/admin.go");
 			
 		}else {
-			//request.getSession().setAttribute("loginMember", loginMember);
+			request.getSession().setAttribute("alertMsg", "관리자로 로그인 되었습니다.");
+			//request.getSession().setAttribute("adminUser", m);
 			//response.sendRedirect(request.getContextPath() + "/admin.go");
-			request.setAttribute("loginUser", loginMember);
-			request.getRequestDispatcher("/views/common/adminPageMenubar.jsp").forward(request, response);
+			//request.setAttribute("loginUser", loginMember);
+			//request.getRequestDispatcher("/views/common/adminPageMenubar.jsp").forward(request, response);
+			//System.out.println(m);
 			
+			request.getSession().setAttribute("adminUser", m);
+			request.getRequestDispatcher("views/common/adminPageMenubar.jsp").forward(request, response);
 		}
 
 	}

@@ -29,10 +29,10 @@ public class MemberService {
 	public Member adminLogin(String memId, String memPwd) {
 		Connection conn = getConnection();
 		
-		Member loginMember = new MemberDao().adminLogin(conn, memId, memPwd);
+		Member m = new MemberDao().adminLogin(conn, memId, memPwd);
 		
 		close(conn);
-		return loginMember;
+		return m;
 		
 	}
 	
