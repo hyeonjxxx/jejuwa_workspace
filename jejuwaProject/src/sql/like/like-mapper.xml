@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key= "selectLikePro">
+		SELECT 
+		       MEM_NO
+		     , P_CODE
+		     , P_NAME
+		     , DEATIL_PATH
+		  FROM TLIKE
+		  JOIN PRODUCT USING (P_CODE)
+
+	</entry>
+	
+	<entry key="insertLikePro">
+		INSERT
+		  INTO TLIKE
+		  (
+		    MEM_NO
+		  , P_CODE
+		  )
+		VALUES
+		  (
+		    ?
+		  , ?
+		  )
+	</entry>
+	
+	<entry key="deleteLikePro">
+		DELETE
+		  FROM
+			   TLIKE
+		 WHERE  
+		       P_CODE = ?
+	</entry>
+	
+	
+
+	
+	
+</properties>
+
+
+

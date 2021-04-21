@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.kh.product.model.vo.*,  com.kh.common.model.vo.File" %>    
+<%@ page import="java.util.ArrayList, com.kh.product.model.vo.*,  
+com.kh.common.model.vo.File, com.kh.member.model.vo.*, com.kh.like.model.vo.*" %>    
 <%
 	//String contextPath = request.getContextPath();  //h_jejuwa
 	Product p = (Product)request.getAttribute("p");
 	ArrayList<File> list = (ArrayList<File>)request.getAttribute("list");
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	Like l = (Like)request.getAttribute("l");
+	
 %>    
     
 <!DOCTYPE html>
@@ -64,8 +68,45 @@
 
                         <div class="icon" align="right">
                             <button type="button" onclick=""><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></button>
-                            <button type="button" onclick=""><img src="<%=contextPath %>/resources/images/like_c.png" alt="like" width="33"></button>
+                            <button type="button" onclick="likeProduct();"><img src="<%=contextPath %>/resources/images/like_c.png" alt="like" width="33"></button>
                         </div>
+                        
+                        <script>
+                        
+                        	// 좋아요 버튼 클릭시 구동되는 ajax
+                          
+                     		function likeProduct(){
+                     		
+                     			//console.log("되고있니?");
+                     			
+                     			$.ajax({
+                     				url:"<%=contextPath%>/list.mpl",
+                     				data : {pno:<%=p.getpCode()%>},
+                     				success:function(list){
+                     					//console.log(list);
+                     					var result = "";
+                     					for(var i in list){
+                     						result += "<li>"
+				                     		       
+				                     	            +      "<h2>" + list[i].detailPath+"</h2>"
+				                     	            +      "<ul>"
+				                     	            +           "<li>"+ list[i].pName+ "</li>"
+				                     	                        
+				                     	            +       "</ul>"
+				                     	        
+				                     	            +  "</li>"
+                     					}
+                     					//console.log(list[i]);
+                     					
+                     					//myPageLike.jsp ul 안에 나오게 어떻게 할 수 있을 것인가
+                     					$(".gallery>ul").html(result);	
+                     				}, error:function(){
+                     					console.log("실패")
+                     				}
+                     			})
+                     			
+                     		}
+                     	</script>
                     </div>
 
                     <!-- 옵션정보 -->
@@ -86,9 +127,9 @@
                         <button type="button" onclick="" class="cart">장바구니</button>
                         <button type="button" onclick="" class="pay">바로구매</button>   
                     </div>
+
                 </div>
-
-
+                
             </div>
 
         </div>

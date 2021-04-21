@@ -1,7 +1,7 @@
-package com.kh.product.controller;
+package com.kh.like.controller;
 
 import java.io.IOException;
-//import java.util.ArrayList;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import com.kh.common.model.vo.File;
-import com.kh.product.model.service.ProductService;
-import com.kh.product.model.vo.Product;
+import com.kh.like.model.service.LikeService;
+import com.kh.like.model.vo.Like;
 
 /**
- * Servlet implementation class ProductDetailViewServlet
+ * Servlet implementation class LikeProduct
  */
-@WebServlet("/infoDetail.pdt")
-public class ProductInfoDetailServlet extends HttpServlet {
+@WebServlet("/insert.lik")
+public class LikeProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductInfoDetailServlet() {
+    public LikeProduct() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,20 +31,7 @@ public class ProductInfoDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pCode = request.getParameter("pcode");
 		
-		
-			Product p = new ProductService().selectInfoProduct(pCode);
-			// 오류 구문 ArrayList<File> list = new ProductService().selectFileList(pCode);
-			
-			//System.out.println(p);
-			//System.out.println(list);
-			
-			request.setAttribute("p", p);
-			// 오류 구문 request.setAttribute("list", list);
-	
-			request.getRequestDispatcher("views/product/productInfoDetail.jsp").forward(request, response);
-													
 	}
 
 	/**

@@ -97,12 +97,12 @@
 	                       	 <td>
 	                            <div class="container">
 	                                <!-- Button to Open the Modal -->
-	                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal" style="width: 50px; height: 30px;">
+	                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#orderModal" style="width: 50px; height: 30px;">
 	                                 	변경
 	                                </button>
 	                              
 	                                <!-- The Modal -->
-	                                <div class="modal fade" id="myModal">
+	                                <div class="modal fade" id="orderModal">
 	                                  <div class="modal-dialog modal-dialog-centered">
 	                                    <div class="modal-content">
 	                                    
@@ -138,13 +138,16 @@
 	                                            <tr>
 	                                                <th>입금상태</th>
 	                                                <td>
-	                                                    <input type="checkbox" id="reserJ" name="status" value="reserJ" onclick="checkOnlyOne(this)"><label for="reserJ">예약접수</label>
+	                                                    
+	                                                    <input type="checkbox" id="reserJ" name="status" value="reserJ" onclick="checkOnlyOne(this)" checked><label for="reserJ">예약접수</label>
 	                                                    <input type="checkbox" id="reserH" name="status" value="reserH" onclick="checkOnlyOne(this)"><label for="reserH">예약확정</label>
 	                                                    <input type="checkbox" id="reserW" name="status" value="reserW" onclick="checkOnlyOne(this)"><label for="reserW">여행완료</label>
 	                                                    <input type="checkbox" id="reserC" name="status" value="reserC" onclick="checkOnlyOne(this)"><label for="reserC">여행취소</label>
+
 													</td>
 													
 	    	                                         <script>
+	    	                                         
 	                                                    function checkOnlyOne(element) {
 	                                
 	                                                      const checkboxes 
