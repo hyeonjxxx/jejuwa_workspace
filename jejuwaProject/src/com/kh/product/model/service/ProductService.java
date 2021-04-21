@@ -32,6 +32,28 @@ public class ProductService {
 		close(conn);
 		
 		return result;
+		
 	}	
+	
+	
+	// 쎔네일리스트로 상품보기 (기본이미지)
+	public ArrayList<Product> selectThList() {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().selectThList(conn);
+		close(conn);
+		return list;
+	}
+	
+	public Product selectInfoProduct(String pCode) {
+		Connection conn = getConnection();
+		Product p = new ProductDao().selectInfoProduct(conn, pCode);
+		close(conn);
+		
+		return p;
+	}	
+	
+	
+	
+	
 	
 }

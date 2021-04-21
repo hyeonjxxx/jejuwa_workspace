@@ -29,6 +29,7 @@ public class Product {
 		this.themeCode = themeCode;
 	}
 
+	// adminPage- 상품리스트 조회시
 	public Product(String pCode, String pName, int price, int pStock, String pStatus) {
 		super();
 		this.pCode = pCode;
@@ -36,6 +37,15 @@ public class Product {
 		this.price = price;
 		this.pStock = pStock;
 		this.pStatus = pStatus;
+	}
+	
+	// 썸네일리스트 조회시
+	public Product( String pName, int price, String basicPath, String detailPath) {
+		super();
+		this.pName = pName;
+		this.price = price;
+		this.basicPath = basicPath;
+		this.basicPath = basicPath;
 	}
 
 	public String getpCode() {

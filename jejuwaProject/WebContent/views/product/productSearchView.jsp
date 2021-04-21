@@ -1,30 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product"%>
+<%
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>제주와_상품검색</title>
 
     <!-- css -->
-     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/productSearchView.css">   
+     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/product/productSearchView.css">   
 
 
 </head>
 <body>
 
-	<%@ include file="../common/loginUserMenubar.jsp" %> 
+	<%@ include file="../common/managerMenubar.jsp" %> 
 
     <div class="content_wrap">
 
     
         <div class="searchBar">     
-            <form action="" id="searchForm" method="post">
-                <div id="searchBox">
+            <form action="" id="search_form" method="post">
+                <div id="search_box">
                     <input type="search" name="keyword" placeholder="[추천상품]제주시티투어">
                 </div>
                     
-                <div id="searchBtn">
+                <div id="search_btn">
                     <button type=""><img src="<%=request.getContextPath()%>/resources/images/loupe_c.png" width="30"></button>
                 </div>              
             </form>
@@ -46,104 +49,33 @@
         </div>
                 
         <div class="pdt_wrap">
-                    <ul class="pdtList">
-                        <li>
+             <ul class="pdtList">
+        	<%for(Product p : list) {%> 
+                        <li class=pdtArea>
+                        <input type="hidden" value="<%=p.getpCode()%>">
                             <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 220px;"></div>
+                                <a >
+                                    <div class="pdtPhoto"><img src="<%=request.getContextPath()%>/<%= p.getBasicPath()%>" style="width: 220px;"></div>
                                     <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
+                                        <p class="pdtName"><%=p.getpName() %></p>
+                                        <p class="pdtPrice"><%=p.getPrice() %>원</p>
                                     </div>
                                 </a>
                             </div>
                         </li>
-
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 220px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 220px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 220px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 220px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 220px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 220px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 220px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
+			<% } %>		
+			</ul>
 
         </div>
+        
+        <script>
+        	$(function(){
+        		$(".pdtArea").click(function(){
+        			location.href = '<%=request.getContextPath()%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+        		})	
+        	})
+        	
+        </script>
    
 
         <div align="center" class="pageingArea">

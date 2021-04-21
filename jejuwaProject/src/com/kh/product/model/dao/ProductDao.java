@@ -91,4 +91,73 @@ public class ProductDao {
 		
 	}	
 
+	
+	//쎔네일리스트로 상품보기
+		public ArrayList<Product> selectThList(Connection conn){
+			
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectThList");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+
+				while(rset.next()) {
+					
+					Product p = new Product();
+					p.setpCode(rset.getString("p_code"));
+					p.setpName(rset.getString("p_name"));
+					p.setPrice(rset.getInt("price"));
+					p.setBasicPath(rset.getString("basic_path"));
+				
+					list.add(p);	
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(rset);
+				close(pstmt);
+			}		
+			
+			return list;
+		}
+		
+
+		// 상세페이지에서 불려올 상품 리스트
+		public Product selectInfoProduct(Connection conn, String pCode) {
+			
+			Product p = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectInfoProduct");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, pCode);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					p = new Product(rset.getString("p_name"),
+							        rset.getInt("price"),
+							        rset.getString("basic_path"),
+							        rset.getString("deatil_path"));
+					
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return p;
+				
+		}
 }

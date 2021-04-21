@@ -17,7 +17,7 @@
 </head>
 <body>
 
-	<%@ include file="../common/loginUserMenubar.jsp" %> 
+	<%@ include file="../common/managerMenubar.jsp" %> 
 
     <div class="content_wrap">
 
