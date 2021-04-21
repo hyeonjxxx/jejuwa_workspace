@@ -41,6 +41,7 @@ public class NoticeInsertServlet extends HttpServlet {
 		
 		// enctype이 잘 전송되었을 경우
 		if(ServletFileUpload.isMultipartContent(request)) {
+			//System.out.println("잘 전송되나?"); => 출력o
 			// 외부 라이브러리 cos.jar 연동
 			// 1. 전송되는 파일을 처리할 작업 내용
 			// 1_1. 전달되는 파일의 용량 제한
@@ -58,19 +59,25 @@ public class NoticeInsertServlet extends HttpServlet {
 			String noticeTitle = multiRequest.getParameter("title");
 			String noticeContent = multiRequest.getParameter("content");
 			
-			// Q. 하나의 첨부파일만 업로드 가능한 공지사항 테이블
-			// 파일을 담는 과정 질문..
-			// 첨부파일이 있다면 변수에 담기
-			String orgFileName = null; // null로 초기화 해야할까?(DB에 왜 안올라가지,,,)
-			String filePath = null; // null ?
-			if(multiRequest.getOriginalFileName("upfile") != null) {
-				orgFileName = multiRequest.getOriginalFileName("upfile");
-				filePath = "resources/notice_upfiles/" + multiRequest.getFilesystemName("upfile"); // 파일 경로/수정명 개념
-			}
-			
 			Notice n = new Notice();
 			n.setNoticeTitle(noticeTitle);
 			n.setNoticeContent(noticeContent);
+			
+			// Q. 하나의 첨부파일만 업로드 가능한 공지사항 테이블
+			// 파일을 담는 과정 질문..
+			// 첨부파일이 있다면 변수에 담기
+			//String orgFileName = null; // null로 초기화 해야할까?(DB에 왜 안올라가지,,,)
+			//String filePath = null; // null ?
+			if(multiRequest.getOriginalFileName("upfile") != null) {
+				n.setOriginFileName(multiRequest.getOriginalFileName("upfile"));
+				n.setFilePath("/resources/notice_upfiles/" + multiRequest.getFilesystemName("upfile"));
+				//n.setOriginFileName("테스트1"); 	// => db에 null
+				//n.setFilePath("테스트2"); 		// => db에 null
+				// Q 파일 경로/수정명 개념
+			}
+			
+			System.out.println(n);
+
 			
 			/*
 			if(!orgFileName.equals("")) {
@@ -78,11 +85,12 @@ public class NoticeInsertServlet extends HttpServlet {
 				n.setFilePath(filePath);
 			}
 			*/
+			/*
 			if(orgFileName != null) {
 				n.setOriginFileName(orgFileName);
 				n.setFilePath(filePath);
 			}
-			
+			*/
 			// System.out.println(n); => originFileName=null, filePath=null
 			
 			

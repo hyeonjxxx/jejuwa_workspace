@@ -22,6 +22,7 @@
 
         <div class="enrollForm">
                 <form id="enrollForm" action="<%=contextPath%>/insert.no" method="post" enctype="multipart/form-data">
+                    <!-- 제목, 내용, 첨부파일 -->
                     <table align="center" id="enrollTable">
                         <tr>
                             <th>제목</th>
@@ -30,15 +31,15 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>파일첨부</th>
+                            <th>첨부파일</th>
                             <td colspan="2">
-                                <input type="file" name="upFile">
+                                <input type="file" name="upfile">
                             </td>
                         </tr>
                         <tr>
                             <th>내용</th>
                             <td colspan="2">
-                                <textarea name="content" id="" cols="75" rows="20" style="resize:none;" placeholder="내용을 입력해주세요" ></textarea>
+                                <textarea name="content" id="" cols="75" rows="18" style="resize:none;" placeholder="내용을 입력해주세요" ></textarea>
                             </td>
                         </tr>
                     </table>

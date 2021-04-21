@@ -83,6 +83,30 @@ public class NoticeService {
 	}
 	
 	
+	/**
+	 * 공지사항 업데이트
+	 * @param n 업데이트할 내용들(제목, 내용, [첨부파일])이 담긴 공지사항 객체
+	 * @return
+	 */
+	public int updateNotice(Notice n) {
+		Connection conn = getConnection();
+		//int result = new NoticeDao().updateNotice(conn, n);
+		int result = 0;
+		if(n.getOriginFileName() != null) {
+			result = new NoticeDao().updateNotice1(conn, n);
+		}else {
+			result = new NoticeDao().updateNotice2(conn, n);
+		}
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
 	
 	
 	

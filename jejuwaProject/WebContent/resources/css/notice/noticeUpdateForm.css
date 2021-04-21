@@ -1,0 +1,55 @@
+
+/* *{border: 1px solid red;} */
+
+/* .outer 스타일 통일 */
+.outer{
+    height: 700px;
+    width: 800px;
+    margin: 30px 20px;
+    float: left;
+  }
+    
+    
+    /* 구분선 */
+    .divisionLine{
+        width: 90%; height: 5px; 
+        background-color: lightgray; }
+    
+    /* 공지사항 등록 폼 */
+    .enrollForm{
+        /* margin-left:20px; */
+        padding-top: 40px;
+        padding-bottom: 40px;
+        width: 760px;
+        border:1px solid gray;}
+    #enrollTable *{
+        padding:5px;
+    }
+    .bottomArea{width:800px;}
+    
+    /* 버튼 */
+    .bottomArea{
+        /* margin: 35px; */
+        float:right;
+        margin-right: 9px;
+    }
+    /* .bottomArea *{float:left; margin-left: 5px;} */
+    .btn a{
+    text-decoration: none; 
+    text-align: center;
+    color:white; 
+    background-color: dimgray;
+    display: block;
+    padding:7px;
+    border-radius:4px;
+    width:100px;
+    }
+    #btn1{margin-left: 45px;}
+    #btn2{margin-left: 286px;}
+
+    /* 목록으로 버튼만 보이게 할 경우 */
+    /* #btn4{margin-left: 650px;} */
+    
+    .btn a:hover{background-color: orange;}
+    
+    

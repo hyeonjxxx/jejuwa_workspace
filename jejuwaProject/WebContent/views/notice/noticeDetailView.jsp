@@ -24,7 +24,8 @@
         
         <br>
         <div class="btn3" align="right">
-            <a href="">수 정</a> <a href="">삭 제</a>
+            <a href="<%=contextPath%>/updateForm.no?nno=<%= n.getNoticeNo() %>">수 정</a>
+            <a href="">삭 제</a>
         </div>
         <div class="noticeArea">
             <div class="title">
@@ -55,7 +56,7 @@
             
             
             <div class="btn btn2" align="right">
-                <a id="btn3" onclick="history.back();">목록으로</a> 
+                <a id="btn3" href="<%=contextPath%>/list.no?currentPage=1">목록으로</a> 
             </div>               
 
         </div>

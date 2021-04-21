@@ -80,8 +80,28 @@
 		   AND NOTICE_NO = ?
 	</entry>
 	
-
+	<!-- 공지사항 업데이트 (첨부파일이 있는 경우)-->
+	<entry key="updateNotice1">
+		UPDATE
+		       NOTICE
+		   SET NOTICE_TITLE = ?
+		     , NOTICE_CONTENT = ?
+		     , MODIFY_DATE = SYSDATE
+		     , ORG_FILENAME = ?
+		     , FILE_PATH = ?
+		 WHERE NOTICE_NO = ?
+	</entry>
 	
+
+	<!-- 공지사항 업데이트 (첨부파일이 없는 경우) -->
+	<entry key="updateNotice2">
+		UPDATE
+		       NOTICE
+		   SET NOTICE_TITLE = ?
+		     , NOTICE_CONTENT = ?
+		     , MODIFY_DATE = SYSDATE
+		 WHERE NOTICE_NO = ?
+	</entry>
 	
 	
 	

@@ -152,7 +152,12 @@ public class NoticeDao {
 		return result;
 	}
 	
-	
+	/**
+	 * 공지사항 상세조회
+	 * @param conn
+	 * @param noticeNo
+	 * @return
+	 */
 	public Notice selectNotice(Connection conn, int noticeNo) {
 		// select문 => ResultSet(한 행)
 		Notice n = null;
@@ -183,7 +188,61 @@ public class NoticeDao {
 		return n;
 	}
 	
+	/**
+	 * 공지사항 업데이트 1(첨부파일이 있는경우)
+	 * @param conn
+	 * @param n
+	 * @return
+	 */
+	public int updateNotice1(Connection conn, Notice n) {
+		// update문 => 처리된 행 수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateNotice1");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeContent());
+			pstmt.setString(3, n.getOriginFileName());
+			pstmt.setString(4, n.getFilePath());
+			pstmt.setInt(5, n.getNoticeNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
+	/**
+	 * 공지사항 업데이트2 (첨부파일이 없는 경우)
+	 * @param conn
+	 * @param n
+	 * @return
+	 */
+	public int updateNotice2(Connection conn, Notice n) {
+		// update문 => 처리된 행 수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateNotice2");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeContent());
+			pstmt.setInt(3, n.getNoticeNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 
 	
 	

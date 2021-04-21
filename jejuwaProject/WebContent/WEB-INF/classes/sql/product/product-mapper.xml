@@ -63,6 +63,31 @@
 	<entry key="세부이미지 수정">
 	
 	</entry>
+	
+		<!-- 썸네일리스트로 상품보기 searchView 페이지에서 조회시 대표이미지만 불러오기 -->
+	<entry key="selectThList">
+		SELECT 
+				P_CODE
+			  , P_NAME
+			  , PRICE
+			  , BASIC_PATH
+		   FROM PRODUCT	
+		  WHERE P_STATUS = 'Y' 
+		  ORDER BY P_CODE DESC       	
+	</entry>
+	
+	
+	<!-- InfoPdt에서 조회될 상품리스트 선택 -->
+	<entry key="selectInfoProduct">
+		SELECT 
+			    P_NAME
+			  , PRICE
+			  , BASIC_PATH
+			  , DEATIL_PATH
+		   FROM PRODUCT	
+		  WHERE P_CODE = ?
+		    AND P_STATUS = 'Y' 	
+	</entry>
 
 
 </properties>
