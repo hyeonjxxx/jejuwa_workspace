@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<%@ include file="../common/managerMenubar.jsp" %> 
+	<%@ include file="../common/loginUserMenubar.jsp" %> 
 
     <div class="content_wrap">
 
@@ -28,15 +28,15 @@
                 </div>
                     
                 <div id="search_btn">
-                    <button type=""><img src="<%=request.getContextPath()%>/resources/images/loupe_c.png" width="30"></button>
+                    <button type=""><img src="<%=contextPath%>/resources/images/loupe_c.png" width="30"></button>
                 </div>              
             </form>
             <div class="divisionLine"></div>
         </div>
 
         <div class="sortBar" align="right">
-            <a href="">제주와 추천순<img src="<%=request.getContextPath()%>/images/check_c.png" alt="" width="15"></a> &nbsp;&nbsp;
-            <a href="">판매순<img src="<%=request.getContextPath()%>/resources/images/check_c.png" alt="" width="15"></a>
+            <a href="">제주와 추천순<img src="<%=contextPath%>/images/check_c.png" alt="" width="15"></a> &nbsp;&nbsp;
+            <a href="">판매순<img src="<%=contextPath%>/resources/images/check_c.png" alt="" width="15"></a>
         </div>
         
         <div class="category">
@@ -55,7 +55,7 @@
                         <input type="hidden" value="<%=p.getpCode()%>">
                             <div class="pdtBox">
                                 <a >
-                                    <div class="pdtPhoto"><img src="<%=request.getContextPath()%>/<%= p.getBasicPath()%>" style="width: 220px;"></div>
+                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;"></div>
                                     <div class="pdtInfo">
                                         <p class="pdtName"><%=p.getpName() %></p>
                                         <p class="pdtPrice"><%=p.getPrice() %>원</p>
@@ -71,7 +71,7 @@
         <script>
         	$(function(){
         		$(".pdtArea").click(function(){
-        			location.href = '<%=request.getContextPath()%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
         		})	
         	})
         	

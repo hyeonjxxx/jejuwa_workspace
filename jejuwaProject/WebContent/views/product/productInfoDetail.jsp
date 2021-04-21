@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.kh.product.model.vo.*,  com.kh.common.model.vo.File" %>    
 <%
-	String contextPath = request.getContextPath();  //h_jejuwa
+	//String contextPath = request.getContextPath();  //h_jejuwa
 	Product p = (Product)request.getAttribute("p");
 	ArrayList<File> list = (ArrayList<File>)request.getAttribute("list");
 %>    
@@ -14,12 +14,12 @@
 <title>제주와_상품상세페이지</title>
 
     <!-- css -->
-    <link rel="stylesheet" type="text/css" href="<%=contextPath %>/resources/css/product/productInfoDetail.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/productInfoDetail.css">
 
 </head>
 <body>
 
-	<%@ include file="../common/managerMenubar.jsp" %>
+	<%@ include file="../common/loginUserMenubar.jsp" %>
 
     <div class="content_wrap">
         
