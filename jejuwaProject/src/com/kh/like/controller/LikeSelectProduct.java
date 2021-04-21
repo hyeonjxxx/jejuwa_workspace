@@ -16,13 +16,13 @@ import com.kh.like.model.vo.Like;
  * Servlet implementation class LikeProduct
  */
 @WebServlet("/insert.lik")
-public class LikeProduct extends HttpServlet {
+public class LikeSelectProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LikeProduct() {
+    public LikeSelectProduct() {
         super();
         // TODO Auto-generated constructor stub
     }

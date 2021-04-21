@@ -20,5 +20,20 @@ public class LikeService {
 		return list;
 	}
 	
+	public int insertLikePro(Like l) {
+		
+		Connection conn = getConnection();
+		int result = new LikeDao().insertLikePro(conn,l);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+		
+		
+	}
 
 }

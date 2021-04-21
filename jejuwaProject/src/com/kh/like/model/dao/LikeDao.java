@@ -61,21 +61,17 @@ public class LikeDao {
 		return list;
 	}
 	
-	
-	
-
-	/*
-	public int insertLikePro(Connection conn, Like like) {
+	public int insertLikePro(Connection conn, Like l) {
 		
 		int result = 0;
-		
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertLikePro");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, like.getMemNo());
-			pstmt.setString(2, like.getpCode());
+			
+			pstmt.setInt(1, l.getMemNo());
+			pstmt.setString(2, l.getpCode());
 			
 			result = pstmt.executeUpdate();
 			
@@ -86,9 +82,10 @@ public class LikeDao {
 		}
 		
 		return result;
-		
-		
 	}
+	
+
+	/*
 	
 	// 좋아요 취소
 	public int deleteLikePro(Connection conn, Like like) {
