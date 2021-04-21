@@ -72,7 +72,7 @@
 					<% if(loginUser == null){ %>
                 	<ul id="info_1">
                         <li><a href="<%= request.getContextPath() %>/views/member/loginPage.jsp">로그인</a></li>
-                        <li><a href="">회원가입</a></li>
+                        <li><a href="<%= request.getContextPath() %>/enroll.me">회원가입</a></li>
                     </ul>
                     <% } else { if(loginUser.getStatus().equals("A")){ %>
                     <!--  로그인 후    -->  
