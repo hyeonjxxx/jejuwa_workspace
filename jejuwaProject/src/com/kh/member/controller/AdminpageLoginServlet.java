@@ -52,7 +52,8 @@ public class AdminpageLoginServlet extends HttpServlet {
 			//System.out.println(m);
 			
 			request.getSession().setAttribute("loginUser", m);
-			request.getRequestDispatcher("views/common/adminPageMenubar.jsp").forward(request, response);
+			//request.getRequestDispatcher("views/common/adminPageMenubar.jsp").forward(request, response); // =>로그인 후 메인페이지가 login.me로 남아있음
+			response.sendRedirect(request.getContextPath() + "/admin.go");
 		}
 
 	}
