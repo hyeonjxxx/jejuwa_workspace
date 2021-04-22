@@ -38,6 +38,7 @@ public class myPageLikeServlet extends HttpServlet {
 		
 		ArrayList<Like> list = new LikeService().selectLikePro(pCode);
 		
+		request.getRequestDispatcher("views/mypage/myPageLike.jsp").forward(request, response);
 		response.setContentType("application/json; charset=UTF-8");
 		Gson gson = new Gson();
 		gson.toJson(list, response.getWriter());

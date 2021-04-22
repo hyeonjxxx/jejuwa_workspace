@@ -149,7 +149,7 @@ div{
     overflow: hidden;
 }
 .cart{background-color: dimgray; width: 170px;  margin-right: 10px;}
-.pay{background-color: orange; width: 218px;}
+#pay{background-color: orange; width: 218px;}
 
 
 

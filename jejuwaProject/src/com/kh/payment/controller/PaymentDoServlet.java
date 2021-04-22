@@ -1,28 +1,23 @@
-package com.kh.like.controller;
+package com.kh.payment.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.like.model.service.LikeService;
-import com.kh.like.model.vo.Like;
-
 /**
- * Servlet implementation class LikeProduct
+ * Servlet implementation class PaymentDoServlet
  */
-@WebServlet("/insert.lik")
-public class LikeSelectProduct extends HttpServlet {
+@WebServlet("/do.pa")
+public class PaymentDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LikeSelectProduct() {
+    public PaymentDoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +26,7 @@ public class LikeSelectProduct extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		request.getRequestDispatcher("views/payment/payment.jsp").forward(request, response);
 	}
 
 	/**

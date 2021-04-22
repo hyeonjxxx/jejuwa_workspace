@@ -16,6 +16,11 @@ com.kh.common.model.vo.File, com.kh.member.model.vo.*, com.kh.like.model.vo.*" %
 <head>
 <meta charset="UTF-8">
 <title>제주와_상품상세페이지</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/productInfoDetail.css">
@@ -129,7 +134,7 @@ com.kh.common.model.vo.File, com.kh.member.model.vo.*, com.kh.like.model.vo.*" %
                      					}
                      					//console.log(list[i]);
                      					
-                     					//myPageLike.jsp ul 안에 나오게 어떻게 할 수 있을 것인가
+                     					//list.mpl myPageLike.jsp ul 안에 나오게 어떻게 할 수 있을 것인가
                      					$(".gallery>ul").html(result);	
                      				}, error:function(){
                      					console.log("실패")
@@ -156,8 +161,7 @@ com.kh.common.model.vo.File, com.kh.member.model.vo.*, com.kh.like.model.vo.*" %
         
                 <div class="purchasingInfo">
                     <div class="btnArea">
-                        <button type="button" onclick="" class="cart">장바구니</button>
-                        <button type="button" onclick="" class="pay">바로구매</button>   
+                        <a href="<%=contextPath %>/do.pa" class = "btn btn-warning">바로구매</a>   
                     </div>
 
                 </div>

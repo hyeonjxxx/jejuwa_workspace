@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.like.model.service.LikeService;
 import com.kh.like.model.vo.Like;
 import com.kh.member.model.vo.Member;
