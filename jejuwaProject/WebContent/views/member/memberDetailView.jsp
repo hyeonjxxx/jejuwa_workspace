@@ -119,7 +119,7 @@
                               <% } %>
                             </select> 년
                             
-                            <select name="month" id="month" value="<%=bmonth %>">
+                            <select name="month" id="month">
                               <%for(int i=1; i<=12; i++){ %>
 	                              <option ><%= i %></option>
 	                              <% if(i == Integer.parseInt(bmonth)) {%>
@@ -128,7 +128,7 @@
                               <% } %>
                             </select> 월
                             
-                            <select name="day" id="day" value="<%=bday %>">
+                            <select name="day" id="day">
                               <%for(int i=1; i<=31; i++){ %>
                               	<option ><%= i %></option>
                               	<% if(i == Integer.parseInt(bday)) {%>
@@ -176,21 +176,32 @@
                	비밀번호를 초기화하시겠습니까?
              </div>
              
-                 <!-- <input  size="30" class="form-control" type="password" placeholder="검색어를 입력하세요" id="resetPwd" name="">
-                 <a href=""><span class="input-group-text " ><i class="bi bi-search"></i></span></a> -->
-                            
+             <form action="<%= contextPath %>/resetPwd.me" method="post">        
              <div class="input-group mb-3" id="modalContent">
                <div class="input-group-prepend">
                  <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
                </div>
-               <input size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon1">
+               <input name="adminPwd" size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon1">
+               <input name="memNo" type="hidden" value="<%=memNo%>">
+               
              </div>
              
              <!-- Modal footer -->
              <div id="modalFooter">
-               <button id="okBtn" class="btn btn-warning">OK</button>
-               <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+               <button type="submit" id="okBtn" class="btn btn-warning" onclick="return resetPwd();">OK</button>
+               <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
              </div>
+             
+             <script>
+	       			function resetPwd(){
+	       				if($("input[name=adminPwd]").val() != <%= loginUser.getMemPwd()%>){
+	       					alert("관리자 비밀번호가 일치하지 않습니다.");
+	       					return false;
+	       				}
+	       			}
+	       		</script>
+	       		
+             </form> 
            </div>
          </div>
        </div>
@@ -253,6 +264,7 @@
                    <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
                  </div>
                  <input size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon1">
+               	 
                </div>
                
                <!-- Modal footer -->

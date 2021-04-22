@@ -72,5 +72,21 @@ public class MemberService {
 		return m;
 	}
 	
+	/**
+	 * 관리자 권한으로 회원 비밀번호 초기화(비밀번호를 회원아이디와 일치화)
+	 * @param memNo
+	 * @return
+	 */
+	public int resetPwd(int memNo) {
+		Connection conn = getConnection();
+		int result = new MemberDao().resetPwd(conn, memNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 
 }

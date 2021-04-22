@@ -180,7 +180,12 @@ public class MemberDao {
 		return list;
 	}
 	
-	
+	/**
+	 * 회원 상세조회
+	 * @param conn
+	 * @param memNo
+	 * @return
+	 */
 	public Member selectMember(Connection conn, int memNo) {
 		// select문 => ResultSet(한 행)
 		Member m = null;
@@ -211,5 +216,25 @@ public class MemberDao {
 		return m;
 	}
 	
+	
+	public int resetPwd(Connection conn, int memNo) {
+		// update문 => 처리된 행수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("resetPwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setInt(1, memNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 	
 }
