@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.kh.product.model.vo.*,  
-com.kh.common.model.vo.File, com.kh.member.model.vo.*, com.kh.like.model.vo.*" %>    
+ com.kh.member.model.vo.*, com.kh.like.model.vo.*" %>    
 <%
 	//String contextPath = request.getContextPath();  //h_jejuwa
 	Product p = (Product)request.getAttribute("p");
-	ArrayList<File> list = (ArrayList<File>)request.getAttribute("list");
+	//ArrayList<File> list = (ArrayList<File>)request.getAttribute("list");
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	Like l = (Like)request.getAttribute("l");
 	
@@ -160,8 +160,8 @@ com.kh.common.model.vo.File, com.kh.member.model.vo.*, com.kh.like.model.vo.*" %
                 </div>
         
                 <div class="purchasingInfo">
-                    <div class="btnArea">
-                        <a href="<%=contextPath %>/do.pa" class = "btn btn-warning">바로구매</a>   
+                    <div class="btnArea">	
+                        <a href="<%=contextPath %>/do.pa?pcode=<%=p.getpCode() %>" class = "btn btn-warning">바로구매</a>   
                     </div>
 
                 </div>

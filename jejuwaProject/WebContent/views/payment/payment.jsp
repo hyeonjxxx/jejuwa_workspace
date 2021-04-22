@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import = "java.util.ArrayList, com.kh.payment.model.vo.Payment, com.kh.product.model.vo.*"%>
+<%
+	ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");
+	Payment pa = (Payment)request.getAttribute("pa");
+	Product p = (Product)request.getAttribute("p");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,20 +39,16 @@
 	        <br>
 	        <li class="container p-3 my-3 bg-dark text-white" id="inforMationTravel">
 	            <table class="table table-bordered" style="margin: auto;">
-	                <tr class="table-light">
-	                    <td colspan="2" style="width: 350px; height: 60px;">xxxx 여행상품명</td>
+	                <tr class="table-light">								
+	                    <td colspan="2" style="width: 350px; height: 60px;">xxx</td>
 	                </tr>
 	                <tr class="table-light">
 	                    <td style="height: 30px;">여행일</td>
 	                    <td>xxx</td>
 	                </tr>
 	                <tr class="table-light">
-	                    <td style="height: 30px;">인원</td>
-	                    <td>xxx</td>
-	                </tr>
-	                <tr class="table-light">
 	                    <td style="height: 30px;">총금액</td>
-	                    <td>xxx원</td>
+	                    <td></td>
 	
 	                </tr>
 	            </table>

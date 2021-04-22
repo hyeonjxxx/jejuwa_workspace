@@ -32,19 +32,21 @@ public class ProductInfoDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
 		String pCode = request.getParameter("pcode");
 		
 		
-			Product p = new ProductService().selectInfoProduct(pCode);
-			// 오류 구문 ArrayList<File> list = new ProductService().selectFileList(pCode);
-			
-			//System.out.println(p);
-			//System.out.println(list);
-			
-			request.setAttribute("p", p);
-			// 오류 구문 request.setAttribute("list", list);
-	
-			request.getRequestDispatcher("views/product/productInfoDetail.jsp").forward(request, response);
+		Product p = new ProductService().selectInfoProduct(pCode);
+		// 오류 구문 ArrayList<File> list = new ProductService().selectFileList(pCode);
+		
+		//System.out.println(p);
+		//System.out.println(list);
+		
+		request.setAttribute("p", p);
+		// 오류 구문 request.setAttribute("list", list);
+
+		request.getRequestDispatcher("views/product/productInfoDetail.jsp").forward(request, response);
 													
 	}
 
