@@ -1,0 +1,65 @@
+
+/* *{border: 1px solid red;} */
+
+/* .outer 스타일 통일 */
+.outer{
+    height: 700px;
+    width: 700px;
+    margin: 30px 20px;
+    float: left;
+  }
+
+
+    
+/* 검색바 */
+.searchArea{
+    width: 680px;
+    margin-bottom: 10px;
+}
+.searchArea>span *{
+    padding:4px;
+}
+.searchArea>span>input{
+    width: 300px;
+    margin-left: 5px;
+}
+
+/* 테이블 */
+.listArea{text-align:center;}
+.listArea>table{
+    border:1px solid lightgray;
+    border-collapse: collapse;
+    }
+.listArea>table>thead{background:lightgray;}
+.listArea>table>tbody>tr:hover{
+    background:rgb(252, 206, 121);
+    cursor:pointer;
+}
+.listArea>table *{
+    border:1px solid rgb(189, 189, 189);
+    padding:3px;}
+
+
+/* 버튼 + 페이징 구역*/
+.bottomArea{
+    margin: 15px;
+    width:700x;
+    /* margin-left: 500x; */
+}
+.bottomArea *{float:left;}
+
+
+
+/* .btn a:hover{background-color: orange;} */
+
+
+
+/* 페이징 구역 */
+.pagingArea{
+    width:300px;
+    margin-left:250px;
+}
+.pagingArea *{
+    margin-right: 5px;
+    margin-top: 9px;
+    border-radius:3px;}

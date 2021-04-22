@@ -99,7 +99,7 @@
         <div class="menu"><a href="">투어</a></div>
         <div class="menu"><a href="">티켓</a></div>
         <div class="menu"><a href="">맛집</a></div>
-        <div class="menu"><a href="<%=contextPath%>/list.ufa">고객센터</a></div>
+        <div class="menu"><a href="<%=contextPath%>/list.uno?currentPage=1">고객센터</a></div>
 
     
     </div>
