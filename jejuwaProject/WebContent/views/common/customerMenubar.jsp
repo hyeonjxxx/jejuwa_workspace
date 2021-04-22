@@ -25,7 +25,7 @@
             <h2 id="customer_center"><a>고객센터</a></h2>
             <ul>
                 <li class="subMenu">
-                    <a href="">공지사항<span style="margin-left: 74px;">〉</span></a>
+                    <a href="<%=contextPath%>/list.uno?currentPage=1">공지사항<span style="margin-left: 74px;">〉</span></a>
                 </li>
                 <li class="subMenu">
                     <a href="">리뷰내역<span style="margin-left: 74px;">〉</span></a>
