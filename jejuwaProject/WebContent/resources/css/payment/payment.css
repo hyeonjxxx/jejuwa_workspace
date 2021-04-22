@@ -12,8 +12,8 @@
     font-weight: bold;
     font-size: 30px;
     }
-.outer{width: 1000px; margin: auto;}
-.outer >li{
+.paymentOrder{width: 1000px; margin: auto;}
+.paymentOrder >li{
     float : left;
     padding: 20px 30px 10px 30px; 
     width : 350px; 
@@ -60,16 +60,14 @@
 }
      
 #resultCash{
-    margin-top: 40px; 
-    margin-left: 20px; 
     font-size: 20px; 
     font-weight: bold;
     background-color: rgba(250, 214, 72);
     height: 80px;
-    position: relative;
-    top: -330px;
+    position: absolute;
     margin-left: 40px;
     margin-bottom: 40px;
+    top: 1120px;
 }
 
 #resultCash #amount{
@@ -80,4 +78,12 @@
     font-weight: bold;
     }
 
-#paymentMethod, #pInfo{height: 300px;}
+#paymentMethod, #pInfo{
+    height: 300px;
+}
+
+#order{
+    position: absolute;
+    right: 140px;
+
+}

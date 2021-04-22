@@ -166,7 +166,7 @@
 	
 		                <div class="purchasingInfo">
 		                    <div class="btnArea">
-		                        <button type="submit" class = "btn btn-warning">바로구매</a>
+		                        <button type="submit" class = "btn btn-warning">바로구매</button>
 		                    </div>
 		
 		                </div>

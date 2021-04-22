@@ -1,6 +1,6 @@
 package com.kh.order.model.service;
 
-import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.*;
 import static com.kh.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
@@ -38,5 +38,19 @@ public class OrderService {
 		close(conn);
 		
 		return list;
+	}
+	
+	public int insertOrder(Order o) {
+		Connection conn = getConnection();
+		
+		int result = new OrderDao().insertOrder(conn, o);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
 	}
 }

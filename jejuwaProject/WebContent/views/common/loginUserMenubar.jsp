@@ -23,7 +23,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	
-	<style>
+	
 	<style>
 	div, form, input{border: 1 solid gray; box-sizing: border-box;}
 
@@ -214,7 +214,7 @@
         <div class="menu"><a href="">투어</a></div>
         <div class="menu"><a href="">티켓</a></div>
         <div class="menu"><a href="">맛집</a></div>
-        <div class="menu"><a href="">고객센터</div>
+        <div class="menu"><a href="">고객센터</a></div>
     
     </div>
 

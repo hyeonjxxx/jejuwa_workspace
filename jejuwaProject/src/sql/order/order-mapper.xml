@@ -25,7 +25,7 @@
           JOIN PRODUCT P USING (P_CODE) 
 	</entry>
 	
-		<entry key="selectList">
+	<entry key="selectList">
 		SELECT 
 				*
 		  FROM (
@@ -50,6 +50,31 @@
 		               )A
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="insertOrdert">
+		INSERT
+		  INTO TORDER
+		  (
+		    ORDER_NO
+		  , AMOUNT
+		  , TRAVEL_DATE
+		  , TRAVEL_USER
+		  , TRAVEL_EMAIL
+		  , MEM_NO
+		  , P_CODE
+		  )
+		VALUES
+		 ( 
+		   SEQ_ONO.NEXTVAL
+		 , ?
+		 , ?
+		 , ?
+		 , ?
+		 , ?
+		 , ?
+ 		 )
+		  
 	</entry>
 
 	
