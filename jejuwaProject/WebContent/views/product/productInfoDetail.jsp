@@ -145,25 +145,32 @@
                      	</script>
 
                     </div>
-
-                    <!-- 옵션정보 -->
-                    <div class="optionSelect">
-                        <div class="dateSelect">
-                            <a>
-                                <img src="<%=contextPath %>/resources/images/calendar.png" alt="" width="20" align="center" >
-                                		날짜를 선택해주세요
-                            </a>
-                        </div>
-                   </div>
-
-
-                <div class="purchasingInfo">
-                    <div class="btnArea">
-                        <a href="<%=contextPath %>/do.pa?pcode=<%=p.getpCode() %>" class = "btn btn-warning">바로구매</a>
-                    </div>
-
-                </div>
-
+						
+					<form action="<%=contextPath %>/do.pa">
+							<input type="hidden" name="pcode" value="<%=p.getpCode() %>">
+	                    <!-- 옵션정보 -->
+	                    <div class="optionSelect">
+	                        <div class="dateSelect">
+	                            <a>
+	                            	<!-- 
+	                                <img id="test" src="<%=contextPath %>/resources/images/calendar.png" alt="" width="20" align="center" >
+	                              		날짜를 선택해주세요
+	                              		<br> -->
+	                                <input type="date" name="travleDate" >
+	                                
+	                                
+	                            </a>
+	                        </div>
+	                   </div>
+	
+	
+		                <div class="purchasingInfo">
+		                    <div class="btnArea">
+		                        <button type="submit" class = "btn btn-warning">바로구매</a>
+		                    </div>
+		
+		                </div>
+				</form>
             </div>
 
         </div>
