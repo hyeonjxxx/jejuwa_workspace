@@ -24,7 +24,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	
 	<style>
-	<style>
+
 	div, form, input{border: 1 solid gray; box-sizing: border-box;}
 
 	button{background-color:orange; border: 1px solid orange;}
@@ -140,7 +140,7 @@
 	.menu a:hover{background:rgb(243, 224, 170);
               color: coral;}
 	</style>
-	</style>
+
 	
 	
 </head>
