@@ -31,7 +31,7 @@ public class Member {
 		this.status = status;
 	}
 	
-	// 멤버 리스트 조회(활동회원, 관리자)
+	// 회원 리스트 조회(활동회원, 관리자)
 	public Member(int memNo, String memId, String memName, String phone, String email, Date enrollDate) {
 		super();
 		this.memNo = memNo;
@@ -40,6 +40,18 @@ public class Member {
 		this.phone = phone;
 		this.email = email;
 		this.enrollDate = enrollDate;
+	}
+	
+	
+	// 회원 상세조회
+	public Member(int memNo, String memId, String memName, String phone, String email, String memBirth) {
+		super();
+		this.memNo = memNo;
+		this.memId = memId;
+		this.memName = memName;
+		this.phone = phone;
+		this.email = email;
+		this.memBirth = memBirth;
 	}
 
 	public int getMemNo() {

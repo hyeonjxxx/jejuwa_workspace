@@ -49,7 +49,7 @@ public class MemberService {
 	}
 	
 	/**
-	 * 현재 요청한 페이지(currentPage)에 보여질 멤버 리스트 조회
+	 * 현재 요청한 페이지(currentPage)에 보여질 회원 리스트 조회
 	 * @param pi
 	 * @return
 	 */
@@ -58,6 +58,18 @@ public class MemberService {
 		ArrayList<Member> list = new MemberDao().selectList(conn, pi);
 		close(conn);
 		return list;
+	}
+	
+	/**
+	 * 회원 상세조회
+	 * @param memNo
+	 * @return
+	 */
+	public Member selectMember(int memNo) {
+		Connection conn = getConnection();
+		Member m = new MemberDao().selectMember(conn, memNo);
+		close(conn);
+		return m;
 	}
 	
 

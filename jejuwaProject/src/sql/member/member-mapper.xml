@@ -102,7 +102,19 @@
 		       )
 	</entry>
 	
-	
+	<!-- 회원 상세조회 -->
+	<entry key="selectMember">
+		SELECT
+		       MEM_NO
+		     , MEM_ID
+		     , MEM_NAME
+		     , PHONE
+		     , EMAIL
+		     , MEM_BIRTH
+		  FROM MEMBER
+		 WHERE STATUS IN ('A', 'Y', 'B')
+		   AND MEM_NO = ?
+	</entry>
 	
 	<entry key="updateMember">
 		UPDATE 
@@ -116,27 +128,6 @@
 		 WHERE USER_ID=? 
 	</entry>
 	
-	
-	<entry key="selectMember">
-		SELECT 
-			   USER_NO
-			 , USER_ID
-			 , USER_PWD
-			 , USER_NAME
-			 , PHONE
-			 , EMAIL
-			 , ADDRESS
-			 , INTEREST
-			 , ENROLL_DATE
-			 , MODIFY_DATE
-			 , STATUS
-		  FROM 
-		  	   MEMBER
-		 WHERE 
-		       USER_ID=?
-		   AND STATUS='Y'
-			   
-	</entry>
 	
 	<entry key="deleteMember">
 		UPDATE 

@@ -55,7 +55,7 @@
         
         <!-- 회원현황 리스트 테이블 -->
         <div class="listArea">
-            <table align="center">
+            <table align="center" id="memberList">
                 <thead>
                     <tr>
                         <th width="100">회원번호</th>
@@ -70,7 +70,7 @@
 	                <!-- 조회된 결과가 없을 경우 -->
 		                <% if(list.isEmpty()){ %>
 		                	<tr>
-		                		<td colspan="6">조회된 회원이 업습니다.</td>
+		                		<td colspan="6">조회된 회원이 없습니다.</td>
 		                	</tr>
 		                <% }else{%>
 		                <!-- 조회된 결과가 있을 경우 -->
@@ -86,8 +86,17 @@
 			                <% } %>
 	                	<% } %>   
                 </tbody>
-
             </table>
+            
+            <script>
+            	// 상세보기 요청
+            	$(function(){
+            		$("#memberList>tbody>tr").click(function(){
+            			location.href='<%=contextPath%>/detail.me?mno=' + $(this).children().eq(0).text();
+            		})
+            	})
+            
+            </script>
 
         </div>
 

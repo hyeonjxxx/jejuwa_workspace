@@ -140,7 +140,7 @@ public class MemberDao {
 	}
 	
 	/**
-	 * 현재 요청한 페이지(currentPage)에 보여질 멤버 리스트 조회
+	 * 현재 요청한 페이지(currentPage)에 보여질 회원 리스트 조회
 	 * @param conn
 	 * @param pi
 	 * @return
@@ -178,6 +178,38 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return list;
-		
 	}
+	
+	
+	public Member selectMember(Connection conn, int memNo) {
+		// select문 => ResultSet(한 행)
+		Member m = null;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성sql
+			pstmt.setInt(1, memNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getInt("MEM_NO"),
+						       rset.getString("MEM_ID"),
+						       rset.getString("MEM_NAME"),
+						       rset.getString("PHONE"),
+						       rset.getString("EMAIL"),
+						       rset.getString("MEM_BIRTH"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return m;
+	}
+	
+	
 }
