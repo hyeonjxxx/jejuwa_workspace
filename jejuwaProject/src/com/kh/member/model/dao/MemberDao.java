@@ -1,6 +1,6 @@
 package com.kh.member.model.dao;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -8,8 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.member.model.vo.Member;
 
 public class MemberDao {
@@ -109,4 +111,130 @@ public class MemberDao {
 		return m;
 	}
 
+	/**
+	 * 멤버 수 조회(활동회원, 관리자)
+	 * @param conn
+	 * @return
+	 */
+	public int selectMemberCount(Connection conn) {
+		// select문 => ResultSet(멤버 수)
+		int memberCount = 0;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectMemberCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 완성된 sql
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				memberCount = rset.getInt("MEMBERCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return memberCount;
+	}
+	
+	/**
+	 * 현재 요청한 페이지(currentPage)에 보여질 회원 리스트 조회
+	 * @param conn
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Member> selectList(Connection conn, PageInfo pi){
+		// select문 => ResultSet(여러행)
+		ArrayList<Member> list = new ArrayList<>();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			/*
+			 * startRow = (currentPage - 1) * boardLimit + 1
+			 * endRow = currentPage * boardLimit
+			 */
+			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Member(rset.getInt("MEM_NO"),
+									rset.getString("MEM_ID"),
+									rset.getString("MEM_NAME"),
+									rset.getString("EMAIL"),
+									rset.getString("PHONE"),
+									rset.getDate("ENROLL_DATE")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	/**
+	 * 회원 상세조회
+	 * @param conn
+	 * @param memNo
+	 * @return
+	 */
+	public Member selectMember(Connection conn, int memNo) {
+		// select문 => ResultSet(한 행)
+		Member m = null;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성sql
+			pstmt.setInt(1, memNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getInt("MEM_NO"),
+						       rset.getString("MEM_ID"),
+						       rset.getString("MEM_NAME"),
+						       rset.getString("PHONE"),
+						       rset.getString("EMAIL"),
+						       rset.getString("MEM_BIRTH"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return m;
+	}
+	
+	
+	public int resetPwd(Connection conn, int memNo) {
+		// update문 => 처리된 행수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("resetPwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setInt(1, memNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
 }

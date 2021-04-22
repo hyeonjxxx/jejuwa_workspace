@@ -76,7 +76,7 @@ public class NoticeInsertServlet extends HttpServlet {
 				// Q 파일 경로/수정명 개념
 			}
 			
-			System.out.println(n);
+			//System.out.println(n);
 
 			
 			/*

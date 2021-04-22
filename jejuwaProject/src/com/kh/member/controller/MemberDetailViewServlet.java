@@ -1,7 +1,6 @@
-package com.kh.payment.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,22 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.payment.model.service.PaymentService;
-import com.kh.payment.model.vo.Payment;
-import com.kh.product.model.service.ProductService;
-import com.kh.product.model.vo.Product;
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class PaymentDoServlet
+ * Servlet implementation class MemberDetailViewServlet
  */
-@WebServlet("/do.pa")
-public class PaymentDoServlet extends HttpServlet {
+@WebServlet("/detail.me")
+public class MemberDetailViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PaymentDoServlet() {
+    public MemberDetailViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +30,23 @@ public class PaymentDoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		// 요청시 전달값 뽑아서 담기
+		int memNo = Integer.parseInt(request.getParameter("mno"));
 		
-		String pcode = request.getParameter("pcode");
-		String travleDate = request.getParameter("travleDate");
+		Member m = new MemberService().selectMember(memNo);
 		
-		Product p = new ProductService().selectInfoProduct(pcode);
+		if(m != null) {
+			request.setAttribute("m", m);
+			request.getRequestDispatcher("views/member/memberDetailView.jsp").forward(request, response);
+			
+		}else {
+			// 에러페이지 따로 만들어야할지 그냥 alert로 띄울지
+			request.getSession().setAttribute("alertMsg", "회원 조회에 실패하였습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.me?currentPage=1");
+					
+		}
 		
-		//ArrayList<Payment> list = new PaymentService().selectPayment();
-		//request.setAttribute("list", list);
-		request.setAttribute("p", p);
-		request.setAttribute("travleDate", travleDate);
-		request.getRequestDispatcher("views/payment/payment.jsp").forward(request, response);
 	}
 
 	/**

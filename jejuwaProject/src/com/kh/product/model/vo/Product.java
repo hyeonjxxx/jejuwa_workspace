@@ -55,7 +55,7 @@ public class Product {
 		return pCode;
 	}
 
-	public Product(String pCode, String pName, int price, String basicPath, String detailPath) {
+	public Product(String pName, String pCode, int price, String basicPath, String detailPath) {
 		super();
 		this.pCode = pCode;
 		this.pName = pName;

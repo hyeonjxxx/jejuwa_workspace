@@ -68,7 +68,7 @@
             <div class="menu">
                 <div class="submenu">회원 관리</div>
                     <p>
-                        <a href="">회원 현황</a> <br>
+                        <a href="<%=contextPath%>/list.me?currentPage=1">회원 현황</a> <br>
                         <a href="">블랙리스트 관리</a> <br>
                     </p>
                 

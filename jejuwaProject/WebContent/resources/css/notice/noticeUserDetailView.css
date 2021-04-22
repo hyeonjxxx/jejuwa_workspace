@@ -1,0 +1,75 @@
+
+/* *{border: 1px solid red;} */
+
+/* .outer 스타일 통일 */
+.outer{
+    
+    width: 700px;
+    margin: 30px 20px;
+    float: left;
+  }
+    
+        
+    /* 공지사항 상세보기  */    
+    .title, .content, #fileArea{        
+        border-top-style: solid;            
+        border-bottom-style: solid;
+        border-top-width: 2px;
+        border-bottom-width:2px;
+        border-bottom-color: lightgray;
+    }
+    .title{
+        padding:10px;
+        border-top-color: black;
+        }
+    .content{
+        padding:10px;
+        margin-top: 30px;
+        border-top-color:  lightgray;
+        }
+    .NoticeContent p{margin-left:20px;}       
+    #fileArea{
+        color:gray;
+        padding-left: 10px;
+        margin-top: 2px;
+        border-top-color:  lightgray;
+        }
+
+    
+    /* 버튼 */
+    .bottomArea{width:700px;}
+    .bottomArea{
+        margin: 35px;
+        float:right;
+        margin-right: 9px;
+    }
+    .bottomArea *{float:right; margin-left: 5px;}
+    .btn a{
+    text-decoration: none; 
+    text-align: center;
+    color:white; 
+    background-color: dimgray;
+    display: block;
+    padding:7px;
+    border-radius:4px;
+    width:100px;
+    }
+    /* #btn1{margin-right: 5px;}
+    #btn2{margin-right: 415px;} */
+    /* .btn2{margin-left: 700px;} */
+
+    
+    #btn3{margin-right:5px;}
+    /* #btnArea1{width:700px;} */
+    .btn3{margin-bottom: 15px;}
+    .btn3 a{text-decoration: none; 
+        text-align: center;
+        color:white; 
+        background-color: dimgray;
+        padding:7px;
+        border-radius:4px;
+        margin-left: 10px;
+    }
+    
+    .btn a:hover, .btn3 a:hover{background-color: orange;}
+    
