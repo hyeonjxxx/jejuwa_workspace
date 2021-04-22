@@ -36,8 +36,9 @@ div{
     margin-left: 10px;
 }
 
-
-
+/* gropBar  */
+.groupBar{ width: 400px; margin: auto; margin-left: 30px;}
+.groupBar>a{font-size: 13px;}
 
 /* pdfImg */
 .mainImg{
@@ -114,6 +115,7 @@ div{
     margin:20px 0;
     text-align: center;
 }
+.dateSelect:hover{background-color: rgba(72, 72, 72, 0.397);}
 .dateSelect span{font-size: 14px; margin:5px;}
 .dateSelect img{margin:0 auto; padding: auto;}
 .optionInfo select{
@@ -128,28 +130,20 @@ div{
 }
 
 /* btnArea  */
-.btnArea{
-    display: table;
-    width: 100%;
-    padding-top: 15px;
-    margin-right: 10px;
-    
-}
 .purchasingInfo,.btnArea{
     float: left;
     width: 100%;
 }
-.btnArea button{
-    font-size: 18px;
-    color: white;
+
+.btnArea>a{
+	width: 400px; 
+	height: 50px; 
+	padding-top: 10px;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
-    outline: none;
-    padding: 10px; 
     overflow: hidden;
 }
-.cart{background-color: dimgray; width: 170px;  margin-right: 10px;}
-#pay{background-color: orange; width: 218px;}
 
 
 
@@ -172,7 +166,7 @@ div{
     position: relative;
     background-color: orange;
     color: white;
-    height: 30px;
+    height: 40px;
     padding: 5px 15px;
     border: 1px solid dimgray;
     border-bottom: none;
@@ -180,15 +174,14 @@ div{
 }
 
 .pdtTab ul li{
-    height: 30px;
+    height: 40px;
     position: relative;
     float: left;
-    min-width: 150px;
+    min-width: 162px;
     cursor: pointer;
     font-size: 15px;
     background-color: rgb(236, 236, 236);
-    color: inherit;
-    height: 30px;
+    color: black;
     padding: 5px 15px;
     border-bottom: 1px solid dimgray;
 

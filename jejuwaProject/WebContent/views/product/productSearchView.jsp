@@ -35,7 +35,7 @@
         </div>
 
         <div class="sortBar" align="right">
-            <a href="">제주와 추천순<img src="<%=contextPath%>/images/check_c.png" alt="" width="15"></a> &nbsp;&nbsp;
+            <a href="">제주와 추천순<img src="<%=contextPath%>/resources/images/check_c.png" alt="" width="15"></a> &nbsp;&nbsp;
             <a href="">판매순<img src="<%=contextPath%>/resources/images/check_c.png" alt="" width="15"></a>
         </div>
         
