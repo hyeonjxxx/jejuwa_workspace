@@ -1,0 +1,63 @@
+
+/* *{border: 1px solid red;} */
+
+/* .outer{
+    border: 1px solid blue;
+    height: 900px; width: 800px;
+    margin: auto;
+    margin-top: 10px;
+} */
+
+/* .outer 스타일 통일 */
+.outer{
+    height: 700px;
+    width: 800px;
+    margin: 30px 20px;
+    float: left;
+  }
+
+/* 검색바 */
+.searchArea{
+    width: 750px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+.searchArea>span *{
+    padding:4px;
+    margin-left: 5px;
+}
+
+#select1{margin-right: 300px;}
+
+/* 구분선 */
+.divisionLine{
+    width: 90%; height: 5px; 
+    background-color: lightgray; }
+     
+
+/* 테이블 */
+.listArea{text-align:center;}
+.listArea>table{
+    border:1px solid lightgray;
+    border-collapse: collapse;
+    }
+.listArea>table>thead{background:lightgray;}
+.listArea>table>tbody>tr:hover{
+    background:rgb(252, 206, 121);
+    cursor:pointer;
+}
+.listArea>table *{
+    border:1px solid rgb(189, 189, 189);
+    padding:3px;}
+
+
+/* 페이징 구역 */
+.pagingArea{
+    margin: 15px;
+    margin-left:260px;
+}
+.pagingArea *{
+    float:left;
+    margin-right: 5px;
+    margin-top: 9px;
+    border-radius:3px; }

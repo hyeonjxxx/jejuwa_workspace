@@ -30,7 +30,7 @@
         <div class="divisionLine"></div>
         <br>
         
-        <br><br><br><br><br>
+        <br><br><br>
         
 
         <div class="area1">
@@ -47,7 +47,6 @@
                     <input type="text" placeholder="검색">
                 </span>              
             </div>
-            
         </div>
 
         <!-- 공지사항 리스트 테이블 -->
@@ -80,7 +79,6 @@
 		                    </tr>
 		                <% } %>
 	                <% } %>   
-                    
                 </tbody>
             </table>
             
