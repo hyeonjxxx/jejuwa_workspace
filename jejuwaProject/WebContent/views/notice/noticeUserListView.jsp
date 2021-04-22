@@ -31,7 +31,8 @@
 
 	<div class="outer">
         <br><br>
-        <h2><b>공지사항</b></h2>
+        <h2>공지사항</h2>
+        <div class="divisionLine"></div>
         <br>
         
         <br><br>
