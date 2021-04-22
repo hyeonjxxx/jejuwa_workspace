@@ -1,6 +1,6 @@
 package com.kh.common.model.vo;
 
-public class File { // 첨부파일 vo 클래스
+public class Attachment { // 첨부파일 vo 클래스
 	
 	private int fileNo;				// 첨부파일 번호(PK)
 	private String orgFileName;		// 첨부파일 원본명
@@ -11,9 +11,9 @@ public class File { // 첨부파일 vo 클래스
 	private int myqNo;				// 1:1문의등록번호
 	private String pCode;			// 상품코드
 	
-	public File() {}
+	public Attachment() {}
 
-	public File(int fileNo, String orgFileName, String mdfFileName, String filePath, String refBoardType,
+	public Attachment(int fileNo, String orgFileName, String mdfFileName, String filePath, String refBoardType,
 			int refBoardNo, int myqNo, String pCode) {
 		super();
 		this.fileNo = fileNo;
@@ -92,7 +92,7 @@ public class File { // 첨부파일 vo 클래스
 
 	@Override
 	public String toString() {
-		return "File [fileNo=" + fileNo + ", orgFileName=" + orgFileName + ", mdfFileName=" + mdfFileName
+		return "Attachment [fileNo=" + fileNo + ", orgFileName=" + orgFileName + ", mdfFileName=" + mdfFileName
 				+ ", filePath=" + filePath + ", refBoardType=" + refBoardType + ", refBoardNo=" + refBoardNo
 				+ ", myqNo=" + myqNo + ", pCode=" + pCode + "]";
 	}
