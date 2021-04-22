@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.kh.product.model.vo.*,  
-com.kh.common.model.vo.File, com.kh.member.model.vo.*, com.kh.like.model.vo.*" %>    
+  com.kh.member.model.vo.*, com.kh.like.model.vo.*" %>    
 <%
 	//String contextPath = request.getContextPath();  //h_jejuwa
 	Product p = (Product)request.getAttribute("p");
-	ArrayList<File> list = (ArrayList<File>)request.getAttribute("list");
+	//ArrayList<> list = (ArrayList<File>)request.getAttribute("list"); com.kh.common.model.vo.File
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	Like l = (Like)request.getAttribute("l");
 	
@@ -152,12 +152,10 @@ com.kh.common.model.vo.File, com.kh.member.model.vo.*, com.kh.like.model.vo.*" %
                             <a>
                                 <img src="<%=contextPath %>/resources/images/calendar.png" alt="" width="20" align="center" >
                                 		날짜를 선택해주세요
-                                <input type="date" class=""></input>
                             </a> 
                         </div>
-                   </div>     
+                   </div>                      
 
-                </div>
         
                 <div class="purchasingInfo">
                     <div class="btnArea">
