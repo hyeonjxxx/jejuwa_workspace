@@ -70,7 +70,7 @@ public class MemberDao {
 	}
 	
 	/**
-	 * 관리자 페이지에서 관리자로 로그인
+	 * [휘경] 페이지에서 관리자로 로그인
 	 * @param conn
 	 * @param memId
 	 * @param memPwd
