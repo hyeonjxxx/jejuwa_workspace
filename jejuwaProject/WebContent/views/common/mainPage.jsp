@@ -42,68 +42,7 @@
 </head>
 
 <body>
-    <div class="wrap">
-        <div id="header">
-            <div id="header_1">
-                <a href="">
-                <img id="logo_img" src="<%= contextPath %>/resources/images/제주와 로고.png" alt="">
-                </a>
-            </div>
-
-            <div id="header_2">
-                <form action="" id="search_form">
-
-                    <div id="search_btn" style="width: 10%;">
-                        <!--<input type="submit" value="검색">-->
-                        <button><img style="width: 100%; height: 100%;" src="<%= contextPath %>/resources/images/돋보기.png"></button>
-                    </div>
-
-                    <div id="search_text">
-                        <input type="search" name="keyword">
-                    </div>
-
-                </form>
-            </div>
-
-            <div id="header_3">
-                <div>
-
-					<!-- 로그인 전 --> 
-					<% if(loginUser == null){ %>
-                	<ul id="info_1">
-                        <li><a href="<%= request.getContextPath() %>/views/member/loginPage.jsp">로그인</a></li>
-                        <li><a href="<%= request.getContextPath() %>/enroll.me">회원가입</a></li>
-                    </ul>
-                    <% } else { if(loginUser.getStatus().equals("A")){ %>
-                    <!--  로그인 후    -->  
-                    <ul id="info_1">
-                        <li><a href=""><%= loginUser.getMemName() %>님 환영합니다</a></li>
-                        <li><a href="<%= request.getContextPath() %>/logout.me">로그아웃</a></li>
-                        <li><a href="<%=request.getContextPath()%>/admin.go">관리자</a></li>
-                    </ul>
-                    <% } else{ %>
-                    <ul id="info_1">
-                        <li><a href=""><%= loginUser.getMemName() %>님 환영합니다</a></li>
-                        <li><a href="<%= request.getContextPath() %>/logout.me">로그아웃</a></li>
-                    </ul>
-                    <% }} %>
-
-
-                </div>
-            </div>
-        </div>
-
-        <br clear=" both"> <br>
-
-    <div class="navWrap" align="center">
-        <div class="menu"><a href="">투어</a></div>
-        <div class="menu"><a href="">티켓</a></div>
-        <div class="menu"><a href="">맛집</a></div>
-        <div class="menu"><a href="<%=contextPath%>/list.uno?currentPage=1">고객센터</a></div>
-
-    
-    </div>
-
+	<%@ include file="../common/loginUserMenubar.jsp" %>
     <!-- 메인이미지 -->
 
     <div id="img_jejumain">

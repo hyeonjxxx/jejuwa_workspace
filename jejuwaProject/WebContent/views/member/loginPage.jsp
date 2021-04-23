@@ -31,7 +31,7 @@
 </head>
 <body>
 
-	<%@ include file="../common/managerMenubar.jsp" %>
+	<%@ include file="../common/loginUserMenubar.jsp" %>
 
         <!-- 로그인창 -->
         <div class="login_main">

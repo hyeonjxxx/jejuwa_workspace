@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.member.model.vo.Member"%>
 <%
-	String contextPath = request.getContextPath(); 
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	// 로그인 전  managerMenubar.jsp  로딩시 : null
+	// 로그인 성공후 managerMenbubar.jsp 로딩시 : 로그인한 회원의 정보들이 담겨있는 객체
 %>
 <!DOCTYPE html>
 <html>
@@ -158,7 +160,7 @@
         <div id="header">
             <div id="header_1">
                 <a href="">
-                <img id="logo_img" src="<%= contextPath %>/resources/images/제주와 로고.png" alt="">
+                <img id="logo_img" src="<%= request.getContextPath() %>/resources/images/제주와 로고.png" alt="">
                 </a>
             </div>
 
@@ -168,7 +170,7 @@
                     
                     <div id="search_btn" style="width: 10%;">
                         <!--<input type="submit" value="검색">-->
-                        <button><img style="width: 100%; height: 100%;" src="<%= contextPath %>/resources/images/돋보기.png"></button>
+                        <button><img style="width: 100%; height: 100%;" src="<%= request.getContextPath() %>/resources/images/돋보기.png"></button>
                     </div>
                     
                     <div id="search_text">
@@ -181,35 +183,74 @@
 
             <div id="header_3">
                 <div>
-                    <ul id="info_1">
-                        <li><a href="">xxx님 환영합니다</a></li> 
-                        <li><a href="">로그아웃</a></li> 
-                        
+             		<!-- 로그인 전 --> 
+					<% if(loginUser == null){ %>
+                	<ul id="info_1">
+                        <li><a href="<%= request.getContextPath() %>/lgview.me">로그인</a></li>
+                        <li><a href="<%= request.getContextPath() %>/enroll.me">회원가입</a></li>
                     </ul>
-                </div>    
-               <!-- 아이콘영역 -->
+                    <% } else { if(loginUser.getStatus().equals("A")){ %>
+                    <!--  로그인 후    -->  
+                    <ul id="info_1">
+                        <li><a href=""><%= loginUser.getMemName() %>님 환영합니다</a></li>
+                        <li><a href="<%= request.getContextPath() %>/logout.me">로그아웃</a></li>
+                        <li><a href="<%=request.getContextPath()%>/admin.go">관리자</a></li>
+                    </ul>
+                    
+                                   <!-- 아이콘영역 -->
                 <div id="icon0">
                     <div class="coupon">
-                            <a href="<%= contextPath %>/list.mp">
-                                <img src="<%= contextPath %>/resources/images/마이페이지.png" width="40px" alt="">
-                            <p><a href = "<%= contextPath %>/list.mp">마이페이지</a></p>
+                            <a href="<%= request.getContextPath() %>/list.mp">
+                                <img src="<%= request.getContextPath() %>/resources/images/마이페이지.png" width="40px" alt="">
+                            <p><a href = "<%= request.getContextPath() %>/list.mp">마이페이지</a></p>
                             </a>
                     </div>
                     <div class="coupon">
                             <a href="">
-                                <img src="<%= contextPath %>/resources/images/좋아요.png" width="40px" alt="">
+                                <img src="<%= request.getContextPath() %>/resources/images/좋아요.png" width="40px" alt="">
                                 <p>좋아요</p>
                             </a>
                     </div>
                     <div class="coupon">
                             <a href="">
-                            <img src="<%= contextPath %>/resources/images/쿠폰.png" width="40px" alt="">
+                            <img src="<%= request.getContextPath() %>/resources/images/쿠폰.png" width="40px" alt="">
                                 <p>쿠폰</p>
                             </a>
                     </div>
                     <div class="clear"></div>
 
                 </div>
+                    <% } else{ %>
+                    <ul id="info_1">
+                        <li><a href=""><%= loginUser.getMemName() %>님 환영합니다</a></li>
+                        <li><a href="<%= request.getContextPath() %>/logout.me">로그아웃</a></li>
+                    </ul>
+                    
+                                   <!-- 아이콘영역 -->
+                <div id="icon0">
+                    <div class="coupon">
+                            <a href="<%= request.getContextPath() %>/list.mp">
+                                <img src="<%= request.getContextPath() %>/resources/images/마이페이지.png" width="40px" alt="">
+                            <p><a href = "<%= request.getContextPath() %>/list.mp">마이페이지</a></p>
+                            </a>
+                    </div>
+                    <div class="coupon">
+                            <a href="">
+                                <img src="<%= request.getContextPath() %>/resources/images/좋아요.png" width="40px" alt="">
+                                <p>좋아요</p>
+                            </a>
+                    </div>
+                    <div class="coupon">
+                            <a href="">
+                            <img src="<%= request.getContextPath() %>/resources/images/쿠폰.png" width="40px" alt="">
+                                <p>쿠폰</p>
+                            </a>
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+                    <% }} %>
+                </div>    
             </div>
         </div>
     
@@ -222,7 +263,6 @@
         <div class="menu"><a href="">고객센터</a></div>
     
     </div>
-
 
 </body>
 </html>
