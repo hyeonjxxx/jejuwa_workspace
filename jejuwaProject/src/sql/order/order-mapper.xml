@@ -52,27 +52,32 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
-	<entry key="insertOrdert">
+	<entry key="insertOrder">
 		INSERT
 		  INTO TORDER
 		  (
 		    ORDER_NO
+		  , ORDER_DATE
 		  , AMOUNT
 		  , TRAVEL_DATE
 		  , TRAVEL_USER
 		  , TRAVEL_EMAIL
+		  , STATUS
 		  , MEM_NO
 		  , P_CODE
 		  )
 		VALUES
 		 ( 
 		   SEQ_ONO.NEXTVAL
+		 , SYSDATE
 		 , ?
 		 , ?
 		 , ?
 		 , ?
+		 , '예약접수'
 		 , ?
 		 , ?
+		
  		 )
 		  
 	</entry>

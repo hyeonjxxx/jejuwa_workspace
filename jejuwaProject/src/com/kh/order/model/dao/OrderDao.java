@@ -74,7 +74,7 @@ public class OrderDao {
 				list.add(new Order(rset.getInt("ORDER_NO"),
 								   rset.getDate("ORDER_DATE"),
 								   rset.getInt("AMOUNT"),
-								   rset.getDate("TRAVEL_DATE"),
+								   rset.getString("TRAVEL_DATE"),
 								   rset.getString("MEM_NAME"),
 								   rset.getString("TRAVEL_EMAIL"),
 								   rset.getString("STATUS"),
@@ -108,7 +108,7 @@ public class OrderDao {
 				list.add(new Order(rset.getInt("ORDER_NO"),
 								   rset.getDate("ORDER_DATE"),
 								   rset.getInt("AMOUNT"),
-								   rset.getDate("TRAVEL_DATE"),
+								   rset.getString("TRAVEL_DATE"),
 								   rset.getString("MEM_NAME"),
 								   rset.getString("TRAVEL_EMAIL"),
 								   rset.getString("STATUS"),
@@ -134,13 +134,13 @@ public class OrderDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, o.getOrderNo());
-			pstmt.setInt(2, o.getAmount());
-			pstmt.setDate(3, o.getTravelDate());
-			pstmt.setString(4, o.getTravelUser());
-			pstmt.setString(5, o.getTravelEmail());
-			pstmt.setInt(6, o.getMemNo());
-			pstmt.setString(7, o.getpCode());
+			pstmt.setInt(1, o.getAmount());
+			pstmt.setString(2, o.getTravelDate());
+			pstmt.setString(3, o.getTravelUser());
+			pstmt.setString(4, o.getTravelEmail());
+			
+			pstmt.setInt(5, o.getMemNo());
+			pstmt.setString(6, o.getpCode());
 			
 			result = pstmt.executeUpdate();
 			

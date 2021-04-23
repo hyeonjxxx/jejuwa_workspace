@@ -84,7 +84,10 @@
                         			//url 다시 써야됨
                         			url : "<%=contextPath%>/linsert.li",
                         			type : "post",
-                        			data : {pno : <%=p.getpCode()%>},
+                        			data : {
+                        				pno : <%=p.getpCode()%>,
+                        				shape : $("#heart").click()
+                        			},
                         			success : function(result){
 
                         				if(result>0){ // 좋아요 성공
