@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectListCoupon">
+
+<!-- 마이페이지 쿠폰조회 -->
+	
+	SELECT 
+		CPN_RGDT
+	  , CPN_NAME
+	  , CPN_DC
+	  , CPN_STR_DATE
+	  , CPN_END_DATE
+      
+
+	  FROM 
+	  	 MEMBER M
+      	 JOIN 
+      	 CPN_PM P
+       ON 
+       	 M.MEM_NO = P.KEY_NO
+       INNER JOIN 
+     
+      
+     WHERE 
+     	MEM_NO = ?
+	  	
+  	
+  	</entry>
+  
+</properties>

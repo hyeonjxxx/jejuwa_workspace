@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="selectPayment">
+		
+		SELECT 
+		        O.MEM_NO MEM_NO
+		      , ORDER_NO
+		      , O.AMOUNT AMOUNT
+		      , ACCOUNT_DAY
+		      , P_METHOD
+		      , CASH_RECEIPT
+		      , CARD
+		      , SALES
+		      , KEY_NO
+		      , P_NAME
+              , TRAVEL_DATE
+              , MEM_NAME
+              , PHONE
+              , EMAIL
+              , CPN_NAME
+		   FROM PAYMENT
+           JOIN MEMBER USING(MEM_NO)
+           JOIN CPN_PM USING(KEY_NO)
+           JOIN COUPON USING(CPN_CODE)
+		   JOIN TORDER O USING (ORDER_NO)
+		   JOIN PRODUCT USING (P_CODE)
+	</entry>
+	
+	
+	
+</properties>
+
+
+

@@ -125,4 +125,32 @@ public class OrderDao {
 		return list;
 		
 	}
+	
+	public int insertOrder(Connection conn, Order o) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertOrder");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, o.getOrderNo());
+			pstmt.setInt(2, o.getAmount());
+			pstmt.setDate(3, o.getTravelDate());
+			pstmt.setString(4, o.getTravelUser());
+			pstmt.setString(5, o.getTravelEmail());
+			pstmt.setInt(6, o.getMemNo());
+			pstmt.setString(7, o.getpCode());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
 }

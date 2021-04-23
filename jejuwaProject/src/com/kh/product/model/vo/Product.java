@@ -48,8 +48,20 @@ public class Product {
 		this.basicPath = basicPath;
 	}
 
+	// 상품상세 조회시
+	
+	
 	public String getpCode() {
 		return pCode;
+	}
+
+	public Product(String pName, String pCode, int price, String basicPath, String detailPath) {
+		super();
+		this.pCode = pCode;
+		this.pName = pName;
+		this.price = price;
+		this.basicPath = basicPath;
+		this.detailPath = detailPath;
 	}
 
 	public void setpCode(String pCode) {

@@ -23,25 +23,6 @@
 		   AND MEM_PWD = ?
 	</entry>
 	
-	<entry key="loginAdmin">
-	SELECT 
-		   MEM_NO
-		 , MEM_ID
-		 , MEM_PWD
-		 , MEM_NAME
-		 , PHONE
-		 , EMAIL
-		 , MEM_BIRTH
-		 , ENROLL_DATE
-		 , MODIFY_DATE
-		 , STATUS
-	  FROM 
-	  	   MEMBER
-	 WHERE 
-	       STAUTS = 'A'
-	   AND MEM_ID = ?
-	   AND MEM_PWD = ?
-	</entry>
 	
 	<!-- [휘경] 관리자 페이지에서 관리자로 로그인 -->
 	<entry key="AdminLogin">
@@ -89,6 +70,7 @@
 		       )
 	</entry>
 	
+
 	
 	<!-- [휘경] 멤버 수 조회(활동회원, 관리자) -->
 	<entry key="selectMemberCount">

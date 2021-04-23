@@ -1,4 +1,4 @@
-package com.kh.payment.controller;
+package com.kh.coupon.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,23 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.payment.model.service.PaymentService;
-import com.kh.payment.model.vo.Payment;
-import com.kh.product.model.service.ProductService;
-import com.kh.product.model.vo.Product;
+import com.kh.coupon.model.service.CouponService;
+import com.kh.coupon.model.vo.Coupon;
 
 /**
- * Servlet implementation class PaymentDoServlet
+ * Servlet implementation class MyCouponListServlet
  */
-@WebServlet("/do.pa")
-public class PaymentDoServlet extends HttpServlet {
+@WebServlet("/mycoupon.list")
+public class MyCouponListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor. 
      */
-    public PaymentDoServlet() {
-        super();
+    public MyCouponListServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -34,16 +31,13 @@ public class PaymentDoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String pcode = request.getParameter("pcode");
-		String travleDate = request.getParameter("travleDate");
+//		리스트 조회 
+		ArrayList<Coupon> cplist = new CouponService().selectListCoupon();
 		
-		Product p = new ProductService().selectInfoProduct(pcode);
+//		포워딩
+		request.setAttribute("cplist",cplist);
+		request.getRequestDispatcher("views/coupon/myCouponList.jsp").forward(request, response);
 		
-		//ArrayList<Payment> list = new PaymentService().selectPayment();
-		//request.setAttribute("list", list);
-		request.setAttribute("p", p);
-		request.setAttribute("travleDate", travleDate);
-		request.getRequestDispatcher("views/payment/payment.jsp").forward(request, response);
 	}
 
 	/**

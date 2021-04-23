@@ -13,11 +13,19 @@ public class Payment {
 	private String card;
 	private String sales;
 	private int keyNo;
+	private String pCode;
+	private String pName;
+	private Date travelDate;
+	private String memName;
+	private String phone;
+	private String email;
+	private String cpnName;
 	
-	public Payment() {};
-	
+	public Payment() {}
+
 	public Payment(int memNo, int orderNo, int amount, Date accountday, String pMethod, String cashReceipt, String card,
-			String sales, int keyNo) {
+			String sales, int keyNo, String pCode, String pName, Date travelDate, String memName, String phone,
+			String email, String cpnName) {
 		super();
 		this.memNo = memNo;
 		this.orderNo = orderNo;
@@ -28,6 +36,36 @@ public class Payment {
 		this.card = card;
 		this.sales = sales;
 		this.keyNo = keyNo;
+		this.pCode = pCode;
+		this.pName = pName;
+		this.travelDate = travelDate;
+		this.memName = memName;
+		this.phone = phone;
+		this.email = email;
+		this.cpnName = cpnName;
+	}
+	
+	
+
+	public Payment(int memNo, int orderNo, int amount, Date accountday, String pMethod, String cashReceipt, String card,
+			String sales, int keyNo, String pName, Date travelDate, String memName, String phone, String email,
+			String cpnName) {
+		super();
+		this.memNo = memNo;
+		this.orderNo = orderNo;
+		this.amount = amount;
+		this.accountday = accountday;
+		this.pMethod = pMethod;
+		this.cashReceipt = cashReceipt;
+		this.card = card;
+		this.sales = sales;
+		this.keyNo = keyNo;
+		this.pName = pName;
+		this.travelDate = travelDate;
+		this.memName = memName;
+		this.phone = phone;
+		this.email = email;
+		this.cpnName = cpnName;
 	}
 
 	public int getMemNo() {
@@ -102,12 +140,75 @@ public class Payment {
 		this.keyNo = keyNo;
 	}
 
+	public String getpCode() {
+		return pCode;
+	}
+
+	public void setpCode(String pCode) {
+		this.pCode = pCode;
+	}
+
+	public String getpName() {
+		return pName;
+	}
+
+	public void setpName(String pName) {
+		this.pName = pName;
+	}
+
+	public Date getTravelDate() {
+		return travelDate;
+	}
+
+	public void setTravelDate(Date travelDate) {
+		this.travelDate = travelDate;
+	}
+
+	public String getMemName() {
+		return memName;
+	}
+
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCpnName() {
+		return cpnName;
+	}
+
+	public void setCpnName(String cpnName) {
+		this.cpnName = cpnName;
+	}
+
 	@Override
 	public String toString() {
 		return "Payment [memNo=" + memNo + ", orderNo=" + orderNo + ", amount=" + amount + ", accountday=" + accountday
 				+ ", pMethod=" + pMethod + ", cashReceipt=" + cashReceipt + ", card=" + card + ", sales=" + sales
-				+ ", keyNo=" + keyNo + "]";
+				+ ", keyNo=" + keyNo + ", pCode=" + pCode + ", pName=" + pName + ", travelDate=" + travelDate
+				+ ", memName=" + memName + ", phone=" + phone + ", email=" + email + ", cpnName=" + cpnName + "]";
 	}
+
+	
+	
+
+
+	
 	
 	
 	

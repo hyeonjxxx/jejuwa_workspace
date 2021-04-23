@@ -1,6 +1,6 @@
 package com.kh.member.model.dao;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -112,6 +112,7 @@ public class MemberDao {
 	}
 
 	/**
+
 	 * 민국(회원가입)
 	 * @param conn
 	 * @param m

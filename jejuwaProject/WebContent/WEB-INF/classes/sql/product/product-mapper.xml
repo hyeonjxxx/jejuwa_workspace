@@ -81,6 +81,7 @@
 	<entry key="selectInfoProduct">
 		SELECT 
 			    P_NAME
+			  , P_CODE
 			  , PRICE
 			  , BASIC_PATH
 			  , DEATIL_PATH
@@ -88,6 +89,9 @@
 		  WHERE P_CODE = ?
 		    AND P_STATUS = 'Y' 	
 	</entry>
-
+	
+	<!-- 결제페이지에서 조회되는 컬럼들 -->
+	
+	
 
 </properties>

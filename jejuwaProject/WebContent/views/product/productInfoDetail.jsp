@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.kh.product.model.vo.*,  
-  com.kh.member.model.vo.*, com.kh.like.model.vo.*" %>    
+<%@ page import="java.util.ArrayList, com.kh.product.model.vo.*,
+ com.kh.member.model.vo.*, com.kh.like.model.vo.*" %>
 <%
 	//String contextPath = request.getContextPath();  //h_jejuwa
 	Product p = (Product)request.getAttribute("p");
-	//ArrayList<> list = (ArrayList<File>)request.getAttribute("list"); com.kh.common.model.vo.File
+	//ArrayList<File> list = (ArrayList<File>)request.getAttribute("list");
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	Like l = (Like)request.getAttribute("l");
-	
-%>    
-    
+
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +31,7 @@
 	<%@ include file="../common/loginUserMenubar.jsp" %>
 
     <div class="content_wrap">
-        
+
         <p class="groupBar">
            <a href=""> 대분류</a>&nbsp;&nbsp;>
            <a href=""> 중분류</a>&nbsp;&nbsp;
@@ -50,16 +50,16 @@
                     	<%} %>
                     	--%>
                     </ul>
-                
+
             </div>
-    
+
             <!-- 상품명 -->
             <div class="pdtDetail">
                 <div class="pdtInfo">
                     <div class="pdtSaleInfo">
                         <div class="pdtName"><%=p.getpName() %></div>
                         <div class="pdtPrice"><%=p.getPrice() %>원</div>
-                    </div>                    
+                    </div>
 
                     <div class="gradeArea">
                         <div class="scoreArea">
@@ -75,7 +75,7 @@
                             <button id = "heart" type="button" onclick="testLike();"><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></button>
                             <button type="button" onclick="likeProduct();"><img src="<%=contextPath %>/resources/images/like_c.png" alt="like" width="33"></button>
                         </div>
-                        
+
                         <!-- 좋아요 버튼 누르는 순간 하트가 바뀌면서 담김 -->
                         <script>
                         	function testLike(){
@@ -86,35 +86,35 @@
                         			type : "post",
                         			data : {pno : <%=p.getpCode()%>},
                         			success : function(result){
-                        				
+
                         				if(result>0){ // 좋아요 성공
                         					var str = '<img src = "<%=contextPath%>/resources/images/fullHeart.png" width = "25" onclick = "likeProduct()">';
-                        					document.getElementById("likeProduct").innerHTML = str;                       					
+                        					document.getElementById("likeProduct").innerHTML = str;
                         				}else{
                         					var str = '<img src = "<%=contextPath%>/resources/images/emptyHeart.png" width = "25" onclick = "likeProduct()">';
                         					document.getElementById("likeProduct").innerHTML = str;
                         				}
-                        				
+
                         			}, error:function(){
                         				console.log("통신실패");
                         			}
-                        			
+
                         		})
                         	}
                         </script>
-                        
-                        
-                        
-                        
+
+
+
+
                         <!-- 좋아요 버튼 누르는 순간 마이페이지에서 조회 -->
                         <script>
-                        
+
                         	// 좋아요 버튼 클릭시 구동되는 ajax
-                          
+
                      		function likeProduct(){
-                     		
+
                      			//console.log("되고있니?");
-                     			
+
                      			$.ajax({
                      				url:"<%=contextPath%>/list.mpl",
                      				data : {pno:<%=p.getpCode()%>},
@@ -123,47 +123,54 @@
                      					var result = "";
                      					for(var i in list){
                      						result += "<li>"
-				                     		       
+
 				                     	            +      "<h2>" + list[i].detailPath+"</h2>"
 				                     	            +      "<ul>"
 				                     	            +           "<li>"+ list[i].pName+ "</li>"
-				                     	                        
+
 				                     	            +       "</ul>"
-				                     	        
+
 				                     	            +  "</li>"
                      					}
                      					//console.log(list[i]);
-                     					
+
                      					//list.mpl myPageLike.jsp ul 안에 나오게 어떻게 할 수 있을 것인가
-                     					$(".gallery>ul").html(result);	
+                     					$(".gallery>ul").html(result);
                      				}, error:function(){
                      					console.log("실패")
                      				}
                      			})
-                     			
+
                      		}
                      	</script>
-                     	
+
                     </div>
-
-                    <!-- 옵션정보 -->
-                    <div class="optionSelect">
-                        <div class="dateSelect">
-                            <a>
-                                <img src="<%=contextPath %>/resources/images/calendar.png" alt="" width="20" align="center" >
-                                		날짜를 선택해주세요
-                            </a> 
-                        </div>
-                   </div>                      
-
-        
-                <div class="purchasingInfo">
-                    <div class="btnArea">
-                        <a href="<%=contextPath %>/do.pa" class = "btn btn-warning">바로구매</a>   
-                    </div>
-
-                </div>
-                
+						
+					<form action="<%=contextPath %>/do.pa">
+							<input type="hidden" name="pcode" value="<%=p.getpCode() %>">
+	                    <!-- 옵션정보 -->
+	                    <div class="optionSelect">
+	                        <div class="dateSelect">
+	                            <a>
+	                            	<!-- 
+	                                <img id="test" src="<%=contextPath %>/resources/images/calendar.png" alt="" width="20" align="center" >
+	                              		날짜를 선택해주세요
+	                              		<br> -->
+	                                <input type="date" name="travleDate" >
+	                                
+	                                
+	                            </a>
+	                        </div>
+	                   </div>
+	
+	
+		                <div class="purchasingInfo">
+		                    <div class="btnArea">
+		                        <button type="submit" class = "btn btn-warning">바로구매</button>
+		                    </div>
+		
+		                </div>
+				</form>
             </div>
 
         </div>
@@ -179,8 +186,8 @@
             </ul>
         </div>
 
-    </div>        
-    
+    </div>
+
 
 </body>
 </html>

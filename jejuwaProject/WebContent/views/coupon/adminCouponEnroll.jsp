@@ -24,6 +24,50 @@
     <!-- content css-->
     <link rel="stylesheet" type="text/css" href="">
     
+    <style>
+       
+/* *{border: 1px solid red;} */
+
+.outer{
+    height: 900px; width: 800px;
+    margin: auto;
+    margin-top: 10px;
+}
+.divisionLine{
+    width: 90%; height: 5px;  
+    background-color: lightgray;
+}    
+
+/* 입력폼 */
+#productEnrollForm table {margin:30px 30px;}         
+#productEnrollForm input{margin:10px; border: 1px solid silver;}
+               
+/* 버튼 */
+.btn{width: 690px; margin: 100px 20px; 
+    float:right;
+} 
+.btn a{
+    text-decoration: none; 
+    color:white; 
+    width: 100%;
+    height: 100%;
+    line-height: 25px;
+    display: block;
+}
+.btn div:hover{background-color: orange;}
+.btn div{ 
+    background-color: dimgray;
+    width: 100px;    
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    float:right;
+    margin-left: 30px;
+}
+
+
+    </style>
+    
 </head>
 <body>
 	<script>
@@ -68,7 +112,7 @@
             <div class="menu">
                 <div class="submenu">회원 관리</div>
                     <p>
-                        <a href="<%=contextPath%>/list.me?currentPage=1">회원 현황</a> <br>
+                        <a href="">회원 현황</a> <br>
                         <a href="">블랙리스트 관리</a> <br>
                     </p>
                 
@@ -91,9 +135,55 @@
             </div> 
                 
             <!-- 내용  -->
-            <div class="content">
-                
+        <div class="content">
+            
+           
+    <div class="outer">
+        <br>
+        <h2>쿠폰등록</h2>
+       <hr>
+        <br>
 
+        <!-- 상품등록 입력폼 -->
+        <div class="productInfo">
+            <form action="" method="POST" id="productEnrollForm">
+                <table>
+                   
+                    <tr>
+                        <td width="100">* 쿠폰명</td>
+                        <td><input type="text" name="" id="" required></td>
+                    </tr>
+                    <tr>
+
+                        <!-- 첫번째 입력값보다 나중 날짜이도록 설정 -->
+                        <td width="100">* 기간</td>
+                        <td><input type="date"> ~ <input type="date"></td>
+                    </tr>
+                    <tr>
+                        <td width="100" required>* 할인율(%) </td>
+                        <td><input type="number" style="width: 100px;" min="3" max="50">%</td>
+                    </tr>
+                    <tr>
+                        <td width="100">*수량</td>
+                        <td><input type="number" style="width: 50px;" required="none">개</td>
+                    </tr>
+                    <tr>
+                        <td width="100">* 쿠폰사용조건</td>
+                        <td><input type="number" name="" id="" placeholder="10,000" min="10000"max="100000" >원 이상 사용가능</td>
+                    </tr>
+                </table>
+            </form>
+
+        </div>
+        <br><br>
+
+        <!-- 버튼 -->
+        <div align="right" class="btn">
+            <div id="btnBack"><a href="">목록</a></div>
+            <div id="btnEnroll"><a href="">등 록</a></div>
+        </div>
+    </div>
+       
 
     <script>
         $(function(){

@@ -143,6 +143,7 @@ public class ProductDao {
 				
 				if(rset.next()) {
 					p = new Product(rset.getString("p_name"),
+									rset.getString("p_code"),
 							        rset.getInt("price"),
 							        rset.getString("basic_path"),
 							        rset.getString("deatil_path"));

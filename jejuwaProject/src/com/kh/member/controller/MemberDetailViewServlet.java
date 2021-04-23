@@ -1,7 +1,6 @@
-package com.kh.product.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
-//import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,21 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import com.kh.common.model.vo.File;
-import com.kh.product.model.service.ProductService;
-import com.kh.product.model.vo.Product;
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class ProductDetailViewServlet
+ * Servlet implementation class MemberDetailViewServlet
  */
-@WebServlet("/infoDetail.pdt")
-public class ProductInfoDetailServlet extends HttpServlet {
+@WebServlet("/detail.me")
+public class MemberDetailViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductInfoDetailServlet() {
+    public MemberDetailViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +30,23 @@ public class ProductInfoDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+	
+		// 요청시 전달값 뽑아서 담기
+		int memNo = Integer.parseInt(request.getParameter("mno"));
 		
-		String pCode = request.getParameter("pcode");
+		Member m = new MemberService().selectMember(memNo);
 		
+		if(m != null) {
+			request.setAttribute("m", m);
+			request.getRequestDispatcher("views/member/memberDetailView.jsp").forward(request, response);
+			
+		}else {
+			// 에러페이지 따로 만들어야할지 그냥 alert로 띄울지
+			request.getSession().setAttribute("alertMsg", "회원 조회에 실패하였습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.me?currentPage=1");
+					
+		}
 		
-		Product p = new ProductService().selectInfoProduct(pCode);
-		// 오류 구문 ArrayList<File> list = new ProductService().selectFileList(pCode);
-		
-		//System.out.println(p);
-		//System.out.println(list);
-		
-		request.setAttribute("p", p);
-		// 오류 구문 request.setAttribute("list", list);
-
-		request.getRequestDispatcher("views/product/productInfoDetail.jsp").forward(request, response);
-													
 	}
 
 	/**
