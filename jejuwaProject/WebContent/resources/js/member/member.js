@@ -14,13 +14,12 @@ function loginError(){
 
 
 // 전체약관동의 버튼클릭시, 전체 동의 또는 전체해제
-function all_chk(){
-    if(this.checked){
-        setCheckbox(chk_ns, true);
-    } else{
-        setCheckbox(chk_ns, false);
-    }
-}
+$(function all_chk(){
+    $(".join_content").on("click", "#chk_all", function () {
+        $(this).parents(".join_content").find('input').prop("checked", $(this).is(":checked"));
+    });
+})
+
 
 
 
@@ -91,6 +90,7 @@ $(function(){
             } else{
                 $('#pwd_chk').change($("#pwd_chk").html('<label style="color:red;">비밀번호가 일치하지 않습니다.</label>'));
                 $('#pwdChecked').one('focus',focus());
+
                 return false;
             }
     })

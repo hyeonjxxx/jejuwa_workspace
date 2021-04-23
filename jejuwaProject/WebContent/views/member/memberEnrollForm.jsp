@@ -60,12 +60,12 @@
                 <div class="password_wrap">
                     <b>비밀번호*</b>
                     <br>
-                    <input type="password" name="memPwd" id="memPwd" placeholder="영문자, 숫자, 특수문자(!@#$%^&*)로 총 8~15자로 입력하시오.">
+                    <input type="password" name="memPwd" id="memPwd" placeholder="영문자, 숫자, 특수문자(!@#$%^&*)로 총 8~15자로 입력하시오." required>
                     <div style="font-size:12px; height:15px" id="password_check"></div>
                     <br>
                     <b>비밀번호확인*</b>
                     <br>
-                    <input type="password" name="pwdChecked" id="pwdChecked">
+                    <input type="password" name="pwdChecked" id="pwdChecked" required>
                     <div style= "font-size:12px; height:15px" id="pwd_chk"></div>
                     <br>
                 </div>
