@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/member/memberEnrollForm.css">
 
     <!-- member_enroll_form js -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/js/member/member.js">
+    <script rel="stylesheet" src="<%=request.getContextPath()%>/resources/js/member/member.js"></script>
     
     <!-- member_enroll_form jQuery -->
     <!-- Latest compiled and minified CSS -->
@@ -38,32 +38,41 @@
         <div class="logo"><img src="<%=request.getContextPath()%>/resources/images/jejuwa_icon.png" alt=""></div>
 
         <div id="member_enroll_form">
-        <form action="">
+        <form action="<%= request.getContextPath()%>/insert.me" method="post" id="enrollForm">
             <div class="input_content">
                 <div class="name_wrap">
                     <b>이름*</b>
                     <br>
                     <input type="text" name="memName" id="memName" required>
-                    <div style="color:red; font-size:12px; display:none;" id="memName_chk">
-                        <p></p>
+                    <div style="color:red; font-size:12px;" >
+                        <p style="display:none; margin-bottom:0px;" id="memName_chk" >이름이 잘못입력되었습니다. </p>
                     </div>
-                    <br><br>
+                    <br>
                 </div>
                 <div class="id_wrap">
                     <b>아이디*</b>
                     <br>
                     <input type="text" name="memId" id="memId" required>
-                    <br><br>
+                    <div style="color:red; font-size:12px;" >
+                        <p  style="display:none; margin-bottom:0px;" id="id_chk">유효한 아이디를 입력하세요. </p>
+                    </div>
+                    <br>
                 </div>
                 <div class="password_wrap">
                     <b>비밀번호*</b>
                     <br>
                     <input type="password" name="memPwd" id="memPwd">
-                    <br><br>
+                    <div style="color:red; font-size:12px; " placeholder="영문자, 숫자, 특수문자(!@#$%^&*)로 총 8~15자로 입력하시오.">
+                        <p style="display:none; margin-bottom:0px;" id="password_chk">비밀번호가 잘못 입력되었습니다. </p>
+                    </div>
+                    <br>
                     <b>비밀번호확인*</b>
                     <br>
                     <input type="password" name="pwdChecked" id="pwdChecked">
-                    <br><br>
+                    <div style="color:red; font-size:12px;" >
+                        <p style="display:none; margin-bottom:0px;" id="pwd_chk">비밀번호가 일치하지 않습니다 </p>
+                    </div>
+                    <br>
                 </div>
                 <div class="email_wrap">
                     <b>이메일*</b>
@@ -75,16 +84,47 @@
                 </div>
                 <div class="phone_wrap">
                     <b>전화번호*</b>
+                    <input type="text" name="phone" id="phone">
                     <br>전화번호 및 인증번호 요청
                     <br>
                     <b>인증번호</b>
                     <br>인증번호 입력
                     <br><br>
+                    <!-- 인증번호 API 
+                    const { config, Group } = require('coolsms-node-sdk')
+
+					// 인증을 위해 발급받은 본인의 API Key를 사용합니다.
+					const apiKey = 'NCSPU8VROTREVNSS'
+					const apiSecret = 'LAMWEOWXJD7WFQLYVEAT062S0K4GY3CH'
+					config.init({ apiKey, apiSecret })
+					async function send (params = {}) {
+					  try {
+					    const response = await Group.sendSimpleMessage(params)
+					    console.log(response)
+					  } catch (e) {
+					    console.log(e)
+					  }
+					}
+					
+					
+					const params = {
+					
+					랜덤숫자 정의 
+					
+					  text: '[쿨에스엠에스 테스트] hello world!', // 문자 내용
+					  type: 'SMS', // 발송할 메시지 타입 (SMS, LMS, MMS, ATA, CTA)
+					  to: '01058382433', // 수신번호 (받는이)
+					  from: '01058382433' // 발신번호 (보내는이)
+					}
+					send(params)
+                    
+                     -->
+                    
                 </div>
                 <div class="birth_wrap">
                     <b>생년월일</b>
                     <br>
-                    <span class="birthyy"><input type="text" name="year" id="year" placeholder="년(4자)"></span>
+                    <span class="birthyy"><input type="text" name="year" id="year" placeholder="년도(4자)"></span>
                     <span class="birthmm">
                         <select name="month" id="month" >
                             <option value>월</option>
@@ -146,7 +186,7 @@
                 <div class="terms_p">   
                     <p class="terms_chk_all">
                         <span>
-                            <input type="checkbox" id="chk_all" name="chk_all">
+                            <input type="checkbox" id="chk_all" name="chk_all" onclick="all_chk();">
                             <label for="chk_all">
                                 <span class="input_chk">전체 약관 동의</span>    
                             </label>
@@ -155,7 +195,7 @@
                     <ul class="terms_bx_list">
                         <li class="temrs_bx"></li>
                             <span class="input_chk">
-                                <input type="checkbox" id="chk_ns" name="chk">
+                                <input type="checkbox" id="chk_ns" name="chk_ns">
                                 <label for="">이용약관 동의<span class="terms necessary">(필수)</span></label>
                             </span>
                                 <!-- 이용약관 동의 시작 -->
@@ -488,7 +528,7 @@
                                 <!-- 이용약관 동의 끝 -->
                             <br>
                         <li class="temrs_bx">
-                            <input type="checkbox" id="chk_ns" name="chk">
+                            <input type="checkbox" id="chk_ns" name="chk_ns">
                                 <label for="">개인정보 수집 및 이용 동의<span class="terms necessary">(필수)</span></label>
                             </span>
                                 <!-- 개인정보 수집 시작 -->
@@ -596,7 +636,7 @@
                         </li>
                         <br>
                         <li class="temrs_bx">
-                            <input type="checkbox" id="chk_se" name="chk">
+                            <input type="checkbox" id="chk_se" name="chk_se">
                                 <label for="">위치정보 이용약관 동의<span class="terms selection">(선택)</span></label>
                             </span>
                                 <!-- 위치정보 시작 -->
@@ -736,7 +776,7 @@
                         </li>
                         <br>
                         <li class="temrs_bx">
-                            <input type="checkbox" id="chk_se" name="chk">
+                            <input type="checkbox" id="chk_se" name="chk_se">
                                 <label for="">프로모션 정보 수신 동의<span class="terms selection">(선택)</span></label>
                             </span>
                             <div class="terms_box" tabindex="0">
@@ -750,8 +790,8 @@
                 </div>
                 <br><br>
                 <div class="btn_area">
-                    <span><a href="<%= request.getContextPath() %>/insert.me" id="btnAgree" class="btn btn-warning" onclick ="return validate();" style="width: 190px; color:white; font-weight:600;" >회원가입</a></span>
-                    <span><a href="" id="btnCancel" class="btn btn-secondary" style="width: 190px; font-weight:600;">취소</a></span>
+                    <span><button type="submit" id="btnAgree" class="btn btn-warning" onclick ="return validate();" style="width: 190px; color:white; font-weight:600;" >회원가입</button></span>
+                    <span><button="" id="btnCancel" class="btn btn-secondary" style="width: 190px; font-weight:600;">취소</button></span>
                 </div>
             </div>
             
@@ -760,7 +800,30 @@
         </div>
     </div>
 	<br><br><br><br>
+
+    <!-- <script>
+        function validate(){
+
+// 유효성 검사 : 아이디,비밀번호,비밀번호확인,이름
+
+// input 요소 객체를 가져오기(작성되어있는 값(value) 가져오는게 아님)
+var memId = document.getElementById("memId");
+var memPwd = document.getElementById("memPwd");
+var pwdChecked = document.getElementById("pwdChecked");
+var memName = document.getElementById("memName");
+
+// 4) 이름 검사
+regExp = /^[가-힣]{2,}$/g;
+
+if(!regExp.test(memName.value)){
+    $("#memName_chk").show();
+    memName.value ="";
+    memName.focus();
+
+    return false;
+}
+}
+    </script> -->
 	<%@ include file="../common/footer.jsp" %>
-	
 </body>
 </html>

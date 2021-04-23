@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
+
 /**
  * Servlet implementation class MemberInsertServlet
  */
@@ -30,15 +33,27 @@ public class MemberInsertServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		// 2. 전달값 뽑아서 객체에 기록
-		String memName = request.getParameter("memName");
+		
 		String memId = request.getParameter("memId");
 		String memPwd = request.getParameter("memPwd");
+		String memName = request.getParameter("memName");
+		String phone = request.getParameter("phone");
 		String email = request.getParameter("emailId") + "@" + request.getParameter("email");
-		String birth = request.getParameter("year") + request.getParameter("month") + request.getParameter("date");
+		String memBirth = request.getParameter("year") + request.getParameter("month") + request.getParameter("date");
 		
+		// 3. 매개변수 생성자 이용해서 담기
+		Member m = new Member(memId, memPwd, memName, phone, email, memBirth);
 		
+		// 4. 요청처리를 위한 Service로 메소드 호출 및 결과받기
+		int result = new MemberService().insertMember(m);
 		
-		
+		// 5. 
+		if(result >0) { // 성공일 경우
+			System.out.println("성공 야호");
+			
+		} else { // 실패할 경우
+			System.out.println("실패 야호");
+		}
 		
 				
 	}

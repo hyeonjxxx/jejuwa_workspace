@@ -30,6 +30,41 @@ public class Member {
 		this.modifyDate = modifyDate;
 		this.status = status;
 	}
+	
+	
+	// 민국(회원가입) 
+	public Member(String memId, String memPwd, String memName, String phone, String email, String memBirth) {
+		super();
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memName = memName;
+		this.phone = phone;
+		this.email = email;
+		this.memBirth = memBirth;
+	}
+	
+	// 회원 리스트 조회(활동회원, 관리자)
+	public Member(int memNo, String memId, String memName, String phone, String email, Date enrollDate) {
+		super();
+		this.memNo = memNo;
+		this.memId = memId;
+		this.memName = memName;
+		this.phone = phone;
+		this.email = email;
+		this.enrollDate = enrollDate;
+	}
+	
+	
+	// 회원 상세조회
+	public Member(int memNo, String memId, String memName, String phone, String email, String memBirth) {
+		super();
+		this.memNo = memNo;
+		this.memId = memId;
+		this.memName = memName;
+		this.phone = phone;
+		this.email = email;
+		this.memBirth = memBirth;
+	}
 
 	public int getMemNo() {
 		return memNo;
