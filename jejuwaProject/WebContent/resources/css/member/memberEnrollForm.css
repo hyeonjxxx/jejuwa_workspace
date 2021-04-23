@@ -65,3 +65,7 @@
 .article__text{
     font-size:12px;
 }
+
+::placeholder{
+    font-size:12px;
+}

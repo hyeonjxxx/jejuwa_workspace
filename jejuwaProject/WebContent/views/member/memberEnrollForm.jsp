@@ -11,8 +11,7 @@
     <!-- member_enroll_form css -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/member/memberEnrollForm.css">
 
-    <!-- member_enroll_form js -->
-    <script rel="stylesheet" src="<%=request.getContextPath()%>/resources/js/member/member.js"></script>
+    
     
     <!-- member_enroll_form jQuery -->
     <!-- Latest compiled and minified CSS -->
@@ -27,6 +26,8 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <!-- member_enroll_form js -->
+    <script rel="stylesheet" src="<%=request.getContextPath()%>/resources/js/member/member.js"></script>
 
 </head>
 <meta charset="UTF-8">
@@ -44,34 +45,28 @@
                     <b>이름*</b>
                     <br>
                     <input type="text" name="memName" id="memName" required>
-                    <div style="color:red; font-size:12px;" >
-                        <p style="display:none; margin-bottom:0px;" id="memName_chk" >이름이 잘못입력되었습니다. </p>
+                    <div style="font-size:12px; height:15px" id="memName_chk">
                     </div>
                     <br>
                 </div>
                 <div class="id_wrap">
                     <b>아이디*</b>
                     <br>
-                    <input type="text" name="memId" id="memId" required>
-                    <div style="color:red; font-size:12px;" >
-                        <p  style="display:none; margin-bottom:0px;" id="id_chk">유효한 아이디를 입력하세요. </p>
+                    <input type="text" name="memId" id="memId" placeholder="첫글자는 반드시 영문자로, 그리고 영문자, 숫자 포함하여 총 4~12자로 입력하시오." required>
+                    <div style="font-size:12px; height:15px" id="id_check">
                     </div>
                     <br>
                 </div>
                 <div class="password_wrap">
                     <b>비밀번호*</b>
                     <br>
-                    <input type="password" name="memPwd" id="memPwd">
-                    <div style="color:red; font-size:12px; " placeholder="영문자, 숫자, 특수문자(!@#$%^&*)로 총 8~15자로 입력하시오.">
-                        <p style="display:none; margin-bottom:0px;" id="password_chk">비밀번호가 잘못 입력되었습니다. </p>
-                    </div>
+                    <input type="password" name="memPwd" id="memPwd" placeholder="영문자, 숫자, 특수문자(!@#$%^&*)로 총 8~15자로 입력하시오.">
+                    <div style="font-size:12px; height:15px" id="password_check"></div>
                     <br>
                     <b>비밀번호확인*</b>
                     <br>
                     <input type="password" name="pwdChecked" id="pwdChecked">
-                    <div style="color:red; font-size:12px;" >
-                        <p style="display:none; margin-bottom:0px;" id="pwd_chk">비밀번호가 일치하지 않습니다 </p>
-                    </div>
+                    <div style= "font-size:12px; height:15px" id="pwd_chk"></div>
                     <br>
                 </div>
                 <div class="email_wrap">
@@ -790,7 +785,7 @@
                 </div>
                 <br><br>
                 <div class="btn_area">
-                    <span><button type="submit" id="btnAgree" class="btn btn-warning" onclick ="return validate();" style="width: 190px; color:white; font-weight:600;" >회원가입</button></span>
+                    <span><button type="submit" id="btnAgree" class="btn btn-warning" onclick ="disabled" style="width: 190px; color:white; font-weight:600;" >회원가입</button></span>
                     <span><button="" id="btnCancel" class="btn btn-secondary" style="width: 190px; font-weight:600;">취소</button></span>
                 </div>
             </div>
@@ -800,30 +795,6 @@
         </div>
     </div>
 	<br><br><br><br>
-
-    <!-- <script>
-        function validate(){
-
-// 유효성 검사 : 아이디,비밀번호,비밀번호확인,이름
-
-// input 요소 객체를 가져오기(작성되어있는 값(value) 가져오는게 아님)
-var memId = document.getElementById("memId");
-var memPwd = document.getElementById("memPwd");
-var pwdChecked = document.getElementById("pwdChecked");
-var memName = document.getElementById("memName");
-
-// 4) 이름 검사
-regExp = /^[가-힣]{2,}$/g;
-
-if(!regExp.test(memName.value)){
-    $("#memName_chk").show();
-    memName.value ="";
-    memName.focus();
-
-    return false;
-}
-}
-    </script> -->
-	<%@ include file="../common/footer.jsp" %>
+   <%@ include file="../common/footer.jsp" %>
 </body>
 </html>
