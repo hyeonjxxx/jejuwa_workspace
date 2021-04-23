@@ -203,8 +203,8 @@ public class MemberDao {
 				list.add(new Member(rset.getInt("MEM_NO"),
 									rset.getString("MEM_ID"),
 									rset.getString("MEM_NAME"),
-									rset.getString("EMAIL"),
 									rset.getString("PHONE"),
+									rset.getString("EMAIL"),
 									rset.getDate("ENROLL_DATE")));
 			}
 		} catch (SQLException e) {
@@ -278,7 +278,7 @@ public class MemberDao {
 	}
 	
 	/**
-	 * [휘경] 회원정보수정
+	 * [휘경] 관리자 회원정보수정
 	 * @param conn
 	 * @param m
 	 * @return
@@ -296,6 +296,31 @@ public class MemberDao {
 			pstmt.setString(3, m.getEmail());
 			pstmt.setString(4, m.getMemBirth());
 			pstmt.setInt(5, m.getMemNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	/**
+	 * [휘경] 관리자 회원탈퇴처리
+	 * @param conn
+	 * @param memNo
+	 * @return
+	 */
+	public int adminDeleteMember(Connection conn, int memNo) {
+		// update문 => 처리된 행 수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("adminDeleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setInt(1, memNo);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

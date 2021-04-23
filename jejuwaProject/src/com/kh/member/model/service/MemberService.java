@@ -109,7 +109,7 @@ public class MemberService {
 	}
 	
 	/**
-	 * [휘경] 회원정보 변경
+	 * [휘경] 관리자 회원정보 변경
 	 * @param m (회원번호, 아이디, 이름, 연락처, 이메일, 생년월일)
 	 * @return
 	 */
@@ -117,6 +117,23 @@ public class MemberService {
 		Connection conn = getConnection();
 		int result = new MemberDao().updateMember(conn,m);
 		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * [휘경] 관리자 회원탈퇴처리
+	 * @param memNo
+	 * @return
+	 */
+	public int adminDeleteMember(int memNo) {
+		Connection conn = getConnection();
+		int result = new MemberDao().adminDeleteMember(conn, memNo);
 		if(result > 0) {
 			commit(conn);
 		}else {

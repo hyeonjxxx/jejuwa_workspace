@@ -11,7 +11,6 @@
 	String memBirth = (m.getMemBirth() == null) ? "" : m.getMemBirth();
 	
 	// 이메일 emailId / domain 으로 나눠서 변수에 저장
-	//String ext = originName.substring(originName.lastIndexOf(".")); // ".jpg"
 	String emailId = "";
 	String domain = "";
 	if(!email.equals("")){
@@ -94,7 +93,7 @@
                    <tr>
                        <th>이메일</th>
                        <td>
-                           <input type="text" name="emialId" value="<%= emailId %>">
+                           <input type="text" name="emailId" value="<%= emailId %>">
                            @ <input type="text" name="domain" value="<%= domain %>">
                            <select id="domainSelect">
                                <option>직접입력</option>
@@ -103,7 +102,6 @@
                                <option>kakao.com</option>
                                <option>선택안함</option>
                            </select>
-                           <!-- <input type="email"> -->
                            
                            <!-- 자바스크립트 이용 -->
                            <script>
@@ -126,8 +124,6 @@
                    <tr>
                        <th>생년월일</th>
                        <td>
-                            <!-- <input type="date" name="memBirth" value="2000-02-22"> -->
-                            <!-- <input type="text" style="width:110px;"> 년 -->
                             <select name="byear" id="byear">
                             	<option>----</option>
                               <%for(int i=1930; i<=2021; i++){ %>
@@ -282,19 +278,30 @@
                  	회원탈퇴 처리하시겠습니까?
                </div>
                 
-                             
+               <form action="<%= contextPath %>/delete.me" method="post">             
                <div class="input-group mb-3" id="modalContent">
                  <div class="input-group-prepend">
                    <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
                  </div>
-                 <input size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon1">
+                 <input name="adminPwd3" size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon1">
+               	 <input name="memNo" type="hidden" value="<%=memNo%>">	
                </div>
                
                <!-- Modal footer -->
                <div id="modalFooter">
-                 <button id="okBtn" class="btn btn-warning">OK</button>
+                 <button type="submit" id="okBtn" class="btn btn-warning" onclick="return deleteMember();">OK</button>
                  <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
                </div>
+               <script>
+	       			function deleteMember(){
+	       				if($("input[name=adminPwd3]").val() != <%= loginUser.getMemPwd()%>){
+	       					alert("관리자 비밀번호가 일치하지 않습니다.");
+	       					return false;
+	       				}
+	       			}
+	       	</script>
+               </form> 
+               
              </div>
            </div>
          </div>

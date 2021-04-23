@@ -55,7 +55,7 @@ public class Member {
 	}
 	
 	
-	// [휘경] 회원 상세조회
+	// [휘경] 회원 상세조회, 회원 정보 변경
 	public Member(int memNo, String memId, String memName, String phone, String email, String memBirth) {
 		super();
 		this.memNo = memNo;

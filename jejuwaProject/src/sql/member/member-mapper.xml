@@ -127,7 +127,7 @@
 		  WHERE MEM_NO = ?
 	</entry>
 	
-	<!-- [휘경] 회원정보변경 -->
+	<!-- [휘경] 관리자 회원정보변경 -->
 	<entry key="updateMember">
 		UPDATE MEMBER
 		   SET MEM_NAME = ?
@@ -137,7 +137,13 @@
 		     , MODIFY_DATE = SYSDATE
 		 WHERE MEM_NO = ?
 	</entry>
-
+	
+	<!-- [휘경] 관리자 회원탈퇴처리 -->
+	<entry key="adminDeleteMember">
+		UPDATE MEMBER
+		   SET STATUS = 'N'
+		 WHERE MEM_NO = ?
+	</entry>
 
 </properties>
 

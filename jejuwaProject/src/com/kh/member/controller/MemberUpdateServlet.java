@@ -42,8 +42,8 @@ public class MemberUpdateServlet extends HttpServlet {
 		
 		// 입력시 선택사항 : 이메일, 생년월일 (요청시 값이 빈 문자열일 수 있다)
 		String email = "";
-		if(!request.getParameter("emialId").equals("") && !request.getParameter("domain").equals("")) {
-			email = request.getParameter("emialId")+"@"+request.getParameter("domain");
+		if(!request.getParameter("emailId").equals("") && !request.getParameter("domain").equals("")) {
+			email = request.getParameter("emailId")+"@"+request.getParameter("domain");
 		}
 		String memBirth = "";
 		if(!request.getParameter("byear").equals("----") && !request.getParameter("bmonth").equals("--") && !request.getParameter("bday").equals("--")) {

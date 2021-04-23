@@ -7,6 +7,8 @@
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 	
+	
+	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
@@ -79,7 +81,7 @@
 			                        <td><%= m.getMemNo() %></td>
 			                        <td><%= m.getMemId()%></td>
 			                        <td><%= m.getMemName() %></td>
-			                        <td><%= m.getEmail()%></td>
+			                        <td><%= (m.getEmail() == null) ? "" : m.getEmail() %></td>
 			                        <td><%= m.getPhone() %></td>
 			                        <td><%= m.getEnrollDate()%></td>
 			                    </tr>
