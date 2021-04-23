@@ -91,16 +91,32 @@
                         			success : function(result){
 
                         				if(result>0){ // 좋아요 성공
-                        					/*
-                        					var str = '<img src = "<%=contextPath%>/resources/images/fullHeart.png" width = "25" onclick = "likeProduct()">';
-                        					document.getElementById("likeProduct").innerHTML = str;
-                        					*/
-                        					$("#heart").attr("src", '<%=contextPath%>/resources/images/fullHeart.png');
-                        				}else{
-                        					/*
-                        					var str = '<img src = "<%=contextPath%>/resources/images/emptyHeart.png" width = "25" onclick = "likeProduct()">';
-                        					document.getElementById("likeProduct").innerHTML = str;
-                        					*/
+
+                        					
+                        					$.ajax({
+                        						url : "<%=contextPath%>/linsert.li",
+                        						type : "post",
+                        						data : {
+                        							pno : '<%=p.getpCode()%>'
+                        						},
+                        						success : function(result){
+                        							
+                        							$("#heart").attr("src", '<%=contextPath%>/resources/images/fullHeart.png');
+                        						}
+                        					})
+                        					
+                        				}else{ // 좋아요 해제
+                        					                        					
+                        					$.ajax({
+                        						url : "<%=contextPath%>/delete.li",
+                        						type : "post",
+                        						data : {
+                        							pno : '<%=p.getpCode()%>'
+                        						},
+                        						success : function(result){
+                        							$("#heart").attr("src", '<%=contextPath%>/resources/images/emptyHeart.png');
+                        						}
+                        					})
                         					
                         				}
 

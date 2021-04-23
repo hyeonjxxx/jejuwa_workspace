@@ -48,7 +48,16 @@
         <h3>좋아요</h3>
         <hr>
         <ul class="gallery">
-			          
+        	 <li>
+                 <a href="">
+                     <h2><img src="../resources/images/event.png" alt="이벤트1"></h2>
+                     <ul>
+                         <li>상품명</li>
+                         
+                     </ul>
+                 </a>
+             </li>
+			     
         </ul>
                     
      </div>
