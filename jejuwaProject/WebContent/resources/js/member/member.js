@@ -1,14 +1,16 @@
 /**
  * 
- */
+
 function loginError(){
     // 로그인 유효성 검사 
     var memId = document.getElementById("memId");
     var memPwd = document.getElementById("memPwd");
 
-    if(memId.value !=  )    
+    if(memId.value !=  
     
 }
+
+ */
 
 
 // 전체약관동의 버튼클릭시, 전체 동의 또는 전체해제
