@@ -330,7 +330,7 @@
 
              <!-- 버튼 쿠폰발송 -->
             <div id="send-button" class="btn">
-                <a href="" id="btn2">쿠폰발송</a> 
+                <a href="/<%=request.getContextPath() %>/send.coupon" id="btn2">쿠폰발송</a> 
             </div>   
 			
 		</div>
