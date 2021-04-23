@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/member/loginPage.css">
 
     <!-- loginPage js -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/js/member/member.js">
+    <script rel="stylesheet" src="<%=request.getContextPath()%>/resources/js/member/member.js"></script>
 
     <!-- loginPage jQuery -->
     <!-- Latest compiled and minified CSS -->
@@ -50,17 +50,16 @@
                         <input type="password" name="memPwd" id="memPwd" placeholder="비밀번호를 입력해주세요.">
                         </div>
                         <br>
-                        <div style="color:red; font-size:12px; display:none;" >
-                            <p>
-                            <%= loginError %>
-                            </p>
+                        <div style="color:red; font-size:12px;" >
+                            <p style="display:none; margin-bottom:0px;" id="login_error" > 아이디 또는 비밀번호가 일치하지 않습니다. </p>
                         </div>
 
                         <div class="btn_login">
-                            <button id="btnAgree" type="submit" class="btn btn-warning" style="width: 350px; color:white; font-weight:600;" >로그인하기</button>
+                            <button id="btnAgree" type="submit" class="btn btn-warning" style="width: 350px; color:white; font-weight:600;" onclick ="return loginError();" >로그인하기</button>
                         </div>
                     </form>
                 </div>
+        
         
             <!-- 우측 상품 섬네일 -->
             <div class="login_slide">

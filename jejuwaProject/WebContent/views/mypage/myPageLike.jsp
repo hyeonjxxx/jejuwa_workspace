@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import = "com.kh.product.model.vo.*"%>
+<%
+	Product p = (Product)request.getAttribute("p");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +48,7 @@
         <h3>좋아요</h3>
         <hr>
         <ul class="gallery">
-			           
+			          
         </ul>
                     
      </div>

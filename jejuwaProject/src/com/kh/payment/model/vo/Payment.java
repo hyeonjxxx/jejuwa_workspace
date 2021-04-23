@@ -15,7 +15,7 @@ public class Payment {
 	private int keyNo;
 	private String pCode;
 	private String pName;
-	private Date travelDate;
+	private String travelDate;
 	private String memName;
 	private String phone;
 	private String email;
@@ -24,7 +24,7 @@ public class Payment {
 	public Payment() {}
 
 	public Payment(int memNo, int orderNo, int amount, Date accountday, String pMethod, String cashReceipt, String card,
-			String sales, int keyNo, String pCode, String pName, Date travelDate, String memName, String phone,
+			String sales, int keyNo, String pCode, String pName, String travelDate, String memName, String phone,
 			String email, String cpnName) {
 		super();
 		this.memNo = memNo;
@@ -44,11 +44,9 @@ public class Payment {
 		this.email = email;
 		this.cpnName = cpnName;
 	}
-	
-	
 
 	public Payment(int memNo, int orderNo, int amount, Date accountday, String pMethod, String cashReceipt, String card,
-			String sales, int keyNo, String pName, Date travelDate, String memName, String phone, String email,
+			String sales, int keyNo, String pName, String travelDate, String memName, String phone, String email,
 			String cpnName) {
 		super();
 		this.memNo = memNo;
@@ -156,11 +154,11 @@ public class Payment {
 		this.pName = pName;
 	}
 
-	public Date getTravelDate() {
+	public String getTravelDate() {
 		return travelDate;
 	}
 
-	public void setTravelDate(Date travelDate) {
+	public void setTravelDate(String travelDate) {
 		this.travelDate = travelDate;
 	}
 
@@ -204,14 +202,6 @@ public class Payment {
 				+ ", memName=" + memName + ", phone=" + phone + ", email=" + email + ", cpnName=" + cpnName + "]";
 	}
 
-	
-	
-
-
-	
-	
-	
-	
 	
 	
 }

@@ -112,6 +112,42 @@ public class MemberDao {
 	}
 
 	/**
+
+	 * 민국(회원가입)
+	 * @param conn
+	 * @param m
+	 * @return
+	 */
+	public int insertMember(Connection conn, Member m) {
+		// insert
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getMemId());
+			pstmt.setString(2, m.getMemPwd());
+			pstmt.setString(3, m.getMemName());
+			pstmt.setString(4, m.getPhone());
+			pstmt.setString(5, m.getEmail());
+			pstmt.setString(6, m.getMemBirth());
+			System.out.println(m);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	/**
 	 * 멤버 수 조회(활동회원, 관리자)
 	 * @param conn
 	 * @return
@@ -236,5 +272,4 @@ public class MemberDao {
 		return result;
 		
 	}
-	
 }

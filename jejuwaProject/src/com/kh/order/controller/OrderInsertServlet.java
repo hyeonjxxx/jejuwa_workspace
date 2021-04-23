@@ -38,8 +38,10 @@ public class OrderInsertServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		int price = Integer.parseInt(request.getParameter("price"));
-		String traveldate = request.getParameter("traveldate"); 
+		String travleDate = request.getParameter("travleDate"); 
+		System.out.println(travleDate);
 		String eamil = request.getParameter("email");
+		//String cReason = request.getParameter("creason");
 		String pCode = request.getParameter("pcode");
 		
 		HttpSession session = request.getSession();
@@ -49,9 +51,10 @@ public class OrderInsertServlet extends HttpServlet {
 		
 		Order o = new Order();
 		o.setAmount(price);
-		o.setTravelDate(traveldate);
+		o.setTravelDate(travleDate);
 		o.setTravelUser(memName);
 		o.setTravelEmail(eamil);
+		//o.setcReason(cReason);
 		o.setMemNo(memNo);
 		o.setpCode(pCode);
 		

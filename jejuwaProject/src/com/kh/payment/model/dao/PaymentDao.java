@@ -49,7 +49,7 @@ public class PaymentDao {
 									 rset.getString("SALES"),
 									 rset.getInt("KEY_NO"),
 									 rset.getString("P_NAME"),
-									 rset.getDate("travel_date"),
+									 rset.getString("travel_date"),
 									 rset.getString("mem_name"),
 									 rset.getString("phone"),
 									 rset.getString("email"),

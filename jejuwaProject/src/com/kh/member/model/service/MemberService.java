@@ -36,6 +36,24 @@ public class MemberService {
 		close(conn);
 		return m;
 	}
+
+	/**
+	 * 회원가입 
+	 * */
+	public int insertMember(Member m) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().insertMember(conn, m);
+		
+		if(result>0) {
+			rollback(conn);
+		} else {
+			commit(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
 	
 	/**
 	 * 멤버 수 조회(활동회원, 관리자)
@@ -71,6 +89,7 @@ public class MemberService {
 		close(conn);
 		return m;
 	}
+	
 	
 	/**
 	 * 관리자 권한으로 회원 비밀번호 초기화(비밀번호를 회원아이디와 일치화)

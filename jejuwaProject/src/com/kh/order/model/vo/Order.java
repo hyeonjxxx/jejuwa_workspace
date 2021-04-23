@@ -7,7 +7,7 @@ public class Order {
 	private int orderNo;
 	private Date orderDate;
 	private int amount;
-	private Date travelDate;
+	private String travelDate;
 	private String travelUser;
 	private String travelEmail;
 	private String Status;
@@ -17,7 +17,7 @@ public class Order {
 	
 	public Order() {}
 
-	public Order(int orderNo, Date orderDate, int amount, Date travelDate, String travelUser, String travelEmail,
+	public Order(int orderNo, Date orderDate, int amount, String travelDate, String travelUser, String travelEmail,
 			String status, String cReason, int memNo, String pCode) {
 		super();
 		this.orderNo = orderNo;
@@ -56,11 +56,11 @@ public class Order {
 		this.amount = amount;
 	}
 
-	public Date getTravelDate() {
+	public String getTravelDate() {
 		return travelDate;
 	}
 
-	public void setTravelDate(Date travelDate) {
+	public void setTravelDate(String travelDate) {
 		this.travelDate = travelDate;
 	}
 
@@ -118,6 +118,8 @@ public class Order {
 				+ travelDate + ", travelUser=" + travelUser + ", travelEmail=" + travelEmail + ", Status=" + Status
 				+ ", cReason=" + cReason + ", memNo=" + memNo + ", pCode=" + pCode + "]";
 	}
+
+	
 
 	
 	

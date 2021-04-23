@@ -37,14 +37,14 @@
 		.myPageAll a{text-decoration: none; margin: -30px;}
 		.myPageAll ul {margin-top: -5px;}
 		.myPageAll ul li{margin-top: 10px;}
-		.wrap{width: 1000px; height:800px;  margin: auto; margin-top: 50px;}
+		.mypagewrap{width: 1000px; height:800px;  margin: auto; margin-top: 50px;}
 		
-		.wrap>div{width: 100%;}
-		.content{height: 100%;}
+		.mypagewrap>div{width: 100%;}
+		.mypagecontent{height: 100%;}
 		
 		
-		.content>div{height: 100%; float: left;}
-		.content_1{width: 25%;}
+		.mypagecontent>div{height: 100%; float: left;}
+		.mycontent_1{width: 25%;}
 		.content_2{width: 75%;}
 		
 		#Menu a{
@@ -56,12 +56,12 @@
 		    margin-left: -2px;
 		    font-weight: bold;
 		    }
-		.content_1 li a{
+		.mycontent_1 li a{
 		    font-size: 13px;
 		    color: black;
 		    letter-spacing: -0.8px;
 		    }
-		.content_1 li a:hover, #Menu a:hover{color: orange;}
+		.mycontent_1 li a:hover, #Menu a:hover{color: orange;}
 		
 		/*.myPageAll{border: 1px solid red; position: relative; top: 100px;}*/
 		#myPageHead{margin: auto; margin-left: -20px; position: relative; top: 10px;}
@@ -94,9 +94,9 @@
 
 	<%@ include file = "../common/loginUserMenubar.jsp" %>
 	
-	 <div class="wrap">       
-        <div class="content" >
-            <div class="content_1">
+	 <div class="mypagewrap">       
+        <div class="mypagecontent" >
+            <div class="mycontent_1">
                 <div class="myPageAll">
                     <h3 align="center" style="margin-top: 30px;">
                         <a href="" style="color: black; font-weight: bold;" id="myPageHead">마이페이지</a>
