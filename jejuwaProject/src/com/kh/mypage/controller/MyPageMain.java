@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class myPageCancelDetail
+ * Servlet implementation class myPageMain
  */
-@WebServlet("/detail.mpc")
-public class myPageCancelDetail extends HttpServlet {
+@WebServlet("/list.mp")
+public class MyPageMain extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public myPageCancelDetail() {
+    public MyPageMain() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,9 +31,8 @@ public class myPageCancelDetail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/mypage/myPageCancelDetail.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/mypage/myPageMain.jsp");
 		view.forward(request, response);
-		
 	}
 
 	/**

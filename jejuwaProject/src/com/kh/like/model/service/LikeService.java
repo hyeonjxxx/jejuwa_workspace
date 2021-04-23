@@ -35,5 +35,19 @@ public class LikeService {
 		
 		
 	}
+	
+	public int deleteLike(String pCode) {
+		
+		Connection conn = getConnection();
+		int result = new LikeDao().deleteLike(conn, pCode);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
 
 }

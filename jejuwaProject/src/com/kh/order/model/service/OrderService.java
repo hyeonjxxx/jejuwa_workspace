@@ -1,7 +1,9 @@
 package com.kh.order.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
 import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class OrderService {
 		return listCount;
 	}
 	
+	// 페이징 처리하는 ArrayList
 	public ArrayList<Order> selectList(PageInfo pi){
 		Connection conn = getConnection();
 		ArrayList<Order> list = new OrderDao().selectList(conn, pi);
@@ -30,6 +33,7 @@ public class OrderService {
 		
 	}
 	
+	// 주문 테이블 조회
 	public ArrayList<Order> selectOrderList(){
 		Connection conn = getConnection();
 		
@@ -45,12 +49,24 @@ public class OrderService {
 		
 		int result = new OrderDao().insertOrder(conn, o);
 		
+		//int orderNo = 0;
 		if(result>0) {
+			
+			//orderNo = new OrderDao().selectOrderNo(conn);
+			
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
 		
 		return result;
+	}
+	
+	public Order selectOrder(int orderNo) {
+		Connection conn = getConnection();
+		
+		Order o = new OrderDao().selectOrder(conn, orderNo);
+		close(conn);
+		return o;
 	}
 }

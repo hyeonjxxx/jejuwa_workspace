@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import = "java.util.ArrayList, 
+    com.kh.payment.model.vo.Payment, com.kh.product.model.vo.*
+    , com.kh.member.model.vo.Member, com.kh.order.model.vo.*"%>
+<%
+	////ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");
+	//Payment pa = (Payment)request.getAttribute("pa");
+	Member loginUser = (Member)session.getAttribute("loginUser");
+	//Order o = (Order)request.getAttribute("o");
+	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -240,23 +249,22 @@
                 <table>
                     <tbody>
                         <!-- 조회된 결과가 있을 경우 -->
-
+						<%for(Order o : list){ %>
                         <tr align="center">
                             <td width="200">
-                                2021-xx-xx <br>
-                                xxxxxxx <br>
+                                <%=o.getpName() %>
                                 <p><a href="">상세보기</a></p>
                             </td>
-                            <td width="300">상품명</td>
+                            <td width="300"><%= o.getpName() %></td>
                             <td width="70">1</td>
-                            <td width="100">20,000</td>
+                            <td width="100"><%=o.getAmount() %></td>
                             <td width="100">
                                 <div style="margin: 0; padding: 0;">예약확정
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal">즉시취소</button>
                             </td>
 
                         </tr>
-                        
+                        <% } %>
                         
                         
                         

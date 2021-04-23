@@ -20,6 +20,7 @@
 		      , C_REASON
 		      , MEM_NO
 		      , P_NAME
+		      , p_CODE
 		  FROM TORDER O
 		  JOIN MEMBER M USING (MEM_NO)
           JOIN PRODUCT P USING (P_CODE) 
@@ -77,11 +78,34 @@
 		 , '예약접수'
 		 , ?
 		 , ?
-		
  		 )
-		  
 	</entry>
-
+	
+	<entry key="selectOrdeNo">
+		SELECT SEQ_ONO.CURRVAL 
+		  FROM DUAL
+	</entry>
+	
+	<!-- 마이페이지에서 조회되는 주문내역 -->
+	<entry key = "selectOrder">
+		 SELECT
+				ORDER_NO
+		      , ORDER_DATE
+		      , AMOUNT
+		      , TRAVEL_DATE
+		      , TRAVEL_USER
+		      , TRAVEL_EMAIL
+		      , O.STATUS STATUS
+		      , MEM_NO
+		      , P_CODE
+		      
+		        
+		   FROM TORDER O
+		   JOIN MEMBER USING(MEM_NO);
+		
+	
+	
+	</entry>
 	
 	
 </properties>

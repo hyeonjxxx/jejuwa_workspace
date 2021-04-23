@@ -27,7 +27,7 @@
 		  )
 	</entry>
 	
-	<entry key="deleteLikePro">
+	<entry key="deleteLike">
 		DELETE
 		  FROM
 			   TLIKE

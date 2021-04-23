@@ -8,6 +8,7 @@
 	//ArrayList<File> list = (ArrayList<File>)request.getAttribute("list");
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	Like l = (Like)request.getAttribute("l");
+	
 
 %>
 
@@ -72,30 +73,35 @@
                         </div>
 
                         <div class="icon" align="right">
-                            <button id = "heart" type="button" onclick="testLike();"><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></button>
-                            <button type="button" onclick="likeProduct();"><img src="<%=contextPath %>/resources/images/like_c.png" alt="like" width="33"></button>
+                            <button type="button" onclick="testLike();"><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></button>
+                            <button type="button" onclick="likeProduct();"><img id="heart" src="<%=contextPath %>/resources/images/emptyHeart.png" alt="like" width="33"></button>
                         </div>
 
                         <!-- 좋아요 버튼 누르는 순간 하트가 바뀌면서 담김 -->
                         <script>
-                        	function testLike(){
+                        	function likeProduct(){
                         		console.log("되어라,,,");
                         		$.ajax({
                         			//url 다시 써야됨
                         			url : "<%=contextPath%>/linsert.li",
                         			type : "post",
                         			data : {
-                        				pno : <%=p.getpCode()%>,
-                        				shape : $("#heart").click()
+                        				pno:'<%=p.getpCode()%>'
                         			},
                         			success : function(result){
 
                         				if(result>0){ // 좋아요 성공
+                        					/*
                         					var str = '<img src = "<%=contextPath%>/resources/images/fullHeart.png" width = "25" onclick = "likeProduct()">';
                         					document.getElementById("likeProduct").innerHTML = str;
+                        					*/
+                        					$("#heart").attr("src", '<%=contextPath%>/resources/images/fullHeart.png');
                         				}else{
+                        					/*
                         					var str = '<img src = "<%=contextPath%>/resources/images/emptyHeart.png" width = "25" onclick = "likeProduct()">';
                         					document.getElementById("likeProduct").innerHTML = str;
+                        					*/
+                        					
                         				}
 
                         			}, error:function(){
@@ -113,7 +119,7 @@
                         <script>
 
                         	// 좋아요 버튼 클릭시 구동되는 ajax
-
+								/*
                      		function likeProduct(){
 
                      			//console.log("되고있니?");
@@ -144,7 +150,7 @@
                      				}
                      			})
 
-                     		}
+                     		}*/
                      	</script>
 
                     </div>
@@ -159,7 +165,7 @@
 	                                <img id="test" src="<%=contextPath %>/resources/images/calendar.png" alt="" width="20" align="center" >
 	                              		날짜를 선택해주세요
 	                              		<br> -->
-	                                <input type="date" name="travleDate" >
+	                                <input type="date" name="travleDate" value=" 날짜값">
 	                                
 	                                
 	                            </a>

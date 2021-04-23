@@ -42,6 +42,7 @@
 		<form id = "orderEnrollForm" action = "<%=contextPath%>/insert.or" method = "post">
 			<input type="hidden" name="pcode" value="<%=p.getpCode() %>">
 			<input type="hidden" name="price" value="<%=p.getPrice() %>">
+			
 				<div class = "paymentPage">
 					<br><br>
 						<p id="pHead">결제하기</p>

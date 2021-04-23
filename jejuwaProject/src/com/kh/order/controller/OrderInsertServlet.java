@@ -62,7 +62,7 @@ public class OrderInsertServlet extends HttpServlet {
 		
 		if(result>0) {
 			session.setAttribute("alertMsg", "주문이 성공적으로 되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.mp");
+			response.sendRedirect(request.getContextPath() + "/list.mpr");
 		}else {
 			
 		}

@@ -114,6 +114,7 @@ public class OrderDao {
 								   rset.getString("STATUS"),
 								   rset.getString("C_REASON"),
 								   rset.getInt("MEM_NO"),
+								   rset.getString("p_code"),
 								   rset.getString("P_NAME")));
 			}
 		} catch (SQLException e) {
@@ -152,5 +153,66 @@ public class OrderDao {
 		
 		return result;
 		
+	}
+	
+	public int selectOrderNo(Connection conn) {
+		int orderNo = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectOrderNo");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				orderNo = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return orderNo;
+		
+		
+	}
+	
+	public Order selectOrder(Connection conn, int orderNo) {
+		
+		Order o = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOrder");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				o = new Order(rset.getInt("ORDER_NO"),
+							  rset.getDate("ORDER_DATE"),
+							  rset.getInt("AMOUNT"),
+							  rset.getString("TRAVEL_DATE"),
+							  rset.getString("TRAVEL_USER"),
+							  rset.getString("TRAVEL_EMAIL"),
+							  rset.getString("STATUS"),
+							  rset.getInt("MEM_NO"),
+							  rset.getString("P_CODE"));
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return o;
 	}
 }

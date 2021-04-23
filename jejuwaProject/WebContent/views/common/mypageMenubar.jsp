@@ -107,7 +107,7 @@
                             <h2 id="Menu"><a>예약정보</a></h2>
                             <ul>
                                 <li class="subMenu">
-                                    <a href="<%=contextPath%>/views/mypage/myPageReservation.jsp">예약조회</a>
+                                    <a href="<%=contextPath%>/list.mpr">예약조회</a>
                                 </li>
                                 <li class="subMenu">
                                     <a href="<%=contextPath%>/views/mypage/myPageCancel.jsp">취소내역</a>

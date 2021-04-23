@@ -85,19 +85,19 @@ public class LikeDao {
 	}
 	
 
-	/*
+	
 	
 	// 좋아요 취소
-	public int deleteLikePro(Connection conn, Like like) {
+	public int deleteLike(Connection conn, String pCode) {
 		
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("deleteLikePro");
+		String sql = prop.getProperty("deleteLike");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, like.getpCode());
+			pstmt.setString(1, pCode);
 			
 			result = pstmt.executeUpdate();
 			
@@ -111,6 +111,5 @@ public class LikeDao {
 		
 	}
 
-	*/
 
 }
