@@ -107,5 +107,23 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	
+	/**
+	 * [휘경] 회원정보 변경
+	 * @param m (회원번호, 아이디, 이름, 연락처, 이메일, 생년월일)
+	 * @return
+	 */
+	public int updateMember(Member m) {
+		Connection conn = getConnection();
+		int result = new MemberDao().updateMember(conn,m);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 
 }

@@ -126,6 +126,17 @@
 		       SET MEM_PWD = MEM_ID	  
 		  WHERE MEM_NO = ?
 	</entry>
+	
+	<!-- [휘경] 회원정보변경 -->
+	<entry key="updateMember">
+		UPDATE MEMBER
+		   SET MEM_NAME = ?
+		     , PHONE = ?
+		     , EMAIL = ?
+		     , MEM_BIRTH = ?
+		     , MODIFY_DATE = SYSDATE
+		 WHERE MEM_NO = ?
+	</entry>
 
 
 </properties>

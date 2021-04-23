@@ -14,7 +14,7 @@
 	//String ext = originName.substring(originName.lastIndexOf(".")); // ".jpg"
 	String emailId = "";
 	String domain = "";
-	if(email != null){
+	if(!email.equals("")){
 		emailId = email.substring(0, email.indexOf("@"));
 		domain = email.substring(email.indexOf("@")+1);
 	}
@@ -22,7 +22,7 @@
 	String byear = "";
 	String bmonth = "";
 	String bday = "";
-	if(memBirth != null){
+	if(!memBirth.equals("")){
 		byear = memBirth.substring(0, 4);
 		bmonth = memBirth.substring(4, 6);
 		bday = memBirth.substring(6);
@@ -49,13 +49,15 @@
        
        <br><br><br><br>
 
+	
        
        <!-- 회원 상세정보 -->
        <div class="viewArea">
-           <form action="" method="post" id="memInfoTable">
+           <form action="<%= contextPath %>/update.me" method="post" id="memInfoTable">
                <table id="infoTable" border="1" align="center">
+               <input type="hidden" name="memNo" value="<%= memNo %>">
+               <input type="hidden" name="memId" value="<%= memId %>">
 
-                    
                    <tr>
                        <th width="130">회원번호</th>
                        <td width="580"> &nbsp;&nbsp;&nbsp; <%= memNo %></td>
@@ -86,21 +88,38 @@
                    </tr>
                    <tr>
                        <th>* 전화번호</th>
-                       <td><input type="text" name="phone" value="<%= phone %>"></td>
+                       <td><input type="text" name="phone" required value="<%= phone %>"></td>
                        
                    </tr>
                    <tr>
                        <th>이메일</th>
                        <td>
-                           <input type="text" name="emailHead" value="<%= emailId %>">
-                           @ <input type="text" name="emailBody" value="<%= domain %>">
-                           <select name="emailBody">
+                           <input type="text" name="emialId" value="<%= emailId %>">
+                           @ <input type="text" name="domain" value="<%= domain %>">
+                           <select id="domainSelect">
                                <option>직접입력</option>
                                <option>naver.com</option>
                                <option>gmail.com</option>
                                <option>kakao.com</option>
+                               <option>선택안함</option>
                            </select>
                            <!-- <input type="email"> -->
+                           
+                           <!-- 자바스크립트 이용 -->
+                           <script>
+                           	$(function(){
+                           		$("#domainSelect").change(function(){
+                           			if($("#domainSelect option:selected").text() == "직접입력"){
+                           				$("input[name=domain]").val("");
+                           			}else if($("#domainSelect option:selected").text() == "선택안함"){
+                           				$("input[name=emialId]").val("");
+                           				$("input[name=domain]").val("");
+                           			}else{
+                           				$("input[name=domain]").val($("#domainSelect option:selected").text());
+                           			}
+                           		})
+                           	})
+                           </script>
                        </td>
                        
                    </tr>
@@ -109,33 +128,74 @@
                        <td>
                             <!-- <input type="date" name="memBirth" value="2000-02-22"> -->
                             <!-- <input type="text" style="width:110px;"> 년 -->
-                            <select name="year" id="year">
-                            
+                            <select name="byear" id="byear">
+                            	<option>----</option>
                               <%for(int i=1930; i<=2021; i++){ %>
 		                          <option ><%= i %></option>
-		                          <% if(i == Integer.parseInt(byear)) {%>
+		                          <% if(!byear.equals("") &&  i == Integer.parseInt(byear)) {%>
 		                          	<option selected><%= i %></option>
 		                          <% } %>
                               <% } %>
                             </select> 년
                             
-                            <select name="month" id="month">
+                            <select name="bmonth" id="bmonth">
+                            <option>--</option>
                               <%for(int i=1; i<=12; i++){ %>
-	                              <option ><%= i %></option>
-	                              <% if(i == Integer.parseInt(bmonth)) {%>
-	                             		<option selected><%= i %></option>
+                              
+	                              <% if(!bmonth.equals("") && i == Integer.parseInt(bmonth)) {%>
+	                              
+	                              	<% if(i < 10){ %>
+	                             		<option selected><%= "0" + i %></option>
+	                             	<% }else{ %>
+	                              		<option selected><%= i %></option>
+	                              	<% } %>
+	                              	
+	                              <% }else{ %>
+	                              
+	                              	<% if(i < 10){ %>
+	                              		<option ><%= "0" + i %></option>
+	                              	<% }else{ %>
+	                              		<option ><%= i %></option>
+	                              	<% } %>
+	                              		
 	                              <% } %>
+	                             
                               <% } %>
                             </select> 월
                             
-                            <select name="day" id="day">
+                            <select name="bday" id="bday">
+                            <option>--</option>
                               <%for(int i=1; i<=31; i++){ %>
-                              	<option ><%= i %></option>
-                              	<% if(i == Integer.parseInt(bday)) {%>
-	                             		<option selected><%= i %></option>
-	                            <% } %>
+                              
+                              	<% if(!bday.equals("") && i == Integer.parseInt(bday)) {%>
+	                              
+	                              	<% if(i < 10){ %>
+	                             		<option selected><%= "0" + i %></option>
+	                             	<% }else{ %>
+	                              		<option selected><%= i %></option>
+	                              	<% } %>
+	                              	
+	                              <% }else{ %>
+	                              
+	                              	<% if(i < 10){ %>
+	                              		<option ><%= "0" + i %></option>
+	                              	<% }else{ %>
+	                              		<option ><%= i %></option>
+	                              	<% } %>
+	                              		
+	                              <% } %>
                               <% } %>
                             </select> 일
+                            
+                            <button type="button" onclick="memBirthReset();" class="btn btn-secondary">reset</button>
+                            
+                            <script>
+                            	function memBirthReset(){
+                            		$("select[name=byear]").val("----");
+                            		$("select[name=bmonth]").val("--");
+                            		$("select[name=bday]").val("--");
+                            	}
+                            </script>
                             
                         </td>
                        
@@ -199,7 +259,7 @@
 	       					return false;
 	       				}
 	       			}
-	       		</script>
+	       	</script>
 	       		
              </form> 
            </div>
@@ -221,10 +281,8 @@
                <div class="modal-body">
                  	회원탈퇴 처리하시겠습니까?
                </div>
-               
-                   <!-- <input  size="30" class="form-control" type="password" placeholder="검색어를 입력하세요" id="resetPwd" name="">
-                   <a href=""><span class="input-group-text " ><i class="bi bi-search"></i></span></a> -->
-                              
+                
+                             
                <div class="input-group mb-3" id="modalContent">
                  <div class="input-group-prepend">
                    <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
@@ -249,29 +307,36 @@
            <div class="modal-dialog modal-dialog-centered">
              <div class="modal-content" >
              
-                               
                <!-- Modal body -->
                <br>
                <div class="modal-body">
                  	회원정보를 수정하시겠습니까?
                </div>
                
-                   <!-- <input  size="30" class="form-control" type="password" placeholder="검색어를 입력하세요" id="resetPwd" name="">
-                   <a href=""><span class="input-group-text " ><i class="bi bi-search"></i></span></a> -->
-                              
+                            
                <div class="input-group mb-3" id="modalContent">
                  <div class="input-group-prepend">
                    <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
                  </div>
-                 <input size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon1">
+                 <input name="adminPwd2" size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon1">
                	 
                </div>
                
                <!-- Modal footer -->
                <div id="modalFooter">
-                 <button id="okBtn" class="btn btn-warning">OK</button>
+                 <button id="okBtn" class="btn btn-warning" onclick="return updateMember();">OK</button>
                  <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
                </div>
+               <script>
+	       			function updateMember(){
+	       				if($("input[name=adminPwd2]").val() != <%= loginUser.getMemPwd()%>){
+	       					alert("관리자 비밀번호가 일치하지 않습니다.");
+	       				}else{
+	       					$("#memInfoTable").submit();
+	       				}
+	       			}
+	       	</script>
+	       
              </div>
            </div>
          </div>

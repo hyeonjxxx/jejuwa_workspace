@@ -43,7 +43,7 @@ public class Member {
 		this.memBirth = memBirth;
 	}
 	
-	// 회원 리스트 조회(활동회원, 관리자)
+	// [휘경] 회원 리스트 조회(활동회원, 관리자)
 	public Member(int memNo, String memId, String memName, String phone, String email, Date enrollDate) {
 		super();
 		this.memNo = memNo;
@@ -55,7 +55,7 @@ public class Member {
 	}
 	
 	
-	// 회원 상세조회
+	// [휘경] 회원 상세조회
 	public Member(int memNo, String memId, String memName, String phone, String email, String memBirth) {
 		super();
 		this.memNo = memNo;
@@ -65,6 +65,8 @@ public class Member {
 		this.email = email;
 		this.memBirth = memBirth;
 	}
+	
+	
 
 	public int getMemNo() {
 		return memNo;

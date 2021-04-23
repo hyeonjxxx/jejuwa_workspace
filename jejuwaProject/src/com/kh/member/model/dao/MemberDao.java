@@ -148,7 +148,7 @@ public class MemberDao {
 	
 	
 	/**
-	 * 멤버 수 조회(활동회원, 관리자)
+	 * [휘경] 멤버 수 조회(활동회원, 관리자)
 	 * @param conn
 	 * @return
 	 */
@@ -176,7 +176,7 @@ public class MemberDao {
 	}
 	
 	/**
-	 * 현재 요청한 페이지(currentPage)에 보여질 회원 리스트 조회
+	 * [휘경] 현재 요청한 페이지(currentPage)에 보여질 회원 리스트 조회
 	 * @param conn
 	 * @param pi
 	 * @return
@@ -217,7 +217,7 @@ public class MemberDao {
 	}
 	
 	/**
-	 * 회원 상세조회
+	 * [휘경] 회원 상세조회
 	 * @param conn
 	 * @param memNo
 	 * @return
@@ -252,7 +252,12 @@ public class MemberDao {
 		return m;
 	}
 	
-	
+	/**
+	 * [휘경] 관리자 권한으로 비밀번호 초기화
+	 * @param conn
+	 * @param memNo
+	 * @return
+	 */
 	public int resetPwd(Connection conn, int memNo) {
 		// update문 => 처리된 행수
 		int result = 0;
@@ -270,6 +275,35 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return result;
-		
 	}
+	
+	/**
+	 * [휘경] 회원정보수정
+	 * @param conn
+	 * @param m
+	 * @return
+	 */
+	public int updateMember(Connection conn, Member m) {
+		// update문 => 처리된 행 수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setString(1, m.getMemName());
+			pstmt.setString(2, m.getPhone());
+			pstmt.setString(3, m.getEmail());
+			pstmt.setString(4, m.getMemBirth());
+			pstmt.setInt(5, m.getMemNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 }
