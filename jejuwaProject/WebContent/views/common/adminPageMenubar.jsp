@@ -96,9 +96,14 @@
 
 
     <script>
+    
         $(function(){
 
-            $(".submenu").click(function(){
+            $(".submenu, .stop").click(function(){
+            	
+            	if(<%=loginUser == null%>){
+            		alert("관리자 로그인이 필요한 서비스입니다.");
+            	}else{
                 var $p = $(this).next();    
 
                 if($p.css("display")=="none"){
@@ -107,6 +112,9 @@
                 }else{    
                     $p.slideUp();  
                 }
+            		
+            	}
+            		
 
             })
         })
