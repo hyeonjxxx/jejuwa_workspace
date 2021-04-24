@@ -22,12 +22,12 @@
 
     
         <div class="searchBar">     
-            <form action="" id="search_form" method="post">
-                <div id="search_box">
+            <form action="" id="searchForm" method="post">
+                <div id="searchBox">
                     <input type="search" name="keyword" placeholder="[추천상품]제주시티투어">
                 </div>
                     
-                <div id="search_btn">
+                <div id="searchBtn">
                     <button type=""><img src="<%=contextPath%>/resources/images/loupe_c.png" width="30"></button>
                 </div>              
             </form>
