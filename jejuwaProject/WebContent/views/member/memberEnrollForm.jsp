@@ -53,6 +53,7 @@
                     <b>아이디*</b>
                     <br>
                     <input type="text" name="memId" id="memId" placeholder="첫글자는 반드시 영문자로, 그리고 영문자, 숫자 포함하여 총 4~12자로 입력하시오." required>
+                    <button id="id_check_btn" onclick="id_check();">아이디 중복 확인</button>
                     <div style="font-size:12px; height:15px" id="id_check">
                     </div>
                     <br>
@@ -79,39 +80,50 @@
                 </div>
                 <div class="phone_wrap">
                     <b>전화번호*</b>
-                    <input type="text" name="phone" id="phone">
-                    <br>전화번호 및 인증번호 요청
-                    <br>
-                    <b>인증번호</b>
-                    <br>인증번호 입력
+                    <input type="text" name="phone" id="phone"> 
+                    <button id="mobile_Auth" >인증번호요청</button><br>
+                    <b>인증번호*</b>
+                    <input type="text" name="auth_num" id="auth_num">
+                    <br>인증번호 확인
+
                     <br><br>
                     <!-- 인증번호 API 
-                    const { config, Group } = require('coolsms-node-sdk')
 
-					// 인증을 위해 발급받은 본인의 API Key를 사용합니다.
-					const apiKey = 'NCSPU8VROTREVNSS'
-					const apiSecret = 'LAMWEOWXJD7WFQLYVEAT062S0K4GY3CH'
-					config.init({ apiKey, apiSecret })
-					async function send (params = {}) {
-					  try {
-					    const response = await Group.sendSimpleMessage(params)
-					    console.log(response)
-					  } catch (e) {
-					    console.log(e)
-					  }
-					}
-					
-					
-					const params = {
-					
-					랜덤숫자 정의 
-					
-					  text: '[쿨에스엠에스 테스트] hello world!', // 문자 내용
-					  type: 'SMS', // 발송할 메시지 타입 (SMS, LMS, MMS, ATA, CTA)
-					  to: '01058382433', // 수신번호 (받는이)
-					  from: '01058382433' // 발신번호 (보내는이)
-					}
-					send(params)
+
+                    package net.nurigo.java_sdk.examples.Message;
+
+                    import java.util.HashMap;
+                    import org.json.simple.JSONObject;
+                    import net.nurigo.java_sdk.api.Message;
+                    import net.nurigo.java_sdk.exceptions.CoolsmsException;
+
+                    /**
+                    * @class ExampleSend
+                    * @brief This sample code demonstrate how to send sms through CoolSMS Rest API PHP
+                    */
+                    public class ExampleSend {
+                    public static void main(String[] args) {
+                        String api_key = "#ENTER_YOUR_OWN#";
+                        String api_secret = "#ENTER_YOUR_OWN#";
+                        Message coolsms = new Message(api_key, api_secret);
+
+                        // 4 params(to, from, type, text) are mandatory. must be filled
+                        HashMap<String, String> params = new HashMap<String, String>();
+                        params.put("to", "01000000000");
+                        params.put("from", "01000000000");
+                        params.put("type", "SMS");
+                        params.put("text", "Coolsms Testing Message!");
+                        params.put("app_version", "test app 1.2"); // application name and version
+
+                        try {
+                        JSONObject obj = (JSONObject) coolsms.send(params);
+                        System.out.println(obj.toString());
+                        } catch (CoolsmsException e) {
+                        System.out.println(e.getMessage());
+                        System.out.println(e.getCode());
+                        }
+                    }
+                    }
                     
                      -->
                     

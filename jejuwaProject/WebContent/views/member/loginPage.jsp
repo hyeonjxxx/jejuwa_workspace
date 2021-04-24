@@ -32,7 +32,7 @@
 <body>
 
 	<%@ include file="../common/loginUserMenubar.jsp" %>
-
+    <br><br>
         <!-- 로그인창 -->
         <div class="login_main">
                 <div class="loginForm">
@@ -49,11 +49,13 @@
                         <input type="text" name="memId" id="memId" placeholder="아이디를 입력해주세요.">
                         <input type="password" name="memPwd" id="memPwd" placeholder="비밀번호를 입력해주세요.">
                         </div>
-                        <br>
-                        <div style="color:red; font-size:12px;" >
-                            <p style="display:none; margin-bottom:0px;" id="login_error" > 아이디 또는 비밀번호가 일치하지 않습니다. </p>
+                        <div style="padding-top: 15px; padding-bottom: 15px; color:red;">
+                        <% if(loginError != null){ %>
+                            <p style="margin-bottom:0px;"> <%= loginError %> </p>
+                        <% } else{ %>
+                        	<p style="margin-bottom:0px;"> </p>
+                        <% } %>
                         </div>
-
                         <div class="btn_login">
                             <button id="btnAgree" type="submit" class="btn btn-warning" style="width: 350px; color:white; font-weight:600;" onclick ="return loginError();" >로그인하기</button>
                         </div>
@@ -76,6 +78,7 @@
             </div>
         </div>
     </div>
+    <br><br>
     <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

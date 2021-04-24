@@ -29,7 +29,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="footer_wrap" style="width: 100%;">
+	<div class="footer_wrap" style="width: 1000px; margin:auto;" >
         <footer id="footer" style="margin: 0px;">
             <div class="customer_center">
                 <div class="customer_center_left" style="margin-top:6px;">

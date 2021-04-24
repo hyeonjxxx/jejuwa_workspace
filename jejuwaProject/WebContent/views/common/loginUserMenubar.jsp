@@ -29,11 +29,11 @@
 
     button{background-color:orange; border: 1px solid orange;}
 
-    .wrap{width: 1000px; height: 800px; margin: auto;}
+    .wrap{width: 1000px; margin: auto;}
 
     .wrap>div{width: 100%;}
 
-    #header{height: 20%; color: black;}
+    #header{height: 150px; color: black;}
 
     #header>div, #content>div{height: 100%; float: left;}
     #header_1{width: 20%;}
