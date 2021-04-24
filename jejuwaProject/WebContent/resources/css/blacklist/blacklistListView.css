@@ -1,0 +1,122 @@
+
+/* *{border: 1px solid red;} */
+/* .outer{
+border: 1px solid blue;
+height: 900px; width: 800px;
+margin: auto;
+margin-top: 10px;
+} */
+
+/* .outer 스타일 통일 */
+.outer{
+    height: 700px;
+    width: 800px;
+    margin: 30px 20px;
+    float: left;
+  }
+  
+.divisionLine{
+width: 90%; height: 5px; 
+background-color: lightgray; }
+
+/* 검색바 */
+.searchArea{
+    width: 720px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+.searchArea>span *{
+    padding:4px;
+    margin-left: 5px;    
+}
+        
+/* 블랙리스트 관리테이블 */
+.listArea{text-align:center;}
+.listArea>table{
+    border:1px solid lightgray;
+    border-collapse: collapse;
+    }
+.listArea>table>thead{background:lightgray;}
+.listArea>table>tbody>tr:hover{
+    background:rgb(250, 214, 146);
+    cursor:pointer;
+}
+.listArea>table *{
+    border:1px solid rgb(189, 189, 189);
+    padding:3px;}
+
+    /* 버튼 + 페이징 구역*/
+.bottomArea{
+    margin: 15px;
+    margin-left: 60px;
+}
+.bottomArea *{float:left;}
+
+
+/* 버튼 */
+.btn a{
+text-decoration: none; 
+text-align: center;
+color:white; 
+background-color: dimgray;
+display: block;
+padding:7px;
+border-radius:4px;
+width:150px;
+
+}
+.btn a:hover{background-color: orange;}
+
+
+/* 페이징 구역 */
+.pagingArea{
+    margin-left:60px;
+    margin-right: 60px;
+}
+.pagingArea *{margin-right: 5px; margin-top: 9px;}
+
+
+
+
+
+/* 블랙리스트 해제 모달 */
+.modal-content{width: 380px;}
+#ubModalContent{margin-left:50px;}
+#ubModalContent input{
+    border: 1px solid lightgray;
+    border-bottom-right-radius:4px;
+    border-top-right-radius:4px;
+    padding:10px;}
+#ubModalFooter{margin-top: 4px; margin-bottom: 25px;}
+#okBtn, #cancleBtn{
+    color:white;
+    width:150px;
+    margin-right:10px;
+    padding:8px;}
+
+
+
+
+/* 블랙리스트 등록 모달 */
+.modal-content2{width:480px;}
+#modal-header{background: gray; color:white;}
+#modal-body, #modalFooter{background: lightgray;}
+.modal-title{padding-left: 130px;}
+.modal-body table{
+    background: white;
+    border:1px solid lightgray;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.modal-body>table *{
+    border:1px solid rgb(189, 189, 189);
+    padding:15px;
+    text-align: center;
+}
+/* #modalFooter{margin-top: 4px; margin-bottom: 25px;} */
+#modalFooter{padding-bottom: 30px;} 
+#okBtn, #cancleBtn{
+    color:white;
+    width:150px;
+    margin-right:10px;
+    padding:8px;}
