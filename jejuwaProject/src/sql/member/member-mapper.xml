@@ -17,8 +17,7 @@
 		  FROM 
 		  	   MEMBER
 		 WHERE 
-		       STATUS = 'Y'
-		    OR STATUS = 'A'
+		   (STATUS = 'Y' OR STATUS = 'A')
 		   AND MEM_ID = ?
 		   AND MEM_PWD = ?
 	</entry>

@@ -181,7 +181,7 @@
                 <div class="terms_p">   
                     <p class="terms_chk_all">
                         <span>
-                            <input type="checkbox" id="chk_all" name="chk_all" onclick="all_chk();">
+                            <input type="checkbox" id="chk_all" name="chk_all">
                             <label for="chk_all">
                                 <span class="input_chk">전체 약관 동의</span>    
                             </label>

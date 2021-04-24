@@ -1,9 +1,10 @@
+.login_main{
+    text-align: center;
+}
 
 .login_main>*{
-    margin: auto;
-    box-sizing:border-box;
     height: 100%;
-    float:left;
+    display: inline-block;
 }
 
 .login_title{
