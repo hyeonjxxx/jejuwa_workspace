@@ -1,6 +1,7 @@
 package com.kh.product.controller;
 
 import java.io.IOException;
+
 //import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 //import com.kh.common.model.vo.File;
 import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class ProductDetailViewServlet
@@ -37,16 +39,20 @@ public class ProductInfoDetailServlet extends HttpServlet {
 		String pCode = request.getParameter("pcode");
 		
 		
-		Product p = new ProductService().selectInfoProduct(pCode);
 		// 오류 구문 ArrayList<File> list = new ProductService().selectFileList(pCode);
 		
 		//System.out.println(p);
 		//System.out.println(list);
+		//int memNo = ((Member)request.getSession().getAttribute("loginUser")).getMemNo();
+		//int count = new ProductService().likeCount(pCode, memNo);
 		
+		Product p = new ProductService().selectInfoProduct(pCode);
+			
 		request.setAttribute("p", p);
+		//request.setAttribute("count", count);
 		// 오류 구문 request.setAttribute("list", list);
-
 		request.getRequestDispatcher("views/product/productInfoDetail.jsp").forward(request, response);
+
 													
 	}
 

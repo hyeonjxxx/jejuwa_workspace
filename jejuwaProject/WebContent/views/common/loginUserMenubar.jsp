@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.kh.member.model.vo.Member"%>
 <%
+	
 	Member login = (Member)session.getAttribute("loginUser");
 	// 로그인 전  managerMenubar.jsp  로딩시 : null
 	// 로그인 성공후 managerMenbubar.jsp 로딩시 : 로그인한 회원의 정보들이 담겨있는 객체

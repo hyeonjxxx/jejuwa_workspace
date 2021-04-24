@@ -90,6 +90,14 @@
 		    AND P_STATUS = 'Y' 	
 	</entry>
 	
+	<!-- 좋아요 카운트 -->
+	<entry key="likeCount">
+		SELECT COUNT(*) COUNT
+		  FROM TLIKE
+		 WHERE MEM_NO = ?
+		   AND P_CODE = ?
+	</entry>
+	
 	<!-- 결제페이지에서 조회되는 컬럼들 -->
 	
 	

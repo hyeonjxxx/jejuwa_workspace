@@ -1,6 +1,9 @@
 package com.kh.product.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -52,8 +55,24 @@ public class ProductService {
 		return p;
 	}	
 	
+	// 좋아요 관련 
 	
-	
+	/*
+	public int likeCount(String pCode, int memNo) {
+		Connection conn = getConnection();
+		int result = new ProductDao().likeCount(conn, pCode, memNo);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	*/
 	
 	
 }

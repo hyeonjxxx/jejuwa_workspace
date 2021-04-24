@@ -48,28 +48,7 @@
                 </div>
                 <hr>
                 <ul class="mypageStep">
-                    <li>
-                        <em>0</em>
-                        <span>주문접수</span>
-                        <img src="<%=request.getContextPath() %>/resources/images/화살표.png" id="img1">
-                    </li>
 
-                    <li>
-                        <em>0</em>
-                        <span>결제완료</span>
-                        <img src="<%=request.getContextPath() %>/resources/images/화살표.png" id="img2">
-                    </li>
-
-                    <li>
-                        <em>0</em>
-                        <span>예약확정</span>
-                        <img src="<%=request.getContextPath() %>/resources/images/화살표.png" id="img3">
-                    </li>
-
-                    <li>
-                        <em>0</em>
-                        <span>여행완료</span>
-                    </li>
                 </ul>
                 
                <fieldset class = "searchPeriod_field">

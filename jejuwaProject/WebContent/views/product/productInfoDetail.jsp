@@ -9,6 +9,8 @@
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	Like l = (Like)request.getAttribute("l");
 	
+	int count = (int)request.getAttribute("count");
+	String contextPath = request.getContextPath();
 
 %>
 
@@ -74,13 +76,19 @@
 
                         <div class="icon" align="right">
                             <button type="button" onclick="testLike();"><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></button>
-                            <button type="button" onclick="likeProduct();"><img id="heart" src="<%=contextPath %>/resources/images/emptyHeart.png" alt="like" width="33"></button>
+                            
+                            
+                            <% if(count == 0){ %>
+                            	<img id="heart" onclick="likeProduct();" src="<%=contextPath %>/resources/images/emptyHeart.png" alt="like" width="33">
+                            <% }else{ %>
+                            	<img id="heart" onclick="deleteProduct();" src="<%=contextPath %>/resources/images/fullHeart.png" alt="like" width="33">
+                            <% } %>
                         </div>
 
                         <!-- 좋아요 버튼 누르는 순간 하트가 바뀌면서 담김 -->
                         <script>
                         	function likeProduct(){
-                        		console.log("되어라,,,");
+                        		//console.log("되어라,,,");
                         		$.ajax({
                         			//url 다시 써야됨
                         			url : "<%=contextPath%>/linsert.li",
@@ -92,33 +100,9 @@
 
                         				if(result>0){ // 좋아요 성공
 
-                        					
-                        					$.ajax({
-                        						url : "<%=contextPath%>/linsert.li",
-                        						type : "post",
-                        						data : {
-                        							pno : '<%=p.getpCode()%>'
-                        						},
-                        						success : function(result){
-                        							
-                        							$("#heart").attr("src", '<%=contextPath%>/resources/images/fullHeart.png');
-                        						}
-                        					})
-                        					
-                        				}else{ // 좋아요 해제
-                        					                        					
-                        					$.ajax({
-                        						url : "<%=contextPath%>/delete.li",
-                        						type : "post",
-                        						data : {
-                        							pno : '<%=p.getpCode()%>'
-                        						},
-                        						success : function(result){
-                        							$("#heart").attr("src", '<%=contextPath%>/resources/images/emptyHeart.png');
-                        						}
-                        					})
-                        					
-                        				}
+                        					$("#heart").attr("src", '<%=contextPath%>/resources/images/fullHeart.png');
+                        					$("#heart").click(deleteProduct);
+                        				}		
 
                         			}, error:function(){
                         				console.log("통신실패");
@@ -126,12 +110,27 @@
 
                         		})
                         	}
+                        	
+                        	function deleteProduct(){
+                        		
+                        		$.ajax({
+            						url : "<%=contextPath%>/delete.li",
+            						type : "post",
+            						data : {
+            							pno : '<%=p.getpCode()%>'
+            						},
+            						success : function(result){
+            							$("#heart").attr("src", '<%=contextPath%>/resources/images/emptyHeart.png');
+            							$("#heart").click(likeProduct);
+            						}
+            					})
+                        	}
                         </script>
 
 
 
-
-                        <!-- 좋아요 버튼 누르는 순간 마이페이지에서 조회 -->
+						 
+                        <!-- 좋아요 버튼 누르는 순간 마이페이지에서 조회
                         <script>
 
                         	// 좋아요 버튼 클릭시 구동되는 ajax
@@ -142,7 +141,8 @@
 
                      			$.ajax({
                      				url:"<%=contextPath%>/list.mpl",
-                     				data : {pno:<%=p.getpCode()%>},
+                     				<%--data : {pno:<%=p.getpCode()%>},--%>
+                     				data : pno : '<%=p.getpCode()%>',
                      				success:function(list){
                      					//console.log(list);
                      					var result = "";
@@ -168,7 +168,9 @@
 
                      		}*/
                      	</script>
-
+						-->
+						
+						
                     </div>
 						
 					<form action="<%=contextPath %>/do.pa">

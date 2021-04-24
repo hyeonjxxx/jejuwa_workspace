@@ -161,4 +161,30 @@ public class ProductDao {
 			return p;
 				
 		}
+		
+		// 좋아요 카운트
+		
+		/*
+		public int likeCount(Connection conn, String pCode, int memNo) {
+			// update문
+			
+			int result = 0;
+			PreparedStatement pstmt = null;
+			String sql = prop.getProperty("likeCount");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, memNo);
+				pstmt.setString(2, pCode);
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			return result;
+		}
+		*/
 }

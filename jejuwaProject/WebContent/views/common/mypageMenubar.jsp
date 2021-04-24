@@ -125,7 +125,7 @@
                         </li>
 
                         <li>
-                            <h2 id="Menu"><a href="<%=contextPath%>/views/mypage/myPageLike.jsp">좋아요</a></h2>
+                            <h2 id="Menu"><a href="<%=contextPath%>/list.mpl">좋아요</a></h2>
                         </li>
 
                         <li>
