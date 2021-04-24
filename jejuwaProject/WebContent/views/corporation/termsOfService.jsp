@@ -12,8 +12,7 @@
 </style>
 </head>
 <body>
-<%@ include file="../common/managerMenubar.jsp" %>
-
+<%@ include file="../common/loginUserMenubar.jsp" %>
 <br><br><br>
 <article style="width:700px; margin:auto;">
                                 <h2 class="main-title">제주와 구매약관</h2><br>

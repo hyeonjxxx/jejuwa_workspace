@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-<%@ include file="../common/managerMenubar.jsp" %>
+<%@ include file="../common/loginUserMenubar.jsp" %>
 
 <br><br><br>
         <div style="width:700px; margin:auto;">

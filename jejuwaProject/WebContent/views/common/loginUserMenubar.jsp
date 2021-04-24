@@ -153,7 +153,7 @@
  <div class="wrap">
 	<div id="header">
             <div id="header_1">
-                <a href="">
+                <a href="<%=contextPath%>/views/common/mainPage.jsp">
                 <img id="logo_img" src="<%= request.getContextPath() %>/resources/images/제주와 로고.png" alt="">
                 </a>
             </div>
@@ -174,7 +174,7 @@
                 </form>
             </div>
             <!-- 로그인 전 -->
-         <% if( login == null){ %>
+         <% if( login == null){  %>
 			<div id="header_3">
 			<br><br>
              	<ul id="info_1">
@@ -183,9 +183,9 @@
                  </ul>
             </div>
             <!-- 로그인 후(관리자) -->
-         <% } else{ if( login.getStatus().equals('A')){ System.out.println(login.getStatus());%>
+         <% } else{ if( login.getStatus().equals('A')){ %>
             
-			
+			관리자여
 			<div id="header_3">
 			<br><br>
              	<ul id="info_1">
@@ -217,8 +217,9 @@
                 </div>
        			<br> <br>
 			</div>                 
-          <% }else{ %>              
+          <% }else{ System.out.println(login.getStatus().equals('A')); %>              
             <!-- 로그인 후(일반사용자) -->
+            관리자아녀
 			<div id="header_3">
 			<br><br>
              	<ul id="info_1">
