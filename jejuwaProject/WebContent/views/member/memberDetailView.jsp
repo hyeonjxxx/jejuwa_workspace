@@ -207,7 +207,7 @@
                </div> 
                
                <div class="btn2" id="listBtn">
-                   <a href="" id="btn2">목록으로</a>
+                   <a href="<%= contextPath %>/list.me?currentPage=1" id="btn2">목록으로</a>
                </div> 
                 
                <div class="btn2" id="udBtn">

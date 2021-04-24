@@ -25,7 +25,7 @@
         <br>
         <div class="btn3" align="right">
             <a href="<%=contextPath%>/updateForm.no?nno=<%= n.getNoticeNo() %>">수 정</a>
-            <a href="">삭 제</a>
+            <a href="" data-toggle="modal" data-target="#deleteNotice">삭 제</a>
         </div>
         <div class="noticeArea">
             <div class="title">
@@ -58,9 +58,51 @@
             <div class="btn btn2" align="right">
                 <a id="btn3" href="<%=contextPath%>/list.no?currentPage=1">목록으로</a> 
             </div>               
-
         </div>
 
     </div>
+    
+           <!-- 비밀번호 초기화 모달 -->
+       <!-- The Modal -->
+       <div class="modal fade" id="deleteNotice" align="center" >
+         <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content" >
+           
+                             
+             <!-- Modal body -->
+             <br>
+             <div class="modal-body">
+               	공지사항을 삭제하시겠습니까?
+             </div>
+             
+             <form action="<%=contextPath%>/delete.no?nno=<%=n.getNoticeNo()%>" method="post">        
+             <div class="input-group mb-3" id="modalContent">
+               <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
+               </div>
+               <input name="adminPwd" size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon1">
+                              
+             </div>
+             
+             <!-- Modal footer -->
+             <div id="modalFooter">
+               <button type="submit" id="okBtn" class="btn btn-warning" onclick="return deleteNotice();">OK</button>
+               <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+             </div>
+             
+             <script>
+	       			function deleteNotice(){
+	       				if($("input[name=adminPwd]").val() != <%= loginUser.getMemPwd()%>){
+	       					alert("관리자 비밀번호가 일치하지 않습니다.");
+	       					return false;
+	       				}
+	       			}
+	       	</script>
+	       		
+             </form> 
+           </div>
+         </div>
+       </div>
+    
 </body>
 </html>

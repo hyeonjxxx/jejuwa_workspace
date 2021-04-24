@@ -1,6 +1,9 @@
 package com.kh.notice.model.service;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -107,7 +110,22 @@ public class NoticeService {
 		return result;
 	}
 	
-	
+	/**
+	 * 공지사항 삭제
+	 * @param noticeNo
+	 * @return
+	 */
+	public int deleteNotice(int noticeNo) {
+		Connection conn = getConnection();
+		int result = new NoticeDao().deleteNotice(conn, noticeNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
 	
 	

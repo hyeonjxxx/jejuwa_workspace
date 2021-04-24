@@ -244,8 +244,31 @@ public class NoticeDao {
 		return result;
 	}
 
-	
-	
+	/**
+	 * 공지사항 삭제
+	 * @param conn
+	 * @param noticeNo
+	 * @return
+	 */
+	public int deleteNotice(Connection conn, int noticeNo) {
+		// update문 => 처리된 행수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setInt(1, noticeNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 	
 	
 	

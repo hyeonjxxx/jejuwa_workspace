@@ -45,7 +45,7 @@
             <% if(n.getOriginFileName() == null){%>
             	첨부파일 없음
             <% } else {%>
-               	첨부파일 &nbsp;&nbsp;&nbsp;&nbsp; <a href="<%=contextPath%>/<%=n.getFilePath()%>"><%= n.getOriginFileName() %></a>
+               	첨부파일 &nbsp;&nbsp;&nbsp;&nbsp; <a href="<%=request.getContextPath()%>/<%=n.getFilePath()%>"><%= n.getOriginFileName() %></a>
             <% } %>
             </div>
 
@@ -56,7 +56,7 @@
             
             
             <div class="btn btn2" align="right">
-                <a id="btn3" href="<%=contextPath%>/list.uno?currentPage=1">목록으로</a> 
+                <a id="btn3" href="<%=request.getContextPath()%>/list.uno?currentPage=1">목록으로</a> 
             </div>               
 
         </div>

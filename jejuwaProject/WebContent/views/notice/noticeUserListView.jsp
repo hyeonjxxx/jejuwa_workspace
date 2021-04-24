@@ -90,7 +90,7 @@
             	// 상세보기 요청
             	$(function(){
             		$("#memberList>tbody>tr").click(function(){
-            			location.href='<%=contextPath%>/detail.uno?nno=' + $(this).children().eq(0).text();
+            			location.href='<%=request.getContextPath()%>/detail.uno?nno=' + $(this).children().eq(0).text();
             		})
             	})
             </script>
@@ -110,8 +110,8 @@
                     	<button disabled>&laquo;</button>
 	                    <button disabled>&lt;</button>			
                     <%} else {%>
-	                    <button onclick="location.href='<%=contextPath%>/list.uno?currentPage=1';">&laquo;</button>
-	                    <button onclick="location.href='<%=contextPath%>/list.uno?currentPage=<%=currentPage-1%>';">&lt;</button>			
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.uno?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.uno?currentPage=<%=currentPage-1%>';">&lt;</button>			
 					<% } %>
 					
 					<% for(int p=startPage; p<=endPage; p++ ) {%>
@@ -119,7 +119,7 @@
 						<% if(currentPage == p) {%>
                         	<button disabled><%= p %></button>
                         <% }else{ %>				
-	                        <button onclick="location.href='<%=contextPath%>/list.uno?currentPage=<%= p %>';"><%= p %></button>
+	                        <button onclick="location.href='<%=request.getContextPath()%>/list.uno?currentPage=<%= p %>';"><%= p %></button>
                         <% } %>		
                 	<% } %>
                 	
@@ -128,8 +128,8 @@
                 		<button disabled>&gt;</button>
 	                    <button disabled>&raquo;</button>
                 	<% } else{ %>
-                		<button onclick="location.href='<%=contextPath%>/list.uno?currentPage=<%=currentPage+1%>';">&gt;</button>
-	                    <button onclick="location.href='<%=contextPath%>/list.uno?currentPage=<%=maxPage%>';">&raquo;</button>
+                		<button onclick="location.href='<%=request.getContextPath()%>/list.uno?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.uno?currentPage=<%=maxPage%>';">&raquo;</button>
                 	<% } %>
             </div>
 
