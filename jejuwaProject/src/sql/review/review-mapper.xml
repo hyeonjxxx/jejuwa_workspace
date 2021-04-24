@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+
+<properties>
+<!--리뷰 게시글 리스트 조회시  -->
+	<entry key="">
+		SELECT *
+    FROM (
+            SELECT
+                ROWNUM RNUM
+                , A.*
+            FROM 
+            	(
+                        SELECT 
+                    REVIEW_NO
+                   ,MEM_NO
+                   ,RV_CONTENT
+                   ,RV_DATE
+                   ,RV_MODIFY
+                   ,RV_STATUS
+	            FROM REVIEW R
+	            JOIN MEMBER USING(MEM_NO)
+	            WHERE R.RV_STATUS = 'Y'
+	            ORDER
+                 BY RV_DATE DESC
+            ) A
+
+    )
+WHERE RNUM BETWEEN ? AND ?;
+	</entry>
+
+	
+	
+	
+
+</properties>

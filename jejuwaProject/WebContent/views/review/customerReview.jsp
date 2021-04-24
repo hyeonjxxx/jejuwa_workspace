@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.ArrayList, com.kh.board.model.vo.Board, com.kh.common.model.vo.PageInfo" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,43 +118,33 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>번호</th>
+                <th>게시글번호</th>
                 <th>리뷰</th>
                 <th>작성자</th>
                 <th>작성일</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>5</td>
-                <td>[제주 감귤체험]좋았어요</td>
-                <td>user01</td>
-                <td>2021-03-21</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>[제주 시티투어]즐거웠습니당</td>
-                <td>user02</td>
-                <td>2021-02-24</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>[한라산투어]별로네요..</td>
-                <td>admin</td>
-                <td>2020-07-05</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>[온천카페]너무 재밌었어요</td>
-                <td>admin</td>
-                <td>2020-04-25</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>[서귀포 투어]또가고싶어요</td>
-                <td>admin</td>
-                <td>2020-01-05</td>
-            </tr>
+        <!-- 조회된 결과가 있을경우 -->
+          <% if(list.isEmpty()) { %>
+            <tr>  
+                <td colspan="6">조회된 리스트가 없습니다.</td>
+           </tr>
+         <% }else { %>
+             <% for Review r : list) { %>
+                <tr>
+                            <td><%= b.getBoardNo() %></td>
+                            <td><%= b.getRv_Content() %></td>
+                            <td><%= b.getBoardTitle() %></td>
+                            <td><%= b.getMem_Name() %></td>
+                            <td><%= b.getRv_Date() %></td>
+                        </tr>
+                    <% } %>
+                
+                <% } %>
+                
+           
+                
         </tbody>
     </table>
 </div>
