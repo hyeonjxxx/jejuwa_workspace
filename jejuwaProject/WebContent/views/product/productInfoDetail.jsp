@@ -10,8 +10,6 @@
 	Like l = (Like)request.getAttribute("l");
 	
 	int count = (int)request.getAttribute("count");
-	String contextPath = request.getContextPath();
-
 %>
 
 <!DOCTYPE html>
@@ -73,18 +71,21 @@
                             <span class="scoreIcon"><img src="<%=contextPath %>/resources/images/star.png" alt="" width="15"></span>
                             <span class="scoreIcon"><img src="<%=contextPath %>/resources/images/star.png" alt="" width="15"></span>
                         </div>
-
+						
+						
                         <div class="icon" align="right">
                             <button type="button" onclick="testLike();"><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></button>
                             
-                            
+                           
                             <% if(count == 0){ %>
                             	<img id="heart" onclick="likeProduct();" src="<%=contextPath %>/resources/images/emptyHeart.png" alt="like" width="33">
                             <% }else{ %>
                             	<img id="heart" onclick="deleteProduct();" src="<%=contextPath %>/resources/images/fullHeart.png" alt="like" width="33">
                             <% } %>
+                            
                         </div>
-
+						
+						
                         <!-- 좋아요 버튼 누르는 순간 하트가 바뀌면서 담김 -->
                         <script>
                         	function likeProduct(){
@@ -105,7 +106,7 @@
                         				}		
 
                         			}, error:function(){
-                        				console.log("통신실패");
+                        				console.log("통신실패그림");
                         			}
 
                         		})
@@ -130,45 +131,7 @@
 
 
 						 
-                        <!-- 좋아요 버튼 누르는 순간 마이페이지에서 조회
-                        <script>
-
-                        	// 좋아요 버튼 클릭시 구동되는 ajax
-								/*
-                     		function likeProduct(){
-
-                     			//console.log("되고있니?");
-
-                     			$.ajax({
-                     				url:"<%=contextPath%>/list.mpl",
-                     				<%--data : {pno:<%=p.getpCode()%>},--%>
-                     				data : pno : '<%=p.getpCode()%>',
-                     				success:function(list){
-                     					//console.log(list);
-                     					var result = "";
-                     					for(var i in list){
-                     						result += "<li>"
-
-				                     	            +      "<h2>" + list[i].detailPath+"</h2>"
-				                     	            +      "<ul>"
-				                     	            +           "<li>"+ list[i].pName+ "</li>"
-
-				                     	            +       "</ul>"
-
-				                     	            +  "</li>"
-                     					}
-                     					//console.log(list[i]);
-
-                     					//list.mpl myPageLike.jsp ul 안에 나오게 어떻게 할 수 있을 것인가
-                     					$(".gallery>ul").html(result);
-                     				}, error:function(){
-                     					console.log("실패")
-                     				}
-                     			})
-
-                     		}*/
-                     	</script>
-						-->
+                        
 						
 						
                     </div>

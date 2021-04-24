@@ -164,7 +164,7 @@ public class ProductDao {
 		
 		// 좋아요 카운트
 		
-		/*
+		
 		public int likeCount(Connection conn, String pCode, int memNo) {
 			// update문
 			
@@ -186,5 +186,5 @@ public class ProductDao {
 			}
 			return result;
 		}
-		*/
+		
 }

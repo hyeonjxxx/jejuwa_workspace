@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import = "com.kh.product.model.vo.*"%>
 <%
 	Product p = (Product)request.getAttribute("p");
+	String contextPath = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>

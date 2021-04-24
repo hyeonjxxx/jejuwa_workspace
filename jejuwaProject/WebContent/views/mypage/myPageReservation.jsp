@@ -238,7 +238,7 @@
                             <td width="70">1</td>
                             <td width="100"><%=o.getAmount() %></td>
                             <td width="100">
-                                <div style="margin: 0; padding: 0;">예약확정
+                                <div style="margin: 0; padding: 0;"><%=o.getStatus() %>
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal">즉시취소</button>
                             </td>
 
