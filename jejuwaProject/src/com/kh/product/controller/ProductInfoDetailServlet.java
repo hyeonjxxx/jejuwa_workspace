@@ -43,13 +43,13 @@ public class ProductInfoDetailServlet extends HttpServlet {
 		
 		//System.out.println(p);
 		//System.out.println(list);
-		//int memNo = ((Member)request.getSession().getAttribute("loginUser")).getMemNo();
-		//int count = new ProductService().likeCount(pCode, memNo);
+		int memNo = ((Member)request.getSession().getAttribute("loginUser")).getMemNo();
+		int count = new ProductService().likeCount(pCode, memNo);
 		
 		Product p = new ProductService().selectInfoProduct(pCode);
 			
 		request.setAttribute("p", p);
-		//request.setAttribute("count", count);
+		request.setAttribute("count", count);
 		// 오류 구문 request.setAttribute("list", list);
 		request.getRequestDispatcher("views/product/productInfoDetail.jsp").forward(request, response);
 

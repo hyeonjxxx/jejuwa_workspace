@@ -57,7 +57,7 @@ public class ProductService {
 	
 	// 좋아요 관련 
 	
-	/*
+	
 	public int likeCount(String pCode, int memNo) {
 		Connection conn = getConnection();
 		int result = new ProductDao().likeCount(conn, pCode, memNo);
@@ -72,7 +72,7 @@ public class ProductService {
 		
 		return result;
 	}
-	*/
+	
 	
 	
 }

@@ -150,6 +150,16 @@
 
 <body>
 
+	<script>
+		var msg = "<%= session.getAttribute("alertMsg") %>"; // 알람창으로 출력할 메세지
+		// var msg = "메세지" / "null";
+		
+		if(msg != "null"){
+			alert(msg);
+			<% session.removeAttribute("alertMsg"); %>
+		}
+	</script>
+	
  <div class="wrap">
 	<div id="header">
             <div id="header_1">

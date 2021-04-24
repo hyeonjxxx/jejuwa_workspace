@@ -35,20 +35,20 @@ public class LikeDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		// 상품번호
-		String likeProduct = request.getParameter("pno");
+		String pCode = request.getParameter("pno");
 		
 		// 세션에 담긴 로그인한 회원의 회원번호 넘기기
 		int memNo = ((Member)request.getSession().getAttribute("loginUser")).getMemNo();
 		
 		
 		Like l = new Like();
-		l.setpCode(likeProduct);
+		l.setpCode(pCode);
 		l.setMemNo(memNo);
 		
 		
 		//ajax는 포워딩 x
 		
-		int result = new LikeService().deleteLike(likeProduct);
+		int result = new LikeService().deleteLike(pCode);
 		response.getWriter().print(result);
 		
 	}
