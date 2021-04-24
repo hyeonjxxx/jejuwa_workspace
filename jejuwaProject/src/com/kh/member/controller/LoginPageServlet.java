@@ -57,7 +57,7 @@ public class LoginPageServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", m);
 
-			response.sendRedirect(request.getContextPath());
+			response.sendRedirect("views/common/mainPage.jsp");
 			
 		}
 		

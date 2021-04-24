@@ -35,7 +35,7 @@ public class LogoutPageServlet extends HttpServlet {
 		
 		// 응답페이지 => 메인페이지(index)
 		// sendRedirect == url 로 재요청하는 방식
-		response.sendRedirect(request.getContextPath());
+		response.sendRedirect("/jejuwa");
 	
 	}
 
