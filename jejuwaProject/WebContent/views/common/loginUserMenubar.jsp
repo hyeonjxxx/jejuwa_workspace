@@ -5,6 +5,7 @@
 	Member login = (Member)session.getAttribute("loginUser");
 	// 로그인 전  managerMenubar.jsp  로딩시 : null
 	// 로그인 성공후 managerMenbubar.jsp 로딩시 : 로그인한 회원의 정보들이 담겨있는 객체
+	String contextPath = request.getContextPath(); 
 %>
 <!DOCTYPE html>
 <html>
@@ -189,8 +190,9 @@
                      <li><a href="<%= request.getContextPath() %>/enroll.me">회원가입</a></li>
                  </ul>
             </div>
-         <% } else{ if( login.getStatus().equals('A')){ %>
             <!-- 로그인 후(관리자) -->
+         <% } else{ if( login.getStatus().equals('A')){ System.out.println(login.getStatus());%>
+            
 			
 			<div id="header_3">
 			<br><br>
@@ -198,7 +200,6 @@
                      <li><a href="<%= request.getContextPath() %>/myPageMain.jsp"><%= login.getMemName() %>님 환영합니다</a></li>
                      <li><a href="<%= request.getContextPath() %>/logout.me">로그아웃</a></li>
                      <li><a href="<%=request.getContextPath()%>/admin.go">관리자</a></li>
-                     
                  </ul>
                	<!-- 아이콘영역 -->
                 <div id="icon0">

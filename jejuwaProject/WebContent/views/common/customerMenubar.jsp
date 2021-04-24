@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+
+%>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +29,7 @@
             <h2 id="customer_center"><a>고객센터</a></h2>
             <ul>
                 <li class="subMenu">
-                    <a href="<%=contextPath%>/list.uno?currentPage=1">공지사항<span style="margin-left: 74px;">〉</span></a>
+                    <a href="<%=request.getContextPath()%>/list.uno?currentPage=1">공지사항<span style="margin-left: 74px;">〉</span></a>
                 </li>
                 <li class="subMenu">
                     <a href="<%=request.getContextPath() %>/list.rvl">리뷰내역<span style="margin-left: 74px;">〉</span></a>
