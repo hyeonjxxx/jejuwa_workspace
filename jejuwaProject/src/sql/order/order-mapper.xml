@@ -86,6 +86,16 @@
 		  FROM DUAL
 	</entry>
 	
+	
+	<entry key="orderCount">
+		SELECT COUNT(*) COUNT
+		  FROM TORDER
+		 WHERE MEM_NO = ?
+		   AND P_CODE = ?
+	</entry>
+	
+	
+	
 	<!-- 마이페이지에서 조회되는 주문내역 -->
 	<entry key = "selectOrder">
 		 SELECT
@@ -102,11 +112,27 @@
 		        
 		   FROM TORDER O
 		   JOIN MEMBER USING(MEM_NO);
-		
-	
-	
+
 	</entry>
 	
+	<!-- 예약상세내역페이지에서 조회되는 sql -->
+	<entry key="selectReservation">
+		SELECT
+		        ORDER_NO
+		      , ORDER_DATE
+		      , AMOUNT
+		      , TRAVEL_DATE
+		      , TRAVEL_USER
+		      , TRAVEL_EMAIL
+		      , O.STATUS STATUS
+		      , MEM_NO
+		      , P_CODE
+		      , p_NAME
+		  FROM TORDER O
+		  JOIN MEMBER M USING (MEM_NO)
+          JOIN PRODUCT P USING (P_CODE)
+         WHERE ORDER_NO = ?
+	</entry>
 	
 </properties>
 

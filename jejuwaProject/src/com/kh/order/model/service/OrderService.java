@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.order.model.dao.OrderDao;
 import com.kh.order.model.vo.Order;
+import com.kh.product.model.dao.ProductDao;
 
 public class OrderService {
 	
@@ -62,11 +63,30 @@ public class OrderService {
 		return result;
 	}
 	
-	public Order selectOrder(int orderNo) {
+	public int orderCount(String pCode, int memNo) {
+		Connection conn = getConnection();
+		int result = new OrderDao().orderCount(conn, pCode, memNo);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	// 예약상세내역
+	
+	public Order selectReservation(int orderNo) {
 		Connection conn = getConnection();
 		
-		Order o = new OrderDao().selectOrder(conn, orderNo);
+		Order o = new OrderDao().selectReservation(conn, orderNo);
 		close(conn);
 		return o;
 	}
+	
+	
+	
 }

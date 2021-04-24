@@ -180,16 +180,38 @@ public class OrderDao {
 		
 	}
 	
-	public Order selectOrder(Connection conn, int orderNo) {
+	public int orderCount(Connection conn, String pCode, int memNo) {
+		// update문
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("orderCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memNo);
+			pstmt.setString(2, pCode);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public Order selectReservation(Connection conn, int orderNo) {
 		
 		Order o = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectOrder");
+		String sql = prop.getProperty("selectReservation");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
+			pstmt.setInt(1, orderNo);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -201,7 +223,8 @@ public class OrderDao {
 							  rset.getString("TRAVEL_EMAIL"),
 							  rset.getString("STATUS"),
 							  rset.getInt("MEM_NO"),
-							  rset.getString("P_CODE"));
+							  rset.getString("P_CODE"),
+							  rset.getString("P_NAME"));
 			}
 			
 			

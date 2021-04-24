@@ -8,7 +8,7 @@
 	//ArrayList<File> list = (ArrayList<File>)request.getAttribute("list");
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	Like l = (Like)request.getAttribute("l");
-	
+	String travleDate = (String)request.getAttribute("travleDate");
 	int count = (int)request.getAttribute("count");
 %>
 
@@ -146,7 +146,7 @@
 	                                <img id="test" src="<%=contextPath %>/resources/images/calendar.png" alt="" width="20" align="center" >
 	                              		날짜를 선택해주세요
 	                              		<br> -->
-	                                <input type="date" name="travleDate" value=" 날짜값">
+	                                <input type="date" name="travleDate" value="yyyy-mm-dd">
 	                                
 	                                
 	                            </a>

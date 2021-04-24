@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import = "java.util.ArrayList, 
     com.kh.payment.model.vo.Payment, com.kh.product.model.vo.*
-    , com.kh.member.model.vo.Member"%>
+    , com.kh.member.model.vo.Member, com.kh.order.model.vo.Order"%>
 <%
 	////ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");
 	//Payment pa = (Payment)request.getAttribute("pa");
@@ -9,6 +9,7 @@
 	Member m = (Member)request.getAttribute("m");
 	String travleDate = (String)request.getAttribute("travleDate");
 	Member loginUser = (Member)session.getAttribute("loginUser");
+	Order o = (Order)request.getAttribute("o");
 	
 %>
 <!DOCTYPE html>
@@ -42,6 +43,7 @@
 		<form id = "orderEnrollForm" action = "<%=contextPath%>/insert.or" method = "post">
 			<input type="hidden" name="pcode" value="<%=p.getpCode() %>">
 			<input type="hidden" name="price" value="<%=p.getPrice() %>">
+			<input type="hidden" name="travle" value="travleDate">
 			
 				<div class = "paymentPage">
 					<br><br>
@@ -56,7 +58,7 @@
 					                </tr>
 					                <tr class="table-light">
 					                    <td style="height: 30px;">여행일</td>
-					                    <td name = "travleDate"><%=travleDate %></td>
+					                    <td name = "travleDate" value = "travleDate"><%=travleDate %></td>
 					                </tr>
 					                <tr class="table-light">
 					                    <td style="height: 30px;">총금액</td>

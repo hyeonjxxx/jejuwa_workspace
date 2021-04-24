@@ -40,6 +40,23 @@ public class Order {
 	
 
 	public Order(int orderNo, Date orderDate, int amount, String travelDate, String travelUser, String travelEmail,
+			String status, int memNo, String pCode, String pName) {
+		super();
+		this.orderNo = orderNo;
+		this.orderDate = orderDate;
+		this.amount = amount;
+		this.travelDate = travelDate;
+		this.travelUser = travelUser;
+		this.travelEmail = travelEmail;
+		this.status = status;
+		this.memNo = memNo;
+		this.pCode = pCode;
+		this.pName = pName;
+	}
+
+
+
+	public Order(int orderNo, Date orderDate, int amount, String travelDate, String travelUser, String travelEmail,
 			String status, String cReason, int memNo, String pCode, String pName) {
 		super();
 		this.orderNo = orderNo;
