@@ -4,6 +4,11 @@
 
 <properties>
 
+	<entry key="selectListCount">
+		SELECT COUNT(*) LISTCOUNT 
+			   FROM PRODUCT	
+	</entry>
+
 	<entry key="selectProductList">
 		SELECT 
 		        P_CODE
