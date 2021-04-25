@@ -41,11 +41,8 @@
 	
 	<div class="outer">
        
-       
-       <br><br><br><br>
-
+       <br>
 	
-       
        <!-- 회원 상세정보 -->
        <div class="viewArea">
            <form action="<%= contextPath %>/update.me" method="post" id="memInfoTable">
@@ -198,9 +195,7 @@
 
            <div class="bottomArea" >
                
-               <div class="btn2" id="listBtn">
-                   <a href="" id="btn2">목록으로</a>
-               </div> 
+              
                 
                <div class="btn2" id="udBtn">
                    <a href="" id="btn3" data-toggle="modal" data-target="#updateMember">회원정보 수정</a> 
@@ -229,7 +224,7 @@
                     <div class="input-group mb-3" id="modalContent1">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
-                                	현재 비밀번호 입력
+                                &nbsp;&nbsp;현재 비밀번호 입력
                             </span> 
                         </div>
                         <input size="25" type="password" name="memPwd" required>
@@ -276,7 +271,7 @@
        <!-- The Modal -->
        <div class="modal fade" id="updateMember" align="center" >
            <div class="modal-dialog modal-dialog-centered">
-             <div class="modal-content" >
+             <div class="modal-content" id="modal-content2">
              
                <!-- Modal body -->
                <br>

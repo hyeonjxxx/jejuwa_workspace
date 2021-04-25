@@ -159,7 +159,7 @@
                                     <a href="<%=contextPath%>/myInfo.mp">개인정보수정</a>
                                 </li>
                                 <li class="subMenu">
-                                    <a href="">회원탈퇴</a>
+                                    <a href="<%=contextPath%>/withdrawalForm.mp">회원탈퇴</a>
                                 </li>
                             </ul>
                         </li>

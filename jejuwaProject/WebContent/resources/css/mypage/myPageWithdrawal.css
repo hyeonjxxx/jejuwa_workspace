@@ -1,0 +1,58 @@
+
+/* *{border: 1px solid red;} */
+
+.outer{
+    height: 700px;
+    width: 800px;
+    margin: 30px 20px;
+    float: left;
+  }
+
+
+/* 구분선 */
+.divisionLine{
+width: 90%; height: 5px; 
+background-color: lightgray; }
+    
+/* 탈퇴 안내 */
+.withdrawalArea{
+    border:1px solid rgb(190, 188, 188);
+    }    
+.viewArea div, .withdrawalArea>table {margin:25px;}
+.reason{margin:10px;}
+.area2{border:1px solid rgb(190, 188, 188)}
+#area2{margin:30px;}
+/* 버튼 */
+.bottomArea{
+    margin-left: 120px;
+}
+.bottomArea *{
+    margin-left: 5px;
+}
+.btn a{
+text-decoration: none; 
+text-align: center;
+color:white; 
+background-color: dimgray;
+display: block;
+padding:7px;
+border-radius:4px;
+width:70px;    
+}
+#btn1{width:100px; padding: 10px;}
+.btn a:hover{background-color: red;}
+
+
+/* 비밀번호 초기화 모달 */
+#modal-content2 {width: 380px;}
+#modalContent div{margin:0px; margin-left: 50px;}
+#modalContent input{
+    border: 1px solid lightgray;
+    border-bottom-right-radius:4px;
+    border-top-right-radius:4px;
+    padding:10px;}
+#modalFooter{margin-top: 4px; margin-bottom: 25px;}
+#okBtn{width:150px; margin-right:10px; padding:8px;}
+#cancleBtn{color:white; width:150px; padding:8px;}
+#withdrawal * {margin:0px;}
+#modalFooter *{margin-bottom: 25px;}
