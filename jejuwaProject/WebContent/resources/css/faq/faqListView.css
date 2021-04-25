@@ -18,6 +18,7 @@ margin-top: 10px;
 .searchArea{
     width: 700px;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 .searchArea>span *{
     padding:4px;
@@ -42,6 +43,12 @@ margin-top: 10px;
     border:1px solid rgb(189, 189, 189);
     padding:3px;}
 
+/* 글작성 버튼*/
+#writeButton{
+    margin-top: 10px;
+    position: relative;
+    left: 650px;
+}
 
 /* 버튼 + 페이징 구역*/
 .bottomArea{
@@ -67,8 +74,9 @@ width:70px;
 
 
 /* 페이징 구역 */
-.pagingArea{
-    margin-left:120px;
-    margin-right: 120px;
+#pagingArea{
+    margin: auto;
+    position: relative;
+    left: 350px;
 }
-.pagingArea *{margin-right: 5px; margin-top: 9px;}
+#pagingArea *{margin-right: 5px;}

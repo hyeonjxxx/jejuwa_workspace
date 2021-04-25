@@ -5,7 +5,7 @@
 <%
 	////ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");
 	//Payment pa = (Payment)request.getAttribute("pa");
-	Member loginUser = (Member)session.getAttribute("loginUser");
+	//Member loginUser = (Member)session.getAttribute("loginUser");
 	//Order o = (Order)request.getAttribute("o");
 	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
 	

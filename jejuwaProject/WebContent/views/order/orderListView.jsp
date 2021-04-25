@@ -51,11 +51,12 @@
             </div>
             
             <!-- 삭제/등록버튼 -->
+            <!-- 
             <div class="btn">
                 <a href="#" class="btn btn-secondary btn-sm">삭 제</a>
                 <a href="#" class="btn btn-secondary btn-sm">등 록</a>
             </div>
-    
+    		-->
             <br>
             <table  id="productListView" border="1">
                 <thead>
@@ -138,12 +139,22 @@
 	                                            <tr>
 	                                                <th>입금상태</th>
 	                                                <td>
-	                                                    
-	                                                    <input type="checkbox" id="reserJ" name="status" value="reserJ" onclick="checkOnlyOne(this)" checked><label for="reserJ">예약접수</label>
-	                                                    <input type="checkbox" id="reserH" name="status" value="reserH" onclick="checkOnlyOne(this)"><label for="reserH">예약확정</label>
-	                                                    <input type="checkbox" id="reserW" name="status" value="reserW" onclick="checkOnlyOne(this)"><label for="reserW">여행완료</label>
-	                                                    <input type="checkbox" id="reserC" name="status" value="reserC" onclick="checkOnlyOne(this)"><label for="reserC">여행취소</label>
-
+	                                                    <%if(o.getStatus().equals("예약접수")) {%>
+	                                                    	<input type="checkbox" id="reserJ" name="status" value="reserJ" onclick="checkOnlyOne(this)" checked><label for="reserJ">예약접수</label>
+	                                                    	<input type="checkbox" id="reserH" name="status" value="reserH" onclick="checkOnlyOne(this)"><label for="reserH">예약확정</label>
+	                                                    	<input type="checkbox" id="reserW" name="status" value="reserW" onclick="checkOnlyOne(this)"><label for="reserW">여행완료</label>
+	                                                    	<input type="checkbox" id="reserC" name="status" value="reserC" onclick="checkOnlyOne(this)"><label for="reserC">여행취소</label>
+	                                                    	
+	                                                    <%}else if(o.getStatus().equals("예약확정")){ %>
+	                                                    	<input type="checkbox" id="reserJ" name="status" value="reserJ" onclick="checkOnlyOne(this)" ><label for="reserJ">예약접수</label>
+	                                                    	<input type="checkbox" id="reserH" name="status" value="reserH" onclick="checkOnlyOne(this)" checked><label for="reserH">예약확정</label>
+	                                                    	<input type="checkbox" id="reserW" name="status" value="reserW" onclick="checkOnlyOne(this)"><label for="reserW">여행완료</label>
+	                                                    	<input type="checkbox" id="reserC" name="status" value="reserC" onclick="checkOnlyOne(this)"><label for="reserC">여행취소</label>
+	                                                    <%}else if(o.getStatus().equals("여행완료")){ %>
+	                                                    	<input type="checkbox" id="reserW" name="status" value="reserW" onclick="checkOnlyOne(this)"><label for="reserW">여행완료</label>
+	                                                    <%}else{ %>
+	                                                    	<input type="checkbox" id="reserC" name="status" value="reserC" onclick="checkOnlyOne(this)"><label for="reserC">여행취소</label>
+														<%} %>
 													</td>
 													
 	    	                                         <script>

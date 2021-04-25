@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+    pageEncoding="UTF-8" import="com.kh.member.model.vo.Member"%>
+<%
+	Member loginUser = (Member)session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -166,7 +168,7 @@
                         <img src="<%=request.getContextPath() %>/resources/images/user.png" alt="user" id="userIcon">
                     </div>
                     <p class="welcome" style="position: absolute; top: 12px;">
-                        (사용자이름)님 반갑습니다.
+                        <%=loginUser.getMemName() %>님 반갑습니다.
                     </p>   
                 </div>
         

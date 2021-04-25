@@ -54,15 +54,6 @@
         <div class="divisionLine"></div>
         
         <!-- != 로 변경해야됨 -->
- 
-        <% if(loginUser != null){ %>
-        <!--로그인했고, 로그인한 사용자가 admin일 경우 보여지는 div-->
-        
-	        <div align="right" style="width:850px">
-	            <a href="<%= contextPath %>/enrollForm.fa" class="btn btn-secondary btn-sm">글작성</a>
-	            <br><br>
-	        </div>
-		<%} %>
 
 
         <div class="area1">
@@ -132,34 +123,40 @@
     	})
     </script>
     
-        <!-- 버튼, 페이징 구역 -->
+    <% if(loginUser != null){ %>
+        <!--로그인했고, 로그인한 사용자가 admin일 경우 보여지는 div-->                
+        <a href="<%= contextPath %>/enrollForm.fa" id = "writeButton" class="btn btn-secondary btn-sm" >글작성</a>
+        <br><br>
         
-                           
+    <%} %>
+        
+        <!-- 버튼, 페이징 구역 -->
             <!-- 페이징  -->
-            <div align="center" class="pagingArea">
+            <div id="pagingArea" class="pagination">
 				<% if(currentPage != 1) { %>
-            	<button onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%=currentPage-1%>';">이전</button>
+            	    <li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%=currentPage-1%>';" style="color: black;">이전</button></li>
 			<% } %>
 			
 			<% for(int p=startPage; p<=endPage; p++) { %>
 				
 				<% if(currentPage == p){ %>
-            		<button disabled><%= p %></button>
+            		<li class="page-item active"><button class="page-link" disabled style="background-color: orange; border: none;"><%= p %></button></li>
             	<% }else{ %>
-            		<button onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%= p %>';"><%= p %></button>
+            		<li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%= p %>';" style="color: black;" ><%= p %></button></li>
             	<% } %>
             	
 			<% } %>
 			
 			<% if(currentPage != maxPage){ %>
-            	<button onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%=currentPage+1%>';">다음</button>
+            	<li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%=currentPage+1%>';" style="color: black;">다음</button></li>
 			<% } %>
              </div>
-	
+			
+			<!-- 
             <div align="right" class="btn">
                 <a href="<%= contextPath %>/enrollForm.fa" id="btn2">등 록</a> 
             </div> 
-    
+    		-->
 			
 		</div>
 
