@@ -9,18 +9,29 @@
 			   FROM PRODUCT	
 	</entry>
 
-	<entry key="selectProductList">
-		SELECT 
-		        P_CODE
-		      , P_NAME
-		      , PRICE
-		      , P_STOCK
-		      , P_STATUS
-		   FROM PRODUCT 
-		  ORDER
-		     BY P_CODE DESC
+	<entry key="selectProductList">	
+		SELECT * 
+		  FROM (
+		  		SELECT
+		  			  ROWNUM RNUM
+					  , PDT. *
+		  		   FROM (
+			  			SELECT 
+						        P_CODE
+						      , P_NAME
+						      , PRICE
+						      , P_STOCK
+						      , P_STATUS
+						   FROM PRODUCT 
+						  ORDER
+						     BY P_CODE DESC
+		  			) PDT	  
+		  		
+		  	  )
+		WHERE RNUM BETWEEN ? AND ? 	  
 	</entry>
 
+	<!-- product테이블에 상품추가 -->
 	<entry key="insertProduct">
 		INSERT 
 		  INTO PRODUCT
@@ -29,14 +40,14 @@
 		     , THEME_CODE 		  
 		     , P_CODE
 		     , P_NAME
-		     , DEATIL_PATH		     
+		     , BASIC_PATH
 		     , PRICE 
 		     , P_STOCK
-		     , BASIC_PATH
+		     , DEATIL_PATH		     
 		  )
 		  VALUES
 		  (
-		    , ?
+		      ?
 		    , ?
 		    , 'JEJUWA'||LPAD(SEQ_PNO.NEXTVAL, 5, '0')
 		    , ?
@@ -48,8 +59,55 @@
 	
 	</entry>
 	
-	<entry key="세부이미지 첨부">
+	<!-- ATTACHMENT테이블에 세부이미지 첨부 -->
+	<entry key="insertAttachment">
+		INSERT 
+			INTO ATTACHMENT
+			(
+				FILE_NO
+			  , ORG_FILENAME
+			  , MDF_FILENAME
+			  , FILE_PATH
+			  , P_CODE
+			)
+			VALUES
+			(
+			    SEQ_FNO.NEXTVAL
+			  , ?
+			  , ?
+			  , ? 
+			  , 'JEJUWA'||LPAD(SEQ_PNO.CURRVAL, 5, '0')
+			)
 	
+	</entry>
+	
+	
+	<!-- 상품등록된 정보   수정페이지에서 조회  -->
+	<entry key="selectProduct">
+		SELECT 
+		        LOCAL_CODE
+		      , THEME_CODE 
+		      , P_CODE 
+		      , P_NAME
+		      , BASIC_PATH
+		      , PRICE
+		      , P_STOCK
+		      , DEATIL_PATH
+		   FROM PRODUCT 
+		   JOIN LOCAL USING(LOCAL_CODE)
+		   JOIN THEME USING(THEME_CODE)
+		   WHERE P_CODE = ? 	
+	</entry>
+	
+	<entry key="selectAttachment">
+		SELECT 
+				FILE_NO
+			  , ORG_FILENAME
+			  , MDF_FILENAME
+			  , FILE_PATH
+			  , P_CODE
+		  FROM ATTACHMENT	  
+		  WHERE P_CODE = ?	  	
 	</entry>
 	
 	<entry key="상품테이블 수정">
@@ -69,7 +127,7 @@
 	
 	</entry>
 	
-		<!-- 썸네일리스트로 상품보기 searchView 페이지에서 조회시 대표이미지만 불러오기 -->
+	<!-- 썸네일리스트로 상품보기 searchView 페이지에서 조회시 대표이미지만 불러오기 -->
 	<entry key="selectThList">
 		SELECT 
 				P_CODE
@@ -80,7 +138,6 @@
 		  WHERE P_STATUS = 'Y' 
 		  ORDER BY P_CODE DESC       	
 	</entry>
-	
 	
 	<!-- InfoPdt에서 조회될 상품리스트 선택 -->
 	<entry key="selectInfoProduct">
@@ -94,6 +151,31 @@
 		  WHERE P_CODE = ?
 		    AND P_STATUS = 'Y' 	
 	</entry>
+	
+	<!-- Info안에 들어갈 세부이미지 선택 -->
+	<entry key="selectFileList">
+		SELECT
+				FILE_NO
+			  , ORG_FILENAME
+			  , MDF_FILENAME
+			  , FILE_PATH
+		   FROM ATTACHMENT	
+		  WHERE P_CODE = ?
+	</entry>	
+	
+	<!-- 카테고리 TR -->
+	<entry key="selectThList_TR">
+		SELECT 
+				P_CODE
+			  , P_NAME
+			  , PRICE
+			  , BASIC_PATH
+		   FROM PRODUCT	
+		  WHERE P_STATUS = 'Y' 
+		    AND THEME_CODE = 'TR'
+		  ORDER BY P_CODE DESC       	
+	</entry>		
+	
 	
 	<!-- 좋아요 카운트 -->
 	<entry key="likeCount">

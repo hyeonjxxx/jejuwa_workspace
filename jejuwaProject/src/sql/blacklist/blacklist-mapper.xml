@@ -35,6 +35,42 @@
 	</entry>
 	
 	
+	<!-- [휘경] 블랙리스트 상세조회1 (from Blacklist)-->
+	<entry key="selectBlacklist">
+		SELECT
+		       BLACKLIST_NO
+		     , MEM_NO
+		     , MEM_ID
+		     , MEM_NAME
+		     , RESTRICT_DATE
+		     , REPORTED_COUNT
+		  FROM BLACKLIST B
+		  JOIN MEMBER M USING(MEM_NO)
+		 WHERE M.STATUS = 'B'
+		   AND MEM_ID = ?
+	</entry>
+	
+	<!-- [휘경] 블랙리스트 상세조회2 (from Report) -->
+	<entry key="selectBlacklist2">
+		SELECT
+		       REPORT_NO
+		     , MEM_NO2
+		     , MEM_NO3
+		     , REVIEW_NO
+		     , REPORT_RS
+		     , REPORT_DATE
+		  FROM REPORT 
+		  JOIN MEMBER ON(MEM_NO3 = MEM_NO)
+		 WHERE MEM_ID = ?
+		 ORDER
+		    BY REPORT_DATE DESC
+	</entry>
+	
+	<!-- 블랙리스트 해제(블랙리스트 테이블에서 삭제 후 MEMBER 테이블에서 상태값 Y로 변경) -->
+	<entry key="removeBlacklist">
+		DELETE FROM BLACKLIST
+		WHERE MEM_NO = ?
+	</entry>
 	
 </properties>
 
