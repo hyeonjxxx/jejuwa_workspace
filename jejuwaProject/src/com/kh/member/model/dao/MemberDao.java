@@ -365,6 +365,28 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
+	
+	public int updatePwd(Connection conn, String memId, String updatePwd) {
+		// update문 => 처리된 행 수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updatePwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setString(1, updatePwd);
+			pstmt.setString(2, memId);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 
 
 	
