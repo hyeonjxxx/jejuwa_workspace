@@ -237,10 +237,11 @@
 
 	</div><br><br>
     <div class="navWrap" align="center">
-        <div class="menu"><a href=" <%=contextPath%>/">투어</a></div>
-        <div class="menu"><a href="">티켓</a></div>
-        <div class="menu"><a href="">맛집</a></div>
+        <div class="menu"><a href="<%= request.getContextPath()%>/trView.pdt">투어</a></div>
+        <div class="menu"><a href="<%= request.getContextPath() %>/ttView.pdt">티켓</a></div>
+        <div class="menu"><a href="<%= request.getContextPath() %>/fdView.pdt">맛집</a></div>
         <div class="menu"><a href="<%= request.getContextPath() %>/list.uno?currentPage=1">고객센터</a></div>
+
     
     </div>
 

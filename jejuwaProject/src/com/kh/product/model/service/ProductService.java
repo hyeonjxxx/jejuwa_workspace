@@ -116,7 +116,28 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
-	
+
+	public ArrayList<Product> selectThList_TT() {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().selectThList_TT(conn);
+		close(conn);
+		return list;
+	}		
+		
+		
+	public ArrayList<Product> selectThList_AY() {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().selectThList_AY(conn);
+		close(conn);
+		return list;
+	}		
+		
+	public ArrayList<Product> selectThList_FD() {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().selectThList_FD(conn);
+		close(conn);
+		return list;
+	}		
 	
 	// 좋아요 관련 
 	

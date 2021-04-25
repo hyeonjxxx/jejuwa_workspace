@@ -406,6 +406,104 @@ public class ProductDao {
 			
 			return list;
 		}
+
+
+		public ArrayList<Product> selectThList_TT(Connection conn) {
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectThList_TT");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+
+				while(rset.next()) {
+					
+					Product p = new Product();
+					p.setpCode(rset.getString("p_code"));
+					p.setpName(rset.getString("p_name"));
+					p.setPrice(rset.getInt("price"));
+					p.setBasicPath(rset.getString("basic_path"));
+				
+					list.add(p);				
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(rset);
+				close(pstmt);
+			}		
+			
+			return list;
+		}
+
+		public ArrayList<Product> selectThList_AY(Connection conn) {
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectThList_AY");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+
+				while(rset.next()) {
+					
+					Product p = new Product();
+					p.setpCode(rset.getString("p_code"));
+					p.setpName(rset.getString("p_name"));
+					p.setPrice(rset.getInt("price"));
+					p.setBasicPath(rset.getString("basic_path"));
+				
+					list.add(p);				
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(rset);
+				close(pstmt);
+			}		
+			
+			return list;
+		}
+
+		public ArrayList<Product> selectThList_FD(Connection conn) {
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectThList_FD");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+
+				while(rset.next()) {
+					
+					Product p = new Product();
+					p.setpCode(rset.getString("p_code"));
+					p.setpName(rset.getString("p_name"));
+					p.setPrice(rset.getInt("price"));
+					p.setBasicPath(rset.getString("basic_path"));
+				
+					list.add(p);				
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(rset);
+				close(pstmt);
+			}		
+			
+			return list;
+		}
+		
 		
 		// 좋아요 카운트
 		
