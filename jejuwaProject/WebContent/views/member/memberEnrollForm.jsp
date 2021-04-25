@@ -40,6 +40,8 @@
 
         <div id="member_enroll_form">
         <form action="<%= request.getContextPath()%>/insert.me" method="post" id="enrollForm">
+            <input type="hidden" id="is_mobile_auth" value="F">
+            <input type="hidden" id="is_unique_id" value="F">
             <div class="input_content">
                 <div class="name_wrap">
                     <b>이름*</b>
@@ -57,46 +59,6 @@
                     <div style="font-size:12px; height:15px" id="id_check">
                     </div>
                     <br>
-
-                <script>
-                    $('#id_check_btn').click(function(){
-                        console.log("이거 되는겨?");
-                    });
-                    
-                    $("#id_check_btn").click(function(){
-                        // form 요소 안에 name이 userId인 input요소객체 선택하기
-                        var $memId = $("#memId"); // value값 아님 이후에 userId.val()로 알아내면 됨
-                        // 이거 jQuery 방식으로 입력한 객체인 것을 알려주기 위해 $ 붙이기
-                        $.ajax({
-                            url: "idCheck.me",
-                            type: "get",
-                            data: {checkId:$memId.val()},
-                            success: function(result){
-                                if(result == 'NNNNN'){ // 사용불가능(기존에 아이디가 있음)
-                                    
-                                    $('#id_check').change($("#id_check").html('<label style="color:red;">이미 존재하거나 탈퇴한 회원의 아이디입니다.</label>'));
-                    
-                                    $memId.one('focus',focus());
-                                    
-                                } else{ // 사용가능(아이디 생성 가능)
-                                    if(confirm("사용가능한 아이디입니다. 정말로 사용하시겠습니까?")){
-                                        // 사용하겠다 => 더 이상 변경불가, 회원가입버튼활성화
-                                        $('#id_check').change($("#id_check").html('<label style="color:green;">좋은 아이디 입니다.</label>'));
-                                        $("#memId:submit").removeAttr("disabled");
-                                        // id가 enrollForm인 자식요소들 중  submit 요소의 속성(disabled)을 제거하겠다
-                                    } else{
-                                        // 사용가능하지만 다시 입력하겠다
-                                        $memId.focus();
-                                    }
-                                }
-                            }, 
-                            error: function(){
-                                console.log("아이디 중복체크용  ajax 통신실패")	
-                            },
-                        })
-                    });
-                    
-                </script>
                 </div>
                 <div class="password_wrap">
                     <b>비밀번호*</b>
@@ -121,82 +83,11 @@
                 <div class="phone_wrap">
                     <b>전화번호*</b>
                     <input type="text" name="phone" id="phone" placeholder="(-없이)"> 
-                    <button type="button" id="mobile_Auth" >인증번호요청</button><br>
+                    <button type="button" id="mobile_auth" >인증번호요청</button><br>
                     <b>인증번호*</b>
                     <input type="text" name="auth_num" id="auth_num">
                     <button type="button" id="auth_confirm">인증번호 확인</button>
-                    <br><br>
-                    
-                    <script>
-                            $(("#mobile_auth").click(function mobile_auth(){
-                                var phoneNumber = $("#phone").val();
-                                alert("인증번호 발송 완료!!");
-
-                                $.ajax({
-                                    url:"/mobileAuth.me",
-                                    type:"GET",
-                                    data:{
-                                        "phoneNumber" : phoneNumber
-                                    },
-                                    success: function(result){
-                                        $("#auth_num").click(function(){
-                                            if($.trim(result) == ("#auth_num").val()){
-                                                alert(
-                                                    "인증성공!", 
-                                                    "휴대폰 인증이 정상적으로 완료되었습니다.",
-                                                    "success"
-                                                )
-                                            }
-                                        })
-                                    }
-                                })
-
-                            }))
-                    </script>
-
-
-
-                    <!-- 인증번호 API 
-
-                    package net.nurigo.java_sdk.examples.Message;
-
-                    import java.util.HashMap;
-                    import org.json.simple.JSONObject;
-                    import net.nurigo.java_sdk.api.Message;
-                    import net.nurigo.java_sdk.exceptions.CoolsmsException;
-
-                    /**
-                    * @class ExampleSend
-                    * @brief This sample code demonstrate how to send sms through CoolSMS Rest API PHP
-                    */
-                    public class ExampleSend {
-                    public static void main(String[] args) {
-                        String api_key = "#ENTER_YOUR_OWN#";
-                        String api_secret = "#ENTER_YOUR_OWN#";
-                        Message coolsms = new Message(api_key, api_secret);
-
-                        // 4 params(to, from, type, text) are mandatory. must be filled
-                        HashMap<String, String> params = new HashMap<String, String>();
-                        params.put("to", "01000000000");
-                        params.put("from", "01000000000");
-                        params.put("type", "SMS");
-                        
-                        int random = Rand 4자
-                        params.put("text", "인증 번호는 ");
-                        params.put("app_version", "test app 1.2"); // application name and version
-
-                        try {
-                        JSONObject obj = (JSONObject) coolsms.send(params);
-                        System.out.println(obj.toString());
-                        } catch (CoolsmsException e) {
-                        System.out.println(e.getMessage());
-                        System.out.println(e.getCode());
-                        }
-                    }
-                    }
-                    
-                     -->
-                    
+                    <br><br>    
                 </div>
                 <div class="birth_wrap">
                     <b>생년월일</b>
@@ -867,7 +758,7 @@
                 </div>
                 <br><br>
                 <div class="btn_area">
-                    <span><button type="submit" id="btnAgree" class="btn btn-warning" onclick ="disabled" style="width: 190px; color:white; font-weight:600;" >회원가입</button></span>
+                    <span><button type="button" id="btnAgree" class="btn btn-warning" style="width: 190px; color:white; font-weight:600;" >회원가입</button></span>
                     <span><button="" id="btnCancel" class="btn btn-secondary" style="width: 190px; font-weight:600;">취소</button></span>
                 </div>
             </div>

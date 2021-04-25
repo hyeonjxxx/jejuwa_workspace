@@ -49,7 +49,7 @@ public class LoginPageServlet extends HttpServlet {
 			// 로그인 실패
 			request.setAttribute("loginError", "가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
 			request.getRequestDispatcher("views/member/loginPage.jsp").forward(request, response);
-			// 기능구현 문제있음 -> 로그인페이지를 나가도 계속 떠있음.
+			
 			
 		} else {
 			// 로그인 성공

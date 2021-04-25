@@ -4,7 +4,11 @@
 
 .login_main>*{
     height: 100%;
-    display: inline-block;
+    float:left;
+}
+
+.loginForm{
+    clear:both;
 }
 
 .login_title{
@@ -23,8 +27,8 @@
 }
 
 .slide_img{
-    width:200px;
-    height:300px;
+    width:250px;
+    height:400px;
     overflow: hidden;
 }
 

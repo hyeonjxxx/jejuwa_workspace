@@ -1,11 +1,14 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
@@ -49,8 +52,13 @@ public class MemberInsertServlet extends HttpServlet {
 		
 		// 5. 
 		if(result >0) { // 성공일 경우
-			System.out.println("성공 야호");
+			// alert로 띄워주고자 하는 메세지 담기 => session에 담기
+			HttpSession session = request.getSession();
+			session.setAttribute("alertMsg", "성공적으로 회원가입 되었습니다. 로그인해주세요.");
 			
+			response.sendRedirect(request.getContextPath());
+			
+			RequestDispatcher view = request.getRequestDispatcher("views/common/loginPage.jsp");
 		} else { // 실패할 경우
 			System.out.println("실패 야호");
 		}

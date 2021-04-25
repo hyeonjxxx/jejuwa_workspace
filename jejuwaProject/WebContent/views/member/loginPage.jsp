@@ -14,8 +14,17 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/member/loginPage.css">
 
     <!-- loginPage js -->
-    <script rel="stylesheet" src="<%=request.getContextPath()%>/resources/js/member/member.js"></script>
-
+		<script>
+		var msg = "<%= session.getAttribute("alertMsg") %>"; // 알람창으로 출력할 메세지
+		// var msg = "메세지"   / "null";
+		
+		if(msg != "null"){
+			alert(msg);
+			// session에 한 번 담아둔 건 내가 지우기 전 까지 계속 남아있다 (메뉴바 포함된 매 페이지가 열릴때마다 alert 계속 뜰 것)
+			// 알람창 띄워준 후에 session에 담긴 메세지 지워야함!!
+			<% session.removeAttribute("alertMsg");%>
+		}
+	</script>
     <!-- loginPage jQuery -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -32,7 +41,7 @@
 <body>
 
 	<%@ include file="../common/loginUserMenubar.jsp" %>
-    <br><br>
+        <br><br>
         <!-- 로그인창 -->
         <div class="login_main">
                 <div class="loginForm">
@@ -57,27 +66,34 @@
                         <% } %>
                         </div>
                         <div class="btn_login">
-                            <button id="btnAgree" type="submit" class="btn btn-warning" style="width: 350px; color:white; font-weight:600;" onclick ="return loginError();" >로그인하기</button>
+                            <button id="btnAgree" type="submit" class="btn btn-warning" style="width: 350px; color:white; font-weight:600;" >로그인하기</button>
+                        </div>
+                        <br>
+                        <div>
+                            <a href="<%= request.getContextPath() %>/IdPwFind.me">아이디 비밀번호 찾기</a> | 
+                            <a href="<%= request.getContextPath() %>/enroll.me">회원가입</a>
                         </div>
                     </form>
                 </div>
+                <br><br>
         
         
             <!-- 우측 상품 섬네일 -->
+            
             <div class="login_slide">
                 <div class="slide_box">
-                    <div class="thumb_box" height="50px">
+                    <div class="thumb_box" height="100px">
                         <span class="dotPrev"><img src="<%=request.getContextPath()%>/resources/images/carousel_circle_normal.png" alt="1"></span>
                     </div>
                     <div class="slide_img">
                         <a href="">
-                            <img id = "thumb_img" style="height: 300px;" src="<%=request.getContextPath()%>/resources/images/jeju_main.jpg">
+                            <img id = "thumb_img" style="height: 350px;" src="<%=request.getContextPath()%>/resources/images/jeju_main.jpg">
                         </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div >
+    </div >
     <br><br>
     <%@ include file="../common/footer.jsp" %>
 </body>

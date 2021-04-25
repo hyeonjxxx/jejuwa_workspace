@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- idPwFind css -->
-    <link rel="stylesheet" href="../resources/css/idPwFind.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/member/idPwFind.css">
 
     <!-- idPwFind js-->
     <link rel="stylesheet" href="">
@@ -38,6 +40,7 @@
 
 </head>
 <body>
+	<%@ include file="../common/loginUserMenubar.jsp" %>
     <div class="idPwFind_wrap">
         <p>아이디/비밀번호 찾기</p><br><br><br>
         <div class="idFind_wrap">
@@ -117,5 +120,6 @@
             </div>  
         </div>
     </div>
+    <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

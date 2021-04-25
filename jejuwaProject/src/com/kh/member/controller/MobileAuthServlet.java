@@ -1,6 +1,7 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
 
 import com.kh.member.model.service.MemberService;
 
@@ -36,9 +39,6 @@ public class MobileAuthServlet extends HttpServlet {
 			String phoneNumber = request.getParameter("phoneNumber");
 			// ajax에서 사용자가 입력한 값을 변수 phoneNumber로 지정 =>  서블릿으로 넘어온 키값이 phoneNumber를 String phoneNumber라는 변수에 담아줌
 			
-			
-			String sendSMS(String phoneNumber) {
-
 	        Random rand  = new Random();
 	        
 	        String numStr = "";
@@ -47,12 +47,21 @@ public class MobileAuthServlet extends HttpServlet {
 	            numStr+=ran;
 	        }
 
-	        System.out.println("수신자 번호 : " + phoneNumber);
-	        System.out.println("인증번호 : " + numStr);
-	        new MemberService().certifiedPhoneNumber(phoneNumber,numStr);
-	        return numStr;
-	    }
-	}
+	        String result = new MemberService().certifiedPhoneNumber(phoneNumber,numStr);
+	        
+	        if(result.isEmpty()) {
+	        	System.out.println("실패!");
+	        } else {
+	        	System.out.println("성공!");
+	        }
+	        
+	        JSONObject jobj = new JSONObject();
+	    	jobj.put("result", numStr);
+
+	    	response.setContentType("application/json");
+	    	PrintWriter out = response.getWriter();			
+	    	out.print(jobj.toJSONString()); 
+    	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

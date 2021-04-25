@@ -1,36 +1,5 @@
-/**
- * 
-
-function loginError(){
-    // 로그인 유효성 검사 
-    var memId = document.getElementById("memId");
-    var memPwd = document.getElementById("memPwd");
-
-    if(memId.value !=  
-    
-}
-
- */
-
-
 
 $(document).ready(function(){
-    // 로그인 유효성 검사
-    $('#memName').focusout(function() {
-    
-        var regExp = /^[가-힣]{2,}$/g;
-
-        if(!regExp.test( $('#memName').val()  )){
-            $('#memName_chk').change($("#memName_chk").html('<label style="color:red;">이름이 잘못입력되었습니다.</label>'));
-            
-            $('#memName').val("");
-            $('#memName').one('focus',focus());
-            return false;
-        } else{
-            $('#memName_chk').change($("#memName_chk").html('<label style="color:green;">좋은 이름이시네요 :)</label>'));
-        }
-
-    });
 
     // 회원가입 유효성 검사 : 이름,아이디,비밀번호,비밀번호확인
     // 1) 이름 검사
@@ -102,6 +71,114 @@ $(document).ready(function(){
         $(this).parents(".join_content").find('input').prop("checked", $(this).is(":checked"));
     });
     
+
+    // 아이디 중복확인
+    $("#id_check_btn").click(function(){
+        // form 요소 안에 name이 userId인 input요소객체 선택하기
+        var $memId = $("#memId"); // value값 아님 이후에 userId.val()로 알아내면 됨
+        // 이거 jQuery 방식으로 입력한 객체인 것을 알려주기 위해 $ 붙이기
+        $.ajax({
+            url: "idCheck.me",
+            type: "get",
+            data: {checkId:$memId.val()},
+            success: function(result){
+                if(result == 'NNNNN'){ // 사용불가능(기존에 아이디가 있음)
+                    
+                    $('#id_check').change($("#id_check").html('<label style="color:red;">이미 존재하거나 탈퇴한 회원의 아이디입니다.</label>'));
+    
+                    $memId.one('focus',focus());
+                    
+                } else{ // 사용가능(아이디 생성 가능)
+                    if(confirm("사용가능한 아이디입니다. 정말로 사용하시겠습니까?")){
+                        // 사용하겠다 => 더 이상 변경불가, 회원가입버튼활성화
+                        $('#id_check').change($("#id_check").html('<label style="color:green;">좋은 아이디 입니다.</label>'));
+                        $("#memId:submit").removeAttr("disabled");
+                        $('#is_unique_id').val('T');
+                        // id가 enrollForm인 자식요소들 중  submit 요소의 속성(disabled)을 제거하겠다
+                    } else{
+                        // 사용가능하지만 다시 입력하겠다
+                        $memId.focus();
+                    }
+                }
+            }, 
+            error: function(){
+                console.log("아이디 중복체크용  ajax 통신실패")	
+            },
+        })
+    });
+
+    // 휴대폰 인증
+    $("#mobile_auth").click(function(){
+        var phoneNumber = $("#phone").val();
+        alert("인증번호 발송 완료!!");
+
+        $.ajax({
+            url:"mobileAuth.me",
+            type:"POST",
+            data:{
+                "phoneNumber" : phoneNumber
+            },
+            success: function(res){
+                console.log(res.result);
+                $("#auth_confirm").click(function(){
+                    if($.trim(res.result) == $("#auth_num").val()){
+                        // 체크조건 바꾸기
+                        $('#is_mobile_auth').val('T');
+                        // 인증번호 버튼 불가로 만들기
+                        $("#auth_num").attr('disabled', 'disabled');
+                        alert('휴대폰 인증에 성공했습니다.')
+
+                    } else{
+                        alert("인증번호가 일치하지 않습니다. 인증번호를 다시 확인해주세요");
+
+                        $auth_num.one('focus',focus());
+                    }
+                })
+            }
+        })
+    });
+
+    // 회원가입 넘길때 check요소 없을 시, 제약걸기
+    $('#btnAgree').click(function(e) {
+        e.preventDefault();
+
+        // Check
+        // 아이디 인증 체크
+        if($('#is_unique_id').val() !== 'T') {
+             alert('아이디 중복확인해주시기 바랍니다.');
+             return false;
+        }
+        
+        // 비밀번호 체크
+        var regExp = /^[a-z\d!@#$%^&*]{8,15}$/i;
+        if(!regExp.test( $('#passwod').val())){
+               alert('비밀번호를 제대로 입력해야합니다.');
+               return false;
+          }
+
+        // 비밀번호 확인체크
+        if($('#passwod').val() == $('#pass_confirm')){
+             alert('비밀번호가 다릅니다. 확인해주세요');
+             return false;
+        }
+        
+        // 휴대폰 인증 체크
+        // if($('#is_mobile_auth').val() !== 'T') {
+        //     alert('휴대폰 인증해주시기 바랍니다.');
+        //     return false;
+        // }
+       
+        // 이용약관 체크 checkbox checked 여부 :
+        // id인 경우 : $('input:checkbox[id="checkbox_id"]').is(":checked") == true
+        if($('input:checkbox[id="chk_ns"]').is(":checked") == true == true){
+            
+        } else{
+            alert('필수 이용약관에 동의해주세요.');
+            return false;
+        }
+
+        $('#enrollForm').submit();
+    });
 })
 
 

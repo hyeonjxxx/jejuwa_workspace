@@ -175,7 +175,42 @@
 		    AND THEME_CODE = 'TR'
 		  ORDER BY P_CODE DESC       	
 	</entry>		
+
+	<entry key="selectThList_TT">
+		SELECT 
+				P_CODE
+			  , P_NAME
+			  , PRICE
+			  , BASIC_PATH
+		   FROM PRODUCT	
+		  WHERE P_STATUS = 'Y' 
+		    AND THEME_CODE = 'TT'
+		  ORDER BY P_CODE DESC       	
+	</entry>
 	
+	<entry key="selectThList_AY">
+		SELECT 
+				P_CODE
+			  , P_NAME
+			  , PRICE
+			  , BASIC_PATH
+		   FROM PRODUCT	
+		  WHERE P_STATUS = 'Y' 
+		    AND THEME_CODE = 'AY'
+		  ORDER BY P_CODE DESC       	
+	</entry>
+	
+	<entry key="selectThList_FD">
+		SELECT 
+				P_CODE
+			  , P_NAME
+			  , PRICE
+			  , BASIC_PATH
+		   FROM PRODUCT	
+		  WHERE P_STATUS = 'Y' 
+		    AND THEME_CODE = 'FD'
+		  ORDER BY P_CODE DESC       	
+	</entry>	
 	
 	<!-- 좋아요 카운트 -->
 	<entry key="likeCount">
