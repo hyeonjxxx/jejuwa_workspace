@@ -116,10 +116,6 @@
                         params.put("text", "인증 번호는 ");
                         params.put("app_version", "test app 1.2"); // application name and version
 
-						디비에 넣기
-						INSERT INTO tmp_sms_auth (휴대포번호, 인증번호, 생성시간) VALUE  
-
-
                         try {
                         JSONObject obj = (JSONObject) coolsms.send(params);
                         System.out.println(obj.toString());

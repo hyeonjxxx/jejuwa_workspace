@@ -101,8 +101,6 @@ $(document).ready(function(){
     $(".join_content").on("click", "#chk_all", function () {
         $(this).parents(".join_content").find('input').prop("checked", $(this).is(":checked"));
     });
-
-
     $(function id_check(){
         // form 요소 안에 name이 userId인 input요소객체 선택하기
         var $memId = $("#memId"); // value값 아님 이후에 userId.val()로 알아내면 됨
