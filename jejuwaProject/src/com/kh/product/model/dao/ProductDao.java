@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.kh.common.model.vo.Attachment;
+import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.vo.Product;
 
 public class ProductDao {
@@ -30,7 +32,38 @@ public class ProductDao {
 		}
 	}
 
-	public ArrayList<Product> selectProductList(Connection conn) {
+	// 총 게시글 갯수 
+	public int selectListCount(Connection conn) {
+		
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) { //무조건 한행을 움직여줘야 게시글 갯수알수있음
+				listCount = rset.getInt("LISTCOUNT"); //별칭으로 조회
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return listCount;
+	}
+	
+	
+	
+	// 페이징 처리+리스트 조회
+	public ArrayList<Product> selectProductList(Connection conn, PageInfo pi) {
 		//select문 => ResultSet 객체 (여러행)
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -40,6 +73,10 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, (pi.getCurrentPage() -1 ) * pi.getBoardLimit()+1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -60,8 +97,10 @@ public class ProductDao {
 		}
 		
 		return list;
-	}
+	}	
 	
+	
+	// 상품추가
 	public int insertProduct(Connection conn, Product p) {
 		// insert문 => 처리된 행수
 		int result = 0;
@@ -71,13 +110,13 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql); //미완성
-			pstmt.setString(1, p.getpName());
-			pstmt.setInt(2, p.getPrice());
-			pstmt.setInt(3, p.getpStock());
+			pstmt.setString(1, p.getLocalCode());
+			pstmt.setString(2, p.getThemeCode());
+			pstmt.setString(3, p.getpName());
 			pstmt.setString(4, p.getBasicPath());
-			pstmt.setString(5, p.getDetailPath());
-			pstmt.setString(6, p.getLocalCode());
-			pstmt.setString(7, p.getThemeCode());
+			pstmt.setInt(5, p.getPrice());
+			pstmt.setInt(6, p.getpStock());
+			pstmt.setString(7, p.getDetailPath());
 			
 			result = pstmt.executeUpdate();
 			
@@ -89,8 +128,181 @@ public class ProductDao {
 		
 		return result;
 		
-	}	
+	}
 
+	// File테이블에 세부이미지추가
+	public int insertAttachment(Connection conn , Attachment at) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at.getOrgFileName());
+			pstmt.setString(2, at.getMdfFileName());
+			pstmt.setString(3, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	// 상품수정
+	// 상품테이블 수정페이지 불러오기
+	public Product selectProduct(Connection conn, String pCode) {
+		Product p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pCode);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				p = new Product(rset.getString("LOCAL_CODE"),
+						        rset.getString("THEME_CODE"),
+						        rset.getString("P_CODE"),
+						        rset.getString("P_NAME"),
+						        rset.getString("BASIC_PATH"),
+						        rset.getInt("PRICE"),
+						        rset.getInt("P_STOCK"),
+						        rset.getString("DEATIL_PATH"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return p;
+	}
+	// 세부이미지 수정페이지에 불러오기
+	public ArrayList<Attachment> selectAttachment(Connection conn, String pCode) {
+		// 세부이미지가 여러개니까 여러행 조회!!
+		ArrayList<Attachment> list = new ArrayList<>();;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAttachment");
+	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pCode);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Attachment at = new Attachment();
+				at.setFileNo(rset.getInt("FILE_NO"));
+				at.setOrgFileName(rset.getString("ORG_FILENAME"));
+				at.setMdfFileName(rset.getString("MDF_FILENAME"));
+				at.setFilePath(rset.getString("FILE_PATH"));
+				at.setpCode(rset.getString("P_CODE"));
+				
+				list.add(at);
+				
+				//System.out.println(list);
+				
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	// update 상품 
+	public int updateProduct(Connection conn, Product p) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updataProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, p.getLocalCode());
+			pstmt.setString(2, p.getThemeCode());
+			pstmt.setString(3, p.getpName());
+			pstmt.setString(4, p.getBasicPath());
+			pstmt.setInt(5, p.getPrice());
+			pstmt.setInt(6, p.getpStock());
+			pstmt.setString(7, p.getDetailPath());
+			pstmt.setString(8, p.getpCode());
+			
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	// update 세부이미지들
+	public int updateAttachment(Connection conn, Attachment at) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, at.getOrgFileName());
+			pstmt.setString(2, at.getMdfFileName());
+			pstmt.setString(3, at.getFilePath());
+			pstmt.setString(4, at.getpCode());
+			
+			result = pstmt.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	// insert 수정페이지에서 세부이미지 추가
+	public int insertNewAttachment(Connection conn, Attachment at) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNewAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);   
+			pstmt.setString(1, at.getpCode());
+			pstmt.setString(2, at.getOrgFileName());
+			pstmt.setString(3, at.getMdfFileName());
+			pstmt.setString(4, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}	
 	
 	//쎔네일리스트로 상품보기
 		public ArrayList<Product> selectThList(Connection conn){
@@ -160,6 +372,39 @@ public class ProductDao {
 			
 			return p;
 				
+		}
+		
+		// 투어 카테고리 선택 
+		public ArrayList<Product> selectThList_TR(Connection conn) {
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectThList_TR");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+
+				while(rset.next()) {
+					
+					Product p = new Product();
+					p.setpCode(rset.getString("p_code"));
+					p.setpName(rset.getString("p_name"));
+					p.setPrice(rset.getInt("price"));
+					p.setBasicPath(rset.getString("basic_path"));
+				
+					list.add(p);				
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(rset);
+				close(pstmt);
+			}		
+			
+			return list;
 		}
 		
 		// 좋아요 카운트

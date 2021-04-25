@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import ="java. util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.Attachment"%>
+<%
+	Product p = (Product)request.getAttribute("p");
+	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,15 +22,16 @@
 
 	<%@ include file="../common/adminPageMenubar.jsp" %>
 
-    <div class="outer">
+ <div class="outer">
         <br>
         <span class="title">상품수정</span>
         <div class="divisionLine"></div>
         <br>
 
-        <!-- 상품등록 입력폼 -->
+        <!-- 상품수정 입력폼 -->
         <div class="pdfInfo">
-            <form action="" method="POST" id="pdfEnrollForm" name="pdfEnrollForm">
+            <form action="<%=contextPath %>/update.pdt" method="POST" id="pdtUpdateForm" name="pdtUpdateForm" enctype="multipart/form-data">
+                <input type="hidden" name="pcode" value="<%=p.getpCode() %>">
                 <table>
                     <tr>
                         <td width="120">*카테고리</td>
@@ -41,95 +46,131 @@
                                 <option value="SS">성산/우도</option>
                                 <option value="DH">함덕/구좌</option>
                             </select>
+                            
+                            <script>
+                            	$(function(){
+                             		$("#localCode option").each(function(){
+                             			if($(this).text == <%=p.getLocalCode() %>){
+                             				$(this).attr("selected", true);
+                             			}
+                             		})
+                             		
+                             	})
+                            </script>
+                            
                             <select name="themeCode" id="themeCode">
                                 <option value="TR">투어</option>
                                 <option value="TT">티켓</option>
                                 <option value="AY">액티비티</option>
                                 <option value="FD">맛집</option>
                             </select>
+                            
+                            <script>
+                             	$(function(){
+                            		$("#themeCode option").each(function(){
+                             			if($(this).text == <%=p.getThemeCode() %>){
+                             				$(this).attr("selected", true);
+                             			}
+                             		})
+                             		
+                             	})
+                            </script>
+                            
                         </td>
+                    </tr>
+                    <tr>
+                        <td>*상품명</td>
+                        <td><input type="text" name="pName" id="pName" value="<%=p.getpName()%>"></td>
                     </tr>
                     <tr>
                         <td>상품코드</td>
                         <td style="color: red;"><span>*자동으로 부여됨</span></td>
-                    </tr>                    
-                    <tr>
-                        <td>*상품명</td>
-                        <td><input type="text" name="" id=""></td>
                     </tr>
                     <tr>
-                        <td>*기본 이미지</td>
-                        <td><input type="file" name="titleImg" id="titleImg"></td>
+                        <td rowspan=2>*기본 이미지</td>
+	                    <td>기존파일 : <%=p.getBasicPath() %></td>
                     </tr>
                     <tr>
-                        <td width="100">세부 이미지1</td>
-                        <td><input type="file" name="subImg1" id="subImg1"></td>
+                    	 <td>수정파일 :  <input type="file" name="titleImg" id="titleImg" ></td>
+                    	<!-- input타입은 이미지 미리보기가 없음!!!!@!!! value속성을 해도 -->
                     </tr>
-                    <tr>
-                        <td width="100">세부 이미지2</td>
-                        <td><input type="file" name="subImg2" id="subImg2"></td>
-                    </tr>
-                    <tr>
-                        <td width="100">세부 이미지3</td>
-                        <td><input type="file" name="subImg3" id="subImg3"></td>
-                    </tr>
-                    <tr>
+
+					<tr>
+                    		<td width="100">세부 이미지1</td>
+                        	<td><input type="file" name="subImg1" id="subImg1" ></td>
+                        	</tr>
+                        	<tr>
+                        	<td width="100">세부 이미지2</td>
+                        	<td><input type="file" name="subImg2" id="subImg2" ></td> 
+                        	</tr>
+                        	<tr>
+                        	<td width="100">세부 이미지1</td>
+                        	<td><input type="file" name="subImg3" id="subImg3" ></td>
+					</tr>
+    
+                    	<!-- 기존의 세부이미지 파일이 있었다면-->
+	                    <% if(list != null){ %>
+                    		<% for(int i=1; i<list.size(); i++) {%>
+                    		<tr>
+                    			<td width=100>세부이미지[i]</td>
+	                    		<td>
+	                    			<%=contextPath%>/<%=list.get(i).getFileNo() + list.get(i).getMdfFileName()%><br>
+	                    			<input type="file"  name="subImg1" id="subImg1">
+	                    		</td>
+	                    	</tr>
+	                    	<% } %>
+                   	 	<% }else{ %>
+  
+                  	  <% } %> 
+            
                         <td>*판매가</td>
-                        <td><input type="text" style="width: 100px;">원</td>
+                        <td><input type="text" name="price" value="<%=p.getPrice()%>" style="width: 100px;" >원</td>
                     </tr>
                     <tr>
                         <td>*수량</td>
-                        <td><input type="number" style="width: 50px;">개</td>
+                        <td><input type="number" name="pStock" value="<%=p.getpStock()%>" style="width: 50px;">개</td>
                     </tr>
                     <tr>
-                        <td>*상품상세 정보</td>
-                        <td><input type="file" name="detailImg" id="detailImg"></td>
+                        <td rowspan=2>*상품상세 정보</td>
+                        <td>기존파일 : <%=p.getDetailPath()%></td>
+                    </tr>
+                    <tr>
+	                     <td>수정 파일 : <input type="file" name="detailImg" id="detailImg"></td>
                     </tr>
                 </table>
-            </form>
-
-        </div>
-        <br><br>        
-
-        <!-- 버튼 -->
-        <div align="right" class="btnArea">
-            <div id="btnBack"><a href="">목록으로</a></div>
-            <!-- Button to Open the Modal -->
-            <button type="button" id="btnEnroll" data-toggle="modal" data-target="#myModal">수 정</button>
-        </div>
-
-
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal"  align="center">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
                 
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                    상품을 수정하시겠습니까?
-                    </div>
-                    <div id="modalContent" class="input-group mb-3">
-                        <div class="input-group-prepend">
-                        <span class="input-group-text" >
-                            <i class="bi bi-key"></i> <!-- i 태그 -->
-                        </span>
-                        </div>
-                        <input size="25" type="password" placeholder=" 관리자 비밀번호">
-                    </div>        
-                    
-                    <!-- Modal footer -->
-                    <div class="modal-footer" align="center">
-                    <button type="button" id="okBtn" class="btn btn-warning">OK</button>
-                    <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-
+		        <br><br>        
+		        <!-- 버튼 -->
+		        <div align="right" class="btnArea">
+		            <div id="btnBack"><a href="<%=contextPath %>/list.pdt?currentPage=1">목록으로</a></div>
+		            <!-- Button to Open the Modal -->
+		            <button type="button" id="btnEnroll" data-toggle="modal" data-target="#updateModal">수 정</button>
+		        </div>
+		        <!-- The Modal -->
+		        <div class="modal fade" id="updateModal"  align="center">
+		            <div class="modal-dialog modal-dialog-centered">
+		                <div class="modal-content">
+		                
+		                    <!-- Modal body -->
+		                    <div class="modal-body">
+		                   		 상품을 수정하시겠습니까?
+		                    </div>     
+		                    
+		                    <!-- Modal footer -->
+		                    <div class="modal-footer" align="center">
+		                    <button type="submit" id="okBtn" class="btn btn-warning">OK</button>
+		                    <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+		                    </div>
+		                    
+		                </div>
+		            </div>
+		        </div>
+        
+            </form>
 
         
     </div>	
+    	
 
 </body>
 </html>

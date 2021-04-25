@@ -14,11 +14,10 @@
 }    
 
 /* 입력폼 */
-#pdtEnrollForm table {margin:30px 30px;}         
-#pdtEnrollForm input{margin:10px; border: 1px solid silver;}
+#pdtUpdateForm table {margin:30px 30px;}         
+#pdtUpdateForm input{margin:10px; border: 1px solid silver;}
 select, span{margin-left: 10px;}
-td, span{font-size: 14px; padding: 3px 0;height: 40px;}
-
+td, span{font-size: 14px; padding: 3px 0;}
 
                
 /* 버튼 */

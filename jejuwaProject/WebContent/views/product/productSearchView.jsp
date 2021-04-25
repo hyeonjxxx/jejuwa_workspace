@@ -38,19 +38,21 @@
             <a href="">제주와 추천순<img src="<%=contextPath%>/resources/images/check_c.png" alt="" width="15"></a> &nbsp;&nbsp;
             <a href="">판매순<img src="<%=contextPath%>/resources/images/check_c.png" alt="" width="15"></a>
         </div>
-        
-        <div class="category">
-                    <ul class="sub">
-                        <li class="current"><a href="">전체보기</a></li>
-                        <li><a href="">투어</a></li>
-                        <li><a href="">티켓</a></li>
-                        <li><a href="">액티비티</a></li>
-                    </ul>
-        </div>
-                
-        <div class="pdt_wrap">
+
+		<div class="category">
+			<ul class="sub">
+				<li class="current" onclick="top.location.href='<%=contextPath%>/mapSearch.pdt';"><a >전체보기</a></li>
+				<li onclick="top.location.href='<%=contextPath%>/search_TR.pdt';"><a>투어</a></li>
+				<li><a href="">티켓</a></li>
+				<li><a href="">액티비티</a></li>
+			</ul>
+		</div>
+
+		<div class="pdt_wrap">
              <ul class="pdtList">
-        	<%for(Product p : list) {%> 
+        	<%
+        		for (Product p : list) {
+        	%> 
                         <li class=pdtArea>
                         <input type="hidden" value="<%=p.getpCode()%>">
                             <div class="pdtBox">

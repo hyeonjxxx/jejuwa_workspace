@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product"%>
+<%
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+%>       
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +29,7 @@
                 <aside class="detailSearch">
                     <p>지도로 보기 <img src="<%=request.getContextPath() %>/resources/images/map.png" alt="" width="15"></p>
                     <div class="map">
-                        <img src="../../resources/images/jejuMap.png" alt="제주지도" width="180px">
+                        <img src="<%=request.getContextPath() %>/resources/images/jejuMap.png" alt="제주지도" width="180px">
                         <button class="ss">성산/우도</button>
                         <button class="hd">함덕/구좌</button>
                         <button class="jj">제주시</button>
@@ -80,7 +83,7 @@
                     <a href="">판매순<img src="<%=request.getContextPath() %>/resources/images/check_c.png" alt="" width="15"></a>
                 </div>
         
-                <div class="category">
+               <div class="category">
                     <ul>
                         <li class="current"><a href="">전체보기</a></li>
                         <li><a href="">투어</a></li>
@@ -90,85 +93,38 @@
                     </ul>
                 </div>
                 
-                <div class="pdt_wrap">
-                    <ul class="pdtList">
-                        <li>
+
+
+		<div class="pdt_wrap">
+             <ul class="pdtList">
+        	<%
+        		for (Product p : list) {
+        	%> 
+                        <li class=pdtArea>
+                        <input type="hidden" value="<%=p.getpCode()%>">
                             <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 230px;"></div>
+                                <a >
+                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;"></div>
                                     <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
+                                        <p class="pdtName"><%=p.getpName() %></p>
+                                        <p class="pdtPrice"><%=p.getPrice() %>원</p>
                                     </div>
                                 </a>
                             </div>
                         </li>
+			<% } %>		
+			</ul>
 
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 230px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 230px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 230px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 230px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="pdtBox">
-                                <a href="" onclick="">
-                                    <div class="pdtPhoto"><img src="../../resources/images/reco_1.png" style="width: 230px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName">제주시티투어</p>
-                                        <p class="pdtPrice">123,000원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                    </ul>
-
-                </div>
-    
-            </div>
+        </div>
+        
+        <script>
+        	$(function(){
+        		$(".pdtArea").click(function(){
+        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+        		})	
+        	})
+        	
+        </script>
 
         </div>
 
