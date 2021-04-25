@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "com.kh.product.model.vo.*"%>
+    pageEncoding="UTF-8" import = "java.util.ArrayList, 
+    com.kh.product.model.vo.*, com.kh.like.model.vo.*"%>
 <%
-	Product p = (Product)request.getAttribute("p");
-	//String contextPath = request.getContextPath();
+	//Product p = (Product)request.getAttribute("p");
+	ArrayList<Like> list = (ArrayList<Like>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -33,9 +34,9 @@
         .gallery{width: 979px; margin: auto;}
         .gallery > li{float: left; padding: 10px 70px 30px 30px; width:350px; list-style: none;}
         /*.gallery > li:nth-child(2n) {padding-right: 0;}*/
-        .gallery li a{display : block; position: relative; text-decoration: none; }
-        .gallery li ul{padding : 30px 50px 30px; border: 1px solid gray;}
-        .gallery li ul li{font-size: 15px; padding: 0 0 12px 15px; list-style: none; color: black; } 
+        .gallery li a{display : block; position: relative; text-decoration: none;  }
+        .gallery li ul{padding : 30px 50px 30px; border: 1px solid gray; height:100px}
+        .gallery li ul li{font-size: 15px; padding: 0 0 12px 15px; list-style: none; color: black;  } 
         
     </style>
     
@@ -48,19 +49,21 @@
 		
         <h3>좋아요</h3>
         <hr>
-        <ul class="gallery">
-        	 <li>
-                 <a href="">
-                     <h2><img src="../resources/images/event.png" alt="이벤트1"></h2>
-                     <ul>
-                         <li>상품명</li>
-                         
-                     </ul>
-                 </a>
-             </li>
-			     
-        </ul>
-                    
+        	
+        <%for(Like l : list){ %>
+        	<%if(loginUser != null && loginUser.getMemNo()==l.getMemNo()){ %>		
+		<ul class="gallery">
+			<li>
+				<a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=l.getpCode()%>"><%=l.getDetailPath() %></a>
+        		<ul><li><%=l.getpName() %></li></ul>
+  			</li>
+		</ul>
+			<%}else{ %>
+				
+			<%} %>
+        <%} %>		
+        	
+                  
      </div>
      
      

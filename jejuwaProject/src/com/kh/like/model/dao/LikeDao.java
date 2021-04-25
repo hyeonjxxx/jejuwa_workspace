@@ -28,7 +28,7 @@ public class LikeDao {
 	}
 	
 	
-	public ArrayList<Like> selectLikePro(Connection conn, String pCode) {
+	public ArrayList<Like> selectLikePro(Connection conn) {
 		// select
 		ArrayList<Like> list = new ArrayList<>();
 		
@@ -39,7 +39,6 @@ public class LikeDao {
 		try {
 			
 			pstmt = conn.prepareStatement(sql);
-			
 			rset = pstmt.executeQuery();
 			
 			// 여러개 조회가능

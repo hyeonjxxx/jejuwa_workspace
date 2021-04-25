@@ -13,9 +13,9 @@ import com.kh.like.model.vo.Like;
 
 public class LikeService {
 	
-	public ArrayList<Like> selectLikePro(String pCode){
+	public ArrayList<Like> selectLikePro(){
 		Connection conn = getConnection();
-		ArrayList<Like> list = new LikeDao().selectLikePro(conn, pCode);
+		ArrayList<Like> list = new LikeDao().selectLikePro(conn);
 		close(conn);
 		return list;
 	}

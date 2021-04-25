@@ -34,14 +34,13 @@ public class MyPageLikeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		String pCode = request.getParameter("pno");
+		//String pCode = request.getParameter("pno");
 		
-		ArrayList<Like> list = new LikeService().selectLikePro(pCode);
-		
+		ArrayList<Like> list = new LikeService().selectLikePro();
+		//System.out.println(list);
+		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/mypage/myPageLike.jsp").forward(request, response);
-		response.setContentType("application/json; charset=UTF-8");
-		Gson gson = new Gson();
-		gson.toJson(list, response.getWriter());
+
 	}
 
 	/**
