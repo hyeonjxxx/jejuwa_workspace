@@ -46,7 +46,7 @@ public class LikeDao {
 				list.add(new Like(rset.getInt("MEM_NO"),
 								  rset.getString("P_CODE"),
 								  rset.getString("P_NAME"),
-								  rset.getString("DEATIL_PATH")));
+								  rset.getString("BASIC_PATH")));
 			}
 			
 			

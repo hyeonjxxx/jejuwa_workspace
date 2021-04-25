@@ -8,6 +8,7 @@
 		  
 	</entry>
 	
+	<!-- 마이페이지 취소리스트 조회 -->
 	<entry key="selectOrderList">
 		SELECT
 		        ORDER_NO

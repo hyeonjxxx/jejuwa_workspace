@@ -54,12 +54,12 @@
         	<%if(loginUser != null && loginUser.getMemNo()==l.getMemNo()){ %>		
 		<ul class="gallery">
 			<li>
-				<a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=l.getpCode()%>"><%=l.getDetailPath() %></a>
+				<a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=l.getpCode()%>"><%=l.getBasicPath() %></a>
         		<ul><li><%=l.getpName() %></li></ul>
   			</li>
 		</ul>
 			<%}else{ %>
-				
+
 			<%} %>
         <%} %>		
         	

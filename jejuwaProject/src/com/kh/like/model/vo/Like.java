@@ -5,18 +5,30 @@ public class Like {
 	private int memNo;
 	private String pCode;
 	private String pName;
+	private String basicPath;
 	private String detailPath;
 	
 	
 	public Like() {}
 
 
-	public Like(int memNo, String pCode, String pName, String detailPath) {
+	public Like(int memNo, String pCode, String pName, String basicPath, String detailPath) {
 		super();
 		this.memNo = memNo;
 		this.pCode = pCode;
 		this.pName = pName;
+		this.basicPath = basicPath;
 		this.detailPath = detailPath;
+	}
+	
+	
+
+	public Like(int memNo, String pCode, String pName, String basicPath) {
+		super();
+		this.memNo = memNo;
+		this.pCode = pCode;
+		this.pName = pName;
+		this.basicPath = basicPath;
 	}
 
 
@@ -50,6 +62,16 @@ public class Like {
 	}
 
 
+	public String getBasicPath() {
+		return basicPath;
+	}
+
+
+	public void setBasicPath(String basicPath) {
+		this.basicPath = basicPath;
+	}
+
+
 	public String getDetailPath() {
 		return detailPath;
 	}
@@ -62,9 +84,9 @@ public class Like {
 
 	@Override
 	public String toString() {
-		return "Like [memNo=" + memNo + ", pCode=" + pCode + ", pName=" + pName + ", detailPath=" + detailPath + "]";
+		return "Like [memNo=" + memNo + ", pCode=" + pCode + ", pName=" + pName + ", basicPath=" + basicPath
+				+ ", detailPath=" + detailPath + "]";
 	}
 
-	
-	
+		
 }

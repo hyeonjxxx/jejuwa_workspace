@@ -8,7 +8,7 @@
 		       MEM_NO
 		     , P_CODE
 		     , P_NAME
-		     , DEATIL_PATH
+		     , BASIC_PATH
 		  FROM TLIKE
 		  JOIN PRODUCT USING (P_CODE)
 		 

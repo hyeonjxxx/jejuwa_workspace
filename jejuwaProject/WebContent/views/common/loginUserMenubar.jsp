@@ -217,7 +217,7 @@
                     <div class="coupon">
                             <a href="">
                                 <img src="<%= request.getContextPath() %>/resources/images/좋아요.png" width="40px" alt="">
-                                <p>좋아요</p>
+                                <p><a href = "<%=request.getContextPath()%>/list.mpl">좋아요</a></p>
                             </a>
                     </div>
                     <div class="coupon">
