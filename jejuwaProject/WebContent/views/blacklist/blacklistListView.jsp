@@ -81,10 +81,20 @@
 		                    </tr>
 	                    <% } %>
                     <% } %>
-
                 </tbody>
-
             </table>
+            
+            <script>
+            	// 상세보기 요청
+            	$(function(){
+            		$("#memberList>tbody>tr").click(function(){
+            			location.href='<%=contextPath%>/detail.bl?memId=' + $(this).children().eq(1).text();
+            		})
+            	})
+            
+            </script>
+            
+            
 
         </div>
 
@@ -149,22 +159,36 @@
                     <!-- Modal body -->
                     <br>
                     <div class="modal-body" >
-                        블랙리스트를 해제하시겠습니까?
+                        	블랙리스트를 해제하시겠습니까?
                     </div>
+                    
+                    <form action="<%= contextPath %>/remove.bl" method="post">
                     <div id="ubModalContent" class="input-group mb-3">
                         <div class="input-group-prepend">
                         <span class="input-group-text" >
-                            <i class="bi bi-key"></i> <!-- i 태그 -->
+                            <i class="bi bi-key"></i>
                         </span>
                         </div>
-                        <input size="25" type="password" placeholder=" 관리자 비밀번호">
+                        <input name="adminPwd" size="25" type="password" placeholder=" 관리자 비밀번호">
+                        <input name="memNo" type="hidden" value="">  <!-- 선택된 행의 id를 넘겨야함 -->
+                        <input name="memId" type="hidden" value="">  <!-- 필요한가..?(디테일뷰에서는필요했음) -->
                     </div>
 
                     <!-- Modal footer -->
                     <div id="ubModalFooter">
-                        <button id="okBtn" class="btn btn-warning">OK</button>
+                        <button type="submit" id="okBtn" class="btn btn-warning" onclick="return removeBlacklist();">OK</button>
                         <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
                     </div>
+                    
+                    <script>
+                    	function removeBlacklist(){
+                    		if($("input[name=adminPwd]").val() != <%= loginUser.getMemPwd()%>){
+                    			alert("관리자 비밀번호가 일치하지 않습니다.");
+                    			return false;
+                    		}
+                    	}
+                    </script>
+                    </form>
                 </div>
             </div>
         </div>
