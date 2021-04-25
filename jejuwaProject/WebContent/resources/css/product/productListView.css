@@ -116,21 +116,13 @@
       margin: 10px 0 15px 9px;
   }
   
-/* 버튼 + 페이징 구역*/
-.bottomArea{
-    margin: 15px;
-    margin-left: 50px;
-}
-.bottomArea *{float:left;}
-
-
-  
-/* 페이징  */
+/* 페이징 구역 */
 .pagingArea{
-    margin-left:90px;
-    margin-right: 90px;
+    margin: 15px;
+    margin-left:260px;
 }
-
-.pagingArea *{margin-right: 5px; margin-top: 9px; border-radius:3px; }
-
-            
+.pagingArea *{
+    float:left;
+    margin-right: 5px;
+    margin-top: 9px;
+    border-radius:3px; }       

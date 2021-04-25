@@ -18,7 +18,7 @@
     letter-spacing: -0.32px;
     white-space: nowrap;
     color: var(--gray-800);
-    background-color: var(--white);
+    background-color: #ffffff;
 }
 .hd{
     position: absolute;

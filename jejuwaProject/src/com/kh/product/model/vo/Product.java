@@ -38,6 +38,20 @@ public class Product {
 		this.pStock = pStock;
 		this.pStatus = pStatus;
 	}
+
+	// 수정페이지 
+	public Product(String localCode, String themeCode, String pCode, String pName, String basicPath,  
+		 int price, int pStock, String detailPath){
+		super();
+		this.localCode = localCode;
+		this.themeCode = themeCode;
+		this.pCode = pCode;
+		this.pName = pName;
+		this.basicPath = basicPath;
+		this.price = price;
+		this.pStock = pStock;
+		this.detailPath = detailPath;
+	}	
 	
 	// 썸네일리스트 조회시
 	public Product( String pName, int price, String basicPath, String detailPath) {
@@ -47,9 +61,6 @@ public class Product {
 		this.basicPath = basicPath;
 		this.basicPath = basicPath;
 	}
-
-	// 상품상세 조회시
-	
 	
 	public String getpCode() {
 		return pCode;
