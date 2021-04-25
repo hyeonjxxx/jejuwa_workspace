@@ -150,6 +150,12 @@
 		 WHERE MEM_NO = ?
 	</entry>
 	
+	<!-- [휘경] 일반사용자 비밀번호 변경 -->
+	<entry key="updatePwd">
+		UPDATE MEMBER
+		   SET MEM_PWD = ?
+		 WHERE MEM_ID = ?
+	</entry>
 	
 
 </properties>

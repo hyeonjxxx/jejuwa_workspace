@@ -156,7 +156,7 @@
                             <h2 id="Menu"><a>회원정보</a></h2>
                             <ul>
                                 <li class="subMenu">
-                                    <a href="">개인정보수정</a>
+                                    <a href="<%=contextPath%>/myInfo.mp">개인정보수정</a>
                                 </li>
                                 <li class="subMenu">
                                     <a href="">회원탈퇴</a>

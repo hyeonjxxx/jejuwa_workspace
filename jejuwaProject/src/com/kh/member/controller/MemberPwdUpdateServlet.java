@@ -1,27 +1,28 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
-import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class MobileAuthServlet
+ * Servlet implementation class MemberPwdUpdateServlet
  */
-@WebServlet("/mobileAuth.me")
-public class MobileAuthServlet extends HttpServlet {
+@WebServlet("/updatePwd.me")
+public class MemberPwdUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MobileAuthServlet() {
+    public MemberPwdUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,28 +31,25 @@ public class MobileAuthServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    	
-			request.setCharacterEncoding("utf-8");
+	
+		String memId = request.getParameter("memId");
+		String memPwd = request.getParameter("memPwd");
+		String updatePwd = request.getParameter("updatePwd");
 		
-			String phoneNumber = request.getParameter("phoneNumber");
-			// ajax에서 사용자가 입력한 값을 변수 phoneNumber로 지정 =>  서블릿으로 넘어온 키값이 phoneNumber를 String phoneNumber라는 변수에 담아줌
+		Member updateMem = new MemberService().updatePwd(memId, updatePwd);
+		
+		
+		if(updateMem == null) {
+			request.getSession().setAttribute("alertMsg", "비밀번호 변경을 실패했습니다.");
 			
 			
-			String sendSMS(String phoneNumber) {
-
-	        Random rand  = new Random();
-	        
-	        String numStr = "";
-	        for(int i=0; i<4; i++) {
-	            String ran = Integer.toString(rand.nextInt(10));
-	            numStr+=ran;
-	        }
-
-	        System.out.println("수신자 번호 : " + phoneNumber);
-	        System.out.println("인증번호 : " + numStr);
-	        new MemberService().certifiedPhoneNumber(phoneNumber,numStr);
-	        return numStr;
-	    }
+		} else {
+			request.getSession().setAttribute("alertMsg", "비밀번호가 변경되었습니다.");
+			request.getSession().setAttribute("login", updateMem);
+		}
+		
+		response.sendRedirect(request.getContextPath() + "/myInfo.mp");
+	
 	}
 
 	/**

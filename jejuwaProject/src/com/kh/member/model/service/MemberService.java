@@ -157,6 +157,26 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	
+	/**
+	 *  [휘경] 사용자 비밀번호 업데이트 (수정필요)
+	 * @param memId
+	 * @param updatePwd
+	 * @return
+	 */
+	public Member updatePwd(String memId, String updatePwd) {
+		Connection conn = getConnection();
+		int result = new MemberDao().updatePwd(conn, memId, updatePwd);
+		
+		Member updateMem = null;
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return updateMem;
+	}
 
 
 }
