@@ -42,7 +42,7 @@
 
 .FAQ{margin-left: -40px;}
 .FAQ ul li{float: left;}
-.FAQ ul li a{margin-left: 40px;}
+.FAQ ul li a{margin-left: -40px; border : 1px solid red;}
 .FAQ ul li a:hover{background-color: orange;}
 
 .answer{display : none;}

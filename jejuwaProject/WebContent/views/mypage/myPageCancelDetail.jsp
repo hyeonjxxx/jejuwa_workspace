@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.order.model.vo.Order"%>
+<%
+	//ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
+	Order o = (Order)request.getAttribute("o");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +28,12 @@
             margin: auto;
             padding: 10px;
         }
+
+        #cancel{
+            position: relative;
+            left: -100px;
+
+        }
         .outer div{
             margin: auto;
             width: 70%;
@@ -46,28 +56,28 @@
 	<%@ include file = "../common/mypageMenubar.jsp" %>
 	
 	<br><br>
-    <div class="outer">
-        <div style="font-size: 20px;">취소내역</div>
+    <div class="outer" >
+        <div id = "cancel" style="font-size: 20px;">취소내역</div>
         <hr>
         <br>
         <form action="" class="reservationForm" align="center">          
             
-            <table class="table table-bordered" style="width: 800px;">
+            <table class="table table-bordered" style="width: 700px;" >
                 <tr class="table-warning">
                     <th width="200px">상품명</th>
-                    <td colspan="3">xxxx</td>
+                    <td colspan="3"><%=o.getpName() %></td>
                 </tr>
                 <tr>
                     
                     <th>예약번호</th>
-                    <td>xxxxx</td>
+                    <td><%=o.getOrderNo() %></td>
                     <th width="200px">이용일</th>
                     <td>xxxx</td>
                 </tr>
 
                 <tr class="table-warning">
                     <th>여행자</th>
-                    <td colspan="3">강동원 님 외 1명</td>
+                    <td colspan="3"><%=o.getTravelUser() %></td>
                     
                 </tr>
 
@@ -78,17 +88,12 @@
 
                 <tr class="table-warning">
                     <th>취소자</th>
-                    <td colspan="3">여행자</td>
+                    <td colspan="3"><%=o.getTravelUser() %></td>
                 </tr>
 
-                <tr>
-                    <th>취소사유</th>
-                    <td colspan="3">xxxx</td>
-                </tr>
-
-                <tr class="table-warning">
+                <tr >
                     <th>결제내역</th>
-                    <td colspan="3">4,200원</td>
+                    <td colspan="3"><%=o.getAmount() %></td>
                 </tr>
 
                 

@@ -42,46 +42,58 @@
 	<div class="outer">
 		
                 
-        <table class="listArea" >   
-            <h3>취소내역</h3>
-            <hr>
-            <tr align="center" style="border-bottom: 1px solid black;">
-                <th rowspan="3" width=800 >상품</th>
-                <th rowspan="2" width=200>상태</th>
-            </tr>
-        </table>
-                
-        <br>
-               
-        <table>
-    		<!-- 조회된 결과가 없을 경우
-         <tr>
-             <td colspan="6" align="center"><br><br>
-                 	조회된 리스트가 없습니다.
-             </td>
-         </tr>
-       	-->
+        <table class="listArea" > 
+        	<thead>  
+	            <h3>취소내역</h3>
+	            <hr>
+	            <tr align="center" style="border-bottom: 1px solid black;">
+	            	<th width=150>주문번호</th>
+	                <th rowspan="2" width=500 >상품</th>
+	                <th rowspan="2" width=200>상세보기</th>
+	                <th rowspan="2" width=200>상태</th>
+	            </tr>
+	        </thead>
+
+			</tbody>               
+		        <%if(list.isEmpty()){ %>
+		    		<!-- 조회된 결과가 없을 경우-->
+		         <tr>
+		             <td colspan="6" align="center"><br><br>
+		                 	조회된 리스트가 없습니다.
+		             </td>
+		         </tr>
+       	
        		
-  
-            <!-- 조회된 결과가 있을 경우 -->
-
-            <tr align="center">
-                
-                <td width=800 >
-                   		 <br>
-                    <a href="<%=contextPath %>/detail.mpc" style="color: orange;">취소내역상세보기</a>
-                </td>
-                <td width=200>
-                    <div>예약확정</div>
-                    <input id="datepicker" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal" value="다시예약하기"></input>
-                </td>
-
-            </tr>
-
+		  		<%}else{ %>
+		            <!-- 조회된 결과가 있을 경우 -->
+					<%for(Order o : list){ %>
+						<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo() && o.getcReason() != null){ %>
+		            <tr align="center">
+		                <td><%=o.getOrderNo() %></td>	
+		                <td width=500 ><%=o.getpName() %></td>
+		                <td width=200><a href="<%= contextPath %>/detail.mpc" style="color: orange;">상세보기</a></td>
+		                <td width=200>
+		                    <input id="datepicker" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal" value="다시예약하기"></input>
+		                </td>
+		
+		            </tr>
+		            	<%} %>
+		            	
+		            <%} %>
+				<%} %>
+			</tbody>
 
         </table>
-                    
-                    <br><br>
+        
+        <script>
+        	$(function(){
+        		$(".listArea>tbody>tr").click(function(){
+        			location.href = '<%=contextPath%>/detail.mpc?ono=' + $(this).children().eq(0).text();
+        		})
+        	})
+        
+        </script>       
+                 
                 
      </div>
 

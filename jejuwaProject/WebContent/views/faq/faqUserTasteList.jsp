@@ -67,7 +67,6 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                
                 <th>제목</th>
                 <th>구분</th>
             </tr>
@@ -79,9 +78,8 @@
         		</tr>
         	<%}else{ %>
         		<%for (Faq f : list){ %>
-        			<%if(f.getqCategory().equals("관광지/레저")){ %>
+        			<%if(f.getqCategory().equals("맛집")){ %>
             		<tr class = "question">
-                		<!-- <td width ="30px"><%=f.getFaqNo()%></td>-->
                 		<td width = "300px"><%=f.getFaqTitle() %></td>
                 		<td width = "100px"><%=f.getqCategory()%></td>
             		</tr>

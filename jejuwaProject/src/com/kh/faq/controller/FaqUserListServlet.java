@@ -38,7 +38,7 @@ public class FaqUserListServlet extends HttpServlet {
 		
 		
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/faq/faqUserListView.jsp").forward(request, response);;
+		request.getRequestDispatcher("views/faq/faqUserListView.jsp").forward(request, response);
 	}
 
 	/**

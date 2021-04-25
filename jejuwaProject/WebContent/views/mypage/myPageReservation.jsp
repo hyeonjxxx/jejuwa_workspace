@@ -59,27 +59,28 @@
 	                		</tr>
 	                	</thead>
 	                    <tbody>
-	                        <!-- 조회된 결과가 있을 경우 -->
-							<%for(Order o : list){ %>
-								<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo()) {%>
-	                        <tr align="center">
-	                        	<td id = "orderNo" width="100"><%=o.getOrderNo() %></td>
-	                            
-	                            <td width="300"><%= o.getpName() %></td>
-	                            <td id = "orderDetail" width="200">상세보기</td>
-	                            <td width="100">
-	                                <div style="margin: 0; padding: 0;"><%=o.getStatus() %></div>
-	                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal">즉시취소</button>
-	                            </td>
-	
-	                        </tr>
-		                        <%}else{ %>
-		                        <!-- 조회된 결과가 없을 경우
-		                        
+	                    	<%if(list.isEmpty()){ %>
+		                        <!-- 조회된 결과가 없을 경우 -->
 		                        <tr>
 		                            <td colspan = "6" align="center">조회된 리스트가 없습니다.</td>
 		                        </tr>
-		                        -->
+	                        <%}else{ %>
+
+	                        <!-- 조회된 결과가 있을 경우 -->
+								<%for(Order o : list){ %>
+									<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo()) {%>
+				                        <tr align="center">
+				                        	<td id = "orderNo" width="100"><%=o.getOrderNo() %></td>
+				                            
+				                            <td width="300"><%= o.getpName() %></td>
+				                            <td id = "orderDetail" width="200">상세보기</td>
+				                            <td width="100">
+				                                <div style="margin: 0; padding: 0;"><%=o.getStatus() %></div>
+				                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal">즉시취소</button>
+				                            </td>
+				                        </tr>
+			                        <%} %>
+
 	                        	<%} %>
 	                        <%} %>
 	                        

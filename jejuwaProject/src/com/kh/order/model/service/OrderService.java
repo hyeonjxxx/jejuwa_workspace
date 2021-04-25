@@ -34,7 +34,7 @@ public class OrderService {
 		
 	}
 	
-	// 주문 테이블 조회
+	// 주문 테이블 조회, 취소내역페이지 조회, 취소내역상세페이지 조회
 	public ArrayList<Order> selectOrderList(){
 		Connection conn = getConnection();
 		
