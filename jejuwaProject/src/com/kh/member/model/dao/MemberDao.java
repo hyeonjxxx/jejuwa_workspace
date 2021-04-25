@@ -149,6 +149,40 @@ public class MemberDao {
 	
 	
 	/**
+	 * [민국] 아이디 중복체크
+	 * @param conn
+	 * @param checkId
+	 * @return
+	 */
+	public int idCheck(Connection conn, String checkId) {
+		// select문
+		int count = 0;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("checkId");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,  checkId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return count;
+	}
+	
+	/**
 	 * [휘경] 멤버 수 조회(활동회원, 관리자)
 	 * @param conn
 	 * @return
@@ -331,5 +365,7 @@ public class MemberDao {
 		}
 		return result;
 	}
+
+
 	
 }

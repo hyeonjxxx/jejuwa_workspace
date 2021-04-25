@@ -69,7 +69,13 @@
 		       )
 	</entry>
 	
-
+	<!-- [민국] 아이디체크 memId가 있으면 1로 조회하게끔-->
+	<entry key="checkId">
+		SELECT 
+		       COUNT(*) "COUNT"
+		  FROM MEMBER
+		 WHERE MEM_ID = ?
+	</entry>
 	
 	<!-- [휘경] 멤버 수 조회(활동회원, 관리자) -->
 	<entry key="selectMemberCount">
@@ -143,6 +149,8 @@
 		   SET STATUS = 'N'
 		 WHERE MEM_NO = ?
 	</entry>
+	
+	
 
 </properties>
 

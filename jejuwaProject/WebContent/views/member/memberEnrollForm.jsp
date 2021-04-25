@@ -53,7 +53,7 @@
                     <b>아이디*</b>
                     <br>
                     <input type="text" name="memId" id="memId" placeholder="첫글자는 반드시 영문자로, 그리고 영문자, 숫자 포함하여 총 4~12자로 입력하시오." required>
-                    <button id="id_check_btn" onclick="id_check();">아이디 중복 확인</button>
+                    <button type="button" id="id_check_btn" onclick="$(id_check());">아이디 중복 확인</button>
                     <div style="font-size:12px; height:15px" id="id_check">
                     </div>
                     <br>
@@ -89,7 +89,6 @@
                     <br><br>
                     <!-- 인증번호 API 
 
-
                     package net.nurigo.java_sdk.examples.Message;
 
                     import java.util.HashMap;
@@ -112,8 +111,14 @@
                         params.put("to", "01000000000");
                         params.put("from", "01000000000");
                         params.put("type", "SMS");
-                        params.put("text", "Coolsms Testing Message!");
+                        
+                        int random = Rand 4자
+                        params.put("text", "인증 번호는 ");
                         params.put("app_version", "test app 1.2"); // application name and version
+
+						디비에 넣기
+						INSERT INTO tmp_sms_auth (휴대포번호, 인증번호, 생성시간) VALUE  
+
 
                         try {
                         JSONObject obj = (JSONObject) coolsms.send(params);

@@ -37,7 +37,7 @@ public class MemberService {
 	}
 
 	/**
-	 * 회원가입 
+	 * [민국] 회원가입 
 	 * */
 	public int insertMember(Member m) {
 		Connection conn = getConnection();
@@ -52,6 +52,22 @@ public class MemberService {
 		
 		close(conn);
 		return result;
+	}
+	
+
+	/**
+	 * [민국] 아이디 중복체크
+	 * @param checkId
+	 * @return
+	 */
+	public int idCheck(String checkId) {
+		Connection conn = getConnection();
+		
+		int count = new MemberDao().idCheck(conn, checkId);
+		
+		close(conn);
+		
+		return count;
 	}
 	
 	/**
@@ -141,5 +157,6 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+
 
 }
