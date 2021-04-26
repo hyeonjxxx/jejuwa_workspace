@@ -45,14 +45,14 @@ public class AdminMainPageServlet extends HttpServlet {
 		//System.out.println(adminUser);
 		//session.setAttribute("adminUser", adminUser);
 		//response.sendRedirect(request.getContextPath() + "/admin.go");
-		if(loginUser == null || !loginUser.getStatus().equals("A")) {
-			session.setAttribute("alertMsg", "관리자 권한이 필요한 서비스입니다.");
-			response.sendRedirect(request.getContextPath());
-		}else {
+		//if(loginUser == null || !loginUser.getStatus().equals("A")) {
+			//session.setAttribute("alertMsg", "관리자 권한이 필요한 서비스입니다.");
+			//response.sendRedirect(request.getContextPath());
+		//}else {
 			session.setAttribute("loginUser", loginUser);
 			request.getRequestDispatcher("views/common/adminPageMenubar.jsp").forward(request, response);
 			
-		}
+		//}
 	}
 
 	/**
