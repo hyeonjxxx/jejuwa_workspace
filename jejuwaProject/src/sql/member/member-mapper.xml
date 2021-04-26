@@ -44,6 +44,7 @@
 		   AND MEM_PWD = ?		
 	</entry>
 	
+	
 	<!-- 민국(회원가입) -->
 	<entry key="insertMember">
 		INSERT
@@ -69,6 +70,7 @@
 		       )
 	</entry>
 	
+	
 	<!-- [민국] 아이디체크 memId가 있으면 1로 조회하게끔-->
 	<entry key="checkId">
 		SELECT 
@@ -77,12 +79,14 @@
 		 WHERE MEM_ID = ?
 	</entry>
 	
+	
 	<!-- [휘경] 멤버 수 조회(활동회원, 관리자) -->
 	<entry key="selectMemberCount">
 		SELECT COUNT(*) MEMBERCOUNT
 		  FROM MEMBER
 		 WHERE STATUS IN ('A', 'Y')
 	</entry>
+	
 	
 	<!-- [휘경] 해당 페이지의 멤버 리스트 조회(활동회원, 관리자) -->
 	<entry key="selectList">
@@ -113,11 +117,15 @@
 	<entry key="selectMember">
 		SELECT
 		       MEM_NO
-		     , MEM_ID
-		     , MEM_NAME
-		     , PHONE
-		     , EMAIL
-		     , MEM_BIRTH
+			 , MEM_ID
+			 , MEM_PWD
+			 , MEM_NAME
+			 , PHONE
+			 , EMAIL
+			 , MEM_BIRTH
+			 , ENROLL_DATE
+			 , MODIFY_DATE
+			 , STATUS
 		  FROM MEMBER
 		 WHERE STATUS IN ('A', 'Y', 'B')
 		   AND MEM_NO = ?
@@ -132,6 +140,7 @@
 		  WHERE MEM_NO = ?
 	</entry>
 	
+	
 	<!-- [휘경] 관리자 회원정보변경 -->
 	<entry key="updateMember">
 		UPDATE MEMBER
@@ -143,6 +152,7 @@
 		 WHERE MEM_NO = ?
 	</entry>
 	
+	
 	<!-- [휘경] 관리자 회원탈퇴처리 -->
 	<entry key="adminDeleteMember">
 		UPDATE MEMBER
@@ -150,11 +160,14 @@
 		 WHERE MEM_NO = ?
 	</entry>
 	
-	<!-- [휘경] 일반사용자 비밀번호 변경 -->
+	
+	<!-- [휘경] 사용자 비밀번호 변경 -->
 	<entry key="updatePwd">
-		UPDATE MEMBER
+		UPDATE
+		       MEMBER
 		   SET MEM_PWD = ?
-		 WHERE MEM_ID = ?
+		 WHERE MEM_NO = ?
+		   AND MEM_PWD = ?	
 	</entry>
 	
 
