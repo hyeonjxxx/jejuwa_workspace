@@ -39,10 +39,10 @@
                 </li>
                 <li class="subMenu">
                     <% if(login == null){ %>
-                    <a href="<%= request.getContextPath() %>/lgview.me" onclick="login();">1:1문의내역</a>
+                    <a href="<%= request.getContextPath() %>/lgview.me" style="text-decoration:none;" onclick="login();">1:1문의내역 <span style="margin-left: 50px;">〉</span></a>
 					<% } else{ %>
-					<a href="<%=request.getContextPath() %>/list.umyq">1:1문의내역 <span style="margin-left: 50px;">〉</span></a>
-					<%} %>
+					<a href="<%=request.getContextPath() %>/list.umyq" style="text-decoration:none;">1:1문의내역 <span style="margin-left: 50px;">〉</span></a>
+					<% } %>
                 </li>
             </ul>
   

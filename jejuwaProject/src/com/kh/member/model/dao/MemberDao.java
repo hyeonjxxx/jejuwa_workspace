@@ -183,6 +183,43 @@ public class MemberDao {
 	}
 	
 	/**
+	 * [민국] 아이디 찾기: 핸드폰번호 == 이름 체크여부
+	 * @param memId
+	 * @param phoneNumber
+	 * @return
+	 */
+	public Member idFindCheck(Connection conn, String memName, String phoneNumber) {
+		Member m = null;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("idFindCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			pstmt.setString(1, memName);
+			pstmt.setString(2, phoneNumber);
+			
+			if(rset.next()) {
+				m = new Member(rset.getString("MEM_NAME"),
+						       rset.getString("PHONE"));
+				System.out.println(m);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return m;
+	}
+
+	
+	/**
 	 * [휘경] 멤버 수 조회(활동회원, 관리자)
 	 * @param conn
 	 * @return
@@ -455,6 +492,7 @@ public class MemberDao {
 		}
 		return result;
 	}
+
 
 	
 }

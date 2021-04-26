@@ -48,7 +48,6 @@
 <body>
 	<%@ include file="../common/customerMenubar.jsp" %>
 	
-	
 	<div class="outer">
         <br><br>
         <h2>1:1 문의</h2>
@@ -62,7 +61,6 @@
 
             
             <div align="right" class="searchArea">
-               
                 <span href="" >
                     <select name="memberStatus" id="">
                         <option value="title">제목</option>
@@ -117,6 +115,7 @@
 		</div>
 
     </div>
+</div>
     <br><br>
     <%@ include file="../common/footer.jsp" %>
 </body>

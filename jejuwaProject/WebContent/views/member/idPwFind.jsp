@@ -10,8 +10,7 @@
     <!-- idPwFind css -->
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/member/idPwFind.css">
 
-    <!-- idPwFind js-->
-    <link rel="stylesheet" href="">
+
 
     <!-- idPwFind fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -38,6 +37,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+        <!-- idPwFind js-->
+        <script src="<%=request.getContextPath()%>/resources/js/member/idPwFind.js"></script>
+
 </head>
 <body>
 	<%@ include file="../common/loginUserMenubar.jsp" %>
@@ -51,18 +53,21 @@
                         <tbody>
                             <tr class="name">
                                 <th>이름</th>
-                                <td><input type="text" class="full"></td>
+                                <td><input type="text" name = "idFind_name" id="idFind_name"></td>
                             </tr>
                             <tr class="phone">
                                 <th>휴대폰번호</th>
                                 <td>
-                                    <input type="text" onkeyup="addHyphenToPhone(this);">
-                                    <button class="send_sms" onclick="javascript:fn_SendSms2();">인증요청</button>
+                                    <input type="text" name="id_phone" id="id_phone" placeholder="(-없이)">
+                                    <button type="button" id="id_mobile_auth">인증번호요청</button>
                                 </td>
                             </tr>
                             <tr class="certification">
                                 <th>인증번호</th>
-                                <td><input class="full" type="text"></td>
+                                <td>
+                                    <input type="text" name="id_auth_num" id="id_auth_num">
+                                    <button type="button" id="id_auth_confirm">인증번호 확인</button>
+                                </td>
                             </tr>
                             <tr class="memo">
                                 <th></th>
@@ -96,13 +101,16 @@
                         <tr class="phone">
                             <th>휴대폰번호</th>
                             <td>
-                                <input type="text" onkeyup="addHyphenToPhone(this);">
-                                <button class="send_sms" onclick="javascript:fn_SendSms2();">인증요청</button>
+                                <input type="text" name="pwd_phone" id="pwd_phone" placeholder="(-없이)">
+                                <button type="button" id="pwd_mobile_auth">인증번호요청</button>
                             </td>
                         </tr>
                         <tr class="certification">
                             <th>인증번호</th>
-                            <td><input class="full" type="text"></td>
+                            <td>
+                                <input type="text" name="pwd_auth_num" id="pwd_auth_num">
+                                <button type="button" id="pwd_auth_confirm">인증번호 확인</button>
+                            </td>
                         </tr>
                         <tr class="memo">
                             <th></th>

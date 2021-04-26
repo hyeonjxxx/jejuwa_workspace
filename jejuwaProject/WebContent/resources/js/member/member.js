@@ -97,7 +97,7 @@ $(document).ready(function(){
                         // id가 enrollForm인 자식요소들 중  submit 요소의 속성(disabled)을 제거하겠다
                     } else{
                         // 사용가능하지만 다시 입력하겠다
-                        $memId.focus();
+                        $memId.one('focus',focus());
                     }
                 }
             }, 
@@ -131,7 +131,7 @@ $(document).ready(function(){
                     } else{
                         alert("인증번호가 일치하지 않습니다. 인증번호를 다시 확인해주세요");
 
-                        $auth_num.one('focus',focus());
+                        $('#auth_num').one('focus',focus());
                     }
                 })
             }
@@ -179,6 +179,7 @@ $(document).ready(function(){
 
         $('#enrollForm').submit();
     });
+
 })
 
 

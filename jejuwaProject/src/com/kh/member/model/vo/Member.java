@@ -43,6 +43,14 @@ public class Member {
 		this.memBirth = memBirth;
 	}
 	
+	// 민국(아이디 찾기)
+	public Member(String memName, String phone) {
+		super();
+		this.memName = memName;
+		this.phone = phone;
+	}
+	
+	
 	// [휘경] 회원 리스트 조회(활동회원, 관리자)
 	public Member(int memNo, String memId, String memName, String phone, String email, Date enrollDate) {
 		super();
@@ -54,7 +62,8 @@ public class Member {
 		this.enrollDate = enrollDate;
 	}
 	
-	
+
+
 	// [휘경] 회원 상세조회, 회원 정보 변경
 	public Member(int memNo, String memId, String memName, String phone, String email, String memBirth) {
 		super();
