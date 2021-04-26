@@ -153,8 +153,8 @@
 	</entry>
 	
 	
-	<!-- [휘경] 관리자 회원탈퇴처리 -->
-	<entry key="adminDeleteMember">
+	<!-- [휘경] 회원탈퇴처리 -->
+	<entry key="deleteMember">
 		UPDATE MEMBER
 		   SET STATUS = 'N'
 		 WHERE MEM_NO = ?
@@ -170,6 +170,8 @@
 		   AND MEM_PWD = ?	
 	</entry>
 	
+	
+	<!-- [휘경] 사용자  -->
 
 </properties>
 

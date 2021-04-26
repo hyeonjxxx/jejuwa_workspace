@@ -30,8 +30,9 @@
         <!-- 회원 상세정보 -->
         <div class="viewArea" align="center">
             
+            <form action="<%= contextPath %>/userDelete.me" method="post"> 
             <div class="withdrawalArea">
-
+			<input type="hidden" name="memNo" value="<%= memNo %>">
                 <div align="left">제주와를 떠나기 전에...</div>
 
                 <br>
@@ -63,11 +64,11 @@
                         </tr>                        
                         <tr>
                             <td>
-                                <input type="radio" class="reason"> 아이디 변경을 위해 탈퇴 후 재가입<br>
-                                <input type="radio" class="reason"> 사이트 이용 불편 <br>
-                                <input type="radio" class="reason"> 상품의 다양성/품질 불만<br>
-                                <input type="radio" class="reason"> 판매 정책에 대한 불만  <br>
-                                <input type="radio" class="reason"> 기타 <input type="text" size=40 placeholder="사유를 입력해주세요">
+                                <input id="reason1" type="radio" name="reason" class="reason" value="아이디 변경을 위해 탈퇴 후 재가입"> <label for="reason1">아이디 변경을 위해 탈퇴 후 재가입</label> <br>
+                                <input id="reason2" type="radio" name="reason" class="reason" value="사이트 이용 불편"> <label for="reason2">사이트 이용 불편</label> <br>
+                                <input id="reason3" type="radio" name="reason" class="reason" value="상품의 다양성/품질 불만"> <label for="reason3">상품의 다양성/품질 불만</label> <br>
+                                <input id="reason4" type="radio" name="reason" class="reason" value="판매 정책에 대한 불만"> <label for="reason4">판매 정책에 대한 불만</label> <br>
+                                <input id="reason5" type="radio" name="reason" class="reason" value="기타 "> <label for="reason5">기타 <input name="reason" type="text" size=40 placeholder="사유를 입력해주세요"></label>
                             </td>
                         </tr>
                     </table>   
@@ -75,19 +76,19 @@
                 <br><br>
             </div>
             <div>
-                <input type="checkbox"> 안내 사항을 모두 확인하였으며, 이에 동의합니다.
+                <input id="agreeBtn" type="checkbox"> <label for="agreeBtn">안내 사항을 모두 확인하였으며, 이에 동의합니다.</label>
 
             </div>
             <div class="bottomArea">
     
                  <!-- 버튼 (수 정) -->
                 <div class="btn" align="center">
-                    <a id="btn1" a href="" data-toggle="modal" data-target="#withdrawal" >회원 탈퇴</a> 
+                    <a id="btn1" a href="" data-toggle="modal" onclick="return checkAgree();" data-target="#withdrawal" >회원 탈퇴</a> 
                 </div>   
                 
             </div>
 
-
+			<!-- 회원 탈퇴 모달 -->
             <!-- The Modal -->
             <div class="modal fade" id="withdrawal" align="center" >
                 <div class="modal-dialog modal-dialog-centered">
@@ -96,15 +97,15 @@
                     <!-- Modal body -->
                     <br>
                     <div class="modal-body">
-                        회원탈퇴를 하시겠습니까?
+                        	회원탈퇴를 하시겠습니까?
                     </div>
                     
-                                
+                               
                     <div class="input-group mb-3" id="modalContent">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
                     </div>
-                    <input name="memPwdPwd2" size="25" type="password" placeholder=" 비밀번호" aria-label=" 비밀번호" aria-describedby="basic-addon1">
+                    <input name="memPwd3" size="25" type="password" placeholder=" 비밀번호" aria-label=" 비밀번호" aria-describedby="basic-addon1">
                         
                     </div>
                     
@@ -114,19 +115,31 @@
                     <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
                     </div>
                     <script>
+                    	
+                    	 	function checkAgree(){
+                    	 		if($('input:checkbox[id="agreeBtn"]').is(":checked") == false){
+                    	 			alert("탈퇴 약관 동의가 필요합니다.");
+                    	 			$("#btn1").attr("data-target", false);
+                    	 			//$('input:checkbox[id="agreeBtn"]').focus();
+                    	 			
+                    	 		} else{
+                    	 			$("#btn1").attr("data-target", "#withdrawal");
+                    	 		}
+                    	 	}
+                    
                             function updateMember(){
-                                if($("input[name=memPwdPwd2]").val() != <%= memPwd %>){
+                            		
+                            	if($("input[name=memPwd3]").val() != "<%=memPwd%>"){
                                     alert("비밀번호가 일치하지 않습니다.");
-                                }else{
-                                    $("#memInfoTable").submit();
+                      				return false;
                                 }
                             }
                     </script>
-                
+                	
                 </div>
                 </div>
             </div>
-			
+			</form>
 		</div>
     </div>
 

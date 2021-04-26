@@ -355,7 +355,7 @@ public class MemberDao {
 		// update문 => 처리된 행 수
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("adminDeleteMember");
+		String sql = prop.getProperty("deleteMember");
 		
 		try {
 			pstmt = conn.prepareStatement(sql); // 미완성 sql
@@ -430,6 +430,31 @@ public class MemberDao {
 		
 	}
 
+	/**
+	 * [휘경] 사용자 회원탈퇴(탈퇴후 로그인된 정보 비우기)
+	 * @param conn
+	 * @param memId
+	 * @return
+	 */
+	public int userDeleteMember(Connection conn, int memNo) {
+		// update문 => 처리된 행 수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setInt(1, memNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 
 	
 }

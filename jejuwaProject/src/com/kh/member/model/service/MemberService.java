@@ -238,5 +238,22 @@ public class MemberService {
 		return updateMem;
 	}
 
+	
+	/**
+	 * [휘경] 사용자 회원탈퇴(탈퇴후 로그인된 정보 비우기)
+	 * @param memId
+	 * @return
+	 */
+	public int userDeleteMember(int memNo) {
+		Connection conn = getConnection();
+		int result = new MemberDao().userDeleteMember(conn, memNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 
 }
