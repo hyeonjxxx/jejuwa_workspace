@@ -34,7 +34,7 @@
 
                 <div align="left">제주와를 떠나기 전에...</div>
 
-                <br><br>
+                <br>
 
                 <table id="area1">
                     <tr>
