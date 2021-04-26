@@ -1,35 +1,58 @@
 package com.kh.review.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Review {
 	
 	private int review_No;
-	private int  mem_No;
-	private String p_Code;
+	private String  mem_Name;
+	private String p_Name;
 	private String rv_Content;
 	private Date rv_Date;
 	private Date rv_Modify;
 	private String rv_Status;
-	private String rv_Rating;
+	private int rv_Rating;
 	
 	
 	public Review() {}
 
-	public Review(int review_No, int mem_No, String p_Code, String rv_Content, Date rv_Date, Date rv_Modify,
-			String rv_Status, String rv_Rating) {
+
+	public Review(int review_No, String mem_Name, String p_Name, String rv_Content, Date rv_Date, Date rv_Modify,
+			String rv_Status, int rv_Rating) {
 		super();
 		this.review_No = review_No;
-		this.mem_No = mem_No;
-		this.p_Code = p_Code;
+		this.mem_Name = mem_Name;
+		this.p_Name = p_Name;
 		this.rv_Content = rv_Content;
 		this.rv_Date = rv_Date;
 		this.rv_Modify = rv_Modify;
 		this.rv_Status = rv_Status;
 		this.rv_Rating = rv_Rating;
 	}
+	
+	
 
+	
 
+	public Review(int review_No, String mem_Name, String rv_Content, Date rv_Date, String rv_Status) {
+		super();
+		this.review_No = review_No;
+		this.mem_Name = mem_Name;
+		this.rv_Content = rv_Content;
+		this.rv_Date = rv_Date;
+		
+	}
+
+	// 	고객센터 리뷰조회---
+
+	public Review(int review_No, String mem_Name, String p_Name, String rv_Content, Date rv_Date) {
+		super();
+		this.review_No = review_No;
+		this.mem_Name = mem_Name;
+		this.p_Name = p_Name;
+		this.rv_Content = rv_Content;
+		this.rv_Date = rv_Date;
+	}
 
 
 	public int getReview_No() {
@@ -42,23 +65,23 @@ public class Review {
 	}
 
 
-	public int getMem_no() {
-		return mem_No;
+	public String getMem_Name() {
+		return mem_Name;
 	}
 
 
-	public void setMem_no(int mem_no) {
-		this.mem_No = mem_no;
+	public void setMem_Name(String mem_Name) {
+		this.mem_Name = mem_Name;
 	}
 
 
-	public String getP_Code() {
-		return p_Code;
+	public String getP_Name() {
+		return p_Name;
 	}
 
 
-	public void setP_Code(String p_Code) {
-		this.p_Code = p_Code;
+	public void setP_Name(String p_Name) {
+		this.p_Name = p_Name;
 	}
 
 
@@ -102,25 +125,21 @@ public class Review {
 	}
 
 
-	public String getRv_Rating() {
+	public int getRv_Rating() {
 		return rv_Rating;
 	}
 
 
-	public void setRv_Rating(String rv_Rating) {
+	public void setRv_Rating(int rv_Rating) {
 		this.rv_Rating = rv_Rating;
 	}
 
 
-	@Override
-	public String toString() {
-		return "Review [review_No=" + review_No + ", mem_no=" + mem_No + ", p_Code=" + p_Code + ", rv_Content="
-				+ rv_Content + ", rv_Date=" + rv_Date + ", rv_Modify=" + rv_Modify + ", rv_Status=" + rv_Status
-				+ ", rv_Rating=" + rv_Rating + "]";
-	}
+
 	
 	
-	
+
+
 	
 	
 	

@@ -1,13 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="java.util.ArrayList, com.kh.review.model.vo.Review, com.kh.common.model.vo.PageInfo" %>
+ <%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
+ 	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+ %>
 
-<%@ page import="java.util.ArrayList, com.kh.board.model.vo.Board, com.kh.common.model.vo.PageInfo" %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 고객센터리뷰 </title>
+<title> NoticeReview </title>
 
    <!-- boardMenu css -->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/customerBoardMenu.css">
@@ -66,13 +76,19 @@
 	    padding: 20px;
 	    margin: 10px;
 	    margin-top: 10px;
+	.ContentReview{
+		 white-space: nowrap;
+		 overflow: hidden;
+		 text-overflow: ellipsis;
+		 
+	}
 }
 </style>
 
 
 
 	<body>
-	<%@ include file = "../common/loginUserMenubar.jsp" %>
+	<%@ include file = "../common/adminPageMenubar.jsp" %>
 	
 	<div class="reviewList-wrap" align="center">
 		<div class="board_menu">       
@@ -125,35 +141,58 @@
             </tr>
         </thead>
         <tbody>
-        <!-- 조회된 결과가 있을경우 -->
-          <% if(list.isEmpty()) { %>
-            <tr>  
-                <td colspan="6">조회된 리스트가 없습니다.</td>
-           </tr>
-         <% }else { %>
-             <% for Review r : list) { %>
+        <!-- 조회된 결과가 없을경우 -->
+          
+             <% for(Review r : list) { %>
                 <tr>
-                            <td><%= b.getBoardNo() %></td>
-                            <td><%= b.getRv_Content() %></td>
-                            <td><%= b.getBoardTitle() %></td>
-                            <td><%= b.getMem_Name() %></td>
-                            <td><%= b.getRv_Date() %></td>
+                	 <td><%= r.getReview_No() %></td>
+ 					 <td id="ContentReview"> 
+ 						 <%= r.getMem_Name()%></td>
+                     <td><%= r.getP_Name() %></td>
+                     <td><%= r.getRv_Content() %></td>
+                     <td><%= r.getRv_Date() %></td>
                         </tr>
                     <% } %>
                 
-                <% } %>
-                
-           
-                
         </tbody>
     </table>
-</div>
-    <br><br>
-            
-
-    	
-    	
+    </div>
     
+    
+            <!-- 페이징  -->
+            <div align="center" class="pagingArea">
+                    
+                    x	
+                    <% if(currentPage == 1) {%>
+                    	<button disabled>&laquo;</button>
+	                    <button disabled>&lt;</button>			
+                    <%} else {%>
+	                    <button onclick="location.href='<%=contextPath%>/list.no?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage-1%>';">&lt;</button>			
+					<% } %>
+					
+					<% for(int p=startPage; p<=endPage; p++ ) {%>
+					
+						<% if(currentPage == p) {%>
+                        	<button disabled><%= p %></button>
+                        <% }else{ %>				
+	                        <button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%= p %>';"><%= p %></button>
+                        <% } %>		
+                	<% } %>
+                	
+                	
+                	<% if(currentPage == maxPage){ %>
+                		<button disabled>&gt;</button>
+	                    <button disabled>&raquo;</button>
+                	<% } else{ %>
+                		<button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=maxPage%>';">&raquo;</button>
+                	
+					<% } %>
 
+             </div>
+
+    	<br><br>
+            
 </body>
 </html>
