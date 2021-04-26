@@ -38,12 +38,20 @@
                     <a href="<%=request.getContextPath() %>/list.ufa">자주하는문의 FAQ<span style="margin-left: 13px;">〉</span></a>
                 </li>
                 <li class="subMenu">
-                    <a href="<%=request.getContextPath() %>/list.umyq">1:1문의내역 <span style="margin-left: 50px;">〉</span></a>
+                    <% if(login == null){ %>
+                    <a href="<%= request.getContextPath() %>/lgview.me" onclick="login();">1:1문의내역</a>
+					<% } else{ %>
+					<a href="<%=request.getContextPath() %>/list.umyq">1:1문의내역 <span style="margin-left: 50px;">〉</span></a>
+					<%} %>
                 </li>
             </ul>
   
 	     </div>
     
-
+<script>
+	function login(){
+		alert("로그인이 필요한 서비스입니다. 로그인해주세요.");
+	}
+</script>
 </body>
 </html>
