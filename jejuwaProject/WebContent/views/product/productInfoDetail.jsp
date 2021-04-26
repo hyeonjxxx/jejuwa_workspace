@@ -42,7 +42,7 @@
             <!-- 상품기본이미지 -->
             <div class="pdtPhoto">
                     <div class="mainImg">
-                        <img src="" width="350" height="350" alt="">
+                        <img src="<%=contextPath %>/<%= p.getBasicPath()%>" width="350" height="350" alt="">
                     </div>
                     <ul class="subImg">
                     	<%--
@@ -168,13 +168,21 @@
         <!-- 상품설명/리뷰 등.. -->
         <div class="pdtTab">
             <ul >
-                <li onclick="" id="tap01" class="current"><p>상품설명</p></li>
-                <li onclick="" id="tap02"><p>사용정보</p></li>
-                <li onclick="" id="tap03"><p>최소/환불</p></li>
-                <li onclick="" id="tap04"><p>리뷰(<!--리뷰건수 카운트-->)건</p></li>
-                <li onclick="" id="tap05"><p>상품문의</p></li>
+                <li onclick="" class="current"><p>상품설명</p>
+                </li>
+                <li onclick="" ><p>사용정보</p></li>
+                <li onclick=""><p>최소/환불</p></li>
+                <li onclick="" ><p>리뷰(<!--리뷰건수 카운트-->)건</p></li>
+                <li onclick="" ><p>상품문의</p></li>
             </ul>
+            <div id="tap01" class="taps">
+               <img src="<%=contextPath %>/<%= p.getDetailPath()%>">            
+            </div>
+        
+            
         </div>
+        
+        
 
     </div>
 

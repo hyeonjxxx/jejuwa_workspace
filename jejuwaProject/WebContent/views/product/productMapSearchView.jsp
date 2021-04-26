@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product"%>
 <%
+	//Product p = (Product)request.getAttribute("p");
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
 %>
 
@@ -80,7 +81,7 @@
         <div class="pdt_wrap">
              <ul class="pdtList">
         	<%for(Product p : list) {%> 
-                        <li class=pdtArea>
+                        <li class="pdtArea">
                         <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
                             <div class="pdtBox">
                                 <a >
@@ -98,6 +99,44 @@
         </div>
         
         <script>
+        /* 지도로 검색(지역필터링) */
+        $(function(){
+        	
+        	$ajax({
+        		url:"<%=contextPath%>/local_ss.pdt",
+        		data:<%--  요청시 전달값  {local:<%= p.getLocalCode()%>} --%>,
+        		success:function(list){
+        			
+        			var result = "";
+        			for(var i in list){
+        				result += "<li class='pdtArea'>"
+        						+ "<input type='hidden' name='pcode' value='<%=p.getpCode()%>'>"
+        						+ " <div class="pdtBox">"
+        						+ "<a >"
+        						+ "<div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;">"
+        						+ "</div>"
+        						+ "<div class="pdtInfo">"
+        						+ "<p class='pdtName'>" + <%=list[i].getpName() %> +"</p>"
+        						+ "<p class="pdtPrice"><%=p.getPrice() %>원</p>"
+        						+ "</div>"
+        						+ "</a>"
+        						+ "</div>"
+        						+ "</li>"
+        			}
+        		
+        			$(".pdtList").html(result); 
+        		},error:function(){
+        			console.log("지도로 검색 실패")
+        		}
+        		
+        	});
+        	
+        	
+        })
+        
+        
+        
+        /* 상품클릭시 */
         	$(function(){
         		$(".pdtArea").click(function(){
         			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
