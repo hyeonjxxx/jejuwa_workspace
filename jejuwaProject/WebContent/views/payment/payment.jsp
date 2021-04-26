@@ -43,7 +43,7 @@
 		<form id = "orderEnrollForm" action = "<%=contextPath%>/insert.or" method = "post">
 			<input type="hidden" name="pcode" value="<%=p.getpCode() %>">
 			<input type="hidden" name="price" value="<%=p.getPrice() %>">
-			<input type="hidden" name="travle" value="travleDate">
+			<input type="hidden" name="travle" value="<%=travleDate%>">
 			
 				<div class = "paymentPage">
 					<br><br>
@@ -58,7 +58,7 @@
 					                </tr>
 					                <tr class="table-light">
 					                    <td style="height: 30px;">여행일</td>
-					                    <td name = "travleDate" value = "travleDate"><%=travleDate %></td>
+					                    <td><input name = "travleDate" value = "<%=travleDate%>" style = "border:none;" readonly></td>
 					                </tr>
 					                <tr class="table-light">
 					                    <td style="height: 30px;">총금액</td>
@@ -87,8 +87,8 @@
 					        <li id="discount" class="container p-3 my-3 bg-dark text-white">
 					            <p style="font-size: 20px; font-weight: bold;">할인적용</p> <br>
 					            <select name="" id="" class="form-control">
-					                <option value="" selected>쿠폰선택안함</option>
-					                <option value="">웰컴쿠폰</option>
+				                	<option value="" selected>쿠폰선택안함</option>
+					                <option value=""><%=p.getCpnName() %></option>
 					            </select>
 					            <br><br>
 					            <hr>

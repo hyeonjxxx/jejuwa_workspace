@@ -529,5 +529,40 @@ public class ProductDao {
 			}
 			return result;
 		}
-		
+	
+		// 결제 페이지에 select문 조회
+		public Product selectPayment(Connection conn, String pcode) {
+			
+			Product p = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectPayment");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, pcode);
+				
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					p = new Product(rset.getString("p_name"),
+									rset.getString("p_code"),
+							        rset.getInt("price"),
+							        rset.getString("basic_path"),
+							        rset.getString("deatil_path"));
+					
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return p;
+				
+		}
 }

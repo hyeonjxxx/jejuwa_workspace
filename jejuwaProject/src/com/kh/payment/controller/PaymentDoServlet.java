@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.member.model.vo.Member;
 import com.kh.payment.model.service.PaymentService;
 import com.kh.payment.model.vo.Payment;
 import com.kh.product.model.service.ProductService;
@@ -37,7 +39,14 @@ public class PaymentDoServlet extends HttpServlet {
 		String pcode = request.getParameter("pcode");
 		String travleDate = request.getParameter("travleDate");
 		
-		Product p = new ProductService().selectInfoProduct(pcode);
+		/*
+		HttpSession session = request.getSession();
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		int memNo = loginUser.getMemNo();
+		System.out.println(memNo);
+		*/
+		
+		Product p = new ProductService().selectPayment(pcode);
 		
 		//ArrayList<Payment> list = new PaymentService().selectPayment();
 		//request.setAttribute("list", list);

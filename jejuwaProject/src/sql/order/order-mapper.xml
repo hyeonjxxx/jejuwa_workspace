@@ -24,9 +24,12 @@
 		      , p_CODE
 		  FROM TORDER O
 		  JOIN MEMBER M USING (MEM_NO)
-          JOIN PRODUCT P USING (P_CODE) 
+          JOIN PRODUCT P USING (P_CODE)
+         ORDER
+            BY ORDER_DATE DESC
 	</entry>
 	
+	<!-- 페이징처리된거 조회 -->
 	<entry key="selectList">
 		SELECT 
 				*
@@ -54,6 +57,7 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
+	<!-- 관리자 페이지 내 주문내역관리 INSERT -->
 	<entry key="insertOrder">
 		INSERT
 		  INTO TORDER
@@ -112,7 +116,7 @@
 		      
 		        
 		   FROM TORDER O
-		   JOIN MEMBER USING(MEM_NO);
+		   JOIN MEMBER USING(MEM_NO)
 
 	</entry>
 	

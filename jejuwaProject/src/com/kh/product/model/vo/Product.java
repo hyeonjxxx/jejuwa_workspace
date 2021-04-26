@@ -12,7 +12,29 @@ public class Product {
 	private String detailPath;
 	private String localCode;
 	private String themeCode;
+	private String cpnName;
+	private int memNo;
 	
+	public int getMemNo() {
+		return memNo;
+	}
+
+	public void setMemNo(int memNo) {
+		this.memNo = memNo;
+	}
+
+	public Product(String pName, String pCode, int price, String basicPath, String detailPath, String cpnName,
+			int memNo) {
+		super();
+		this.pName = pName;
+		this.pCode = pCode;
+		this.price = price;
+		this.basicPath = basicPath;
+		this.detailPath = detailPath;
+		this.cpnName = cpnName;
+		this.memNo = memNo;
+	}
+
 	public Product(){}
 
 	public Product(String pCode, String pName, int price, int pStock, String pStatus, String basicPath,
@@ -73,6 +95,26 @@ public class Product {
 		this.price = price;
 		this.basicPath = basicPath;
 		this.detailPath = detailPath;
+	}
+	
+	
+	public Product(String pName, String pCode, int price, String basicPath, String detailPath, String cpnName) {
+		super();
+		this.pName = pName;
+		this.pCode = pCode;
+		this.price = price;
+		this.basicPath = basicPath;
+		this.detailPath = detailPath;
+		this.cpnName = cpnName;
+	}
+	
+	
+	public String getCpnName() {
+		return cpnName;
+	}
+
+	public void setCpnName(String cpnName) {
+		this.cpnName = cpnName;
 	}
 
 	public void setpCode(String pCode) {

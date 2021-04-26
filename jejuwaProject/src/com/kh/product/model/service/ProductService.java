@@ -157,6 +157,14 @@ public class ProductService {
 		return result;
 	}
 	
+	// 결제페이지
 	
+	public Product selectPayment(String pcode) {
+		Connection conn = getConnection();
+		Product p = new ProductDao().selectPayment(conn, pcode);
+		close(conn);
+		
+		return p;
+	}
 	
 }

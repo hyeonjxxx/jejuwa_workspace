@@ -68,7 +68,7 @@
         <thead>
             <tr>
                 
-                <th>제목</th>
+                <th>자주하는문의</th>
                 <th>구분</th>
             </tr>
         </thead>
