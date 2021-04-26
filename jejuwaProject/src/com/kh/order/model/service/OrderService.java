@@ -102,4 +102,20 @@ public class OrderService {
 		return result;
 	}
 	
+	// 마이페이지 예약조회에서 예약취소하는 delete
+	
+	public int deleteOrder(int orderNo) {
+		Connection conn = getConnection();
+		int result = new OrderDao().deleteOrder(conn, orderNo);
+		
+		if(result>0) {
+			commit(conn);
+			
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+	
 }

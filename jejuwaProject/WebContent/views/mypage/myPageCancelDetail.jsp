@@ -72,7 +72,7 @@
                     <th>예약번호</th>
                     <td><%=o.getOrderNo() %></td>
                     <th width="200px">이용일</th>
-                    <td>xxxx</td>
+                    <td><%=o.getTravelDate() %></td>
                 </tr>
 
                 <tr class="table-warning">
@@ -83,7 +83,7 @@
 
                 <tr>
                     <th>예약일</th>
-                    <td colspan="3">xxxx</td>
+                    <td colspan="3"><%=o.getOrderDate() %></td>
                 </tr>
 
                 <tr class="table-warning">

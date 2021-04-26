@@ -35,6 +35,7 @@
 
 	<%@ include file = "../common/mypageMenubar.jsp" %>
 	
+	
 		<div class="wrap">       
 	        <div class="content" >
 	
@@ -48,21 +49,22 @@
 	                    </h3>
 	                </div>
 	                <hr>
-	
-	                <table class = "orderList">
+	                
+	                <table id = "orderList" class="table table-striped">
 	                	<thead>
 	                		<tr align = "center">
 	                			<th>주문번호</th>
-	                			<th>상품명</th>
-	                			<th>상세보기</th>
-	                			<th>접수현황</th>
+	                			<th width="300">상품명</th>
+	                			<th width="200">상세보기</th>
+	                			<th width="100">접수현황</th>
 	                		</tr>
 	                	</thead>
 	                    <tbody>
 	                    	<%if(list.isEmpty()){ %>
 		                        <!-- 조회된 결과가 없을 경우 -->
-		                        <tr>
-		                            <td colspan = "6" align="center">조회된 리스트가 없습니다.</td>
+		                        <!-- 왜 조회된 결과 없으면 안나올까? -->
+		                        <tr align="center">
+		                            <td rowspan = "4" align="center">조회된 리스트가 없습니다.</td>
 		                        </tr>
 	                        <%}else{ %>
 
@@ -73,10 +75,10 @@
 				                        	<td id = "orderNo" width="100"><%=o.getOrderNo() %></td>
 				                            
 				                            <td width="300"><%= o.getpName() %></td>
-				                            <td id = "orderDetail" width="200">상세보기</td>
+				                            <td id = "orderDetail" width="200" style="cursor:pointer;">상세보기</td>
 				                            <td width="100">
 				                                <div style="margin: 0; padding: 0;"><%=o.getStatus() %></div>
-				                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal">즉시취소</button>
+			                                	<%--<a href = "<%=contextPath%>/delete.or?ono=<%= o.getOrderNo() %>" >즉시취소</a> --%>
 				                            </td>
 				                        </tr>
 			                        <%} %>
@@ -86,68 +88,18 @@
 	                        
 	                        
 	                        
-	                        <!-- 즉시취소 가능할 때 -->
-	                        
-	                        <!--  
-	                        <div class="container">
-	                            <div class="modal fade" id="myModal">
-	                              <div class="modal-dialog modal-dialog-centered">
-	                                <div class="modal-content">
-	                                                                 
-	                                  // modal-body
-	                                  <div class="modal-body">
-	                                    취소되었습니다.
-	                                  </div>
-	                                  
-	                                  // modal footer
-	                                  <div class="modal-footer">
-	                                    <button type="button" class="btn btn-danger" data-dismiss="modal">확인</button>
-	                                  </div>
-	                                  
-	                                </div>
-	                              </div>
-	                            </div>                           
-	                        </div>
-	                        -->    
-	
-	
-	
-	
-	                        <!-- 즉시취소 불가능할 때 -->
-	                        
-	                        <div class="container">
-	                                    
-	                            <div class="modal fade" id="myModal">
-	                              <div class="modal-dialog modal-dialog-centered">
-	                                <div class="modal-content">
-	                                                                 
-	                                  <!-- Modal body -->
-	                                  <div class="modal-body" align="center">여행당일에는 취소가 불가능합니다.</div>
-	                                  
-	                                  <!-- Modal footer -->
-	                                  <div class="modal-footer">
-	                                    <button type="button" class="btn btn-danger" data-dismiss="modal">확인</button>
-	                                  </div>
-	                                  
-	                                </div>
-	                              </div>
-	                            </div>
-	                            
-	                        </div>
-	                	
-	
-	                        
 	                    </tbody>
 	                </table>
-	                
+	                <br>
+	                <Pre>   예약 취소는 상세보기 페이지에서 가능합니다.</Pre>
 	                <script>
 	                	$(function(){
-	                		$(".orderList>tbody>tr>#orderDetail").click(function(){
-	                			location.href = '<%=contextPath%>/detail.res?ono=' + $(".orderList>tbody>tr").children().eq(0).text();
+	                		$("#orderList>tbody>tr>#orderDetail").click(function(){
+	                			location.href = '<%=contextPath%>/detail.res?ono=' + $("#orderList>tbody>tr").children().eq(0).text();
 	                		})
 	                	})
 	                </script>
-
+	
 						
 	                <br><br>
 	                

@@ -167,7 +167,7 @@
     <br>
 
     <div id = "click_btn" align="center">
-        <button type='button' id="modal_btn">취소요청하기</button>
+        <button type='button' id="modal_btn" class="btn btn-warning">취소요청하기</button>
     </div>
 
     <form id = "cancelForm" action = "<%=contextPath%>/update.or" method = "post">
@@ -180,11 +180,10 @@
             <div class="modal_wrap">
                 <div class="modal_close"><a href="#">close</a></div>
                     <div>
-                    	
-                       
+                    	<br>
                         <p style="border-bottom: 1px solid gray;" id="cancelHead">취소하기</p>
-                        <p id="smallCancelHead">취소사유</p> <br>
-                        <select name = "cReason">
+                        <p id="smallCancelHead"><b>취소사유를 선택해주세요.</b></p> <br>
+                        <select name = "cReason" style="width: 80%; margin-left: 35px;" id="selectOption">
 	                        <option value="여행자개인사정">여행자개인사정</option>
 	                        <option value="모객마감"> 모객마감 </option>
 	                        <option value="모객부족"> 모객부족 </option>
@@ -199,8 +198,6 @@
                         <script>
                         	$(function(){
                         		
-                        		// option요소들에 순차적으로 접근하면서 그때의 text값을 해당 이게시글의 카테고리명과 비교
-                        		// 일치할 경우 그때의 option요소에 selected 속성 부여
                         		$("#updateForm option").each(function(){
                         			if($(this).text() == "<%=o.getcReason()%>"){
                         				$(this).attr("selected", true);
@@ -209,16 +206,11 @@
                         		
                         	})
                         </script>
-                        
-                        
-                        
-                        
-                        
-                        <br>                 
-                        
 
-                        <div id="reservationCancel">
-                            <button type="submit" >예약취소하기</button>
+                        <br><br> <br>                  
+
+                        <div id="reservationCancel" align = "center">
+                            <button type="submit" class="btn btn-danger">예약취소하기</button>
                         </div>
                     </div>
             </div>

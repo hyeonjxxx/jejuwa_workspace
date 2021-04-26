@@ -25,19 +25,18 @@
     
     <style>
 
-        .unit{font-size: 20px;font-style: normal;}
-        .outer{margin: auto;}
-        th{padding: 10px;}
+        .likeOuter{margin: auto;}
         #recentP{font-size: 20px;}
-        .outer>h3{margin-top: 60px; font-size: 20px; font-weight: bold;}
-        body{padding: 50px;}
-        .gallery{width: 979px; margin: auto;}
-        .gallery > li{float: left; padding: 10px 70px 30px 30px; width:350px; list-style: none;}
-        /*.gallery > li:nth-child(2n) {padding-right: 0;}*/
-        .gallery li a{display : block; position: relative; text-decoration: none;  }
-        .gallery li ul{padding : 30px 50px 30px; border: 1px solid gray; height:100px}
-        .gallery li ul li{font-size: 15px; padding: 0 0 12px 15px; list-style: none; color: black;  } 
+        .likeOuter>h3{margin-top: 60px; font-size: 20px; font-weight: bold;}
         
+        .gallery{width: 979px; margin: auto;}
+        .gallery > li, .gallery>li>img{float: left; padding-right: 15px; width:180px; list-style: none;}
+        
+        /*.gallery > li:nth-child(2n) {padding-right: 0;}*/
+        /*.gallery li a{display : block; position: relative; text-decoration: none;  }*/
+        .gallery li ul{padding : 2px 2px 2px; border: 1px solid gray; height: 200px;}
+        .gallery li ul li{list-style: none; color: black; font-size: 12px; font-weight: bold; margin-top: 150px;} 
+        .gallery li ul li a{text-decoration: none; color: gray;}
     </style>
     
 </head>
@@ -45,7 +44,7 @@
 
 	<%@ include file = "../common/mypageMenubar.jsp" %>
 	
-	<div class="outer">
+	<div class="likeOuter">
 		
         <h3>좋아요</h3>
         <hr>
@@ -54,10 +53,11 @@
         <%}else{ %>	
 	        <%for(Like l : list){ %>
 	        	<%if(loginUser != null && loginUser.getMemNo()==l.getMemNo()){ %>		
-			<ul class="gallery">
+			<ul class="gallery" align = "center">
 				<li>
-					<a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=l.getpCode()%>"><%=l.getBasicPath() %></a>
-	        		<ul><li><%=l.getpName() %></li></ul>
+					<img src="<%=contextPath %>/<%= l.getBasicPath()%>" width="150" height="150" alt="">
+					<!-- <a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=l.getpCode()%>"><%=l.getBasicPath() %></a> -->
+	        		<ul><li><a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=l.getpCode()%>"><%=l.getpName() %></a></li></ul>
 	  			</li>
 			</ul>
 				<%}else{ %>
