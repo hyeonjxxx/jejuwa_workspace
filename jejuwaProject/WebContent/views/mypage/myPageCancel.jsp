@@ -27,10 +27,9 @@
     <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
     <style>
-        .wrap{width: 1000px; height:800px;  margin: auto;}        
-        .wrap>div{width: 100%;}
-        .outer{margin: auto;}
-        .outer>h3{margin-top: 60px; font-size: 20px; font-weight: bold;}       
+        
+        .cancelOuter{margin: auto;}
+        .cancelOuter>h3{margin-top: 60px; font-size: 20px; font-weight: bold;}       
         th{padding: 10px;}
 
     </style>
@@ -39,10 +38,11 @@
 
 	<%@ include file = "../common/mypageMenubar.jsp" %>
 	
-	<div class="outer">
+	
+	<div class="cancelOuter">
 		
                 
-        <table class="listArea" > 
+        <table id="listArea" class="table table-striped"> 
         	<thead>  
 	            <h3>취소내역</h3>
 	            <hr>
@@ -87,7 +87,7 @@
         
         <script>
         	$(function(){
-        		$(".listArea>tbody>tr").click(function(){
+        		$("#listArea>tbody>tr").click(function(){
         			location.href = '<%=contextPath%>/detail.mpc?ono=' + $(this).children().eq(0).text();
         		})
         	})
@@ -96,7 +96,8 @@
                  
                 
      </div>
+</div>
 
-
+	 <%@ include file = "../common/footer.jsp" %>
 </body>
 </html>

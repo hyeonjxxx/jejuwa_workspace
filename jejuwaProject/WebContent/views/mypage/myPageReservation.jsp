@@ -36,7 +36,7 @@
 	<%@ include file = "../common/mypageMenubar.jsp" %>
 	
 	
-		<div class="wrap">       
+		<div class="myPageWrap">       
 	        <div class="content" >
 	
 	            <!-- 강동원님 반갑습니다 영역 -->
@@ -108,6 +108,8 @@
 	            </div>
 	
 	    </div>
-         
+      </div>
+       
+        <%@ include file = "../common/footer.jsp" %>
 </body>
 </html>
