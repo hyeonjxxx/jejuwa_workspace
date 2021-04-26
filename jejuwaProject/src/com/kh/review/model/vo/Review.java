@@ -17,6 +17,7 @@ public class Review {
 	public Review() {}
 
 
+
 	public Review(int review_No, String mem_Name, String p_Name, String rv_Content, Date rv_Date, Date rv_Modify,
 			String rv_Status, int rv_Rating) {
 		super();
@@ -29,10 +30,7 @@ public class Review {
 		this.rv_Status = rv_Status;
 		this.rv_Rating = rv_Rating;
 	}
-	
-	
 
-	
 
 	public Review(int review_No, String mem_Name, String rv_Content, Date rv_Date, String rv_Status) {
 		super();
@@ -45,6 +43,7 @@ public class Review {
 
 	// 	고객센터 리뷰조회---
 
+
 	public Review(int review_No, String mem_Name, String p_Name, String rv_Content, Date rv_Date) {
 		super();
 		this.review_No = review_No;
@@ -53,6 +52,7 @@ public class Review {
 		this.rv_Content = rv_Content;
 		this.rv_Date = rv_Date;
 	}
+
 
 
 	public int getReview_No() {

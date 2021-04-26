@@ -1,7 +1,6 @@
 package com.kh.review.model.dao;
 
 import java.io.FileInputStream;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +12,8 @@ import java.util.Properties;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.review.model.vo.Review;
 
-import static com.kh.common.JDBCTemplate.*;
+import static com.kh.common.JDBCTemplate.close;
+
 
 public class ReviewDao {
 	
@@ -34,14 +34,14 @@ public class ReviewDao {
 	
 	
 	public int selectListCount(Connection conn) {
-		//reseltset 받기 정수갑 
+		
+		
 		int listCount = 0;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectListCount");
-		
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -51,18 +51,17 @@ public class ReviewDao {
 				listCount = rset.getInt("LISTCOUNT");
 			}
 			
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rset);
 			close(pstmt);
 		}
 		
 		return listCount;
 		
-		
 	}
+
 	
 	
 //	-------------고객센터리뷰 

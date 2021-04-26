@@ -1,4 +1,4 @@
-package com.kh.review.controller;
+package com.kh.coupon.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,20 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.model.vo.PageInfo;
-import com.kh.review.model.service.ReviewService;
-import com.kh.review.model.vo.Review;
+import com.kh.coupon.model.service.CouponService;
+import com.kh.coupon.model.vo.Coupon;
+
 
 /**
- * Servlet implementation class NoticeReviewServlet
+ * Servlet implementation class AdminCouponServlet
  */
-@WebServlet("/list.rvl")
-public class NoticeReviewServlet extends HttpServlet {
+@WebServlet("/admincoupon.do")
+public class AdminCouponServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeReviewServlet() {
+    public AdminCouponServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +33,7 @@ public class NoticeReviewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		
 
 		// --------------- 페이징 처리 -----------------
@@ -50,7 +52,7 @@ public class NoticeReviewServlet extends HttpServlet {
 		
 		
 		// * listCount : 총 게시글 갯수 조회해서 담기
-		listCount = new ReviewService().selectListCount();
+		listCount = new CouponService().selectListCount();
 	
 		
 		// * currentPage : 현재 요청한 페이지
@@ -95,12 +97,12 @@ public class NoticeReviewServlet extends HttpServlet {
 		// PageInfo 객체에 담기
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		ArrayList<Review> list = new ReviewService().NoticeReviewList(pi);
+		ArrayList<Coupon> list = new CouponService().selectList(pi);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("views/review/noticeReviewPage.jsp").forward(request, response);
+		request.getRequestDispatcher("views/coupon/adminCoupon.jsp").forward(request, response);
 		
 
 	}
@@ -112,7 +114,7 @@ public class NoticeReviewServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

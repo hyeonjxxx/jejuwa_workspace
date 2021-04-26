@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.kh.member.model.vo.Member" %>
+<%@ page import="com.kh.common.model.vo.PageInfo
+			   , java.util.ArrayList, com.kh.coupon.model.vo.Coupon" %>
 <%
-	String contextPath = request.getContextPath(); 
-	//Member loginUser = (Member)request.getAttribute("loginUser");
-	Member loginUser = (Member)session.getAttribute("loginUser");
-%>
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Coupon> list = (ArrayList<Coupon>)request.getAttribute("list");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>adminCoupon</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -105,70 +110,18 @@
     
 </head>
 <body>
-	<script>
-		var msg = "<%= session.getAttribute("alertMsg") %>"; // 알람창으로 출력할 메세지
-		// var msg = "메세지" / "null";
-		
-		if(msg != "null"){
-			alert(msg);
-			// 알람창 띄워준 후에 session에 담긴 메세지 지워야됨!!(안그러면 메뉴바 포함된 매 페이지 열때마다 alert계속뜰꺼임)
-			<% session.removeAttribute("alertMsg"); %>
-	}
-	</script>
+	
+	<%@ include file="../common/adminPageMenubar.jsp" %>
+	
 
 	<div class="wrap">
         <!-- 헤더 -->
-        <div id="header" >
-            <div id="header1">
-                <a href="<%=contextPath%>/admin.go"><img src="<%= contextPath %>/resources/images/톱니바퀴.png" style="padding: 15px;"></a>
-            </div>
-
-            <!-- 로그인 전 div -->
-            <% if(loginUser == null) { %>
-            <div id="header2">
-                <span class="topbtn">관리자off</span>
-                <a href="#" class="topbtn" data-toggle="modal" data-target="#loginModal">로그인</a>
-                <a href="<%=contextPath %>" class=topbtn style="margin-left: 700px;">홈페이지</a>     
-            </div>
-			<% } else {%>
-            <!-- 로그인 후 div -->
-            <div id="header2">
-                <span class="topbtn">관리자on</span>
-                <a href="<%= contextPath %>/logout.ad" class="topbtn">로그아웃</a>
-                <a href="<%=contextPath %>/jejuwa.go" class=topbtn style="margin-left: 700px;">홈페이지</a>     
-            </div>
-            <% } %>
-            
-        </div>
+        
 
         <!-- 컨테이너 => iodex, content -->
         <div id="container">
-            <!-- 인덱스 -->
-            <div class="menu">
-                <div class="submenu">회원 관리</div>
-                    <p>
-                        <a href="">회원 현황</a> <br>
-                        <a href="">블랙리스트 관리</a> <br>
-                    </p>
-                
-                    <div class="submenu">상품 관리</div>
-                    <p>
-                        <a href="<%=contextPath%>/list.pdt">상품 조회</a> <br>
-                        <a href="<%=contextPath%>/enroll.pdt">상품 등록</a> <br>
-                        <a href="<%=contextPath%>/list.or?currentPage=1">주문내역 관리</a> <br>
-                    </p>
-        
-                    <div class="submenu">게시글 관리</div>
-                    <p>
-                        <a href="<%=contextPath%>/list.no?currentPage=1">공지사항 관리</a><br>
-                        <a href="<%=contextPath%>/list.fa?currentPage=1">FAQ 관리</a> <br>
-                        <a href="">1:1문의 관리</a> <br>
-                        <a href="">리뷰관리</a> <br>
-                    </p>
-                    
-                    <div class="stop"> <a href="">쿠폰 관리</a></div>
-            </div> 
-                
+         </div>
+           
             <!-- 내용  -->
         <div class="content">
             
@@ -199,109 +152,34 @@
             <table  align="center" id="memberList">
                 <thead>
                     <tr>
-                        <th width="30" ><input type="checkbox"></th>
-                        <th width="70">번호</th>
-                        <th width="100">쿠폰코드</th>
-                        <th width="200">쿠폰명</th>
-                        <th width="230">기간</th>
-                        <th width="70">할인율</th>
-                        <th width="130">등록일</th>
+                        <th width="30px" ><input type="checkbox"></th>
+                        <th width="70px">번호</th>
+                        <th width="70px">쿠폰코드</th>
+                        <th width="200px">쿠폰명</th>
+                        <th width="300px">기간</th>
+                        <th width="70px">할인율</th>
+                        <th width="130px">등록일</th>
                     </tr>
                 </thead>
                 <tbody>
+                   <!-- 조회된 결과가 없을 경우 -->
+		                <% if(list.isEmpty()){ %>
+		                	<tr>
+		                		<td colspan="6">조회된 회원이 없습니다.</td>
+		                	</tr>
+		                <% }else{%>
+		                <!-- 조회된 결과가 있-->
+		                <% for(Coupon c : list) {%>
                     <tr>
                         <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>coupon004</td>
-                        <td>감사쿠폰</td>
-                        <td>2019-03-05 ~ 2021-04-22</td>
-                        <td>20%</td>
-                        <td>2019-03-05</td>
+                        <td><%= c.getCpn_Code() %></td>
+                        <td><%= c.getCpn_Name() %></td>
+                        <td><%= c.getCpn_Str_Date() %>~ <%= c.getCpn_End_Date() %></td>
+                        <td><%= c.getCpn_Dc() %>%</td>
+                        <td><%= c.getCpn_Rgdt() %></td>
+                        
                     </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>coupon004</td>
-                        <td>감사쿠폰</td>
-                        <td>2019-03-05 ~ 2021-04-22</td>
-                        <td>20%</td>
-                        <td>2019-03-05</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>coupon004</td>
-                        <td>감사쿠폰</td>
-                        <td>2019-03-05 ~ 2021-04-22</td>
-                        <td>20%</td>
-                        <td>2019-03-05</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>coupon004</td>
-                        <td>감사쿠폰</td>
-                        <td>2019-03-05 ~ 2021-04-22</td>
-                        <td>20%</td>
-                        <td>2019-03-05</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>coupon004</td>
-                        <td>감사쿠폰</td>
-                        <td>2019-03-05 ~ 2021-04-22</td>
-                        <td>20%</td>
-                        <td>2019-03-05</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>coupon004</td>
-                        <td>감사쿠폰</td>
-                        <td>2019-03-05 ~ 2021-04-22</td>
-                        <td>20%</td>
-                        <td>2019-03-05</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>coupon004</td>
-                        <td>감사쿠폰</td>
-                        <td>2019-03-05 ~ 2021-04-22</td>
-                        <td>20%</td>
-                        <td>2019-03-05</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>coupon004</td>
-                        <td>생일쿠폰</td>
-                        <td>2019-03-05 ~ 2021-04-22</td>
-                        <td>20%</td>
-                        <td>2019-03-05</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>coupon004</td>
-                        <td>생일쿠폰</td>
-                        <td>2019-03-05 ~ 2021-04-22</td>
-                        <td>20%</td>
-                        <td>2019-03-05</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>10</td>
-                        <td>coupon004</td>
-                        <td>생일쿠폰</td>
-                        <td>2019-03-05 ~ 2021-04-22</td>
-                        <td>20%</td>
-                        <td>2019-03-05</td>
-                    </tr>
-                    
-                    
-
+                   
                 </tbody>
 
             </table>
@@ -315,17 +193,34 @@
     
     
             <!-- 페이징  -->
-            <div id="next-buttton" align="center" class="pagingArea">
-                        
-                    <button>&lt;</button>			
-                
-                        <button disabled>1</button>				
-                        <button>2</button>
-                        <button>3</button>
-                   		
-                
-                    <button>&gt;</button>
-
+            <div align="center" class="pagingArea">
+                    
+                    <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
+                    <% if(currentPage == 1) {%>
+                    	<button disabled>&laquo;</button>
+	                    <button disabled>&lt;</button>			
+                    <%} else {%>
+	                    <button onclick="location.href='<%=contextPath%>/list.no?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage-1%>';">&lt;</button>			
+					<% } %>
+					
+					<% for(int p=startPage; p<=endPage; p++ ) {%>
+					
+						<% if(currentPage == p) {%>
+                        	<button disabled><%= p %></button>
+                        <% }else{ %>				
+	                        <button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%= p %>';"><%= p %></button>
+                        <% } %>		
+                	<% } %>
+                	
+                	<!--  마지막 페이지일 경우 >,>> 버튼 disabled -->
+                	<% if(currentPage == maxPage){ %>
+                		<button disabled>&gt;</button>
+	                    <button disabled>&raquo;</button>
+                	<% } else{ %>
+                		<button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=maxPage%>';">&raquo;</button>
+                	<% } %>
              </div>
 
              <!-- 버튼 쿠폰발송 -->

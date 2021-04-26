@@ -12,7 +12,7 @@
 		  STATUS = 'Y'
 		</entry>
 
-<!-- 고객센터 조회 -->
+<!-- 고객센터 리뷰조회 -->
 		<entry key="NoticeReviewList">
 				SELECT *
 		    	FROM (

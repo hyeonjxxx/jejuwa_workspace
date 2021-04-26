@@ -2,6 +2,34 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+<!-- 관리자쿠폰리스트 조회 -->
+	<entry key="adminCouponList">
+	SELECT *
+    FROM (
+            SELECT
+                ROWNUM RNUM
+                , A.*
+            FROM (
+                        SELECT 
+                    CPN_CODE
+                   ,CPN_NAME
+                   ,CPN_DC
+                   ,CPN_RGDT
+                   ,CPN_STR_DATE
+                   ,CPN_END_DATE
+            FROM   COUPON C
+            ORDER
+                 BY CPN_RGDT DESC
+            ) A
+
+    )
+WHERE RNUM BETWEEN ? AND ?
+	
+	
+	</entry>
+
+
+
 	<entry key="selectListCoupon">
 
 <!-- 마이페이지 쿠폰조회 -->
@@ -28,5 +56,7 @@
 	  	
   	
   	</entry>
+  	
+  	
   
 </properties>
