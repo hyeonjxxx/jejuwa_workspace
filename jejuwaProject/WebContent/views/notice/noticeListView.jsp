@@ -54,7 +54,7 @@
             <table align="center" id="memberList">
                 <thead>
                     <tr>
-                        <th width="40" ><input type="checkbox"></th>
+                        <th width="40" ><input type="checkbox" id="checkAll" onclick="cAll();"></th>
                         <th width="90">번호</th>
                         <th width="320">제목</th>
                         <th width="90">조회수</th>
@@ -71,11 +71,11 @@
 	                <!-- 조회된 결과가 있을 경우 -->
 	                	<% for(Notice n : list) {%>
 		                    <tr>
-		                        <td><input type="checkbox"></td>
-		                        <td><%= n.getNoticeNo() %></td>
-		                        <td><%= n.getNoticeTitle() %></td>
-		                        <td><%= n.getNoticeCount() %></td>
-		                        <td><%= n.getEnrollDate() %></td>
+		                        <td><input id="test3" type="checkbox"></td>
+		                        <td class="ch2"><%= n.getNoticeNo() %></td>
+		                        <td class="ch2"><%= n.getNoticeTitle() %></td>
+		                        <td class="ch2"><%= n.getNoticeCount() %></td>
+		                        <td class="ch2"><%= n.getEnrollDate() %></td>
 		                    </tr>
 		                <% } %>
 	                <% } %>   
@@ -83,13 +83,29 @@
             </table>
             
             <script>
+            
             	// 상세보기 요청
             	$(function(){
             		$("#memberList>tbody>tr").click(function(){
+            			
             			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children().eq(1).text();
             		})
             	})
-            </script>
+            	
+            	
+            	// 일부선택시 상세보기로 넘어가지 않도록
+            	
+            	
+            	// 체크박스 : 전체선택
+       			function cAll(){
+                		if($("#checkAll").prop("checked")){
+                			$("input[type=checkbox]").prop("checked", true);
+                		}else{
+                			$("input[type=checkbox]").prop("checked", false);
+                		}
+               	}
+             </script>  	
+               	
 
         </div>
 

@@ -32,7 +32,7 @@
                     <a href="<%=request.getContextPath()%>/list.uno?currentPage=1">공지사항<span style="margin-left: 74px;">〉</span></a>
                 </li>
                 <li class="subMenu">
-                    <a href="<%=request.getContextPath() %>/list.rvl">리뷰내역<span style="margin-left: 74px;">〉</span></a>
+                    <a href="<%=request.getContextPath() %>/list.rvl?currentPage=1">리뷰내역<span style="margin-left: 74px;">〉</span></a>
                 </li>
                 <li class="subMenu">
                     <a href="<%=request.getContextPath() %>/list.ufa">자주하는문의 FAQ<span style="margin-left: 13px;">〉</span></a>

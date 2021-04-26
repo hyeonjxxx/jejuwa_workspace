@@ -119,10 +119,12 @@ public class ProductReviewList extends HttpServlet {
 		// 2. 현재 요청한 페이지(currentPage)에 보여질 게시글 리스트 조회해오기
 		ArrayList<Review> list = new ReviewService().selectReviewList(pi);
 		
+		
+		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("views/board/boardListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/review/productReview.jsp").forward(request, response);
 		
 		
 		

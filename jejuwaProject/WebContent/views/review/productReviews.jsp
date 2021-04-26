@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.util.ArrayList, com.kh.review.model.vo.Review, com.kh.common.model.vo.PageInfo" %>
+    <%
+    PageInfo pi = (PageInfo)request.getAttribute("pi");
+    ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
+    
+    int currentPage = pi.getCurrentPage();
+    int startPage = pi.getStartPage();
+    int endPage = pi.getEndPage();
+    int maxPage = pi.getMaxPage();
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -155,69 +166,66 @@
 	        
 	    </div>
 	  
-	    <!-- 구매자에게만 버튼보이게 -->
-	    <a href="<%=request.getContextPath() %>/product.rvs" id="review-btn" class="btn btn-warning">리뷰 작성하기</a>
+	    <!-- 현재로그인했을 때만  (구매자에게) 버튼보이게 -->
+	    <% if(loginUser != null) {  %>
+	    <a href="<%=request.getContextPath() %>/enrollForm.rvs" id="review-btn" class="btn btn-warning">리뷰 작성하기</a>
 	    <div class="clear"></div>
+	    <% } %>
+	    
+	    
 	</div>
 	    <hr>
+	    <!-- 조회된 결과가 없을경우 -->
+	    
 	    <div class="reviews">
-	
+			<% for (Review r : list) { %>
 	        <div class="review-row">
-	            <div class="review-id">dfdf***</div>
-	            <div class="review-grade">★★★★★</div>
-	            <div class="review-date">2021-4-22</div>
+	            <div class="review-id"><%= r.getMem_Name() %></div>
+	            <div class="review-date"><%= r.getRv_Date()%></div>
 	        </div>
 	
 	        <div class="review-content">
-	            <div class="review-title">즐겁게 놀다갑니다</div>
-	            <div class="review-letter">직원들이 너무 친절하고 재밌었어요!! 또오고 싶습니다.</div>
+	            <div class="review-letter"><%= r.getRv_Content()%></div>
 	        </div>
 	        <div class="report-button">
 	            <button class="btn btn-light">신고</button></div>
 	        <div class="clear"></div>
 	    </div>
 	    <hr>
-	    <div class="reviews">
-	
-	        <div class="review-row">
-	            <div class="review-id">hwew***</div>
-	            <div class="review-grade">★★★★★</div>
-	            <div class="review-date">2021-4-22</div>
-	        </div>
-	
-	        <div class="review-content">
-	            <div class="review-title">가성비 최고 제주여행 마지막 코스</div>
-	            <div class="review-letter">또오고 싶습니다.</div>
-	        </div>
-	        <div class="report-button">
-	            <button class="btn btn-light">신고</button></div>
-	        <div class="clear"></div>
-	    </div>
-	<hr>
-	    <div class="reviews">
-	
-	        <div class="review-row">
-	            <div class="review-id">hwew***</div>
-	            <div class="review-grade">★★★</div>
-	            <div class="review-date">2021-4-22</div>
-	        </div>
-	
-	        <div class="review-content">
-	            <div class="review-title">나쁘지않았어요</div>
-	            <div class="review-letter">나중에 가게되면 거기로 또가려고요</div>
-	            <img src="../resources/images/filter_image.png" alt="">
-	        </div>
-	  
-	            <div class="report-button">
-	                <button  class="btn btn-light">신고</button>
-	            </div>
-	            
-	    <div class="clear"></div>
-	
+	    <% } %>
+		 <!-- 페이징 구역 -->
+        <div class="bottomArea">
+   
+            
+            <!-- 페이징  -->
+            
+        	<div align="center" class="pagingArea">
+
+			<% if(currentPage != 1) { %>
+            	<button onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%=currentPage-1%>';">이전</button>
+			<% } %>
+			
+			<% for(int p=startPage; p<=endPage; p++) { %>
+				
+				<% if(currentPage == p){ %>
+            		<button disabled><%= p %></button>
+            	<% }else{ %>
+            		<button onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%= p %>';"><%= p %></button>
+            	<% } %>
+            	
+			<% } %>
+			
+			<% if(currentPage != maxPage){ %>
+            	<button onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%=currentPage+1%>';">다음</button>
+			<% } %>
+			
+        	</div>
+			
+		</div>
+	   
 	    </div>
 	    <hr>
 	    
-	</div>
 			
 		
 		

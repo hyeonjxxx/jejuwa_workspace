@@ -122,7 +122,7 @@
     float: left;
     margin: 10px;
     margin-left: 20px;
-    margin-top: 70px;
+    margin-top: 30px;
 }
 /* 이미지크기 */
 .wr-img>img{
@@ -182,22 +182,81 @@
                 
             </div>
             <br><hr>
+            <form action="" id="enrollForm" method="post" enctype="multipart/form-data">
             <div id="review-write-wrap">
                 <div class="wr-img">
-                <img src="../resources/images/filter_image.png" alt=""class="write-image">
+                <!-- 미리보기할 img -->
+                <img id="titleImg" class="write-image">
                 </div>
 
                 <div class="review-write-wrap2">
-                <div class="pic-btn"  align="right">
-                <button class="btn btn-secondary">사진 첨부하기</button>
-            </div>
-                <textarea name="r-write" id="" cols="43" rows="10" placeholder="최대 1000글자" resize="none" required maxlength="1000"></textarea>
+                
+                <textarea name="content" id="" cols="43" rows="10" placeholder="최대 1000글자" resize="none" required maxlength="1000"></textarea>
             
             </div>
+            <!-- 파일첨부  -->
+            <div class="pic-btn" id="fileArea">
+                <input type="file" name="file1" id="file1" onchange="loadImg(this, 1);">
+            </div>
+            
+            
+            
+            <script>
+            
+            
+            	$(function() {
+            			
+            			$("#fileArea").hide();
+            		
+            			$("#titleImg").click(function(){
+            				$("#file1").click();
+            			});
+            	})	
+            
+            
+            	function loadImg(inputFile, num) {
+            		// inputFile : 현재 변화가 생긴 input type
+            		// 몇번째 input 요소인지 확인 후 영역에 미리보기 
+            		
+            		//파일 선택후 inputFile.files라는 속성배열에 0번 인덱스 파일 정보 담김
+            		
+            		if(inputFile.files.length == 1) { //선택파일이 있다면 
+            			
+            			//파일리더 객체 생성
+            			var reader = new FIleReader();
+            		
+            			//선택된 파일 읽어들이기
+            			//고유한 url부여
+            			
+            			reader.readAsDataURL(inputFile.file[0]);
+            			
+            			//파일 읽어들이기가 완료된 순간 실행할 함수 정의
+            			
+            			reader.onload = function(e) {
+            				//각 영역에 맞춰서 이미지 미리보기 
+            				switch(num) {
+            				case 1: $("#titleImg").attr("src", e.target.result); break;
+            				}
+            			}
+            			
+            		}else{ //파일 사라졌을경우 
+            			switch(num) {
+        				case 1: $("#titleImg").attr("src", null); break;
+        				}
+            		}
+            		
+            	}
+            </script>
+            
+            
             <div class="clear"></div>
             <div class="write-sub-btn" align="right">
             <input type="submit" value="등록"class="btn btn-primary" >
             </div>
+            
+            
+            
+            </form>
             </div>
           
 </body>

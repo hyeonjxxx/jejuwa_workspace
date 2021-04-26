@@ -4,31 +4,69 @@
 
 <properties>
 <!--리뷰 게시글 리스트 조회시  -->
-	<entry key="">
-		SELECT *
+
+		<entry key="selectListCount">
+	
+		SELECT COUNT(*) LISTCOUNT
+		  FROM REVIEW
+		  STATUS = 'Y'
+		</entry>
+
+<!-- 고객센터 조회 -->
+		<entry key="NoticeReviewList">
+				SELECT *
+		    	FROM (
+		            SELECT
+		                ROWNUM RNUM
+		                , A.*
+		            FROM (
+		                        SELECT 
+		                    REVIEW_NO
+		                   ,P_NAME
+		                   ,RV_CONTENT
+		                   ,RV_DATE
+		                   
+		            FROM   REVIEW R
+		            JOIN PRODUCT USING(P_CODE)
+		            WHERE R.RV_STATUS = 'Y'
+		            ORDER
+		                 BY RV_DATE DESC
+		            ) A
+		
+		    )
+				WHERE RNUM BETWEEN ? AND ?;
+		</entry>
+		
+
+
+
+
+		<entry key="selectReviewList">
+			SELECT *
     FROM (
             SELECT
                 ROWNUM RNUM
                 , A.*
-            FROM 
-            	(
+            FROM (
                         SELECT 
                     REVIEW_NO
-                   ,MEM_NO
+                   ,MEM_NAME
                    ,RV_CONTENT
                    ,RV_DATE
                    ,RV_MODIFY
                    ,RV_STATUS
-	            FROM REVIEW R
-	            JOIN MEMBER USING(MEM_NO)
-	            WHERE R.RV_STATUS = 'Y'
-	            ORDER
+            FROM   REVIEW R
+            JOIN MEMBER USING(MEM_NO)
+            WHERE R.RV_STATUS = 'Y'
+            ORDER
                  BY RV_DATE DESC
             ) A
 
     )
 WHERE RNUM BETWEEN ? AND ?;
 	</entry>
+	
+	
 
 	
 	

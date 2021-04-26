@@ -11,14 +11,37 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<!-- content css-->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/faq/faqEnrollForm.css">
+<style>
+	    
+	.faqouter{
+	    height: 890px; width: 860px;
+	    margin: 20px;
+	}
+	
+	.divisionLine{
+	    width: 90%; height: 5px;  
+	    background-color: lightgray;
+	    margin-top: 10px;
+	}    
+	
+	/* 입력폼 */
+	th{width:70px; border:}       
+	select, span{margin-left: 10px;}
+	td, span{font-size: 14px; padding: 3px 0;}
+	
+	               
+	/* 버튼 */
+	#submit{margin-left: 280px;}
+
+
+	
+</style>
 </head>
 <body>
 
 	<%@ include file = "../common/adminPageMenubar.jsp" %>
 	
-    <div class="outer">
+    <div class="faqouter">
 
         <br>
         <h2>FAQ 등록</h2>
@@ -27,12 +50,12 @@
         
         <br><br>
 
-        <div class="enrollForm">
+        <div id="enrollForm" >
                 <form action="<%=contextPath%>/insert.fa" method = "post">
-                    <table align="center" id="enrollTable" align = "center" border = "1">
-                        <tr>
-                            <th>구분</th>
-                            <td colspan="2">
+                    <table align="center" id="enrollTable" class="table table-bordered">
+                        <tr align="center"; >
+                            <th >구분</th>
+                            <td colspan="2" align="left">
                                 <select name="category" id="">
                                     <option value="관광지/레저">관광지/레저</option>
                                     <option value="맛집">맛집</option>
@@ -41,22 +64,22 @@
                                 </select>
                             </td>
                         </tr>
-                        <tr>
+                        <tr align="center";>
                             <th>제목</th>
-                            <td colspan="2">
-                                <input type="text" name="title" size="93" placeholder="제목을 입력해주세요" required>
+                            <td colspan="2" align="left">
+                                <input type="text" name="title" style = "width: 100%; border:none;" placeholder="제목을 입력해주세요" required style="resize:none;">
                             </td>
                         </tr>
-                        <tr>
+                        <tr align="center";>
                             <th>내용</th>
                             <td colspan="2">
-                                <textarea style = "width: 100%;" name="content" cols="85" rows="30" style="resize:none;" placeholder="내용을 입력해주세요" ></textarea>
+                                <input type = "text" style = "width: 100%; height: 400px; border:none;" name="content" cols="85" rows="30"  placeholder="내용을 입력해주세요" ></input>
                             </td>
                         </tr>
                     </table>
 		            <div class="btn">
-		                <button type = "submit">작성하기</button>
-		                <button type = "reset">취소하기</button> 
+		                <button type = "submit" id="submit" class="btn btn-warning">작성하기</button>
+		                <a href="<%= contextPath %>/list.fa?currentPage=1" class="btn btn-info">취소하기</a> 
 		            </div> 
                 </form>
         </div>
