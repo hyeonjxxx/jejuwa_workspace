@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 
    <!-- boardMenu css -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/customerBoardMenu.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/common/customerBoardMenu.css">
 
     <!-- boardMenu fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">

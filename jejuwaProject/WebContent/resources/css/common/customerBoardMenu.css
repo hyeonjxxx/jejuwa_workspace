@@ -13,8 +13,8 @@
     width:80%;
     height: 100%;
 }
-ul, li, em{list-style: none;}
-ul{
+.board_menu_list>ul, li, em{list-style: none;}
+.board_menu_list>ul{
         display: block;
         margin-block-start: 1em;
         margin-block-end: 1em;
@@ -22,9 +22,9 @@ ul{
         margin-inline-end: 0px;
         padding-inline-start: 40px;
         }
-li{display: list-item;}
+.subMenu{display: list-item;}
     
-a{text-decoration: none; margin: -30px;}
+.subMenu a{text-decoration: none; margin: -30px;}
     
     
 #customer_center{

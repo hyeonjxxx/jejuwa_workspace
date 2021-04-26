@@ -71,7 +71,7 @@
 		            <tr align="center">
 		                <td><%=o.getOrderNo() %></td>	
 		                <td width=500 ><%=o.getpName() %></td>
-		                <td width=200><a href="<%= contextPath %>/detail.mpc" style="color: orange;">상세보기</a></td>
+		                <td width=200><a href="<%= contextPath %>/detail.mpc?ono=<%=o.getOrderNo()%>" style="color: orange;">상세보기</a></td>
 		                <td width=200>
 		                    <input id="datepicker" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal" value="다시예약하기"></input>
 		                </td>
