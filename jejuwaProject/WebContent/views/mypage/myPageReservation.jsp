@@ -68,7 +68,7 @@
 
 	                        <!-- 조회된 결과가 있을 경우 -->
 								<%for(Order o : list){ %>
-									<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo()) {%>
+									<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo() && o.getcReason() == null) {%>
 				                        <tr align="center">
 				                        	<td id = "orderNo" width="100"><%=o.getOrderNo() %></td>
 				                            

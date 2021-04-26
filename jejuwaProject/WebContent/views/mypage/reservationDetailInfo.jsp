@@ -6,38 +6,38 @@
 	//ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
 	Order o = (Order)request.getAttribute("o");
 	Product p = (Product)request.getAttribute("p");
+	String travleDate = (String)request.getAttribute("travleDate");
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Bootstrap Example</title>
 	
-	<!-- Latest compiled and minified CSS -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
-    <!-- 예약상세내역 css -->
-    <link rel="stylesheet" type = "text/css" href="<%=request.getContextPath() %>/resources/css/mypage/reservationDetailInfo.css">
+    <!-- 예약상세내역 css-->
+  	<link rel="stylesheet" type = "text/css" href="<%=request.getContextPath() %>/resources/css/mypage/reservationDetailInfo.css">
+  	
+  	
+<style>
+	
+</style>
 </head>
 <body>
 	<div class="outer">
-        <div>예약상세</div>
+        <div id="div">예약상세</div>
         <br>
         <form action="<%=contextPath %>/detail.res" class="reservationForm">
         	<input type="hidden" name="pcode" value="pcode">
-            <div>상품명 </div> 
+            <div id="div">상품명 </div> 
             
             <div id="notice" style="font-size: 15px; border-bottom: none;" >
-                <b style="color: blue;">SMS 또는 카카오톡으로 사용 방법 또는 e-티켓이 전송될 예정입니다.</b> <br>
+                <b style="color: blue;" >SMS 또는 카카오톡으로 사용 방법 또는 e-티켓이 전송될 예정입니다.</b> <br>
     <b style="color: red;">업체 별로 사용방법 또는 e-티켓 발송 방식이 다를 수 있으니, 반드시 구매하신 상품 상세 페이지에서 내용을 확인하여 주세요. <br>
     사용 방법 및 e-티켓 발송에 대한 문의 사항은 제주와 상품 상세 페이지에 적힌 공급업체로 연락바랍니다.</b>
             </div>
@@ -61,7 +61,7 @@
             </table>
             <br><br>
 
-            <div>결제금액</div>
+            <div id="div">결제금액</div>
 
             <table border="1px" >
                 <tr align = "center">
@@ -73,40 +73,47 @@
                
             </table>
             <br><br>
-
-
+			
+			<!-- 이메일 모달 -->
+			<div class="container">
+			  <!-- Button to Open the Modal -->
+			  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="emailButton">
+			    이메일 전송
+			  </button>
+			
+			  <!-- The Modal -->
+			  <div class="modal fade" id="myModal">
+			    <div class="modal-dialog modal-dialog-centered">
+			      <div class="modal-content">
+			      
+			        <!-- Modal Header -->
+			        <div class="modal-header">
+			          <h4 class="modal-title">이메일전송</h4>
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			        </div>
+			        
+			        <!-- Modal body -->
+			        <div class="modal-body">
+			          <input type = "email" placeholder="<%=o.getTravelEmail()%>" style="width: 100%;">
+			        </div>
+			        
+			        <!-- Modal footer -->
+			        <div class="modal-footer">
+                      <button type="button" class="btn btn-warning" data-dismiss="modal">전송</button>
+			          <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+			        </div>
+			        
+			      </div>
+			    </div>
+			  </div>
+			  
+			</div>
             <!-- 모달 -->
-            <div>
-                여행확인증
-                <button class="openBtn">이메일전송</button>
+            <div id="div">여행확인증
+            	
+            
             </div>
            
-            <div class="modal hidden" >
-              <div class="bg"></div>
-              <div class="modalBox" align="center" style="width: 500px; height: 200px; margin: auto;">
-                <p>여행확인증을 받을 이메일을 입력해주세요</p>
-                <input type="email" placeholder="이메일을 입력해주세요." style="width: 350px; height: 20px;"> <br><br>
-                <button class="closeBtn">취소</button>
-                <button class="okBtn">확인</button>
-              </div>
-            </div>
-            
-            <script>
-              const open = () => {
-                document.querySelector(".modal").classList.remove("hidden");
-              }
-            
-              const close = () => {
-                document.querySelector(".modal").classList.add("hidden");
-              }
-            
-              document.querySelector(".openBtn").addEventListener("click", open);
-              document.querySelector(".closeBtn").addEventListener("click", close);
-              document.querySelector(".bg").addEventListener("click", close);
-            
-            </script>
-
-
             <table border="1px">
                 <tr>
                     <td>지각 관련 안내사항(약관 기반)</td>
@@ -118,7 +125,7 @@
                 </tr>
             </table>
             <br><br>
-            <div>예약정보상세</div>
+            <div id="div">예약정보상세</div>
             <table border="1px">
                 <tr>
                     <td>주문정보<br>
@@ -148,7 +155,7 @@
                 </tr>
             </table>
             <br><br>
-            <div style="font-size: 15px;">
+            <div style="font-size: 15px;" id="div">
                 제주와는여행 확인증에 명시한 가이드 서비스 요금에만 취소 및 환불 정책을 적용하며 그 권리를 보장합니다. <br>
                 여행 확인증에 명시되지 않은 내용이나 가이드와 개별적으로 약속한 내용은 제주와하고는 무관함을 알려드립니다. <br>
                 현지 긴급 상황 발생 시 : 가이드 (공급처) 연락처로 연락주세요. <br>
@@ -159,30 +166,56 @@
 
     <br>
 
-        <div id = "click_btn" align="center">
-            <button type='button' id="modal_btn">취소요청하기</button>
-        </div>
+    <div id = "click_btn" align="center">
+        <button type='button' id="modal_btn">취소요청하기</button>
+    </div>
 
-        
+    <form id = "cancelForm" action = "<%=contextPath%>/update.or" method = "post">
+    	<input type="hidden" name="pcode" value="<%=o.getpCode() %>">
+		<!-- <input type="hidden" name="amount" value="<%=o.getAmount() %>"> -->
+		<!-- <input type="hidden" name="travle" value="<%=travleDate%>">-->
+		<!-- <input type="hidden" name="cReason" value="<%=o.getcReason() %>">-->
+		
         <div class="black_bg"></div>
             <div class="modal_wrap">
                 <div class="modal_close"><a href="#">close</a></div>
                     <div>
-                        <form action = "enrollMember.do" id="reason">
-                            <p style="border-bottom: 1px solid gray;" id="cancelHead">취소하기</p>
-                            <p id="smallCancelHead">취소사유</p> <br>
-                            <input type = "radio"> 여행자개인사정 <br><br>
-                            <input type = "radio"> 모객마감 <br><br>
-                            <input type = "radio"> 모객부족 <br><br>
-                            <input type = "radio"> 가이드일정불가 <br><br>
-                            <input type = "radio"> 가이드무응답 <br><br>
-                            <input type = "radio"> 건강 상의 이유 <br><br>
-                            <input type = "radio"> 재예약 진행을 위해 <br><br>
-                            <input type = "radio"> 천재지변 <br><br>
-                            <input type = "radio"> 기타 
-                            <input type="text" style="width: 80%; height: 20px;" placeholder="기타의견을 적어주세요."><br>
+                    	
+                       
+                        <p style="border-bottom: 1px solid gray;" id="cancelHead">취소하기</p>
+                        <p id="smallCancelHead">취소사유</p> <br>
+                        <select name = "cReason">
+	                        <option value="여행자개인사정">여행자개인사정</option>
+	                        <option value="모객마감"> 모객마감 </option>
+	                        <option value="모객부족"> 모객부족 </option>
+	                        <option value="가이드일정불가 "> 가이드일정불가 </option>
+	                        <option value="가이드무응답"> 가이드무응답 </option>
+	                        <option value="건강 상의 이유"> 건강 상의 이유 </option>
+	                        <option value="재예약 진행을 위해"> 재예약 진행을 위해 </option>
+	                        <option value="천재지변"> 천재지변 </option>
+	                        <option value="기타 "> 기타 </option>
+                        </select>
+
+                        <script>
+                        	$(function(){
+                        		
+                        		// option요소들에 순차적으로 접근하면서 그때의 text값을 해당 이게시글의 카테고리명과 비교
+                        		// 일치할 경우 그때의 option요소에 selected 속성 부여
+                        		$("#updateForm option").each(function(){
+                        			if($(this).text() == "<%=o.getcReason()%>"){
+                        				$(this).attr("selected", true);
+                        			}
+                        		})
+                        		
+                        	})
+                        </script>
+                        
+                        
+                        
+                        
+                        
                         <br>                 
-                        </form>
+                        
 
                         <div id="reservationCancel">
                             <button type="submit" >예약취소하기</button>
@@ -208,5 +241,7 @@
      
     };
     </script>
+    
+    </form> 
 </body>
 </html>

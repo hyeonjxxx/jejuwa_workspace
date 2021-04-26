@@ -55,6 +55,8 @@
 		               )A
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
+		 ORDER 
+		    BY ORDER_DATE DESC
 	</entry>
 	
 	<!-- 관리자 페이지 내 주문내역관리 INSERT -->
@@ -139,6 +141,18 @@
          WHERE ORDER_NO = ?
 	</entry>
 	
+	
+	
+	<!-- 주문상태 취소로 변경하는 sql -->
+	
+	<entry key="updateOrder">
+		UPDATE
+				TORDER
+		   SET	C_REASON =?
+		 WHERE	P_CODE = ?
+		   AND	MEM_NO = ?
+		   			 
+	</entry>
 </properties>
 
 

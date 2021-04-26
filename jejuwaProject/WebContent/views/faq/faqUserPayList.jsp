@@ -26,6 +26,12 @@
 <!-- FAQ 사용자 게시판 CSS -->
 <link rel="stylesheet" type="text/css"  href="<%=request.getContextPath() %>/resources/css/customer/faqUserListView.css">
 
+
+<style>
+
+	.FAQ ul li a{margin-left: 20px; border : none;}
+
+</style>
 </head>
 <body>
 

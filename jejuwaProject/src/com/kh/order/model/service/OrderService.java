@@ -87,6 +87,19 @@ public class OrderService {
 		return o;
 	}
 	
+	// 예약주문 상태 취소로 변경하는 update
 	
+	public int updateOrder(Order o) {
+		Connection conn = getConnection();
+		int result = new OrderDao().updateOrder(conn, o);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
 	
 }
