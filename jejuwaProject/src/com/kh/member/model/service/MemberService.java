@@ -124,6 +124,24 @@ public class MemberService {
 	}
 	
 	/**
+	 * [민국] 비밀번호 찾기: 아이디 == 이름 == 핸드폰번호 체크여부
+	 * @param memId
+	 * @param memName
+	 * @param phoneNumber
+	 * @return
+	 */
+	
+	public Member pwFindCheck(String memId, String memName, String phoneNumber) {
+		Connection conn = getConnection();
+		Member m = new MemberDao().pwFindCheck(conn, memId, memName, phoneNumber);
+		
+		close(conn);
+		
+		return m;
+	}
+
+	
+	/**
 	 * [휘경] 멤버 수 조회(활동회원, 관리자)
 	 * @return
 	 */
@@ -273,6 +291,8 @@ public class MemberService {
 		}
 		return result;
 	}
+
+
 
 
 

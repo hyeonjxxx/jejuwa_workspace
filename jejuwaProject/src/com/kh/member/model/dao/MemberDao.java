@@ -30,7 +30,13 @@ public class MemberDao {
 		}
 	}
 	
-	
+	/**
+	 * [민국] 로그인 
+	 * @param conn
+	 * @param memId
+	 * @param memPwd
+	 * @return
+	 */
 	public Member loginMember(Connection conn, String memId, String memPwd) {
 		// select 
 		Member m = null;
@@ -197,13 +203,49 @@ public class MemberDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
 			
 			pstmt.setString(1, memName);
 			pstmt.setString(2, phoneNumber);
 			
+			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				m = new Member(rset.getString("MEM_NAME"),
+							   rset.getString("MEM_ID"),
+						       rset.getString("PHONE"));
+				System.out.println(m);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		
+		return m;
+	}
+	
+	
+	
+	public Member pwFindCheck(Connection conn, String memId, String memName, String phoneNumber) {
+		Member m = null;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("pwFindCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memId);
+			pstmt.setString(2, memName);
+			pstmt.setString(3, phoneNumber);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				m = new Member(rset.getString("MEM_NAME"),
+							   rset.getString("MEM_ID"),
+							   rset.getString("MEM_PWD"),
 						       rset.getString("PHONE"));
 				System.out.println(m);
 			}

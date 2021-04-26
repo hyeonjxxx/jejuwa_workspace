@@ -49,6 +49,7 @@
 	<%@ include file="../common/customerMenubar.jsp" %>
 	
 	<div class="outer">
+        <input type="hidden" id="is_mobile_auth" value="F">
         <br><br>
         <h2>1:1 문의</h2>
         <div class="divisionLine"></div>

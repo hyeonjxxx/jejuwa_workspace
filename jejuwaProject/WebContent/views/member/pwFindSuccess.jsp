@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- idPwFind css -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/member/idPwFindSuccess.css">
+    <!-- PwFindSuccess css -->
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/member/pwFindSuccess.css">
 
-    <!-- idPwFind js-->
-    <link rel="stylesheet" href="">
+    <!-- PwFindSuccess js-->
+  	<script src=""></script>
 
-    <!-- idPwFind fonts-->
+    <!-- PwFindSuccess fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
@@ -38,26 +40,30 @@
 
 </head>
 <body>
+<%@ include file="../common/loginUserMenubar.jsp" %>
     <div class="idPwFind_wrap">
-        <p>아이디 찾기</p><br><br>
-        <div class="idFind_wrap">
-            <div class="idFind_success">
-                <b style="font-size: 25px;">아이디 찾기 완료</b><br><br>
+        <p>비밀번호 찾기</p><br><br>
+        <div class="pwFind_wrap">
+            <div class="pwFind_success">
+                <b style="font-size: 25px;">비밀번호 찾기 완료</b><br><br>
             </div>
-            <div class="idFind">
-                <b>아이디 : </b>
-                <b style="color:orange;"> aaaaa </b>
+            <div class="pwFind">
+                <b>비밀번호 : </b>
+                <b style="color:orange;"> @#@#@# </b>
             </div> 
             <br>
             <div class="buttonArea">
                 <button type="button" class="btn btn-warning btn-login">
-                    <a href="">로그인 ></a>
+                    <a href="<%= request.getContextPath() %>/lgview.me">로그인 ></a>
                 </button>
                 <button type="button" class="btn btn-warning btn-idPwfind">
-                    <a href="">비밀번호 찾기 ></a>
+                    <a href="<%= request.getContextPath() %>/IdPwFind.me">아이디찾기 ></a>
                 </button>
             </div>
         </div>
     </div>
+    </div>
+    <br><br>
+    <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

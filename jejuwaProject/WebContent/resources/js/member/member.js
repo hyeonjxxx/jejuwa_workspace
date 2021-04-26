@@ -163,10 +163,10 @@ $(document).ready(function(){
         }
         
         // 휴대폰 인증 체크
-        // if($('#is_mobile_auth').val() !== 'T') {
-        //     alert('휴대폰 인증해주시기 바랍니다.');
-        //     return false;
-        // }
+        if($('#is_mobile_auth').val() !== 'T') {
+             alert('휴대폰 인증해주시기 바랍니다.');
+             return false;
+         }
        
         // 이용약관 체크 checkbox checked 여부 :
         // id인 경우 : $('input:checkbox[id="checkbox_id"]').is(":checked") == true

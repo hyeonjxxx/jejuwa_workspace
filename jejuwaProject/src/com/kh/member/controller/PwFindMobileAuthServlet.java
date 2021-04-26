@@ -16,16 +16,16 @@ import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class IdFindMobileAuthServlet
+ * Servlet implementation class PwFindMobileAuthServlet
  */
-@WebServlet("/idFindMobileAuth.me")
-public class IdFindMobileAuthServlet extends HttpServlet {
+@WebServlet("/PwFindMobileAuth.me")
+public class PwFindMobileAuthServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IdFindMobileAuthServlet() {
+    public PwFindMobileAuthServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,12 +37,12 @@ public class IdFindMobileAuthServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String memName = request.getParameter("idFind_name");
-		String phoneNumber = request.getParameter("id_phone");
+		String memId = request.getParameter("pwFind_id");
+		String memName = request.getParameter("pwFind_name");
+		String phoneNumber = request.getParameter("pwd_phone");
 		
-		System.out.println(memName + phoneNumber);
 		
-		Member m = new MemberService().idFindCheck(memName, phoneNumber);
+		Member m = new MemberService().pwFindCheck(memId, memName, phoneNumber);
 		
 		
 		if( m == null) {
@@ -62,9 +62,9 @@ public class IdFindMobileAuthServlet extends HttpServlet {
 	    	PrintWriter out = response.getWriter();			
 	    	out.print(jobj.toJSONString()); 
 	    	
-	    	// 조회한 회원의 아이디 담기
+	    	// 조회한 회원의 비밀번호 담기
 			HttpSession session = request.getSession();
-			session.setAttribute("memId", m);
+			session.setAttribute("memPwd", m);
 			
 			
 		}

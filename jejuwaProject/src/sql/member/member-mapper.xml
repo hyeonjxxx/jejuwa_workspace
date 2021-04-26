@@ -25,11 +25,27 @@
 	<entry key="idFindCheck">
 		SELECT 
 		       MEM_NAME
+		     , MEM_ID
 		     , PHONE
 		  FROM 
 		       MEMBER 
 		 WHERE 
 		       MEM_NAME = ?
+		   AND PHONE = ?
+	</entry>
+	
+	<!-- [민국] 비밀번호 찾기: 핸드폰번호 == 이름, 아이디 체크여부 -->
+	<entry key="pwFindCheck">
+		SELECT 
+		       MEM_NAME
+		     , MEM_ID
+		     , MEM_PWD
+		     , PHONE
+		  FROM 
+		       MEMBER 
+		 WHERE 
+		 	   MEM_ID = ?
+		   AND MEM_NAME = ?
 		   AND PHONE = ?
 	</entry>
 	

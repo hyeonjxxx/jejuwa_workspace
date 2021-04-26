@@ -43,11 +43,13 @@
 </head>
 <body>
 	<%@ include file="../common/loginUserMenubar.jsp" %>
+    <input type="hidden" id="is_mobile_auth_id" value="F">
+    <input type="hidden" id="is_mobile_auth_pwd" value="F">
     <div class="idPwFind_wrap">
         <p>아이디/비밀번호 찾기</p><br><br><br>
         <div class="idFind_wrap">
             <b style="font-size: 20px;">아이디 찾기</b><br><br>
-            <form action="">
+            <form action="<%= request.getContextPath() %>/" method="post">
                 <div class="idFind">
                     <table class="tb-id">
                         <tbody>
@@ -79,8 +81,7 @@
             </form>
             <br>
             <div class="buttonArea">
-                <button type="button" class="btn btn-warning btn-idPwfind">
-                    <a href="">아이디 찾기 ></a>
+                <button type="button" class="btn btn-warning btn-idPwfind" id="idFind_btn">아이디 찾기
                 </button>
             </div>
         </div>
@@ -92,11 +93,11 @@
                     <tbody>
                         <tr class="id">
                             <th>아이디</th>
-                            <td><input type="text" class="full"></td>
+                            <td><input type="text" name ="pwFind_id" id="pwFind_id" class="full"></td>
                         </tr>
                         <tr class="name">
                             <th>이름</th>
-                            <td><input type="text" class="full"></td>
+                            <td><input type="text" name ="pwFind_name" id="pwFind_name" class="full"></td>
                         </tr>
                         <tr class="phone">
                             <th>휴대폰번호</th>
@@ -122,7 +123,7 @@
             </form>
             <br>
             <div class="buttonArea">
-                <button type="button" class="btn btn-warning btn-idPwfind">
+                <button type="button" class="btn btn-warning btn-idPwfind" id="pwFind_btn">
                     <a href="">비밀번호 찾기 ></a>
                 </button>
             </div>  
