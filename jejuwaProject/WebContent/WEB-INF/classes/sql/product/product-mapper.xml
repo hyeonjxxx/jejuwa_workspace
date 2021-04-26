@@ -221,7 +221,18 @@
 	</entry>
 	
 	<!-- 결제페이지에서 조회되는 컬럼들 -->
-	
+	<entry key="selectPayment">
+				SELECT 
+			    P_NAME
+			  , P_CODE
+			  , PRICE
+			  , BASIC_PATH
+			  , DEATIL_PATH
+		   FROM PRODUCT	
+		  WHERE P_CODE = ?
+		    AND P_STATUS = 'Y'
+
+	</entry>
 	
 
 </properties>

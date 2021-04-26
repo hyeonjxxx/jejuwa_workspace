@@ -38,7 +38,7 @@
                     <a href="<%=request.getContextPath() %>/list.ufa">자주하는문의 FAQ<span style="margin-left: 13px;">〉</span></a>
                 </li>
                 <li class="subMenu">
-                    <a href="">1:1문의내역 <span style="margin-left: 50px;">〉</span></a>
+                    <a href="<%=request.getContextPath() %>/list.umyq">1:1문의내역 <span style="margin-left: 50px;">〉</span></a>
                 </li>
             </ul>
   
