@@ -15,13 +15,13 @@ import com.kh.member.model.vo.Member;
  * Servlet implementation class MemberUpdateServlet
  */
 @WebServlet("/update.me")
-public class MemberUpdateServlet extends HttpServlet {
+public class AdminMemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberUpdateServlet() {
+    public AdminMemberUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,6 +33,7 @@ public class MemberUpdateServlet extends HttpServlet {
 	
 		// 인코딩
 		request.setCharacterEncoding("utf-8");
+		
 		
 		// 요청시 전달값 뽑아서 변수에 저장
 		int memNo = Integer.parseInt(request.getParameter("memNo"));

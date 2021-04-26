@@ -273,10 +273,14 @@ public class MemberDao {
 			if(rset.next()) {
 				m = new Member(rset.getInt("MEM_NO"),
 						       rset.getString("MEM_ID"),
+						       rset.getString("MEM_PWD"),
 						       rset.getString("MEM_NAME"),
 						       rset.getString("PHONE"),
 						       rset.getString("EMAIL"),
-						       rset.getString("MEM_BIRTH"));
+						       rset.getString("MEM_BIRTH"),
+						       rset.getDate("ENROLL_DATE"),
+						       rset.getDate("MODIFY_DATE"),
+						       rset.getString("STATUS"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -288,7 +292,7 @@ public class MemberDao {
 	}
 	
 	/**
-	 * [휘경] 관리자 권한으로 비밀번호 초기화
+	 * [휘경] 관리자 권한으로 비밀번호 초기화(비밀번호를 회원아이디와 일치화)
 	 * @param conn
 	 * @param memNo
 	 * @return
@@ -313,7 +317,7 @@ public class MemberDao {
 	}
 	
 	/**
-	 * [휘경] 관리자 회원정보수정
+	 * [휘경] 관리자 회원정보수정 (처리된 행 수 반환)
 	 * @param conn
 	 * @param m
 	 * @return
@@ -366,8 +370,45 @@ public class MemberDao {
 		return result;
 	}
 	
+	/**
+	 * [휘경] 사용자 회원정보변경 (변경된 회원 객체 반환)
+	 * @param conn
+	 * @param m
+	 * @return
+	 */
+	public int UserUpdateMember(Connection conn, Member m) {
+		// update문 => 처리된 행 수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setString(1, m.getMemName());
+			pstmt.setString(2, m.getPhone());
+			pstmt.setString(3, m.getEmail());
+			pstmt.setString(4, m.getMemBirth());
+			pstmt.setInt(5, m.getMemNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 	
-	public int updatePwd(Connection conn, String memId, String updatePwd) {
+	
+	/**
+	 * [휘경] 사용자 비밀번호 변경 (변경된 회원 객체 반환)
+	 * @param conn
+	 * @param memId
+	 * @param updatePwd
+	 * @return
+	 */
+	public int updatePwd(Connection conn, int memNo, String memPwd, String updatePwd) {
 		// update문 => 처리된 행 수
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -376,7 +417,8 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(sql); // 미완성 sql
 			pstmt.setString(1, updatePwd);
-			pstmt.setString(2, memId);
+			pstmt.setInt(2, memNo);
+			pstmt.setString(3, memPwd);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

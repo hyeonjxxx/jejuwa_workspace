@@ -32,23 +32,28 @@ public class MemberPwdUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String memId = request.getParameter("memId");
+		// 사용자 비밀번호 변경 
+		
+		request.setCharacterEncoding("utf-8");
+		
+		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		String memPwd = request.getParameter("memPwd");
 		String updatePwd = request.getParameter("updatePwd");
 		
-		Member updateMem = new MemberService().updatePwd(memId, updatePwd);
+		Member updateMem = new MemberService().updatePwd(memNo, memPwd, updatePwd);
 		
 		
-		if(updateMem == null) {
+		if(updateMem == null) { // 비밀번호 변경 실패
 			request.getSession().setAttribute("alertMsg", "비밀번호 변경을 실패했습니다.");
 			
 			
-		} else {
+		} else { // 비밀번호 변경 성공
+			request.getSession().setAttribute("loginUser", updateMem);
 			request.getSession().setAttribute("alertMsg", "비밀번호가 변경되었습니다.");
-			request.getSession().setAttribute("login", updateMem);
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/myInfo.mp");
+		response.sendRedirect(request.getContextPath()+ "/myInfo.mp");
+		//System.out.println(updateMem);
 	
 	}
 

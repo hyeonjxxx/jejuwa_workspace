@@ -28,7 +28,7 @@ public class MemberService {
 	
 	
 	/**
-	 * 관리자 페이지에서 관리자로 로그인
+	 * [휘경] 관리자 페이지에서 관리자로 로그인
 	 * @param memId
 	 * @param memPwd
 	 * @return
@@ -77,7 +77,7 @@ public class MemberService {
 	}
 	
 	/**
-	 * 멤버 수 조회(활동회원, 관리자)
+	 * [휘경] 멤버 수 조회(활동회원, 관리자)
 	 * @return
 	 */
 	public int selectMemberCount() {
@@ -88,7 +88,7 @@ public class MemberService {
 	}
 	
 	/**
-	 * 현재 요청한 페이지(currentPage)에 보여질 회원 리스트 조회
+	 * [휘경] 현재 요청한 페이지(currentPage)에 보여질 회원 리스트 조회
 	 * @param pi
 	 * @return
 	 */
@@ -100,7 +100,7 @@ public class MemberService {
 	}
 	
 	/**
-	 * 회원 상세조회
+	 * [휘경] 회원 상세조회
 	 * @param memNo
 	 * @return
 	 */
@@ -113,7 +113,7 @@ public class MemberService {
 	
 	
 	/**
-	 * 관리자 권한으로 회원 비밀번호 초기화(비밀번호를 회원아이디와 일치화)
+	 * [휘경] 관리자 권한으로 회원 비밀번호 초기화(비밀번호를 회원아이디와 일치화)
 	 * @param memNo
 	 * @return
 	 */
@@ -130,7 +130,7 @@ public class MemberService {
 	}
 	
 	/**
-	 * [휘경] 관리자 회원정보 변경
+	 * [휘경] 관리자 회원정보 변경 (처리된 행 수 반환)
 	 * @param m (회원번호, 아이디, 이름, 연락처, 이메일, 생년월일)
 	 * @return
 	 */
@@ -164,25 +164,8 @@ public class MemberService {
 		return result;
 	}
 	
-	/**
-	 *  [휘경] 사용자 비밀번호 업데이트 (수정필요)
-	 * @param memId
-	 * @param updatePwd
-	 * @return
-	 */
-	public Member updatePwd(String memId, String updatePwd) {
-		Connection conn = getConnection();
-		int result = new MemberDao().updatePwd(conn, memId, updatePwd);
-		
-		Member updateMem = null;
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return updateMem;
-	}
+	
+
 
 
 	public String certifiedPhoneNumber(String phoneNumber, String numStr) {
@@ -207,6 +190,52 @@ public class MemberService {
             System.out.println(e.getCode());
         } 
 		return numStr;
+	}
+	
+	
+	/**
+	 * [휘경] 사용자 회원정보수정(변경된 회원 객체 반환)
+	 * @param m
+	 * @return
+	 */
+	public Member UserUpdateMember(Member m) {
+		Connection conn = getConnection();
+		int result = new MemberDao().UserUpdateMember(conn, m);
+		
+		Member updateMem = null;
+		if(result > 0) {
+			commit(conn);
+			updateMem = new MemberDao().selectMember(conn, m.getMemNo());
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return updateMem;
+	}
+	
+	
+	/**
+	 * [휘경] 사용자 비밀번호 변경(변경된 회원 객체 반환)
+	 * @param memId
+	 * @param memPwd
+	 * @param updatePwd
+	 * @return
+	 */
+	public Member updatePwd(int memNo, String memPwd, String updatePwd) {
+		Connection conn = getConnection();
+		int result = new MemberDao().updatePwd(conn, memNo, memPwd, updatePwd);
+		
+		Member updateMem = null;
+		if(result > 0) {
+			commit(conn);
+			updateMem = new MemberDao().selectMember(conn, memNo);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return updateMem;
 	}
 
 

@@ -45,7 +45,7 @@
 	
        <!-- 회원 상세정보 -->
        <div class="viewArea">
-           <form action="<%= contextPath %>/update.me" method="post" id="memInfoTable">
+           <form action="<%= contextPath %>/myInfoUpdate.me" method="post" id="memInfoTable">
                <table id="infoTable" border="1" align="center">
                <input type="hidden" name="memNo" value="<%= memNo %>">
                <input type="hidden" name="memId" value="<%= memId %>">
@@ -236,7 +236,7 @@
                             </span>
                         </div>
                         <input size="25" type="password" name="updatePwd" required>
-                        <input name="memId" type="hidden" value="<%=memId%>">
+                        <input name="memNo" type="hidden" value="<%=memNo%>">
                     </div>
                     <div class="input-group mb-3" id="modalContent3">
                         <div class="input-group-prepend">
@@ -284,18 +284,18 @@
                  <div class="input-group-prepend">
                    <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
                  </div>
-                 <input name="memPwdPwd2" size="25" type="password" placeholder=" 비밀번호" aria-label=" 비밀번호" aria-describedby="basic-addon1">
+                 <input name="memPwd2" size="25" type="password" placeholder=" 비밀번호" aria-label=" 비밀번호" aria-describedby="basic-addon1">
                	 
                </div>
                
                <!-- Modal footer -->
                <div id="modalFooter">
-                 <button id="okBtn" class="btn btn-warning" onclick="return updateMember();">OK</button>
+                 <button id="okBtn" class="btn btn-warning" onclick="return checkMember();">OK</button>
                  <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
                </div>
                <script>
-	       			function updateMember(){
-	       				if($("input[name=memPwdPwd2]").val() != <%= memPwd %>){
+	       			function checkMember(){
+	       				if($("input[name=memPwd2]").val() != "<%=memPwd%>"){
 	       					alert("비밀번호가 일치하지 않습니다.");
 	       				}else{
 	       					$("#memInfoTable").submit();
