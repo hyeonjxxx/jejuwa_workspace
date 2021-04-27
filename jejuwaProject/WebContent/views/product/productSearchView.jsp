@@ -20,11 +20,59 @@
 
     <div class="content_wrap">
 
+
+		<script>
+            function enterkey(){
+            	if(window.event.keyCode == 20){
+	            	var keyword = $("#keyword").val();
+	           		
+	            	console.log(keyword);
+	           		
+           			$.ajax({
+           				url:"/searchUserAjax.pdt",
+           				type:"get",
+           				data:{ keyword:keyword
+           				}, success:function(list){
+           					console.log(list);
+            					
+            					
+           					var result = "";
+           					if(list.length == 0){
+           						result = "<li>검색결과가 존재하지 않습니다</li>"
+           					}
+           					for(var i in list){            						
+            					result += "<li class=pdtArea>"
+            							+ "<input type='hidden' value=" + list[i].pCode +">"
+        					      	    + "<div class='pdtPhoto'>" + "<img src='" + list[i].basicPath  + "' style='width: 220px; height: 147px'>" + "</div>"
+        					            + "<div class='pdtInfo'>" 
+        					            + "<p class='pdtName'>" + list[i].pName + "</p>"
+        					            + "<p class='pdtPrice'>" + list[i].prices + "원</p>"
+       						            + "</div>" 
+       						            + "</li>";
+           					}
+            					
+           					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
+            				$(".pdtList").html(result);
+           				
+            				$(function() {
+            					$(".pdtArea").click(function() {
+            						location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+            	        		});	
+            	        	})
+           					
+           					
+           				}, error:function(){
+           					console.log("ajax통신 실패!!");
+           				}
+           			});
+           		} 
+            }
+        </script>
     
         <div class="searchBar">     
             <form action="" id="searchForm" method="post">
                 <div id="searchBox">
-                    <input type="search" name="keyword" placeholder="[추천상품]제주시티투어">
+                    <input type="search" id="keyword" placeholder="[추천상품]제주시티투어" onkeyup="searchGo();">
                 </div>
                     
                 <div id="searchBtn">
@@ -69,18 +117,20 @@
 			</ul>
 
         </div>
-        
-        <script>
-        	$(function(){
-        		$(".pdtArea").click(function(){
-        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
-        		})	
+
+
+		<script>
+			/* 상품상세보기  */
+			$(function() {
+				$(".pdtArea").click(function() {
+					location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+        		});	
         	})
         	
         </script>
-   
 
-        <div align="center" class="pageingArea">
+
+		<div align="center" class="pageingArea">
             <button>이전</button>
             <button>x</button>
             <button>x</button>

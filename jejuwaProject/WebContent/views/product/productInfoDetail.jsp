@@ -126,29 +126,32 @@
                         	}
                         </script>
 				
-						<script type="text/javascript">
-						  function sendLink() {
-						    Kakao.Link.sendDefault({
+						<script type='text/javascript'>
+						  //<![CDATA[
+						    //  사용할 앱의 JavaScript 키를 설정해 주세요.
+						    Kakao.init('/* b7f26c93be1ddb8dec8ee30d435a5b21 */');
+						    // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+						    Kakao.Link.createDefaultButton({
+						      container: '#kakao-link-btn',
 						      objectType: 'feed',
 						      content: {
 						        title: '<%=p.getpName()%>',
-						        imageUrl:
-						          '<%=p.getBasicPath()%>',
+						        imageUrl:'<%=p.getBasicPath()%>',
 						        link: {
-						          webUrl: '<%=contextPath%>',
-						        },
+						          mobileWebUrl: window.location.href,
+						          webUrl: window.location.href
+						        }
 						      },
 						      buttons: [
 						        {
 						          title: '웹으로 보기',
 						          link: {
-						            mobileWebUrl: 'https://developers.kakao.com',
-						            webUrl: 'https://developers.kakao.com',
-						          },
-						        },
-						      ],
-						    })
-						  }
+						            webUrl: window.location.href
+						          }
+						        }
+						      ]
+						    });
+						  //]]>
 						</script>
 
 

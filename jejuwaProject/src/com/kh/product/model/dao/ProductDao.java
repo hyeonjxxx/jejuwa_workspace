@@ -225,6 +225,28 @@ public class ProductDao {
 		
 		return list;
 	}
+
+	// delete 상품
+	public int deleteProduct(Connection conn, String pCode) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, pCode);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	// update 상품 
 	public int updateProduct(Connection conn, Product p) {
@@ -503,6 +525,130 @@ public class ProductDao {
 			
 			return list;
 		}
+		
+		// 관리자페이지 - 검색기능
+		public ArrayList<Product> searchOptions(Connection conn, String searchOp, String keyword) {
+			ArrayList<Product>list = new ArrayList<>();
+			ResultSet rset = null;
+			PreparedStatement pstmt = null;
+			String sql = "";
+			
+			// searchOp이 상품명/지역/테마인 경우 + 검색어
+			
+			switch(searchOp) {	
+			case "pname": 
+				
+				sql=prop.getProperty("adminSearchpName");
+				try {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, "%" + keyword + "%");
+					rset = pstmt.executeQuery();
+					
+					while(rset.next()) {
+						list.add(new Product(rset.getString("p_code"),
+					             rset.getString("P_name"),
+					             rset.getInt("price"),
+					             rset.getInt("p_stock"),
+					             rset.getString("p_status")));
+					}
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}finally {
+					close(rset);
+					close(pstmt);
+				}
+				
+				break;
+				
+			case "local": 
+				
+				sql=prop.getProperty("adminSearchLocal"); 
+				try {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, "%" + keyword + "%");
+					rset = pstmt.executeQuery();
+					
+					while(rset.next()) {
+						list.add(new Product(rset.getString("p_code"),
+					             rset.getString("P_name"),
+					             rset.getInt("price"),
+					             rset.getInt("p_stock"),
+					             rset.getString("p_status")));
+					}
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}finally {
+					close(rset);
+					close(pstmt);
+				}
+								
+				break;
+				
+			case "theme": 
+				
+				sql=prop.getProperty("adminSearchTheme"); 
+				try {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, "%" + keyword + "%");
+					rset = pstmt.executeQuery();
+					
+					while(rset.next()) {
+						list.add(new Product(rset.getString("p_code"),
+					             rset.getString("P_name"),
+					             rset.getInt("price"),
+					             rset.getInt("p_stock"),
+					             rset.getString("p_status")));
+					}
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}finally {
+					close(rset);
+					close(pstmt);
+				}
+								
+				break;
+									
+									
+			}
+			
+			System.out.println(list);
+			return list;
+		}		
+		
+		// 사용자 검색기능
+		public ArrayList<Product> searchKeyword(Connection conn, String keyword) {
+			ArrayList<Product>list = new ArrayList<>();
+			ResultSet rset = null;
+			PreparedStatement pstmt = null;
+			String sql = "";
+
+				sql=prop.getProperty("userSearchpName");
+				try {
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1, "%" + keyword + "%");
+					rset = pstmt.executeQuery();
+					
+					while(rset.next()) {
+						list.add(new Product(rset.getString("p_code"),
+					             rset.getString("P_name"),
+					             rset.getInt("price"),
+					             rset.getInt("p_stock"),
+					             rset.getString("p_status")));
+					}
+					
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}finally {
+					close(rset);
+					close(pstmt);
+				}
+				
+				return list;
+		}	
+		
 		
 		
 		// 좋아요 카운트

@@ -64,6 +64,20 @@ public class ProductService {
 		return list;
 	}
 	
+	// delete
+	public int deleteProduct(String pCode) {
+		Connection conn = getConnection();
+		int result = new ProductDao().deleteProduct(conn, pCode);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}	
+	
 	// Update시켜주시
 	public int updateProduct(Product p, Attachment at) {
 		Connection conn = getConnection();
@@ -137,7 +151,29 @@ public class ProductService {
 		ArrayList<Product> list = new ProductDao().selectThList_FD(conn);
 		close(conn);
 		return list;
-	}		
+	}
+	
+	// list에서 option으로 검색
+	/**
+	 * @param searchOp : 검색 options
+	 * @param keyword : 검색어	 
+	 * @return
+	 */
+	public ArrayList<Product> searchOptions(String searchOp, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().searchOptions(conn, searchOp, keyword);
+		close(conn);
+		return list;
+	}	
+	
+	public ArrayList<Product> searchKeyword(String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().searchKeyword(conn, keyword);
+		close(conn);
+		return list;
+	}	
+	
+	
 	
 	// 좋아요 관련 
 	

@@ -45,18 +45,69 @@
 	        <div class="listArea">
 	            
 	            <div class="searchArea">
-	                <form action="<%=contextPath %>/list.pdt" class="searchForm" method="get">
-	                    <select name="options" id="options">
-	                        <option value="전체">전체</option>
-	                        <option value="상품명">상품명</option>
-	                        <option value="지역">지역</option>
-	                        <option value="코드">코드</option>
+	                <form  class="searchForm" method="get">
+	                    <select name="searchOp" id="searchOp">
+	                        <option value="pname">상품명</option>
+	                        <option value="local">지역</option>
+	                        <option value="theme">테마</option> 
 	                    </select>
 	                    
-	                    <input type="search" name="keyword" id="keyword">
+	                    <input type="search" name="keyword" id="keyword" onkeyup="searchGo();">
 	                    <button type="submit" id="searchBtn"><img src="<%=contextPath %>/resources/images/lookup.png" width="25" align="right"></button>
 	                </form>    
 	            </div>
+	            
+			<script type="text/javascript">	    		
+	    		/* 옵션 + 검색어 검색 */
+	    		function searchGo(){
+	    			if(window.event.keyCode == 13){
+	    				var searchOp = $("#searchOp option:selected").val();
+	    				var keyword = $("#keyword").val();
+	    				
+	    				consloe.log(searchOp);
+	    				console.log(keyword);
+	    				
+	    				$.ajax({
+	    					url:"/searchAjax.pdt",
+	    					type:"get",
+	    					date:{searchOp:searchOp,
+	    						  keyword:keyword
+	    					}, success:function(list){
+	    						console.log(list);
+	    						
+	    						var result ="";
+	    						if(list.length == 0){
+	    							result = "<tr><td colspan='6'>" + "등록된 상품이 없습니다." + "</td></tr>"
+	    						}else{
+	    							for(var i in list){
+	    								result += "<tr>"
+	    										+ "<td><input type='checkbox' class='check_single'></td>"
+	    								        + "<td>" +list[i].pCode + "</td>"
+	    								        + "<td>" +list[i].pName + "</td>"
+	    								        + "<td>" +list[i].price + "</td>"
+	    								        + "<td>" +list[i].pStock + "</td>"
+	    								        + "<td>" +list[i].pStatus + "</td>"
+	    								        + "</tr>"
+	    							}
+	    						}
+	    						$(".pdtListView tbody").html(result);
+            					$(".pagingArea").css("visibility", "hidden");
+	    						
+	    			            $(function(){
+	    			            	$(".pdtListView>tbody>tr").click(function(){
+	    			            		location.href = '<%= contextPath%>/updateForm.pdt?pcode='+ $(this).children().eq(0).val();
+	    			            	})
+	    			            })
+	    					}, error:function(){
+	    						console.log("ajax 통신 실패!!!!")
+	    					}
+	    					
+	    					
+	    				});
+	    			}
+	    		}
+	    	</script>	            
+	            
 	                      
 	            
 	            <!-- 삭제/등록버튼 -->
@@ -76,15 +127,15 @@
 	                
 	                    <!-- Modal body -->
 	                    <div class="modal-body">
-	                   	 상품을 삭제하시겠습니까?
+	                   	 	상품을 삭제하시겠습니까?
 	                    </div>
+	                    
+	                    <form action="<%=contextPath %>/delete.pdt" method="post">
 	                    <div id="modalContent" class="input-group mb-3">
 	                        <div class="input-group-prepend">
-	                        <span class="input-group-text" >
-	                            <i class="bi bi-key"></i> <!-- i 태그 -->
-	                        </span>
+	                        <span class="input-group-text" ><i class="bi bi-key"></i> <!-- i 태그 --></span>
 	                        </div>
-	                        <input size="25" type="password" placeholder=" 관리자 비밀번호">
+	                        <input name="adminPwd" size="25" type="password" placeholder=" 관리자 비밀번호">
 	                    </div>        
 	                    
 	                    <!-- Modal footer -->
@@ -93,12 +144,45 @@
 	                    <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
 	                    </div>
 	                    
+			             <script>
+				       			
+				    	    	<!-- 항목 삭제 --> 
+				    	    	// 1. 체크된 항목이 한개 이상인지 확인
+				    	    	// 1_1. 한개 이상일 경우 -> 관리자 비밀번호 입력 후 삭제
+				    	    	// 1_2. else -> alert창에  문구 출력
+					    		function deletePDT(){
+					    			var form = document.L; // 리스트의 폼이름 선언
+					    			var cDel = false;// 삭제할 항목을 선택했는지
+					    			
+					    			if(document.getElementsByClass("check_single").length>0){
+					    				for(var i=0; i<doucumentElementsByClass("check_single").length; i++){
+					    					if(doucmnet.getElementsByName("check_single"[i].checked) == true){
+					    						cDel = true;
+					    						break;
+					    					}
+					    				}
+					    			}
+						    		if(cDel){
+						    			form.action="/delete.pdt"
+						    			form.submit();
+						    		}else{
+						    			alert("삭세할 항목을 선택해주세요")
+						    		}
+					    		}
+					    		
+				       			function deletePwd(){
+				       				if($("input[name=adminPwd]").val() != <%= loginUser.getMemPwd()%>){
+				       					alert("관리자 비밀번호가 일치하지 않습니다.");
+				       					return false;
+				       				}
+				       			}
+				       	</script>	        
+						</form>
+	                    
 	                </div>
 	            </div>
 	        </div>
-	
-		
-	            <br>
+
 
 				<!-- 체크박스 전체선택/해제 -->
 			    <script>
@@ -169,7 +253,6 @@
 	            
 	            
 	            <script>
-	            
 	            $(function(){
 	            	$(".pdtListView>tbody>tr").click(function(){
 	            		//쿼리스트림 이용해서 요청할 url작성
