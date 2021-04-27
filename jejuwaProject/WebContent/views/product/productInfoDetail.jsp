@@ -18,10 +18,8 @@
 <meta charset="UTF-8">
 <title>제주와_상품상세페이지</title>
 	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- 링크API -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/productInfoDetail.css">
@@ -74,8 +72,8 @@
 						
 						
                         <div class="icon" align="right">
-                            <button type="button" onclick="testLike();"><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></button>
-                            
+                            <a id="kakao-link-btn" href="javascript:sendLink()"><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></button>
+                            </a>
                            
                             <% if(count == 0){ %>
                             	<img id="heart" onclick="likeProduct();" src="<%=contextPath %>/resources/images/emptyHeart.png" alt="like" width="33">
@@ -127,6 +125,31 @@
             					})
                         	}
                         </script>
+				
+						<script type="text/javascript">
+						  function sendLink() {
+						    Kakao.Link.sendDefault({
+						      objectType: 'feed',
+						      content: {
+						        title: '<%=p.getpName()%>',
+						        imageUrl:
+						          '<%=p.getBasicPath()%>',
+						        link: {
+						          webUrl: '<%=contextPath%>',
+						        },
+						      },
+						      buttons: [
+						        {
+						          title: '웹으로 보기',
+						          link: {
+						            mobileWebUrl: 'https://developers.kakao.com',
+						            webUrl: 'https://developers.kakao.com',
+						          },
+						        },
+						      ],
+						    })
+						  }
+						</script>
 
 
 
@@ -141,16 +164,12 @@
 	                    <!-- 옵션정보 -->
 	                    <div class="optionSelect">
 	                        <div class="dateSelect">
-	                            <a>
-	                            	<!-- 
-	                                <img id="test" src="<%=contextPath %>/resources/images/calendar.png" alt="" width="20" align="center" >
+								<!-- 
+	                            <img id="test" src="<%=contextPath %>/resources/images/calendar.png" alt="" width="20" align="center" >
 	                              		날짜를 선택해주세요
 	                              		<br> -->
-	                                <input type="date" name="travleDate" value="yyyy-mm-dd">
-	                                
-	                                
-	                            </a>
-	                        </div>
+								<input type="date" name="travleDate" value="yyyy-mm-dd">
+							</div>
 	                   </div>
 	
 	

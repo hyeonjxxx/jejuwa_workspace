@@ -6,7 +6,7 @@
 a{ color: black; text-decoration: none;}
 ul{list-style: none;}
 div{box-sizing: border-box;}
-a, button, #heart{cursor:pointer;}
+a, button, #heart, #dateSelect{cursor:pointer;}
 button{border:none; outline:none;}
 
 /* layout */
