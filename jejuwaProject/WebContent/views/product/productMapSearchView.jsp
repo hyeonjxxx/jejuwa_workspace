@@ -85,7 +85,7 @@
                         <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
                             <div class="pdtBox">
                                 <a >
-                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;"></div>
+                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 147px"></div>
                                     <div class="pdtInfo">
                                         <p class="pdtName"><%=p.getpName() %></p>
                                         <p class="pdtPrice"><%=p.getPrice() %>원</p>
@@ -100,11 +100,11 @@
         
         <script>
         /* 지도로 검색(지역필터링) */
-        $(function(){
+<%--         $(function(){
         	
         	$ajax({
         		url:"<%=contextPath%>/local_ss.pdt",
-        		data:<%--  요청시 전달값  {local:<%= p.getLocalCode()%>} --%>,
+        		data: 요청시 전달값  {local:<%= p.getLocalCode()%>},
         		success:function(list){
         			
         			var result = "";
@@ -134,7 +134,7 @@
         	
         })
         
-        
+         --%>
         
         /* 상품클릭시 */
         	$(function(){

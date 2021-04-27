@@ -10,7 +10,7 @@
 <title>Insert title here</title>
 
     <!-- css -->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/productFilterSearchView.css">
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/prouductCategoryView.css">
     <!-- map -->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/map_s.css">
     
@@ -89,7 +89,7 @@
 		                        <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
 		                            <div class="pdtBox">
 		                                <a >
-		                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;"></div>
+		                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 165px"></div>
 		                                    <div class="pdtInfo">
 		                                        <p class="pdtName"><%=p.getpName() %></p>
 		                                        <p class="pdtPrice"><%=p.getPrice() %>원</p>

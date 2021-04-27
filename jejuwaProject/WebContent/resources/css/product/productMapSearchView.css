@@ -88,16 +88,23 @@ ul li {list-style: none;}
     margin-top: 30px;
 }
 .pdtList{margin: auto; padding: 0 38px;}
-.pdtBox{
-    height: 280px; width: 220px; 
-}
 .pdtList li{
     display: inline-block;
     font-size: 14px;
     font-weight: bold;
     margin:0 2px;
+    height: 255px;
+    width: 220px;
+    margin-bottom: 23px;
+    border-radius: 3px;  
+}
+.pdtArea:hover{
+	box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px; 
+	cursor: pointer;
 }
 .pdtInfo{text-align: center; margin: auto; margin-top: 10px;}
+p.pdtName {height: 29px; padding: 0 5px;}
+.pdtPhoto{ border-radius: 2px; overflow:hidden;}
 .pdtPrice{font-size: 15px;}
 
 /* pageing */

@@ -104,7 +104,7 @@
                         <input type="hidden" value="<%=p.getpCode()%>">
                             <div class="pdtBox">
                                 <a >
-                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;"></div>
+                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px; height: 165px;"></div>
                                     <div class="pdtInfo">
                                         <p class="pdtName"><%=p.getpName() %></p>
                                         <p class="pdtPrice"><%=p.getPrice() %>원</p>

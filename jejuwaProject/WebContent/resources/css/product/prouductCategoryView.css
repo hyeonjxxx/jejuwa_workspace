@@ -29,10 +29,6 @@ div{box-sizing: border-box;}
 /* side */
 .detailSearch p{ font-size: 18px; font-weight: bold;}
 .map{margin: 15px 0; position: relative}
-.map>button:hover {
-	 cursor: pointer;
-	 border: 1px solid black;
-}
 
 .filter{background-color: rgb(243, 242, 242 ); height: 540px;}
 .filter p{padding: 15px 0 0 10px;}
@@ -95,7 +91,7 @@ div{box-sizing: border-box;}
 }
 
 .category li.current{
-    width: 175px;
+    width: 155px;
     height: 35px;
     margin-right: 8px;
     background-color: orange;
@@ -106,7 +102,7 @@ div{box-sizing: border-box;}
 }
 
 .category li{
-    width: 175px;
+    width: 155px;
     height: 35px;
     padding: 5px 10px;
     margin-right: 8px;
@@ -127,6 +123,7 @@ div{box-sizing: border-box;}
     width: 220px;
     height: 260px;
 }
+
 .pdtList{margin: auto; padding: 0 5px;}
 .pdtList li{
     float: left;
@@ -134,12 +131,12 @@ div{box-sizing: border-box;}
     font-weight: bold;
     margin: 0 10px ;
     margin-bottom: 23px;
-    border-radius: 3px;
-}
-.pdtArea:hover{
-	box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px; 
-	cursor: pointer;
+    border-radius: 3px;  
 }
 .pdtInfo{text-align: center; margin: 10px;}
 .pdtPrice{font-size: 15px;}
 
+.pdtArea:hover{
+	box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px; 
+	cursor: pointer;
+}
