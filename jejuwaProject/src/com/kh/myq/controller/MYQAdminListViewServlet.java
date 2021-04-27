@@ -36,7 +36,7 @@ public class MYQAdminListViewServlet extends HttpServlet {
 		int listCount;     // 현재 총 게시글 횟수
 		int currentPage;   // 현재 페이지(즉, 요청한 페이지)
 		int pageLimit;     // 한 페이지 하단에 보여질 페이징바의 페이지 최대갯수(몇개단위)
-		int MYQLimit;    // 한 페이지 내에 보여질 게시글 최대 갯수(몇개 단위)
+		int boardLimit;    // 한 페이지 내에 보여질 게시글 최대 갯수(몇개 단위)
 		
 		int maxPage;       // 전체 페이지들 중 가장 마지막 페이지(listCount, boardLimit를 가지고 구할것)
 		int startPage;     // 현재 페이지에 하단에 보여질 페이징 바의 시작수(currentPage, pageLimit를 가지고 구할것)
@@ -52,9 +52,9 @@ public class MYQAdminListViewServlet extends HttpServlet {
 		pageLimit = 10;
 		
 		// * MYQLimit : 한 페이지 내에 보여질 게시글 최대 개수
-		MYQLimit = 10;
+		boardLimit = 10;
 		
-		maxPage = (int)Math.ceil((double)listCount / MYQLimit);
+		maxPage = (int)Math.ceil((double)listCount / boardLimit);
 		// => ceil이 올림형태여도 정수형이 아니라 실수형이므로 정수형으로 형변환 필요함
 		
 		/* * endPage : 현재 페이지에 보여지는 페이징바의 끝 수
@@ -68,7 +68,7 @@ public class MYQAdminListViewServlet extends HttpServlet {
 		} 
 		// 페이징정보들을 어딘가의 한 공간에 담자! 저거 일일이 다 쓰기 어려우니까 아예 PageInfo 객체를 만들어서 그 안에서 전달하자
 		// 1. 페이징바 만들때 필요한 PageInfo객체 만들기
-		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, MYQLimit, maxPage, startPage, endPage );
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage );
 		
 		// 2. 현재 요청한 페이지(currentPage)에 보여질 게시글 리스트 조회해오기
 		ArrayList<MYQ> list = new MYQService().selectListAdmin(pi);
@@ -77,7 +77,7 @@ public class MYQAdminListViewServlet extends HttpServlet {
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		System.out.println(list);
+		// ArrayList 에 담긴 값을 뽑아내고 싶으면 어떻게 ??? 내일 물어보자
 		
 		request.getRequestDispatcher("views/myq/myqAdminListView.jsp").forward(request, response);
 	}

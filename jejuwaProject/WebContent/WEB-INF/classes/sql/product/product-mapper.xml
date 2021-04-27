@@ -109,8 +109,16 @@
 		  FROM ATTACHMENT	  
 		  WHERE P_CODE = ?	  	
 	</entry>
+
+	<!-- 상품수정 DB에서 삭제 말고 노출이 안되는 걸로 -->
+	<entry key="deleteProduct">
+		UPDATE
+		       PRODUCT
+		   SET P_STATUS = 'N'
+		 WHERE NOTICE_NO = ?		
+	</entry>	
 	
-	<entry key="상품테이블 수정">
+	<entry key="updateProduct">
 		UPDATE
 				PRODUCT
 			SET LOCAL_CODE = ?
@@ -123,9 +131,35 @@
 		  WHERE P_CODE = ?   	
 	</entry>
 	
-	<entry key="세부이미지 수정">
-	
+	<entry key="updateAttachment">
+		UPDATE 
+				PRODUCT
+			SET ORG_FILENAME = ?
+			  , MDF_FILENAME = ?
+			  , FILE_PATH = ?
+		  WHERE P_CODE = ?	
 	</entry>
+	
+	<!-- 상품수정시 세부이미지 새로추가될때  -->
+	<entry key="insertNewAttachment">
+		INSERT
+		  INTO ATTACHMENT
+		  (
+		    FILE_NO
+		  , P_CODE
+		  , ORIGIN_NAME
+		  , CHANGE_NAME
+		  , FILE_PATH
+		  )
+		  VALUES
+		  (
+		    SEQ_FNO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  )
+	</entry>	
 	
 	<!-- 썸네일리스트로 상품보기 searchView 페이지에서 조회시 대표이미지만 불러오기 -->
 	<entry key="selectThList">
@@ -210,7 +244,60 @@
 		  WHERE P_STATUS = 'Y' 
 		    AND THEME_CODE = 'FD'
 		  ORDER BY P_CODE DESC       	
+	</entry>
+	
+	<!-- 관리자페이지에서 검색기능 -->
+	<entry key="adminSearchpName">
+		SELECT
+				  P_CODE
+				, P_NAME
+				, PRICE
+				, P_STOCK
+				, P_STATUS
+			 FROM PRODUCT
+			WHERE P_NAME LIKE ?  
+			ORDER BY P_CODE DESC	
+	</entry>
+	
+	<entry key="adminSearchLocal">
+		SELECT
+				  P_CODE
+				, P_NAME
+				, PRICE
+				, P_STOCK
+				, P_STATUS
+			 FROM PRODUCT
+            RIGHT JOIN LOCAL USING(LOCAL_CODE)
+			WHERE LOCAL_NAME LIKE ?  
+			ORDER BY P_CODE DESC	
+	</entry>
+		
+	<entry key="adminSearchTheme">
+		SELECT
+				  P_CODE
+				, P_NAME
+				, PRICE
+				, P_STOCK
+				, P_STATUS
+			 FROM PRODUCT
+            RIGHT JOIN THEME USING(THEME_CODE)
+			WHERE THEME_NAME LIKE ?  
+			ORDER BY P_CODE DESC	
 	</entry>	
+	
+	
+	<!-- 사용자페이지에서 검색기능 -->
+	<entry key="userSearchpName">
+		SELECT
+				P_CODE
+			  , P_NAME
+			  , PRICE
+			  , BASIC_PATH
+		   FROM PRODUCT	
+		  WHERE P_STATUS = 'Y' 
+		    AND P_NAME LIKE ?  
+		  ORDER BY P_CODE DESC	
+	</entry>		
 	
 	<!-- 좋아요 카운트 -->
 	<entry key="likeCount">

@@ -4,7 +4,7 @@
 /* .outer 스타일 통일 */
 .outer{
     height: 700px;
-    width: 700px;
+    width: 800px;
     margin: 30px 20px;
     float: left;
   }
@@ -12,12 +12,13 @@
 
 /* 구분선 */
 .divisionLine{
-   width: 90%; height: 2px; 
-   background-color: black; }
+    width: 90%; height: 5px; 
+    background-color: lightgray; }
+
     
 /* 검색바 */
 .searchArea{
-    width: 680px;
+    width: 730px;
     margin-bottom: 10px;
 }
 .searchArea>span *{
@@ -44,26 +45,40 @@
     padding:3px;}
 
 
- /* 버튼 + 페이징 구역 */
- .bottomArea{
+/* 버튼 + 페이징 구역*/
+.bottomArea{
     margin: 15px;
     margin-left: 50px;
 }
-.bottomArea *{float:left;}
 
 
+/* 버튼 */
+.noticeListbtn a{
+text-decoration: none; 
+text-align: center;
+color:white; 
+background-color: dimgray;
+display: block;
+padding:7px;
+border-radius:4px;
+width:100px;
+}
 
-
-/* .btn a:hover{background-color: orange;} */
-
+.noticeListbtn a:hover{
+	background-color: orange;
+	color:white;
+	text-decoration: none; 
+	}
+	
 
 
 /* 페이징 구역 */
 .pagingArea{
-    width:300px;
-    margin-left:250px;
+    margin-left:90px;
+    margin-right: 90px;
 }
 .pagingArea *{
-    margin-right: 5px;
-    margin-top: 9px;
-    border-radius:3px;}
+	margin-right: 5px;
+	margin-top: 9px;
+	border-radius:3px;
+}

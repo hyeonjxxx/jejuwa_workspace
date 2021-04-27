@@ -12,20 +12,82 @@
 	
 <!-- 게시글 리스트 조회 -->
 	<entry key="selectListAdmin">
+		SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , Q.*
+		          FROM (
+		                SELECT 
+		                       MYQ_NO
+		                     , MYQ_CATEGORY
+		                     , MYQ_TITLE
+		                     , MYQ_ENROLL_DATE
+		                     , MYQ_ANS_DATE
+		                     , MEM_ID
+                             , P_CODE
+		                  FROM 
+		                  	   MYQ 
+		                  JOIN MEMBER USING (MEM_NO)
+                      ORDER BY 
+                               MYQ_NO DESC	
+		                ) Q
+		        ) 
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectDetailAdmin">
 		SELECT 
 			   MYQ_NO
 			 , MYQ_CATEGORY
 			 , MYQ_TITLE
-			 , MYQ_CONTENT,
+			 , MYQ_CONTENT
 			 , MYQ_ENROLL_DATE
 			 , MYQ_ANS_CONTENT
 			 , MYQ_ANS_DATE
 			 , MEM_NO
 			 , P_CODE
+			 , MEM_ID
+			 , P_NAME
+			 , MEM_NAME
 		  FROM 
-		       MYQ Q
-	  ORDER BY 
-	           MYQ_ENROLL_DATE DESC			
+		       MYQ 
+		  JOIN 
+		       MEMBER USING (MEM_NO)
+	 LEFT JOIN 
+	           PRODUCT USING (P_CODE)
+	     WHERE 
+	           MYQ_NO = ? 
+	</entry>
+
+	<entry key="selectAttachmentAdmin">
+		SELECT 
+			   FILE_NO
+			 , ORG_FILENAME
+			 , MDF_FILENAME
+			 , FILE_PATH
+			 , REF_BOARD_TYPE
+			 , REF_BOARD_NO
+			 , MYQ_NO
+			 , P_CODE
+		  FROM 
+		       ATTACHMENT
+	</entry>
+
+	<entry key="answer">
+		 INSERT 
+		   INTO MYQ
+		      ( 
+		        MYQ_NO
+			    MYQ_ANS_CONTENT
+			  , MYQ_ANS_DATE
+			  )
+		 VALUES 
+		      ( 
+		        ?
+		      , ?
+		      , SYSDATE
+		      )
 	</entry>
 
 </properties>
