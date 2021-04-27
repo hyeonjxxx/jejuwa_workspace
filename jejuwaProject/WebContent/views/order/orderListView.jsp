@@ -21,6 +21,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- content css-->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/order/orderListView.css">   
+
+	<script>
+		var param = ${paramJson};
+	</script>
+
 </head>
 <body>
 
@@ -33,23 +38,27 @@
        
 
         
-        <!-- 상품목록 -->
+        <!-- 주문검색 -->
         <div class="listArea">
-            <div class="search_option">
-                    <select name="option" id="option">
-                        <option value="total">주문번호</option>
-                        <option value="pName">회원번호</option>
-                        <option value="pCode">옵션번호</option>
-                    </select>
-                    
-                    <!-- 검색바는 다시 수정이 필요!! (form태그로!!) -->
-                    <!-- <form action="" class="search_form"> -->
-                        <input type="search" name="" id="">
-                        <button type="submit">검색</button>
-                    <!-- </form> -->
-
+        	
+      	 	<input type = "hidden" name = "page" value = "1">
+      	 	<div class="search_option">
+                <select name="key" class = "searchForm" id="option">
+                    <option value="orderNo">주문번호</option>
+                </select>
+                   <input type="search" name="search" value = "" id = "keyword">
             </div>
-            
+         	
+         	<script>
+         		$(document).ready(function(){
+         			$("#keyword").keyup(function(){
+         				var k = $(this).val();
+         				$("#productListView>tbody>tr").hide();
+         				var temp = $("#productListView>tbody>tr>td:nth-child(10n+1):contains('" + k + "')");
+         				$(temp).parent().show();
+         			})
+         		})
+         	</script>
             <!-- 삭제/등록버튼 -->
             <!-- 
             <div class="btn">
@@ -216,23 +225,23 @@
             </table>
             <br><br>
     
-            <div align="center" class="pagingArea">
+            <div align="center" class="pagination" id="pagingArea" style="margin: auto; position: relative; left: 330px;">
 				<% if(currentPage != 1) { %>
-            		<button onclick="location.href='<%=contextPath%>/list.or?currentPage=<%=currentPage-1%>';">이전</button>
+            		<li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.or?currentPage=<%=currentPage-1%>';" style="color: black;">이전</button></li>
 				<% } %>
 			
 				<% for(int p=startPage; p<=endPage; p++) { %>
 				
 					<% if(currentPage == p){ %>
-            			<button disabled><%= p %></button>
+            			<li class="page-item active"><button class="page-link" disabled style="background-color: orange; border: none;"><%= p %></button></li>
             		<% }else{ %>
-            			<button onclick="location.href='<%=contextPath%>/list.or?currentPage=<%= p %>';"><%= p %></button>
+            			<li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.or?currentPage=<%= p %>';" style="color: black;"><%= p %></button></li>
             		<% } %>
             	
 				<% } %>
 			
 				<% if(currentPage != maxPage){ %>
-            		<button onclick="location.href='<%=contextPath%>/list.or?currentPage=<%=currentPage+1%>';">다음</button>
+            		<li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.or?currentPage=<%=currentPage+1%>';" style="color: black;">다음</button></li>
 				<% } %>
     
             </div>

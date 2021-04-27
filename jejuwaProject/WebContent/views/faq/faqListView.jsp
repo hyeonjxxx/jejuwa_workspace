@@ -53,36 +53,31 @@
         <h2>FAQ 관리</h2>
         <div class="divisionLine"></div>
         
-        <!-- != 로 변경해야됨 -->
-
-
         <div class="area1">
-
-            
-            <!-- span태그로 했는데..맞나..? -->
+            <!-- FAQ 검색 -->
             <div align="right" class="searchArea">
-               
-                <span href="" >
-                    <select name="faqStatus" id="">
-                        <option value="관광지/레저">관광지/레저</option>
-                        <option value="맛집">맛집</option>
-                        <option value="쿠폰">쿠폰</option>
-                        <option value="취소/결제">취소/결제</option>
-                    </select>
-                    <select name="memberStatus" id="">
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                        <option value="titleContent">제목+내용</option>
-                    </select>
-                    <input type="text" placeholder="검색">
-                </span>              
+                 <select name="memberStatus" id="">
+                     <option value="title">제목</option>
+                 </select>
+                 <input type="text" placeholder="검색" id = "keyword">
             </div>
             
+            <script>
+         		$(document).ready(function(){
+         			$("#keyword").keyup(function(){
+         				var k = $(this).val();
+         				$("#faqTable>tbody>tr").hide();
+         				var temp = $("#faqTable>tbody>tr>td:nth-child(3n+3):contains('" + k + "')");
+         				$(temp).parent().show();
+         			})
+         		})
+         	</script>
+         	
         </div>
 
         <!-- 공지사항 리스트 테이블 -->
         <div class="listArea">
-            <table align="center" class="faqList">
+            <table align="center" class="faqList" id = "faqTable">
                 <thead>
                     <tr>
                         <th width="70">번호</th>

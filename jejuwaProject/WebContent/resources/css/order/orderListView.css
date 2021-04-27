@@ -44,3 +44,11 @@
   margin-left: 5px;
 }
 
+/* 페이징 구역 */
+#pagingArea{
+  margin: auto;
+  position: relative;
+  left: 350px;
+  border: 1px solid red;
+}
+#pagingArea *{margin-right: 5px;}
