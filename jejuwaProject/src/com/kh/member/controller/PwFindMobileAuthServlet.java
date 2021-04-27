@@ -57,15 +57,12 @@ public class PwFindMobileAuthServlet extends HttpServlet {
 			// 이름 전화번호 일치할 경우
 	        JSONObject jobj = new JSONObject();
 	    	jobj.put("result", true);
+	    	jobj.put("memPwd", m.getMemPwd());
 
 	    	response.setContentType("application/json");
 	    	PrintWriter out = response.getWriter();			
 	    	out.print(jobj.toJSONString()); 
 	    	
-	    	// 조회한 회원의 비밀번호 담기
-			HttpSession session = request.getSession();
-			session.setAttribute("memPwd", m);
-			
 			
 		}
 	}

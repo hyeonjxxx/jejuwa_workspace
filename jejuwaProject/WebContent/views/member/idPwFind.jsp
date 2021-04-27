@@ -49,7 +49,9 @@
         <p>아이디/비밀번호 찾기</p><br><br><br>
         <div class="idFind_wrap">
             <b style="font-size: 20px;">아이디 찾기</b><br><br>
-            <form action="<%= request.getContextPath() %>/" method="post">
+            <form action="<%= request.getContextPath() %>/IdFindSuccess.me" method="post">
+                
+                <input type="hidden" name="memId" value="">
                 <div class="idFind">
                     <table class="tb-id">
                         <tbody>
@@ -81,13 +83,13 @@
             </form>
             <br>
             <div class="buttonArea">
-                <button type="button" class="btn btn-warning btn-idPwfind" id="idFind_btn">아이디 찾기
-                </button>
+                <button type="button" class="btn btn-warning btn-idPwfind" id="idFind_btn">아이디 찾기 ></button>
             </div>
         </div>
         <div class="pwFind_wrap">
             <b style="font-size: 20px;">비밀번호 찾기</b><br><br>
-            <form action="">
+            <form action="<%= request.getContextPath() %>/PwFindMobileAuth.me" method="post">
+                <input type="hidden" name="memPwd" value="">
                 <div class="pwFind">
                     <table class="tb-pw">
                     <tbody>
@@ -123,9 +125,7 @@
             </form>
             <br>
             <div class="buttonArea">
-                <button type="button" class="btn btn-warning btn-idPwfind" id="pwFind_btn">
-                    <a href="">비밀번호 찾기 ></a>
-                </button>
+                <button type="button" class="btn btn-warning btn-idPwfind" id="pwFind_btn"> 비밀번호 찾기 > </button>
             </div>  
         </div>
     </div>
