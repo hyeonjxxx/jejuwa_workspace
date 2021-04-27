@@ -28,7 +28,7 @@ public class NoticeDao {
 	}
 	
 	/**
-	 * 공지사항 총 게시글 갯수 조회
+	 * [휘경] 공지사항 총 게시글 갯수 조회
 	 * @param conn
 	 * @return 공지사항 게시글 총 갯수
 	 */
@@ -57,7 +57,7 @@ public class NoticeDao {
 	
 	
 	/**
-	 * 공지사항 리스트 조회
+	 * [휘경] 공지사항 리스트 조회
 	 * @param conn
 	 * @param pi
 	 * @return
@@ -99,7 +99,7 @@ public class NoticeDao {
 	
 	
 	/**
-	 * 공지사항 insert(테이블 내에 첨부파일 따로 관리)
+	 * [휘경] 공지사항 insert(테이블 내에 첨부파일 따로 관리)
 	 * @param conn
 	 * @param n
 	 * @return
@@ -128,7 +128,7 @@ public class NoticeDao {
 	
 	
 	/**
-	 * 공지사항 상세조회시 조회수 증가
+	 * [휘경] 공지사항 상세조회시 조회수 증가
 	 * @param conn
 	 * @param noticeNo
 	 * @return
@@ -153,7 +153,7 @@ public class NoticeDao {
 	}
 	
 	/**
-	 * 공지사항 상세조회
+	 * [휘경] 공지사항 상세조회
 	 * @param conn
 	 * @param noticeNo
 	 * @return
@@ -189,7 +189,7 @@ public class NoticeDao {
 	}
 	
 	/**
-	 * 공지사항 업데이트 1(첨부파일이 있는경우)
+	 * [휘경] 공지사항 업데이트 1(첨부파일이 있는경우)
 	 * @param conn
 	 * @param n
 	 * @return
@@ -218,7 +218,7 @@ public class NoticeDao {
 	}
 	
 	/**
-	 * 공지사항 업데이트2 (첨부파일이 없는 경우)
+	 * [휘경] 공지사항 업데이트2 (첨부파일이 없는 경우)
 	 * @param conn
 	 * @param n
 	 * @return
@@ -245,7 +245,7 @@ public class NoticeDao {
 	}
 
 	/**
-	 * 공지사항 삭제
+	 * [휘경] 공지사항 삭제
 	 * @param conn
 	 * @param noticeNo
 	 * @return
@@ -271,6 +271,13 @@ public class NoticeDao {
 	}
 	
 	
+	/**
+	 * [휘경] 공지사항 키워드 검색
+	 * @param conn
+	 * @param searchCtg 검색 카테고리(제목, 내용, 제목+내용 중 하나)
+	 * @param keyword
+	 * @return
+	 */
 	public ArrayList<Notice> searchNotice(Connection conn, String searchCtg, String keyword){
 		// select문 => ResultSet(여러행)
 		ArrayList<Notice> list = new ArrayList<>();

@@ -19,14 +19,7 @@
 
 
 	<div class="outer">
-        <br>
-        <h2>회원탈퇴</h2>
-        <div class="divisionLine"></div>
-        <br>
-        
-        <br>
-        
-        
+        <br><br>
         <!-- 회원 상세정보 -->
         <div class="viewArea" align="center">
             
@@ -54,7 +47,7 @@
                     </tr>
                 </table>
 
-                <br><br>
+                <br>
 
                 <div class="area2">
                     <table id="area2">
@@ -75,13 +68,14 @@
                 </div>
                 <br><br>
             </div>
+            <br><br>
             <div>
                 <input id="agreeBtn" type="checkbox"> <label for="agreeBtn">안내 사항을 모두 확인하였으며, 이에 동의합니다.</label>
-
             </div>
+            <br>
             <div class="bottomArea">
     
-                 <!-- 버튼 (수 정) -->
+                 <!-- 버튼 (회원탈퇴) -->
                 <div class="btn withdrawalBtn" align="center">
                     <a id="btn1" a href="" data-toggle="modal" onclick="return checkAgree();" data-target="#withdrawal" >회원탈퇴</a> 
                 </div>   
@@ -142,6 +136,7 @@
 			</form>
 		</div>
     </div>
-
+    
+    <%@ include file = "../common/footer.jsp" %>
 </body>
 </html>

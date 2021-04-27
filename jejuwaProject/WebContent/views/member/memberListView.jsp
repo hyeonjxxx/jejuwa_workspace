@@ -37,18 +37,18 @@
 
             <div align="right" class="searchArea" >
                 <span href="">
-                    <select name="memberStatus" id="select1">
+                    <select name="memberStatus" id="Status" onchange="statusList();">
                         <option value="active">활동회원</option>
                         <option value="dormant">관리자</option>
-                </select>
+                	</select>
                 </span>
                 <span href="" >
-                    <select name="memberStatus" id="">
-                        <option value="active">아이디</option>
-                        <option value="dormant">이름</option>
-                        <option value="dormant">전화번호</option>
+                    <select name="memberStatus" id="memberSearchCtg">
+                        <option value="memId">아이디</option>
+                        <option value="memName">이름</option>
+                        <option value="phone">전화번호</option>
                     </select>
-                    <input type="text" style="width: 200px;"placeholder="검색">
+                    <input id="keyword" type="text" style="width: 200px;" onkeyup="enterkey();" placeholder="검색">
                 </span>              
             </div>
         </div>
@@ -87,6 +87,69 @@
 	                	<% } %>   
                 </tbody>
             </table>
+            
+            <!-- 멤버 활동회원/관리자/탈퇴회원 나눠보기 기능 중 -->
+            <script>
+            	function statusList(){
+            		location.href="<%=contextPath%>"
+            	}
+            </script>
+            
+            
+            
+            <script>
+            	function enterkey(){
+            		if(window.event.keyCode == 13){
+	            		var searchCtg = $("#memberSearchCtg option:selected").val();
+	            		var keyword = $("#keyword").val();
+	            		
+	            		//console.log(searchCtg);
+	            		//console.log(keyword);
+	            		
+            			$.ajax({
+            				url:"searchAjax.me",
+            				type:"get",
+            				data:{searchCtg:searchCtg,
+            					  keyword:keyword
+            				}, success:function(list){
+            					console.log(list);
+            					
+            					
+            					var result = "";
+            					if(list.length == 0){
+            						result = "<tr><td colspan='6'>조회된 회원이 없습니다.</td></tr>"
+            					}
+            					for(var i in list){
+            						
+            						result += "<tr class='test4'>"
+        						      	   +	"<td>" + list[i].memNo + "</td>"
+        						           +	"<td>" + list[i].memId + "</td>"
+        						           +	"<td>" + list[i].memName + "</td>"
+        						           +	"<td>" + list[i].email + "</td>"
+        						           +	"<td>" + list[i].phone + "</td>"
+        						           +	"<td>" + list[i].enrollDate + "</td>"
+        						           + "</tr>";
+            					}
+            					
+            					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
+            					$("#memberList tbody").html(result);
+            					$(".pagingArea").css("visibility", "hidden");
+            					
+            					$(function(){
+            	            		$("#memberList>tbody>tr").click(function(){
+            	            			location.href='<%=contextPath%>/detail.me?mno=' + $(this).children().eq(0).text();
+            	            		})
+            	            	})
+            					
+            					
+            				}, error:function(){
+            					console.log("ajax통신 실패");
+            				}
+            			});
+            		}
+            	}
+            </script> 
+            
             
             <script>
             	// 상세보기 요청

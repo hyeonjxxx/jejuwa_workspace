@@ -535,6 +535,98 @@ public class MemberDao {
 		return result;
 	}
 
+	/**
+	 * [휘경] 멤버 키워드 검색
+	 * @param conn
+	 * @param searchCtg 검색카테고리(아이디, 이름, 전화번호)
+	 * @param keyword
+	 * @return
+	 */
+	public ArrayList<Member> searchMember(Connection conn, String searchCtg, String keyword){
+		// select문 => ResultSet(여러 행)
+		ArrayList<Member> list = new ArrayList<>();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		// 카테고리 : 아이디 로 검색한 경우
+		if(searchCtg.equals("memId")) {
+			sql=prop.getProperty("searchMemberId");
+			
+			try {
+				pstmt = conn.prepareStatement(sql); // 미완성 sql
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new Member(rset.getInt("MEM_NO"),
+										rset.getString("MEM_ID"),
+										rset.getString("MEM_NAME"),
+										rset.getString("PHONE"),
+										rset.getString("EMAIL"),
+										rset.getDate("ENROLL_DATE")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+		}
+		
+		// 카테고리 : 이름 으로 검색한 경우
+		if(searchCtg.equals("memName")) {
+			sql=prop.getProperty("searchMemberName");
+			
+			try {
+				pstmt = conn.prepareStatement(sql); // 미완성 sql
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new Member(rset.getInt("MEM_NO"),
+										rset.getString("MEM_ID"),
+										rset.getString("MEM_NAME"),
+										rset.getString("PHONE"),
+										rset.getString("EMAIL"),
+										rset.getDate("ENROLL_DATE")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+		}
+		
+		
+		// 카테고리 : 전화번호 로 검색한 경우
+		if(searchCtg.equals("phone")) {
+			sql=prop.getProperty("searchMemberPhone");
+			
+			try {
+				pstmt = conn.prepareStatement(sql); // 미완성 sql
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new Member(rset.getInt("MEM_NO"),
+										rset.getString("MEM_ID"),
+										rset.getString("MEM_NAME"),
+										rset.getString("PHONE"),
+										rset.getString("EMAIL"),
+										rset.getDate("ENROLL_DATE")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+		}
+		
+		return list;
+	}
 
 	
 }

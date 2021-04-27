@@ -198,8 +198,54 @@
 	</entry>
 	
 	
-	<!-- [휘경] 사용자  -->
-
+	<!-- [휘경] 관리자 멤버 검색(카테고리:아이디) -->
+	<entry key="searchMemberId">
+		SELECT
+               MEM_NO
+             , MEM_ID
+             , MEM_NAME
+             , EMAIL
+             , PHONE
+             , ENROLL_DATE
+          FROM MEMBER
+         WHERE STATUS IN ('A', 'Y')
+           AND MEM_ID LIKE ?
+         ORDER
+            BY ENROLL_DATE DESC
+	</entry>
+	
+	<!-- [휘경] 관리자 멤버 검색(카테고리:이름) -->
+	<entry key="searchMemberName">
+		SELECT
+               MEM_NO
+             , MEM_ID
+             , MEM_NAME
+             , EMAIL
+             , PHONE
+             , ENROLL_DATE
+          FROM MEMBER
+         WHERE STATUS IN ('A', 'Y')
+           AND MEM_NAME LIKE ?
+         ORDER
+            BY ENROLL_DATE DESC
+	</entry>
+	
+	<!-- [휘경] 관리자 멤버 검색(카테고리:전화번호) -->
+	<entry key="searchMemberPhone">
+		SELECT
+               MEM_NO
+             , MEM_ID
+             , MEM_NAME
+             , EMAIL
+             , PHONE
+             , ENROLL_DATE
+          FROM MEMBER
+         WHERE STATUS IN ('A', 'Y')
+           AND PHONE LIKE ?
+         ORDER
+            BY ENROLL_DATE DESC
+	</entry>
+	
 </properties>
 
 

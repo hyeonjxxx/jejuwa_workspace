@@ -292,6 +292,19 @@ public class MemberService {
 		return result;
 	}
 
+	
+	/**
+	 * [휘경] 멤버 키워드 검색
+	 * @param searchCtg 검색 카테고리(아이디, 이름, 전화번호)
+	 * @param keyword
+	 * @return
+	 */
+	public ArrayList<Member> searchMember(String searchCtg, String keyword){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new MemberDao().searchMember(conn, searchCtg, keyword);
+		close(conn);
+		return list;
+	}
 
 
 

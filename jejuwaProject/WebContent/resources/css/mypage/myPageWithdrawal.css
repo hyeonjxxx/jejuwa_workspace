@@ -2,34 +2,35 @@
 /* *{border: 1px solid red;} */
 
 .outer{
-    height: 700px;
-    width: 800px;
-    margin: 30px 20px;
+	height: 1000px;
+    width: 750px;
     float: left;
   }
 
 
 /* 구분선 */
+/*
 .divisionLine{
 width: 90%; height: 5px; 
 background-color: lightgray; }
-    
+*/
+
 /* 탈퇴 안내 */
 .withdrawalArea{
     border:1px solid rgb(190, 188, 188);
     }    
-.viewArea div, .withdrawalArea>table {margin:25px;}
+.withdrawalArea>table, .withdrawalArea div {margin:25px;}
+
 .reason{margin:10px;}
 .area2{border:1px solid rgb(190, 188, 188)}
 #area2{margin:30px;}
 /* 버튼 */
 .bottomArea{
-    margin-left: 120px;
 }
 .bottomArea *{
     margin-left: 5px;
 }
-.btn a{
+.withdrawalBtn a{
 text-decoration: none; 
 text-align: center;
 color:white; 
