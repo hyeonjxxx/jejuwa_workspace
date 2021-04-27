@@ -164,6 +164,16 @@
 		       ORDER_NO = ?
 	</entry>
 	
+	
+	<!-- 주문내역관리페이지에서 상태를 변경하는 sql -->
+	<entry key="updateChangeOrder">
+		UPDATE
+				TORDER
+		   SET	STATUS = ?
+		 WHERE	ORDER_NO = ?
+		   
+		   			 
+	</entry>
 </properties>
 
 

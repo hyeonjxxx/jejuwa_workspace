@@ -102,6 +102,10 @@
 	                                 	변경
 	                                </button>
 	                              
+	                              <form action = "<%=contextPath%>/update.cor" id = "changeOrderForm" method = "post">
+	                              	 <input type="hidden" name="ono" value="<%=o.getOrderNo()%>">
+	                                <!-- <input type="hidden" name="status" value="<%=o.getStatus()%>">-->
+	                                
 	                                <!-- The Modal -->
 	                                <div class="modal fade" id="orderModal">
 	                                  <div class="modal-dialog modal-dialog-centered">
@@ -139,41 +143,46 @@
 	                                            <tr>
 	                                                <th>입금상태</th>
 	                                                <td>
-                                                    	<input type="checkbox" id="reserJ" name="status" value="reserJ" onclick="checkOnlyOne(this)" checked><label for="reserJ">예약접수</label>
-                                                    	<input type="checkbox" id="reserH" name="status" value="reserH" onclick="checkOnlyOne(this)"><label for="reserH">예약확정</label>
-                                                    	<input type="checkbox" id="reserW" name="status" value="reserW" onclick="checkOnlyOne(this)"><label for="reserW">여행완료</label>
-                                                    	<input type="checkbox" id="reserC" name="status" value="reserC" onclick="checkOnlyOne(this)"><label for="reserC">여행취소</label>
+                                                    	<select name = "status" style="width: 80%; margin-left: 35px;" id="selectOption">
+									                        <option value="예약접수">예약접수</option>
+									                        <option value="예약확정">예약확정</option>
+									                        <option value="여행완료">여행완료 </option>
+									                        <option value="취소">취소</option>
+								                        </select>
+                                                    	
 	                                                    
 													</td>
 													
-	    	                                         <script>
-	    	                                         
-	                                                    function checkOnlyOne(element) {
-	                                
-	                                                      const checkboxes 
-	                                                          = document.getElementsByName("status");
-	                                                      
-	                                                      checkboxes.forEach((cb) => {
-	                                                          cb.checked = false;
-	                                                      })
-	                                                      element.checked = true;
-	                                                  }
-	                                                </script>
-	                              
+													<script>
+							                        	$(function(){
+							                        		
+							                        		$("#changeOrderForm option").each(function(){
+							                        			if($(this).text() == "<%=o.getStatus()%>"){
+							                        				$(this).attr("selected", true);
+							                        			}
+							                        		})
+							                        		
+							                        	})
+							                        </script>
+							                        
+													
 	                                            </tr>
 	                                        </table>
 	                                      </div>
 	                                      
 	                                      <!-- Modal footer -->
 	                                      <div class="modal-footer">
-	                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	                                      	<button type="submit" class="btn btn-warning">변경</button>
+	                                        <button type="button" class="btn btn-secondary">취소</button>
 	                                      </div>
 	                                      
 	                                    </div>
 	                                  </div>
 	                                </div>
 	                                
-	                              </div>
+	                              </form>
+	                               
+	                            </div>
 	                        </td>
 							
                     	</tr>

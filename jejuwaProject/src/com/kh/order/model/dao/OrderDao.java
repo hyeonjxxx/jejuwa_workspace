@@ -284,4 +284,27 @@ public class OrderDao {
 		return result;
 		
 	}
+	
+	
+	public int updateChangeOrder(Connection conn, Order o) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateChangeOrder");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, o.getStatus());
+			pstmt.setInt(2, o.getOrderNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }
