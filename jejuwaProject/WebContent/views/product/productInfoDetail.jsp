@@ -176,7 +176,7 @@
                 <li onclick="" ><p>상품문의</p></li>
             </ul>
             <div id="tap01" class="taps">
-               <img src="<%=contextPath %>/<%= p.getDetailPath()%>">            
+               <img src="<%=contextPath %>/<%= p.getDetailPath()%>" style="width:680px">            
             </div>
         
             

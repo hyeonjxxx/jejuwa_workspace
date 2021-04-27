@@ -141,27 +141,20 @@ button{border:none; outline:none;}
 
 /* tap */
 .pdtTab {
-    float: left;
-    width: 100%;
+    float: left;  
     height: 8%;
-    margin: auto;
-    margin-top: 100px;
+    margin: 100px 15px 0;
 }    
 .pdtTab ul{
     overflow: hidden;
     list-style: none;
     text-align: center;
 }
-
 .pdtTab ul li.current{
     position: relative;
-    background-color: orange;
-    color: white;
     height: 40px;
     padding: 5px 15px;
-    border: 1px solid dimgray;
-    border-bottom: none;
-
+    border-bottom: 3px solid orange;
 }
 
 .pdtTab ul li{
@@ -169,22 +162,20 @@ button{border:none; outline:none;}
     position: relative;
     float: left;
     min-width: 162px;
-    cursor: pointer;
     font-size: 15px;
-    background-color: rgb(236, 236, 236);
     color: black;
     padding: 5px 15px;
-    border-bottom: 1px solid dimgray;
-
+    border-bottom:1px solid #69696970;
 }
-
-.pdtTab ul li.current p{
-    font-weight: bold;
-    padding: 5px 15px 5px;
+.pdtTab ul li:hover{ 
+	cursor:pointer; 
+	border-bottom: 3px solid orange;
 }
+.pdtTab ul li.current p{ font-weight: bold; }
 .pdtTab ul li p{
     font-weight: normal;
     padding: 5px 15px 5px;;
 }
 
 #tap01{margin:30px 20px 0;}
+#tap01 img{margin: 0 40px;}
