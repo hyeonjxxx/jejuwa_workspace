@@ -1,6 +1,7 @@
 package com.kh.notice.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,20 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.notice.model.service.NoticeService;
 import com.kh.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeDetailServlet
+ * Servlet implementation class AjaxNoticeSearchServlet
  */
-@WebServlet("/detail.no")
-public class NoticeDetailServlet extends HttpServlet {
+@WebServlet("/searchAjax.no")
+public class AjaxNoticeSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeDetailServlet() {
+    public AjaxNoticeSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,28 +33,27 @@ public class NoticeDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		// Ajax
+		String searchCtg = request.getParameter("searchCtg");
+		String keyword = request.getParameter("keyword");
 		
-		request.setCharacterEncoding("utf-8");
+		//System.out.println(searchCtg);
+		//System.out.println(keyword);
 		
-		// 요청시 전달값 뽑아서 담기
-		int noticeNo = Integer.parseInt(request.getParameter("nno"));
+		ArrayList<Notice> list = new NoticeService().searchNotice(searchCtg, keyword);
 		
-		// 1. 조회수 증가
-		int result = new NoticeService().increaseCount(noticeNo);
+//		for(Notice n : list) {
+//			System.out.println(n);
+//		}
+//		response.getWriter().print("aaa");
 		
-		// 2. 공지사항 상세조회
-		if(result > 0) { // 유효한 공지사항 번호 => 상세 조회
-			Notice n = new NoticeService().selectNotice(noticeNo);
-			request.setAttribute("n", n);
-			request.getRequestDispatcher("views/notice/noticeDetailView.jsp").forward(request, response);
-			
-		}else { // 유효하지 않은 공지사항 번호 => alertMsg "공지사항 조회에 실패하였습니다."
-			// 에러페이지 따로 만들어야할지 그냥 alert로 띄울지
-			request.getSession().setAttribute("alertMsg", "공지사항 조회에 실패하였습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.no?currentPage=1");
-			
-			
-		}
+		response.setContentType("application/json; charset=UTF-8");
+		//new Gson().toJson(list, response.getWriter());
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+		
+		
 	}
 
 	/**

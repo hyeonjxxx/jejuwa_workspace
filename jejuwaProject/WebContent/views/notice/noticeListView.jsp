@@ -39,14 +39,20 @@
             <div align="right" class="searchArea">
                
                 <span href="">
-                    <select name="memberStatus" id="">
+                    <select id="noticeSearchCtg" name="noticeSearchCtg">
                         <option value="title">제목</option>
                         <option value="content">내용</option>
                         <option value="titleContent">제목+내용</option>
                     </select>
-                    <input type="text" placeholder="검색">
+                    <input id="keyword" type="text" onkeyup="enterkey();" placeholder="검색">
                 </span>              
             </div>
+            
+            
+            
+
+
+            
         </div>
 
         <!-- 공지사항 리스트 테이블 -->
@@ -83,14 +89,65 @@
             </table>
             
             <script>
+            	function enterkey(){
+            		if(window.event.keyCode == 13){
+	            		var searchCtg = $("#noticeSearchCtg option:selected").val();
+	            		var keyword = $("#keyword").val();
+	            		
+	            		//console.log(searchCtg);
+	            		//console.log(keyword);
+	            		
+            			$.ajax({
+            				url:"searchAjax.no",
+            				type:"get",
+            				data:{searchCtg:searchCtg,
+            					  keyword:keyword
+            				}, success:function(list){
+            					console.log(list);
+            					
+            					var result = "";
+            					if(list.length == 0){
+            						result = "<tr><td colspan='5'>조회된 공지사항이 없습니다.</td></tr>"
+            					}
+            					for(var i in list){
+            						result += "<tr class='test4'>"
+        						       	   + 	"<td><input id='test3' type='checkbox'></td>"
+        						      	   +	"<td>" + list[i].noticeNo + "</td>"
+        						           +	"<td>" + list[i].noticeTitle + "</td>"
+        						           +	"<td>" + list[i].noticeCount + "</td>"
+        						           +	"<td>" + list[i].enrollDate + "</td>"
+        						           + "</tr>";
+            					}
+            					
+            					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
+            					$("#memberList tbody").html(result);
+            					$(".pagingArea").css("visibility", "hidden");
+            					
+            					$(function(){
+            	            		$("#memberList>tbody>tr").click(function(){
+            	            			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children().eq(1).text();
+            	            		})
+            	            	})
+            					
+            					
+            				}, error:function(){
+            					console.log("ajax통신 실패");
+            				}
+            			});
+            		}
+            	}
+            </script>  	
+            
+            
+            <script>
             
             	// 상세보기 요청
             	$(function(){
             		$("#memberList>tbody>tr").click(function(){
-            			
             			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children().eq(1).text();
             		})
             	})
+            	
             	
             	
             	// 일부선택시 상세보기로 넘어가지 않도록
@@ -105,7 +162,8 @@
                 		}
                	}
              </script>  	
-               	
+             
+             
 
         </div>
 
@@ -114,7 +172,7 @@
         <div class="bottomArea">
 
             <!-- 로그인 && 로그인한 사용자가 글 작성자인 경우 -->
-            <div align="right" class="btn">
+            <div align="right" class="btn noticeListbtn">
                 <a href="" id="btn1">선택삭제</a>
             </div>                
             
@@ -151,7 +209,7 @@
              </div>
 
             <!-- 로그인 && 로그인한 사용자가 글 작성자인 경우 -->
-            <div align="right" class="btn">
+            <div align="right" class="btn noticeListbtn">
                 <a href="<%= contextPath %>/enrollForm.no" id="btn2">등 록</a> 
             </div>   
 			

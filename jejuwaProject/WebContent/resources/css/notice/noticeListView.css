@@ -54,7 +54,7 @@
 
 
 /* 버튼 */
-.btn a{
+.noticeListbtn a{
 text-decoration: none; 
 text-align: center;
 color:white; 
@@ -65,8 +65,12 @@ border-radius:4px;
 width:100px;
 }
 
-.btn a:hover{background-color: orange;}
-
+.noticeListbtn a:hover{
+	background-color: orange;
+	color:white;
+	text-decoration: none; 
+	}
+	
 
 
 /* 페이징 구역 */
@@ -74,4 +78,8 @@ width:100px;
     margin-left:90px;
     margin-right: 90px;
 }
-.pagingArea *{margin-right: 5px; margin-top: 9px; border-radius:3px; }
+.pagingArea *{
+	margin-right: 5px;
+	margin-top: 9px;
+	border-radius:3px;
+}

@@ -40,7 +40,11 @@ border-radius:4px;
 width:70px;    
 }
 #btn1{width:100px; padding: 10px;}
-.btn a:hover{background-color: red;}
+.withdrawalBtn a:hover{
+	background-color: red;
+	color:white;
+	text-decoration: none;
+}
 
 
 /* 비밀번호 초기화 모달 */

@@ -32,11 +32,9 @@
 	<div class="outer">
         <br><br>
         <h2>공지사항</h2>
-        <div class="divisionLine"></div>
         <br>
         
-        <br><br>
-        
+        <br>
 
         <div class="area1">
 
@@ -44,12 +42,12 @@
             <div align="right" class="searchArea">
                
                 <span href="" >
-                    <select name="memberStatus" id="">
+                    <select name="noticeSearchCtg" id="noticeSearchCtg">
                         <option value="title">제목</option>
                         <option value="content">내용</option>
                         <option value="titleContent">제목+내용</option>
                     </select>
-                    <input type="text" placeholder="검색">
+                    <input id="keyword" type="text" onkeyup="enterkey();" placeholder="검색">
                 </span>              
             </div>
             
@@ -57,7 +55,8 @@
 
         <!-- 공지사항 리스트 테이블 -->
         <div class="listArea">
-            <table align="center" id="memberList">
+        
+            <table align="center" id="memberList" class="table table-hover">
                 <thead>
                     <tr>
                         <th width="90">번호</th>
@@ -87,6 +86,57 @@
             </table>
             
             <script>
+            	function enterkey(){
+            		if(window.event.keyCode == 13){
+	            		var searchCtg = $("#noticeSearchCtg option:selected").val();
+	            		var keyword = $("#keyword").val();
+	            		
+	            		//console.log(searchCtg);
+	            		//console.log(keyword);
+	            		
+            			$.ajax({
+            				url:"searchAjax.no",
+            				type:"get",
+            				data:{searchCtg:searchCtg,
+            					  keyword:keyword
+            				}, success:function(list){
+            					console.log(list);
+            					
+            					var result = "";
+            					if(list.length == 0){
+            						result = "<tr><td colspan='4'>조회된 공지사항이 없습니다.</td></tr>"
+            					}
+            					for(var i in list){
+            						result += "<tr class='test4'>"
+        						      	   +	"<td>" + list[i].noticeNo + "</td>"
+        						           +	"<td>" + list[i].noticeTitle + "</td>"
+        						           +	"<td>" + list[i].noticeCount + "</td>"
+        						           +	"<td>" + list[i].enrollDate + "</td>"
+        						           + "</tr>";
+            					}
+            					
+            					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
+            					$("#memberList tbody").html(result);
+            					$(".pagingArea").css("visibility", "hidden");
+            					
+            					$(function(){
+            	            		$("#memberList>tbody>tr").click(function(){
+            	            			location.href='<%=request.getContextPath()%>/detail.uno?nno=' + $(this).children().eq(0).text();
+            	            		})
+            	            	})
+            					
+            					
+            				}, error:function(){
+            					console.log("ajax통신 실패");
+            				}
+            			});
+            		}
+            	}
+            </script>
+            
+            
+            
+            <script>
             	// 상세보기 요청
             	$(function(){
             		$("#memberList>tbody>tr").click(function(){
@@ -97,6 +147,7 @@
 
         </div>
 
+       <br>
        
         <!-- 버튼, 페이징 구역 -->
         <div class="bottomArea" align="center">
@@ -131,6 +182,7 @@
                 		<button onclick="location.href='<%=request.getContextPath()%>/list.uno?currentPage=<%=currentPage+1%>';">&gt;</button>
 	                    <button onclick="location.href='<%=request.getContextPath()%>/list.uno?currentPage=<%=maxPage%>';">&raquo;</button>
                 	<% } %>
+                	
             </div>
 
             <!-- 로그인 && 로그인한 사용자가 관리자인 경우 -->
@@ -143,6 +195,7 @@
 		</div>
 
     </div>
+    
     
     <%@ include file = "../common/footer.jsp" %>
 

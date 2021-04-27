@@ -111,7 +111,56 @@
 		 WHERE NOTICE_NO = ?
 	</entry>
 	
+	<!-- 임시 -->
+	<!-- 공지사항 검색(카테고리:제목) -->
+	<entry key="searchNoticeTitle">
+		SELECT
+               NOTICE_NO
+             , NOTICE_TITLE
+             , ENROLL_DATE
+             , NOTICE_COUNT
+             , ORG_FILENAME
+             , FILE_PATH
+          FROM NOTICE
+         WHERE NOTICE_STATUS = 'Y'
+           AND NOTICE_TITLE LIKE ?
+         ORDER
+            BY ENROLL_DATE DESC
+	</entry>
 	
+	
+	<!-- 공지사항 검색(카테고리:내용) -->
+	<entry key="searchNoticeContent">
+		SELECT
+               NOTICE_NO
+             , NOTICE_TITLE
+             , ENROLL_DATE
+             , NOTICE_COUNT
+             , ORG_FILENAME
+             , FILE_PATH
+          FROM NOTICE
+         WHERE NOTICE_STATUS = 'Y'
+           AND NOTICE_CONTENT LIKE ?
+         ORDER
+            BY ENROLL_DATE DESC
+	</entry>
+	
+	<!-- 공지사항 검색(카테고리:제목+내용) -->
+	<entry key="searchNoticeTitleContent">
+		SELECT
+               NOTICE_NO
+             , NOTICE_TITLE
+             , ENROLL_DATE
+             , NOTICE_COUNT
+             , ORG_FILENAME
+             , FILE_PATH
+          FROM NOTICE
+         WHERE NOTICE_STATUS = 'Y'
+           AND NOTICE_TITLE LIKE ?
+            OR NOTICE_CONTENT LIKE ?
+         ORDER
+            BY ENROLL_DATE DESC
+	</entry>
 	
 	
 </properties>

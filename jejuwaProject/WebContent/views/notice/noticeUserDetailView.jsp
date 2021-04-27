@@ -55,7 +55,7 @@
         <div class="bottomArea">            
             
             
-            <div class="btn btn2" align="right">
+            <div class="btn noticeUserBtn" align="right">
                 <a id="btn3" href="<%=request.getContextPath()%>/list.uno?currentPage=1">목록으로</a> 
             </div>               
 

@@ -127,7 +127,18 @@ public class NoticeService {
 		return result;
 	}
 	
-	
+	/**
+	 * 공지사항 키워드 검색
+	 * @param searchCtg 검색 카테고리(제목, 내용, 제목+내용 중 하나)
+	 * @param keyword 검색 키워드
+	 * @return
+	 */
+	public ArrayList<Notice> searchNotice(String searchCtg, String keyword){
+		Connection conn = getConnection();
+		ArrayList<Notice> list = new NoticeDao().searchNotice(conn, searchCtg, keyword);
+		close(conn);
+		return list;
+	}
 	
 	
 }

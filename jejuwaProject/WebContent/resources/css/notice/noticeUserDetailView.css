@@ -44,7 +44,7 @@
         margin-right: 9px;
     }
     .bottomArea *{float:right; margin-left: 5px;}
-    .btn a{
+    .noticeUserBtn a{
     text-decoration: none; 
     text-align: center;
     color:white; 
@@ -71,5 +71,9 @@
         margin-left: 10px;
     }
     
-    .btn a:hover, .btn3 a:hover{background-color: orange;}
+    .btn3 a:hover, .noticeUserBtn a:hover{
+    background-color: orange;
+    text-decoration: none;
+    color:white; 
+    }
     

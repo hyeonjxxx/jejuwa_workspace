@@ -271,6 +271,102 @@ public class NoticeDao {
 	}
 	
 	
+	public ArrayList<Notice> searchNotice(Connection conn, String searchCtg, String keyword){
+		// select문 => ResultSet(여러행)
+		ArrayList<Notice> list = new ArrayList<>();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		//String sql = prop.getProperty("selectList");
+		String sql = "";
+		
+//		switch(searchCtg) {
+//		case"title": sql=prop.getProperty("searchNoticeTitle"); break;
+//		case"content": sql=prop.getProperty(""); break;
+//		case"titleContent" : sql=prop.getProperty("");
+//		}
+		
+		
+		// 카테고리 : 제목 으로 검색한 경우
+		if(searchCtg.equals("title")) {
+			sql = prop.getProperty("searchNoticeTitle");
+			
+			try {
+				pstmt = conn.prepareStatement(sql); // 미완성 sql
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new Notice(rset.getInt("NOTICE_NO"),
+							rset.getString("NOTICE_TITLE"),
+							rset.getDate("ENROLL_DATE"),
+							rset.getInt("NOTICE_COUNT"),
+							rset.getString("ORG_FILENAME"),
+							rset.getString("FILE_PATH")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+		}
+		
+		
+		// 카테고리 : 내용 으로 검색한 경우
+		if(searchCtg.equals("content")) {
+			sql = prop.getProperty("searchNoticeContent");
+			
+			try {
+				pstmt = conn.prepareStatement(sql); // 미완성 sql
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new Notice(rset.getInt("NOTICE_NO"),
+							rset.getString("NOTICE_TITLE"),
+							rset.getDate("ENROLL_DATE"),
+							rset.getInt("NOTICE_COUNT"),
+							rset.getString("ORG_FILENAME"),
+							rset.getString("FILE_PATH")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+		}
+		
+		// 카테고리 : 제목+내용 으로 검색한 경우
+		if(searchCtg.equals("titleContent")) {
+			sql = prop.getProperty("searchNoticeTitleContent");
+			
+			try {
+				pstmt = conn.prepareStatement(sql); // 미완성 sql
+				pstmt.setString(1, "%" + keyword + "%");
+				pstmt.setString(2, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new Notice(rset.getInt("NOTICE_NO"),
+							rset.getString("NOTICE_TITLE"),
+							rset.getDate("ENROLL_DATE"),
+							rset.getInt("NOTICE_COUNT"),
+							rset.getString("ORG_FILENAME"),
+							rset.getString("FILE_PATH")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+		}
+		
+		
+		
+		return list;
+		
+	
+		
+	}
 	
 
 }

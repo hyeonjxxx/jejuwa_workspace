@@ -82,8 +82,8 @@
             <div class="bottomArea">
     
                  <!-- 버튼 (수 정) -->
-                <div class="btn" align="center">
-                    <a id="btn1" a href="" data-toggle="modal" onclick="return checkAgree();" data-target="#withdrawal" >회원 탈퇴</a> 
+                <div class="btn withdrawalBtn" align="center">
+                    <a id="btn1" a href="" data-toggle="modal" onclick="return checkAgree();" data-target="#withdrawal" >회원탈퇴</a> 
                 </div>   
                 
             </div>

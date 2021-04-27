@@ -86,8 +86,8 @@
              
              <!-- Modal footer -->
              <div id="modalFooter">
-               <button type="submit" id="okBtn" class="btn btn-warning" onclick="return deleteNotice();">OK</button>
-               <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+               <button type="submit" id="okBtn1" class="btn btn-warning" onclick="return deleteNotice();">OK</button>
+               <button type="button" id="cancleBtn1" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
              </div>
              
              <script>
