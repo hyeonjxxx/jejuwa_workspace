@@ -93,7 +93,7 @@
 
                 <tr >
                     <th>결제내역</th>
-                    <td colspan="3"><%=o.getAmount() %></td>
+                    <td colspan="3"><%=o.getAmount() %>원</td>
                 </tr>
 
                 

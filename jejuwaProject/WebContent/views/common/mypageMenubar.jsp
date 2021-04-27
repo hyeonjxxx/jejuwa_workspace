@@ -67,7 +67,7 @@
 		.mycontent_1 li a:hover, #Menu a:hover{color: orange;}
 		
 		/*.myPageAll{border: 1px solid red; position: relative; top: 100px;}*/
-		#myPageHead{margin: auto; margin-left: -20px; position: relative; top: 10px;}
+		#myPageHead{margin: auto; margin-left: -50px; position: relative; top: 30px;}
 			
 		.myPageBar{
             margin: auto; 

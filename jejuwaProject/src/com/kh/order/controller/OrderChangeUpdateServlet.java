@@ -36,8 +36,8 @@ public class OrderChangeUpdateServlet extends HttpServlet {
 		int orderNo = Integer.parseInt(request.getParameter("ono"));
 		String status = request.getParameter("status");
 		
-		System.out.println(orderNo);
-		System.out.println(status);
+		//System.out.println(orderNo);
+		//System.out.println(status);
 		
 		/*
 		HttpSession session = request.getSession();

@@ -69,20 +69,38 @@
 	                        <%}else{ %>
 
 	                        <!-- 조회된 결과가 있을 경우 -->
-								<%for(Order o : list){ %>
-									<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo() && o.getcReason() == null) {%>
+								<%for(int i =0; i<list.size(); i++){ Order o = list.get(i); %>
+									<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo() && o.getcReason() == null && !o.getStatus().equals("취소")) {%>
 				                        <tr align="center">
-				                        	<td id = "orderNo" width="100"><%=o.getOrderNo() %></td>
+				                        	<td id = "orderNo<%=i%>" width="100"><%=o.getOrderNo() %></td>
 				                            
 				                            <td width="300"><%= o.getpName() %></td>
-				                            <td id = "orderDetail" width="200" style="cursor:pointer;">상세보기</td>
+				                            <td id = "orderDetail<%=i%>" width="200" style="cursor:pointer; color: orange;">상세보기</td>
 				                            <td width="100">
 				                                <div style="margin: 0; padding: 0;"><%=o.getStatus() %></div>
 			                                	<%--<a href = "<%=contextPath%>/delete.or?ono=<%= o.getOrderNo() %>" >즉시취소</a> --%>
 				                            </td>
 				                        </tr>
 			                        <%} %>
-
+									
+									<script>
+	                                	$(function(){
+	                                		
+	                                		$("#orderDetail").click(function(){
+				                        		for(int i = 0; i<list.size(); i++){
+				                        			$("#orderDetail").append('<div id="orderDetail" + i>');
+	                                			})
+			                        		})	
+	                                	})
+			                        </script>
+					                <script>
+					                	$(function(){
+					                		$("#orderList>tbody>tr>#orderDetail<%=i%>").click(function(){
+					                			location.href = '<%=contextPath%>/detail.res?ono=' + $("#orderNo<%=i%>").text();
+					                		})
+					                	})
+					                </script>
+									
 	                        	<%} %>
 	                        <%} %>
 	                        
@@ -92,20 +110,12 @@
 	                </table>
 	                <br>
 	                <Pre>   예약 취소는 상세보기 페이지에서 가능합니다.</Pre>
-	                <script>
-	                	$(function(){
-	                		$("#orderList>tbody>tr>#orderDetail").click(function(){
-	                			location.href = '<%=contextPath%>/detail.res?ono=' + $("#orderList>tbody>tr").children().eq(0).text();
-	                		})
-	                	})
-	                </script>
-	
-						
+	                					
 	                <br><br>
 	                
-	                </div>
-	
-	            </div>
+                </div>
+
+            </div>
 	
 	    </div>
       </div>
