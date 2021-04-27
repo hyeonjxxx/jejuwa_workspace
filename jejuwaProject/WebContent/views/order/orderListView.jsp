@@ -79,10 +79,10 @@
                 <tbody>
                 <% if(list.isEmpty()) { %>
             		<tr>
-            			<td colspan="5">존재하는 공지사항이 없습니다.</td>
+            			<td colspan="5">존재하는 주문내역이 없습니다.</td>
             		</tr>
             	<% }else{ %>
-                	<%for(Order o : list){ %>
+                	<%for(int i=0; i<list.size(); i++){ Order o = list.get(i); %>
                         <tr>
 	                        <td><%= o.getOrderNo()%></td>
 	                        <td><%= o.getOrderDate() %></td>
@@ -94,32 +94,30 @@
 	                        <td><%= o.getcReason() %></td>
 	                        <td><%= o.getMemNo() %></td>
 	                        
-	                        <!-- 변경 모달창 -->
+  	                        <!-- 변경 모달창 -->
 	                       	 <td>
-	                            <div class="container">
-	                                <!-- Button to Open the Modal -->
-	                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#orderModal" style="width: 50px; height: 30px;">
-	                                 	변경
-	                                </button>
-	                              
-	                              <form action = "<%=contextPath%>/update.cor" id = "changeOrderForm" method = "post">
-	                              	 <input type="hidden" name="ono" value="<%=o.getOrderNo()%>">
-	                                <!-- <input type="hidden" name="status" value="<%=o.getStatus()%>">-->
-	                                
-	                                <!-- The Modal -->
-	                                <div class="modal fade" id="orderModal">
-	                                  <div class="modal-dialog modal-dialog-centered">
-	                                    <div class="modal-content">
-	                                    
+                            <div class="container">
+                                <!-- Button to Open the Modal -->
+								<button id = "change" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#orderModal<%=i%>" style="width: 50px; height: 30px;">
+									
+                                 	변경
+                                </button>
+                                <!-- The Modal -->
+                                <div class="modal fade" id="orderModal<%=i%>">
+                                  <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+		                              <form action = "<%=contextPath%>/update.cor" id = "changeOrderForm" method = "post">
+		                              	 <input type="hidden" name="ono" value="<%=o.getOrderNo()%>">
+			                                      
 	                                      <!-- Modal Header -->
 	                                      <div class="modal-header">
 	                                        <h4 class="modal-title" >주문내역</h4>
 	                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	                                      </div>
-	                                      
+		                                      
 	                                      <!-- Modal body -->
 	                                      <div class="modal-body">
-	                                        <table class="table table-bordered" style="text-align: center;">
+	                                        <table class="table table-bordered" id = "modalTable" style="text-align: center;">
 	                                            <tr>
 	                                                <th>예약번호</th>
 	                                                <td><%= o.getOrderNo()%></td>
@@ -167,7 +165,8 @@
 							                        
 													
 	                                            </tr>
-	                                        </table>
+                                       		</table>
+	                                        
 	                                      </div>
 	                                      
 	                                      <!-- Modal footer -->
@@ -175,12 +174,36 @@
 	                                      	<button type="submit" class="btn btn-warning">변경</button>
 	                                        <button type="button" class="btn btn-secondary">취소</button>
 	                                      </div>
-	                                      
-	                                    </div>
-	                                  </div>
-	                                </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
 	                                
-	                              </form>
+	                                <script>
+	                                	$(function(){
+	                                		
+	                                		$("#change").click(function(){
+				                        		for(int i = 0; i<list.size(); i++){
+				                        			$("#change").append('<div class ='modal fade' id="change" + i>');
+	                                			})
+			                        		})	
+	                                	})
+			                        </script>
+			                        
+	                                <script>
+	                                
+	                                	$(function(){
+	                                		$("#change").click(function(){
+					                        	for(int i = 0; i<list.size(); i++){
+					                        		$("#orderModal").append('<div class ='btn btn-warning btn-sm' id="orderModal" + i>');
+				                        			
+					                        	})
+	                                		})
+	                                	})
+			                        </script>
+			                        
+			                        
+	                              
 	                               
 	                            </div>
 	                        </td>
