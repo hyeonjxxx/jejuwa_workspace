@@ -67,7 +67,28 @@ WHERE RNUM BETWEEN ? AND ?;
 	</entry>
 	
 	
-
+	
+	
+	<!-- 리뷰작성  -->
+	<entry key="insertReview">
+		
+			INSERT
+					INTO REVIEW
+					(
+					  REVIEW_NO
+					 , P_CODE
+					 , RV_CONTENT
+					 , RV_DATE
+					VALUE
+					(
+					 SEQ.RVNO.NEXTVAL
+					 ,?
+					 ,?
+					 ,?
+					)
+	 
+	
+	</entry>
 	
 	
 	

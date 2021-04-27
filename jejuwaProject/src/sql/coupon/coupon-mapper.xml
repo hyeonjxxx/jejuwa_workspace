@@ -35,24 +35,19 @@ WHERE RNUM BETWEEN ? AND ?
 <!-- 마이페이지 쿠폰조회 -->
 	
 	SELECT 
-		CPN_RGDT
-	  , CPN_NAME
-	  , CPN_DC
-	  , CPN_STR_DATE
-	  , CPN_END_DATE
-      
+         
+        CPN_NAME
+        , CPN_DC
+        , CPN_RGDT
+        , CPN_STR_DATE
+        , CPN_END_DATE
 
-	  FROM 
-	  	 MEMBER M
-      	 JOIN 
-      	 CPN_PM P
-       ON 
-       	 M.MEM_NO = P.KEY_NO
-       INNER JOIN 
-     
+	  FROM COUPON 
+      JOIN CPN_PM USING (CPN_CODE)
+      JOIN MEMBER USING (MEM_NO)
       
-     WHERE 
-     	MEM_NO = ?
+      
+      WHERE MEM_NO = ?
 	  	
   	
   	</entry>

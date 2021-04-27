@@ -32,34 +32,78 @@ public class CouponDao {
 		
 	}
 	
-
+	
+	
+	//마이쿠폰리스트 
 	public int selectListCount(Connection conn) {
-		// select문 => ResultSet객체 (총게시글갯수 == 정수)
+		// select문 => ResultSet(게시글 총 수)
 		int listCount = 0;
-		
-		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("selectListCount");
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql); // 완성된 sql
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
 				listCount = rset.getInt("LISTCOUNT");
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		
 		return listCount;
-		
 	}
+	
+	
+// 마이쿠폰리스트 조회 
+	public ArrayList<Coupon> selectList(Connection conn, PageInfo pi){
+		// select문 => ResultSet(여러행)
+		ArrayList<Coupon> mylist = new ArrayList<>();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql문
+			/*
+			 * startRow = (currentPage - 1) * boardLimit + 1
+			 * endRow = currentPage * boardLimit
+			 */
+			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				mylist.add(new Coupon(rset.getString("CPN_NAME"),
+									rset.getInt("CPN_DC"),
+									rset.getDate("CPN_RGDT"),
+									rset.getDate("CPN_STR_DATE"),
+									rset.getDate("CPN_END_DATE")
+									));
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return mylist;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 //	관리자 쿠폰조회 
 	public ArrayList<Coupon> adminCouponList(Connection conn, PageInfo pi){
@@ -103,6 +147,9 @@ public class CouponDao {
 		
 		return list;
 	}
+	
+//	관리자 list
+	
 		
 
 

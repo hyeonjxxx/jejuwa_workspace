@@ -40,9 +40,27 @@ public class ReviewService {
 	}
 	
 	
-//----------------------	
+//---------------------	리뷰작성
+	
+	public int insertReview(Review ir) {
+		Connection conn = getConnection();
+		int result = new ReviewDao().insertReview(conn, ir);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		
+		close(conn);
+		return result;
+		
+	}
 	
 	
+	
+
 
 		
 

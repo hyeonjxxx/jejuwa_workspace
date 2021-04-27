@@ -44,7 +44,19 @@ public class Coupon {
 		Cpn_End_Date = cpn_End_Date;
 	}
 
+	
+	//	마이쿠폰리스트
+	
+	public Coupon(String cpn_Name, int cpn_Dc, Date cpn_Rgdt, Date cpn_Str_Date, Date cpn_End_Date) {
+		super();
+		Cpn_Name = cpn_Name;
+		Cpn_Dc = cpn_Dc;
+		Cpn_Rgdt = cpn_Rgdt;
+		Cpn_Str_Date = cpn_Str_Date;
+		Cpn_End_Date = cpn_End_Date;
+	}
 
+//-------------------------
 
 	public int getCpn_Code() {
 		return Cpn_Code;

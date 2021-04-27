@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import = "java.util.ArrayList, com.kh.coupon.model.vo.Coupon"%>
+    pageEncoding="UTF-8"%>
+<%@ page import="com.kh.common.model.vo.PageInfo
+			   	,com.kh.coupon.model.vo.Coupon, java.util.ArrayList" %>
 <%
-Coupon c = (Coupon)request.getAttribute("c");
-ArrayList<Coupon> list = (ArrayList<Coupon>)request.getAttribute("cplist");
-%>
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Coupon> mylist = (ArrayList<Coupon>)request.getAttribute("mylist");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -156,8 +163,6 @@ a{text-decoration: none; margin: -30px;}
 
     }
 
-
-
 .outer{
     margin: auto;
     }
@@ -174,8 +179,6 @@ th{padding: 10px; width:800px;}
 }
 	</style>
 	</head>
-	
-	
 	
 	<body>
 	
@@ -217,7 +220,7 @@ th{padding: 10px; width:800px;}
                 <tr align="center" width="750px">
                     <th width="400px">발급일</th>
                     <th width="500px">쿠폰명</th>
-                    <th width="500px">사용조건</th>
+                    <th width="500px">할인</th>
                     <th width="1000px">사용기간</th>
                 </tr>
             </tr>
@@ -225,14 +228,14 @@ th{padding: 10px; width:800px;}
         
         <tbody>
           <!-- 조회된 결과가 없을경우  -->
-        <%if(list.isEmpty()) { %>
+        <%if(mylist.isEmpty()) { %>
         	<tr>
         		<td colspan="4" align="center">존재하는 쿠폰이 없습니다.</td>
         	</tr>
         	
         	
         	<% }else{ %>
-        		<% for(Coupon c : cplist) { %>
+        		<% for(Coupon c : mylist) { %>
             	<tr>
 	              	<td><%= c.getCpn_Rgdt()%></td>
 	                <td><%= c.getCpn_Name()%></td>
@@ -242,17 +245,55 @@ th{padding: 10px; width:800px;}
            		 </tr>
             
           	 <% } %>
-            <% } %>
+          <% } %>
         </tbody>
     </table>
     <br><br>
          </div>
+         
+         
 
           <!-- 조회된 결과가 없을 경우-->
           <!-- <tr><td colspan="6" align="center">조회된 리스트가 없습니다.</td>
            </tr>-->
          </tbody>
-                </table>
+         
+        <!-- 버튼, 페이징 구역 -->
+        <div class="bottomArea" align="center">
+
+    
+            <!-- 페이징  -->
+            <div class="pagingArea">
+            
+            	<!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
+                    <% if(currentPage == 1) {%>
+                    	<button disabled>&laquo;</button>
+	                    <button disabled>&lt;</button>			
+                    <%} else {%>
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.mycoupon?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.mycoupon?currentPage=<%=currentPage-1%>';">&lt;</button>			
+					<% } %>
+					
+					<% for(int p=startPage; p<=endPage; p++ ) {%>
+					
+						<% if(currentPage == p) {%>
+                        	<button disabled><%= p %></button>
+                        <% }else{ %>				
+	                        <button onclick="location.href='<%=request.getContextPath()%>/list.mycoupon?currentPage=<%= p %>';"><%= p %></button>
+                        <% } %>		
+                	<% } %>
+                	
+                	<!-- 내가 보는 페이지가 마지막 페이지일 경우 >,>> 버튼 disabled -->
+                	<% if(currentPage == maxPage){ %>
+                		<button disabled>&gt;</button>
+	                    <button disabled>&raquo;</button>
+                	<% } else{ %>
+                		<button onclick="location.href='<%=request.getContextPath()%>/list.mycoupon?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.mycoupon?currentPage=<%=maxPage%>';">&raquo;</button>
+                	<% } %>
+            </div>
+         
+             
                     <hr>
                     <div class="Information">
                     <p>

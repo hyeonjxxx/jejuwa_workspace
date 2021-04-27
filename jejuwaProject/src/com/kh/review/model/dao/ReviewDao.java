@@ -83,8 +83,8 @@ public class ReviewDao {
 			
 			while(rset.next()) {
 				list.add(new Review(rset.getInt("review_no"),
-									rset.getString("mem_name"),
-									rset.getString("p_name"),
+									rset.getInt("mem_no"),
+									rset.getString("p_Code"),
 									rset.getString("rv_content"),
 									rset.getDate("rv_date")));
 			}
@@ -123,7 +123,7 @@ public class ReviewDao {
 			
 			while(rset.next()) {
 				list.add(new Review(rset.getInt("review_no"),
-									rset.getString("mem_name"),
+									rset.getInt("mem_no"),
 									rset.getString("rv_content"),
 									rset.getDate("rv_date"),
 									rset.getString("rv_status")));
@@ -142,8 +142,29 @@ public class ReviewDao {
 		
 }
 
-
-	
+//상품 리뷰작성 
+public int insertReview(Connection conn, Review ir) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, ir.getRv_Content());
+			pstmt.setDate(2, ir.getRv_Date());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
 		
 	
 	

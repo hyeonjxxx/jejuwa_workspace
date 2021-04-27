@@ -67,7 +67,7 @@
 		.mycontent_1 li a:hover, #Menu a:hover{color: orange;}
 		
 		/*.myPageAll{border: 1px solid red; position: relative; top: 100px;}*/
-		#myPageHead{margin: auto; margin-left: -50px; position: relative; top: 30px;}
+		#myPageHead{margin: auto; margin-left: -20px; position: relative; top: 10px;}
 			
 		.myPageBar{
             margin: auto; 
@@ -131,7 +131,7 @@
                             <h2 id="Menu"><a>구매혜택</a></h2>
                             <ul>
                                 <li class="subMenu">
-                                    <a href="">쿠폰조회</a>
+                                    <a href="<%=contextPath%>/list.mycoupon">쿠폰조회</a>
                                 </li>
                             </ul>
                         </li>
