@@ -118,4 +118,18 @@ public class OrderService {
 		return result;
 	}
 	
+	// 주문내역관리 페이지에서 변경 버튼 클릭시 update
+	public int updateChangeOrder(Order o) {
+		Connection conn = getConnection();
+		int result = new OrderDao().updateChangeOrder(conn, o);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+	
 }

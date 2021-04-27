@@ -49,7 +49,7 @@
             </div>
             <div class="pwFind">
                 <b>비밀번호 : </b>
-                <b style="color:orange;"> @#@#@# </b>
+                <b style="color:orange;"> <%= request.getAttribute("memPwd") %> </b>
             </div> 
             <br>
             <div class="buttonArea">

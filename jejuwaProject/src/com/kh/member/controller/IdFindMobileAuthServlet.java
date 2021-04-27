@@ -57,14 +57,15 @@ public class IdFindMobileAuthServlet extends HttpServlet {
 			// 이름 전화번호 일치할 경우
 	        JSONObject jobj = new JSONObject();
 	    	jobj.put("result", true);
+	    	jobj.put("memId", m.getMemId());
 
 	    	response.setContentType("application/json");
 	    	PrintWriter out = response.getWriter();			
 	    	out.print(jobj.toJSONString()); 
 	    	
 	    	// 조회한 회원의 아이디 담기
-			HttpSession session = request.getSession();
-			session.setAttribute("memId", m);
+			//HttpSession session = request.getSession();
+			//session.setAttribute("memId", m);
 			
 			
 		}

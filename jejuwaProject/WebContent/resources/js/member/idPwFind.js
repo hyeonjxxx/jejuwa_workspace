@@ -19,6 +19,7 @@
                             console.log(
                                 "인증번호 오니?"
                             );
+                            $("input[name=memId]").val(res.memId);
                             var phoneNumber = $("#id_phone").val();
                             alert("인증번호 발송 완료!!");
 
@@ -88,9 +89,10 @@
                             console.log(
                                 "인증번호 오니?"
                             );
+                            $("input[name=memPwd]").val(res.memPwd);
                             var phoneNumber = $("#pwd_phone").val();
                             alert("인증번호 발송 완료!!");
-
+                            
                             $.ajax({
                                 url:"mobileAuth.me",
                                 type:"POST",

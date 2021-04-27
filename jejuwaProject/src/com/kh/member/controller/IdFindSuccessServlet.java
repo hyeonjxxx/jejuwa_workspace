@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
+
 /**
  * Servlet implementation class IdFindSuccessServlet
  */
@@ -26,6 +29,16 @@ public class IdFindSuccessServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
+		//String memName = request.getParameter("idFind_name");
+		//String phoneNumber = request.getParameter("id_phone");
+		String memId = request.getParameter("memId");
+		
+		//System.out.println(memName + phoneNumber);
+		
+		//Member m = new MemberService().idFindCheck(memName, phoneNumber);
+		request.setAttribute("memId", memId);
 		request.getRequestDispatcher("views/member/idFindSuccess.jsp").forward(request, response);
 	}
 
