@@ -83,7 +83,7 @@
                     <p>
                         <a href="<%=contextPath%>/list.no?currentPage=1">공지사항 관리</a><br>
                         <a href="<%=contextPath%>/list.fa?currentPage=1">FAQ 관리</a> <br>
-                        <a href="">1:1문의 관리</a><br>
+                        <a href="<%=contextPath%>/list.amyq?currentPage=1">1:1문의 관리</a><br>
                         <a href="">리뷰관리</a><br>
                     </p>
                     

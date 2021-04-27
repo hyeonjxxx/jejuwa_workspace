@@ -74,7 +74,7 @@
             
         </div>
 
-        <!-- 공지사항 리스트 테이블 -->
+        <!-- 1:1문의 리스트 테이블 -->
         <div class="listArea">
             <table align="center" id="memberList">
                 <thead>
@@ -86,6 +86,17 @@
                     </tr>
                 </thead>
                 <tbody>
+                	<!-- 조회된 결과가 없을 경우 -->
+	                	<tr>
+	                		<td colspan="5">작성된 공지사항이 없습니다.</td>
+	                	</tr>
+	                    <tr>
+	                        <td></td>
+	                        <td class="ch2"></td>
+	                        <td class="ch2"></td>
+	                        <td class="ch2"></td>
+	                        <td class="ch2"></td>
+	                    </tr>
                 </tbody>
             </table>
         </div>
@@ -114,8 +125,11 @@
              --> 
 			
 		</div>
-
-    </div>
+            <div class="write_btn">
+                <button type=button style=" text-align: right;" >글작성</button>        
+            </div>
+            
+        </div>
 </div>
     <br><br>
     <%@ include file="../common/footer.jsp" %>

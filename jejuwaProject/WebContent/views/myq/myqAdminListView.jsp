@@ -1,12 +1,155 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" 
+    import = "java.util.ArrayList,
+    		  com.kh.myq.model.vo.MYQ,
+    		  com.kh.common.model.vo.PageInfo" %>
+<% 
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<MYQ> list = (ArrayList<MYQ>)request.getAttribute("list");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- content css-->
+<link rel="stylesheet" type="text/css" href="resources/css/notice/noticeListView.css">
 </head>
 <body>
 
+	<%@ include file="../common/adminPageMenubar.jsp" %>
+	
+	<div class="outer">
+        <br>
+        <h2>1:1문의 관리</h2>
+        <div class="divisionLine"></div>
+        <br>
+        
+        <br><br><br>
+        
+
+        <div class="area1">
+
+            
+            <div align="right" class="searchArea">
+               
+                <span href="">
+                    <select name="memberStatus" id="">
+                        <option value="title">제목</option>
+                        <option value="content">내용</option>
+                        <option value="titleContent">제목+내용</option>
+                    </select>
+                    <input type="text" placeholder="검색">
+                </span>              
+            </div>
+        </div>
+
+        <!-- 공지사항 리스트 테이블 -->
+        <div class="listArea">
+            <table align="center" id="memberList">
+                <thead>
+                    <tr>
+                        <th width="40" ><input type="checkbox" id="checkAll" onclick="cAll();"></th>
+                        <th width="90">번호</th>
+                        <th width="350">제목</th>
+                        <th width="90">작성자</th>
+                        <th width="90">답변여부</th>
+                        <th width="150">작성일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	<!-- 조회된 결과가 없을 경우 -->
+                	<% if( list.isEmpty() ){ %>
+	                	<tr>
+	                		<td colspan="5">작성된 문의사항이 없습니다.</td>
+	                	</tr>
+	                <% }else{ %>
+	                	<% for(MYQ q : list){ %>
+	                    <tr>
+	                    	<td><input id="choice_myq" type="checkbox"></td>
+	                        <td class="ch2"><%= q.getMyq_no() %></td>
+	                        <td class="ch2"><%= q.getMyq_title()  %></td>
+	                        <td class="ch2"><%= q.getMyq_ans_content() %></td>
+	                        <td class="ch2"><%= q.getMyq_enroll_date() %></td>
+	                    </tr>
+	                    <% }} %>
+                </tbody>
+                
+            </table>
+            
+            <script>
+            
+            	// 상세보기 요청
+            	
+            	
+            	// 일부선택시 상세보기로 넘어가지 않도록
+            	
+            	
+            	// 체크박스 : 전체선택
+       			function cAll(){
+                		if($("#checkAll").prop("checked")){
+                			$("input[type=checkbox]").prop("checked", true);
+                		}else{
+                			$("input[type=checkbox]").prop("checked", false);
+                		}
+               	}
+             </script>  	
+               	
+
+        </div>
+
+       
+        <!-- 버튼, 페이징 구역 -->
+        <div class="bottomArea">
+
+            <!-- 로그인 && 로그인한 사용자가 글 작성자인 경우 -->
+            <div align="right" class="btn">
+                <a href="" id="btn1">선택삭제</a>
+            </div>                
+            
+    
+            <!-- 페이징  -->
+            <div align="center" class="pagingArea">
+                    <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
+                    <% if(currentPage == 1) {%>
+                    	<button disabled>&laquo;</button>
+	                    <button disabled>&lt;</button>			
+                    <%} else {%>
+	                    <button onclick="location.href='<%=contextPath%>/list.amyq?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=contextPath%>/list.amyq?currentPage=<%=currentPage-1%>';">&lt;</button>			
+					<% } %>
+					
+					<% for(int p=startPage; p<=endPage; p++ ) {%>
+					
+						<% if(currentPage == p) {%>
+                        	<button disabled><%= p %></button>
+                        <% }else{ %>				
+	                        <button onclick="location.href='<%=contextPath%>/list.amyq?currentPage=<%= p %>';"><%= p %></button>
+                        <% } %>		
+                	<% } %>
+                	
+                	<!-- 내가 보는 페이지가 마지막 페이지일 경우 >,>> 버튼 disabled -->
+                	<% if(currentPage == maxPage){ %>
+                		<button disabled>&gt;</button>
+	                    <button disabled>&raquo;</button>
+                	<% } else{ %>
+                		<button onclick="location.href='<%=contextPath%>/list.amyq?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=contextPath%>/list.amyq?currentPage=<%=maxPage%>';">&raquo;</button>
+                	<% } %>
+             </div>
+
+            <!-- 로그인 && 로그인한 사용자가 글 작성자인 경우 -->
+            <div align="right" class="btn">
+                <a href="" id="btn2">등 록</a> 
+            </div>   
+			
+		</div>
+
+    </div>
 </body>
 </html>

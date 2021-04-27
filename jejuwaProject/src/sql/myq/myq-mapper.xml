@@ -1,1 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<!-- 총 게시글 조회  -->
+	<entry key="selectListCount">
+		SELECT 
+			   COUNT(*) LISTCOUNT
+		  FROM 
+		       MYQ
+	</entry>
+	
+<!-- 게시글 리스트 조회 -->
+	<entry key="selectListAdmin">
+		SELECT 
+			   MYQ_NO
+			 , MYQ_CATEGORY
+			 , MYQ_TITLE
+			 , MYQ_CONTENT,
+			 , MYQ_ENROLL_DATE
+			 , MYQ_ANS_CONTENT
+			 , MYQ_ANS_DATE
+			 , MEM_NO
+			 , P_CODE
+		  FROM 
+		       MYQ Q
+	  ORDER BY 
+	           MYQ_ENROLL_DATE DESC			
+	</entry>
+
+</properties>
