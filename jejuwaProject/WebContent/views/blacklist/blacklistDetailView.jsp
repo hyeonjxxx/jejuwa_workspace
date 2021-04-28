@@ -92,11 +92,11 @@
             <div class="bottomArea">
     
                 <!-- 버튼 (블랙리스트 해제) -->
-                <div align="right" class="btn" >
+                <div align="right" class="btn removeBlBtn" >
                     <a href="" id="btn1"  data-toggle="modal" data-target="#unblacklist">블랙리스트 해제</a>
                 </div> 
                 <!-- 버튼 (목록으로) -->
-                <div class="btn">
+                <div class="btn removeBlBtn">
                     <a href="<%=contextPath%>/list.bl?currentPage=1" id="btn2">목록으로</a>
                 </div> 
                 
@@ -130,8 +130,8 @@
 
                     <!-- Modal footer -->
                     <div id="ubModalFooter">
-                        <button type="submit" id="okBtn" class="btn btn-warning" onclick="return removeBlacklist();">OK</button>
-                        <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+                        <button type="submit" id="okBtnBl2" class="btn btn-warning" onclick="return removeBlacklist();">OK</button>
+                        <button id="cancleBtnBl2" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
                     </div>
                     
                     <script>

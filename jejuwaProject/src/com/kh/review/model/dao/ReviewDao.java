@@ -12,7 +12,7 @@ import java.util.Properties;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.review.model.vo.Review;
 
-import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.*;
 
 
 public class ReviewDao {
@@ -35,7 +35,7 @@ public class ReviewDao {
 	
 	public int selectListCount(Connection conn) {
 		
-		
+//		1개 조회  select 정수값 총게시글 수 
 		int listCount = 0;
 		
 		PreparedStatement pstmt = null;
@@ -47,8 +47,10 @@ public class ReviewDao {
 			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 			
+			
 			if(rset.next()) {
 				listCount = rset.getInt("LISTCOUNT");
+				//별칭으로 했으면 똑같이 별칭으로 뽑아야함.
 			}
 			
 		} catch (SQLException e) {
@@ -68,7 +70,7 @@ public class ReviewDao {
 	
 	public ArrayList<Review> NoticeReviewList(Connection conn, PageInfo pi) {
 		
-		ArrayList<Review> list = new ArrayList<>();
+		ArrayList<Review> ctlist = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("NoticeReviewList");
@@ -82,9 +84,9 @@ public class ReviewDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Review(rset.getInt("review_no"),
-									rset.getInt("mem_no"),
-									rset.getString("p_Code"),
+				ctlist.add(new Review(rset.getInt("review_no"),
+									rset.getString("mem_name"),
+									rset.getString("p_name"),
 									rset.getString("rv_content"),
 									rset.getDate("rv_date")));
 			}
@@ -97,7 +99,7 @@ public class ReviewDao {
 			close(pstmt);
 		}
 		
-		return list;
+		return ctlist;
 		
 		
 }
@@ -123,7 +125,7 @@ public class ReviewDao {
 			
 			while(rset.next()) {
 				list.add(new Review(rset.getInt("review_no"),
-									rset.getInt("mem_no"),
+									rset.getString("mem_no"),
 									rset.getString("rv_content"),
 									rset.getDate("rv_date"),
 									rset.getString("rv_status")));

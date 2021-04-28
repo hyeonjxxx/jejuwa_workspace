@@ -66,10 +66,44 @@
 		    BY REPORT_DATE DESC
 	</entry>
 	
-	<!-- 블랙리스트 해제(블랙리스트 테이블에서 삭제 후 MEMBER 테이블에서 상태값 Y로 변경) -->
+	<!-- [휘경] 블랙리스트 해제(트리거:블랙리스트 테이블에서 삭제 후 MEMBER 테이블에서 상태값 Y로 변경) -->
 	<entry key="removeBlacklist">
 		DELETE FROM BLACKLIST
 		WHERE MEM_NO = ?
+	</entry>
+	
+	<!-- [휘경] 관리자 블랙리스트 검색(카테고리:아이디) -->
+	<entry key="searchBlacklistId">
+		SELECT
+	    	   BLACKLIST_NO
+	         , MEM_NO
+	         , MEM_ID
+	         , MEM_NAME
+	         , RESTRICT_DATE
+	         , REPORTED_COUNT
+	      FROM BLACKLIST B
+	            JOIN MEMBER M USING(MEM_NO)
+	     WHERE M.STATUS = 'B'
+	       AND MEM_ID LIKE ?
+	     ORDER
+	        BY RESTRICT_DATE DESC
+	</entry>
+	
+	<!-- [휘경] 관리자 블랙리스트 검색(카테고리:이름) -->
+	<entry key="searchBlacklistName">
+		SELECT
+	    	   BLACKLIST_NO
+	         , MEM_NO
+	         , MEM_ID
+	         , MEM_NAME
+	         , RESTRICT_DATE
+	         , REPORTED_COUNT
+	      FROM BLACKLIST B
+	            JOIN MEMBER M USING(MEM_NO)
+	     WHERE M.STATUS = 'B'
+	       AND MEM_NAME LIKE ?
+	     ORDER
+	        BY RESTRICT_DATE DESC
 	</entry>
 	
 </properties>

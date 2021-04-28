@@ -1,26 +1,30 @@
-package com.kh.myq.controller;
+package com.kh.order.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.myq.model.service.MYQService;
-import com.kh.myq.model.vo.MYQ;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.kh.order.model.service.OrderService;
+import com.kh.order.model.vo.Order;
 
 /**
- * Servlet implementation class MYQAdminAnsInsertServlet
+ * Servlet implementation class AjaxOrderSearchServlet
  */
-@WebServlet("/ans.amyq")
-public class MYQAdminAnsInsertServlet extends HttpServlet {
+@WebServlet("/searchAjax.or")
+public class AjaxOrderSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MYQAdminAnsInsertServlet() {
+    public AjaxOrderSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,22 +34,16 @@ public class MYQAdminAnsInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
+		String search = request.getParameter("search");
+		String keyword = request.getParameter("keyword");
 		
-		// 관리자가 입력한 답글 받기
-		String answer = request.getParameter("answer");
-		int getMyq_no = Integer.parseInt(request.getParameter("getMyq_no"));
-		System.out.println(getMyq_no);
+		ArrayList<Order> list = new OrderService().searchOrder(search, keyword);
 		
-		int result = new MYQService().answer(answer, getMyq_no);
-		
-		//if(result>0) {
-			//request.getSession().setAttribute("alertMsg", "답글이 성공적으로 등록되었습니다.");
-		response.getWriter().print(result);
-			
-		//} else {
-			//request.getSession().setAttribute("alertMsg", "답글 등록에 실패하였습니다.");
-		//}
+		response.setContentType("application/json; charset = UTF-8");
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
+		gson.toJson(list, response.getWriter());
+	
+	
 	}
 
 	/**

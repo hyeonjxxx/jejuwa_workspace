@@ -132,4 +132,13 @@ public class OrderService {
 		return result;
 	}
 	
+	// 주문내역관리페이지 게시판 내 검색기능
+	
+	public ArrayList<Order> searchOrder(String search, String keyword){
+		Connection conn = getConnection();
+		ArrayList<Order> list = new OrderDao().searchOrder(conn, search, keyword);
+		close(conn);
+		return list;
+	}
+	
 }

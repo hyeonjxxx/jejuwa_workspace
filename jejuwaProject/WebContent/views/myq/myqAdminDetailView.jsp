@@ -27,7 +27,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <!-- myqAdminListView.js -->
-<script src="<%= request.getContextPath() %>/resources/js/myq/myqAdminDetailView.js"></script>
 </head>
 <body>
 
@@ -98,11 +97,59 @@
             </div>
             <% } %>
             </div>
+            <script>
+                    $("#answer").click(function(){
+                        console.log("실행됨?")
+                        $.ajax({
+                            url: "ans.amyq",
+                            type: "get",
+                            data: {
+                                answer:$("#answer_text").val(), // answer_text라는 key값으로 id가 answer_text인 값을 넘기겠다. 
+                                getMyq_no:$("#getMyq_no").val()
+                            },
+                            success:function(res){
+                                if(res > 0){
+                                    console.log("실행됨?")
+                                    // 댓글 성공하면 내가 쓴 댓글이 최상단에 붙여지기 (갱신된 리스트 다시 조회해서 뿌려줘야함)
+                                    //selectAnsList();
+                                    // 깔끔하게 입력했던 textarea의 내용도 비워줘야 함 => replyContent에 ""로 깔끔하게 비워줌
+                                    
+			                        var today = new Date();
+			                        var date = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate();
+                                    var el = '<div><b> 답변</b></div><br><div><button type="button" id="answer" name="answer">답변하기</button></div>' + 
+                                             '<div><textarea style="width:800px; height:200px;" name="answer_text" id="answer_text"></textarea></div>'
+                            		$(".title").html(el);
+                                    
+                                } else{
+                                    console.log("답글실패?")
+                                    // 답글 실패
+                                }
+                            },
+                            error:function(){
+                                console.log("댓글 작성용 ajax 통신 실패");
+                            }
+                        })
+                    })
+                    /*
+                    function selectAnsList(){
+                        $.ajax({
+                            url:"ansS.amyq",
+                            success: 
+                            console.log("성공!")
+                        })
+                    }*/
+            </script>
 			
 			<!-- 첨부파일 부분 확인 및 수정 필요!! -->
             <!-- 첨부파일이 있을 경우 -->
             <!-- 첨부파일 없을때 nullpointException 뜸 왜그러지? 막는방법좀... -->
-
+		 <div id="fileArea">
+			<% if( at == null){%>
+            	<b>첨부파일 없음</b>
+            <% } else {%>
+               	첨부파일 <a href="<%=contextPath%>/<%=at.getFilePath()%>"><%=at.getOrgFileName() %></a>
+            <%} %>
+            </div>
 
         </div>
 
@@ -111,8 +158,45 @@
             
             
             <div class="btn btn2" align="right">
+            	<button id="btn4" name="" value="" style="border:0px;">답변수정</button>
                 <a id="btn3" href="<%=contextPath%>/list.amyq?currentPage=1">목록으로</a> 
             </div>               
         </div>
+        
+        <script>
+        $("#btn4").click(function(){
+            $.ajax({
+                url: "detail.amyq",
+                type: "get",
+                data: {
+                    answer:$("#answer_text").val(), // answer_text라는 key값으로 id가 answer_text인 값을 넘기겠다
+                },
+                success:function(res){
+                    if(res > 0){
+                        console.log("실행됨?")
+                        // 댓글 성공하면 내가 쓴 댓글이 최상단에 붙여지기 (갱신된 리스트 다시 조회해서 뿌려줘야함)
+                        //selectAnsList();
+                        // 깔끔하게 입력했던 textarea의 내용도 비워줘야 함 => replyContent에 ""로 깔끔하게 비워줌
+                        var today = new Date();
+                        var date = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate();
+                        var el = "<div><b> 답변</b></div><br><div>제주와 관리자</div><div> 답변일 :" + date + "</div>"
+                				+ "<div class='AnsContent'><p>" + $("#answer_text").val() + "</p></div>";
+                				
+                		var el = '<div><b> 답변</b></div><br><div><button type="button" id="answer" name="answer">답변하기</button></div>' + 
+                                 '<div><textarea style="width:800px; height:200px;" name="answer_text" id="answer_text"></textarea></div>'                	
+                		
+                		$(".title").html(el);
+                        
+                    } else{
+                        console.log("답글수정실패?")
+                        // 답글 실패
+                    }
+                },
+                error:function(){
+                    console.log("댓글 작성용 ajax 통신 실패");
+                }
+            })
+        })
+        </script>
 </body>
 </html>

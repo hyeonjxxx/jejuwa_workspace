@@ -4,8 +4,8 @@
 <%@ page import="java.util.ArrayList, com.kh.review.model.vo.Review, com.kh.common.model.vo.PageInfo" %>
  <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
- 	@SuppressWarnings("unchecked")
-	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
+ 
+	ArrayList<Review> ctlist = (ArrayList<Review>)request.getAttribute("ctlist");
  	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
@@ -18,7 +18,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> NoticeReview </title>
+<title> noticeReviewPage </title>
 
    <!-- boardMenu css -->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/customerBoardMenu.css">
@@ -92,8 +92,12 @@
  	<div id="title-wrap" align="left">
     
     	<div class="review-sum" align="left">
+    	<br>
+    	<br>
+    	<br>
+    	
     		<h4>리뷰내역</h4>
-   			<span>총 5개의 게시글이 있습니다.</span>
+   			<span>총 19개의 게시글이 있습니다.</span>
     	</div>
     
     
@@ -111,24 +115,37 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th width="100px">번호</th>
-                <th width="300px">리뷰</th>
+                <th width="30px"> </th>
+                <th width="210px">상품명</th>
+                <th width="500px">내용</th>
                 <th width="100px">작성자</th>
-                <th width="100px">작성일</th>
+                <th width="200px">작성일</th>
             </tr>
         </thead>
         <tbody>
-      
-          
-             <% for(Review r : list) { %>
+      	<!-- 조회된 결과 없을경우  -->
+      	<% if(ctlist.isEmpty()) { %>
+      		<tr>
+      			<td colspan="5">조회된 리뷰가 없습니다.</td>
+      		</tr>
+          <% }else{ %>
+          <!-- 조회된 결과가 있을경우 -->
+             <% for(Review r : ctlist) { %>
                 <tr>
-                	 <td><%= r.getReview_No() %></td>
- 					 <td><%= r.getP_Name() %></td>
-                     <td><%= r.getMem_Name()%></td>
+                <td><%= r.getReview_No() %></td>
+                     <td><%= r.getP_Code() %></td>
                      <td><%= r.getRv_Content() %></td>
+                     <td><%= r.getMem_No() %></td>
                      <td><%= r.getRv_Date() %></td>
-                        </tr>
+                
+                
+                	 
+                </tr>
                     <% } %>
+                    
+                    
+			<% } %>
+                    
                 
         </tbody>
     </table>

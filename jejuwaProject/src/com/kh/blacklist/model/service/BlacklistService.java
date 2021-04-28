@@ -78,7 +78,18 @@ public class BlacklistService {
 		return result;
 	}
 	
-	
+	/**
+	 * [휘경] 블랙리스트 키워드 검색
+	 * @param searchCtg 검색 카테고리(아이디, 이름)
+	 * @param keyword
+	 * @return
+	 */
+	public ArrayList<Blacklist> searchBlacklist(String searchCtg, String keyword){
+		Connection conn = getConnection();
+		ArrayList<Blacklist> list = new BlacklistDao().searchBlacklist(conn, searchCtg, keyword);
+		close(conn);
+		return list;
+	}
 	
 	
 	

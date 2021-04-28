@@ -7,20 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.model.vo.Attachment;
 import com.kh.myq.model.service.MYQService;
 import com.kh.myq.model.vo.MYQ;
 
 /**
- * Servlet implementation class MYQAdminAnsInsertServlet
+ * Servlet implementation class MYQAdminAnsSuccessServlet
  */
-@WebServlet("/ans.amyq")
-public class MYQAdminAnsInsertServlet extends HttpServlet {
+@WebServlet("/ansS.amyq")
+public class MYQAdminAnsSuccessServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MYQAdminAnsInsertServlet() {
+    public MYQAdminAnsSuccessServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,23 +30,23 @@ public class MYQAdminAnsInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 디테일리스트 뷰 요청시 클릭한 문의글 번호 뽑아서 담기
+		int myqNo = Integer.parseInt(request.getParameter("mno"));
 		
-		request.setCharacterEncoding("utf-8");
+		// 1. 문의 상세조회
+		MYQ q = new MYQService().selectDetailAdmin(myqNo);
+		Attachment at = new MYQService().selectAttachmentAdmin(myqNo);
 		
-		// 관리자가 입력한 답글 받기
-		String answer = request.getParameter("answer");
-		int getMyq_no = Integer.parseInt(request.getParameter("getMyq_no"));
-		System.out.println(getMyq_no);
+		System.out.println(q);
+		System.out.println(at);
 		
-		int result = new MYQService().answer(answer, getMyq_no);
-		
-		//if(result>0) {
-			//request.getSession().setAttribute("alertMsg", "답글이 성공적으로 등록되었습니다.");
-		response.getWriter().print(result);
-			
-		//} else {
-			//request.getSession().setAttribute("alertMsg", "답글 등록에 실패하였습니다.");
-		//}
+		// 받아온 q, at 값 Attribute영역에 세팅하기
+		request.setAttribute("q", q); 
+		request.setAttribute("at", at);
+				
+		// 화면뿌려주기
+		request.getRequestDispatcher("views/myq/myqAdminDetailView.jsp").forward(request, response);
+		response.setContentType("application/json; charset=UTF-8");
 	}
 
 	/**

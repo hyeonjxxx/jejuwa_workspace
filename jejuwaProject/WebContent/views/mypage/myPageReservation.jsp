@@ -15,110 +15,101 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <!-- Latest compiled and minified CSS -->
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
- <!-- jQuery library -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
- <!-- Popper JS -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
- <!-- Latest compiled JavaScript -->
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/mypage/myPageMenubar.css">
-<link rel="stylesheet" type = "text/css" href="<%=request.getContextPath() %>/resources/css/mypage/myPageReservation.css">
+	 <!-- Latest compiled and minified CSS -->
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	
+	 <!-- jQuery library -->
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	 <!-- Popper JS -->
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	
+	 <!-- Latest compiled JavaScript -->
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
+	 <style>
+	        .myPageResercation{margin: auto;}
+	        .myPageResercation>h3{margin-top: 60px; font-size: 20px; font-weight: bold;}       
+	        th{padding: 10px;}
+	 
+	 </style>
 
 </head>
 <body>
 
 	<%@ include file = "../common/mypageMenubar.jsp" %>
-	
-	
-		<div class="myPageWrap">       
-	        <div class="content" >
-	
-	            <!-- 강동원님 반갑습니다 영역 -->
-	            <div class="myPageResercation">
-	                
-	                <!-- 여기서부터 예약조회!!!! 위에는 다 include 처리하기 -->
-	                <div class="mypageContents">
-	                    <h3 class="head">예약조회
-	                        <em style="font-style: normal; font-size: 15px;">(최근1개월)</em>
-	                    </h3>
-	                </div>
-	                <hr>
-	                
-	                <table id = "orderList" class="table table-striped">
-	                	<thead>
-	                		<tr align = "center">
-	                			<th>주문번호</th>
-	                			<th width="300">상품명</th>
-	                			<th width="200">상세보기</th>
-	                			<th width="100">접수현황</th>
-	                		</tr>
-	                	</thead>
-	                    <tbody>
-	                    	<%if(list.isEmpty()){ %>
-		                        <!-- 조회된 결과가 없을 경우 -->
-		                        <!-- 왜 조회된 결과 없으면 안나올까? -->
-		                        <tr align="center">
-		                            <td rowspan = "4" align="center">조회된 리스트가 없습니다.</td>
-		                        </tr>
-	                        <%}else{ %>
+        
+        
+        <div class="myPageResercation">
+            
+            <table id = "orderList" class="table table-striped">
+            	<thead>
+                	<h3 class="head">예약조회</h3>
+                	<hr>
+            		<tr align = "center">
+            			<th width="150">주문번호</th>
+            			<th width="250">상품명</th>
+            			<th width="200">상세보기</th>
+            			<th width="100">접수현황</th>
+            		</tr>
+            	</thead>
+                <tbody>
+                	<%if(list.isEmpty()){ %>
+                     <!-- 조회된 결과가 없을 경우 -->
+                     <!-- 왜 조회된 결과 없으면 안나올까? -->
+                     <tr align="center">
+                         <td rowspan = "4" align="center">조회된 리스트가 없습니다.</td>
+                     </tr>
+                    <%}else{ %>
 
-	                        <!-- 조회된 결과가 있을 경우 -->
-								<%for(int i =0; i<list.size(); i++){ Order o = list.get(i); %>
-									<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo() && o.getcReason() == null && !o.getStatus().equals("취소")) {%>
-				                        <tr align="center">
-				                        	<td id = "orderNo<%=i%>" width="100"><%=o.getOrderNo() %></td>
-				                            
-				                            <td width="300"><%= o.getpName() %></td>
-				                            <td id = "orderDetail<%=i%>" width="200" style="cursor:pointer; color: orange;">상세보기</td>
-				                            <td width="100">
-				                                <div style="margin: 0; padding: 0;"><%=o.getStatus() %></div>
-			                                	<%--<a href = "<%=contextPath%>/delete.or?ono=<%= o.getOrderNo() %>" >즉시취소</a> --%>
-				                            </td>
-				                        </tr>
-			                        <%} %>
-									
-									<script>
-	                                	$(function(){
-	                                		
-	                                		$("#orderDetail").click(function(){
-				                        		for(int i = 0; i<list.size(); i++){
-				                        			$("#orderDetail").append('<div id="orderDetail" + i>');
-	                                			})
-			                        		})	
-	                                	})
-			                        </script>
-					                <script>
-					                	$(function(){
-					                		$("#orderList>tbody>tr>#orderDetail<%=i%>").click(function(){
-					                			location.href = '<%=contextPath%>/detail.res?ono=' + $("#orderNo<%=i%>").text();
-					                		})
-					                	})
-					                </script>
-									
-	                        	<%} %>
-	                        <%} %>
-	                        
-	                        
-	                        
-	                    </tbody>
-	                </table>
-	                <br>
-	                <Pre>   예약 취소는 상세보기 페이지에서 가능합니다.</Pre>
-	                					
-	                <br><br>
-	                
-                </div>
+                    <!-- 조회된 결과가 있을 경우 -->
+			<%for(int i =0; i<list.size(); i++){ Order o = list.get(i); %>
+				<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo() && o.getcReason() == null && !o.getStatus().equals("취소")) {%>
+                       <tr align="center">
+                       	<td id = "orderNo<%=i%>" width="100"><%=o.getOrderNo() %></td>
+                           
+                           <td width="500"><a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=o.getpCode()%>"><%=o.getpName() %></a></td>
+                           <td id = "orderDetail<%=i%>" width="200" style="cursor:pointer; color: orange;">상세보기</td>
+                           <td width="200">
+                               <div style="margin: 0; padding: 0;"><%=o.getStatus() %></div>
+                              	<%--<a href = "<%=contextPath%>/delete.or?ono=<%= o.getOrderNo() %>" >즉시취소</a> --%>
+                           </td>
+                       </tr>
+                      <%} %>
+				
+				<script>
+                            	$(function(){
+                            		
+                            		$("#orderDetail").click(function(){
+                       		for(int i = 0; i<list.size(); i++){
+                       			$("#orderDetail").append('<div id="orderDetail" + i>');
+                            			})
+                      		})	
+                            	})
+                      </script>
+                <script>
+                	$(function(){
+                		$("#orderList>tbody>tr>#orderDetail<%=i%>").click(function(){
+                			location.href = '<%=contextPath%>/detail.res?ono=' + $("#orderNo<%=i%>").text();
+                		})
+                	})
+                </script>
+				
+                    	<%} %>
+                    <%} %>
+                    
+                    
+                    
+                </tbody>
+            </table>
+            <br>
+            <Pre>   예약 취소는 상세보기 페이지에서 가능합니다.</Pre>
+            					
+            <br><br>
+            
+           </div>
+		</div>
 
-            </div>
-	
-	    </div>
-      </div>
        
         <%@ include file = "../common/footer.jsp" %>
 </body>
