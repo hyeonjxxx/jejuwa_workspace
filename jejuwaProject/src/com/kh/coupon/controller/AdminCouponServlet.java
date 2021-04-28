@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.coupon.model.service.CouponService;
 import com.kh.coupon.model.vo.Coupon;
+import com.kh.review.model.service.ReviewService;
+import com.kh.review.model.vo.Review;
 
 
 /**
  * Servlet implementation class AdminCouponServlet
  */
-@WebServlet("/admincoupon.do")
+@WebServlet("/listadmin.cpn")
 public class AdminCouponServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,14 +54,14 @@ public class AdminCouponServlet extends HttpServlet {
 		
 		
 		// * listCount : 총 게시글 갯수 조회해서 담기
-		listCount = new CouponService().selectListCount();
+		listCount = new ReviewService().selectListCount();
 	
 		
 		// * currentPage : 현재 요청한 페이지
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
 		// * pageLimit : 한 페이지 하단에 보여질 페이지 최대 갯수 (페이지 목록들을 몇 개 단위씩 보여줄건지)
-		pageLimit = 5;
+		pageLimit = 2;
 		
 		// * boardLimit : 한 페이지 내에 보여질 게시글 최대 갯수
 		boardLimit = 10;
@@ -94,18 +96,20 @@ public class AdminCouponServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		// PageInfo 객체에 담기
+		// PageInfo 한공간에 담기
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		ArrayList<Coupon> list = new CouponService().selectList(pi);
+		ArrayList<Coupon> adlist = new CouponService().adminCouponList(pi);
 		
 		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
+		request.setAttribute("adlist", adlist);
 		
-		request.getRequestDispatcher("views/coupon/adminCoupon.jsp").forward(request, response);
+		request.getRequestDispatcher("views/coupon/adminCouponServlet.jsp").forward(request, response);
 		
 
 	}
+
+	
 		
 		
 	

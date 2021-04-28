@@ -12,9 +12,10 @@
 	String memId = b.getMemId();
 	String memName = b.getMemName();
 	Date restrictDate = b.getRestrictDate();
-	int reportedCount = b.getReportedCount();
+	//int reportedCount = b.getReportedCount();
 	
 	ArrayList<Report> list = (ArrayList<Report>)request.getAttribute("list");
+	int reportedCount = list.size();
 %>
 <!DOCTYPE html>
 <html>

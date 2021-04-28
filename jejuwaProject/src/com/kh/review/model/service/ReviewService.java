@@ -55,6 +55,16 @@ public class ReviewService {
 		return result;
 		
 	}
+
+	
+//	상품리뷰  
+	public ArrayList<Review> selectReviewListPr(String pcoder) {
+		Connection conn = getConnection();
+		ArrayList<Review> listr = new ReviewDao().selectReviewListPr(conn, pcoder);
+		
+		close(conn);
+		return listr;
+	}
 	
 	
 	

@@ -31,7 +31,8 @@
         .cancelOuter{margin: auto;}
         .cancelOuter>h3{margin-top: 60px; font-size: 20px; font-weight: bold;}       
         th{padding: 10px;}
-
+		#listArea *{vertical-align: middle;}
+		#product{color: black; font-weight: bold;}
     </style>
 </head>
 <body>
@@ -69,7 +70,10 @@
 						<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo() && o.getcReason() != null){ %>
 		            <tr align="center">
 		                <td id = "detailOrder" width="100"><%=o.getOrderNo() %></td>	
-		                <td width="500" ><a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=o.getpCode()%>"><%=o.getpName() %></a></td>
+		                <td width="500" >
+		                	<img src="<%=contextPath %>/<%=o.getBasicPath() %>" width="50" height="50" alt="">
+		                	<a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=o.getpCode()%>" id="product"><%=o.getpName() %></a>
+		                </td>
 		                <td width="200" id= "detailView"><a href="<%= contextPath %>/detail.mpc?ono=<%=o.getOrderNo()%>" style="color: orange;">상세보기</a></td>
 		                <!-- td width=200>
 		                    <input id="datepicker" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal" value="다시예약하기">

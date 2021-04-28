@@ -100,6 +100,22 @@ WHERE RNUM BETWEEN ? AND ?;
 	</entry>
 	
 	
+	<!-- 상품리뷰조회   -->
+	<entry key="selectReviewListPr">
+			
+				 SELECT   
+			        MEM_ID
+			        , P_CODE
+			        , RV_CONTENT
+			        , RV_DATE
+			        , RV_STATUS
+			    FROM REVIEW R
+			    JOIN MEMBER USING (MEM_NO)
+			    WHERE P_CODE = ? <!-- 문자열로 -->
+			    AND  R.RV_STATUS = 'Y'
+			    ORDER 
+			        BY RV_DATE DESC;
+		
 	
-
+	</entry>
 </properties>

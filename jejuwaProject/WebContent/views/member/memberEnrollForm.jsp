@@ -26,9 +26,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- member_enroll_form js -->
-    <script rel="stylesheet" src="<%=request.getContextPath()%>/resources/js/member/member.js"></script>
-
+    
 </head>
 <meta charset="UTF-8">
 <title>Insert title here</title>

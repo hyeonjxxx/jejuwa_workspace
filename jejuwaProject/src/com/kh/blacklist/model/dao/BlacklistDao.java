@@ -1,6 +1,6 @@
 package com.kh.blacklist.model.dao;
 
-import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,7 +13,6 @@ import java.util.Properties;
 
 import com.kh.blacklist.model.vo.Blacklist;
 import com.kh.common.model.vo.PageInfo;
-import com.kh.member.model.vo.Member;
 import com.kh.report.model.vo.Report;
 
 public class BlacklistDao {

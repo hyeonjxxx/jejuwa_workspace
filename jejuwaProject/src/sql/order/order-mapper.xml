@@ -8,7 +8,7 @@
 		  
 	</entry>
 	
-	<!-- 마이페이지 취소리스트 조회 -->
+	<!-- 마이페이지 예약조회, 취소리스트 조회 -->
 	<entry key="selectOrderList">
 		SELECT
 		        ORDER_NO
@@ -22,6 +22,7 @@
 		      , MEM_NO
 		      , P_NAME
 		      , p_CODE
+		      , BASIC_PATH
 		  FROM TORDER O
 		  JOIN MEMBER M USING (MEM_NO)
           JOIN PRODUCT P USING (P_CODE)

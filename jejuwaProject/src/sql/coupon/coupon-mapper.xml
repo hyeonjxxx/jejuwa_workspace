@@ -2,55 +2,71 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-<!-- 관리자쿠폰리스트 조회 -->
-	<entry key="adminCouponList">
-	SELECT *
-    FROM (
-            SELECT
-                ROWNUM RNUM
-                , A.*
-            FROM (
-                        SELECT 
-                    CPN_CODE
-                   ,CPN_NAME
-                   ,CPN_DC
-                   ,CPN_RGDT
-                   ,CPN_STR_DATE
-                   ,CPN_END_DATE
-            FROM   COUPON C
-            ORDER
-                 BY CPN_RGDT DESC
-            ) A
+		<!-- 쿠폰 총 갯수  -->
 
-    )
-WHERE RNUM BETWEEN ? AND ?
+	<entry key="selectListCount">
 	
-	
+		SELECT 
+			COUNT(*) LISTCOUNT
+		  FROM 
+		  	COUPON
+		  
+	</entry>
+
+		<!-- 관리자쿠폰리스트 조회 -->
+
+
+			<entry key="adminCouponList">
+			
+			
+			SELECT *
+		    FROM (
+		            SELECT
+		                ROWNUM RNUM
+		                , A.*
+		            FROM (
+		            	SELECT
+		                     CPN_CODE
+		                   , CPN_NAME
+		                   , CPN_DC
+		                   , CPN_RGDT
+		                   , CPN_STR_DATE
+		                   , CPN_END_DATE
+		                   
+		            FROM   COUPON C
+		            ORDER
+		                 BY CPN_RGDT DESC
+		            ) A
+		
+		    )
+		WHERE RNUM BETWEEN ? AND ?
+			
 	</entry>
 
 
-
+<!-- 
 	<entry key="selectListCoupon">
 
-<!-- 마이페이지 쿠폰조회 -->
+마이페이지 쿠폰조회
 	
-	SELECT 
-         
-        CPN_NAME
-        , CPN_DC
-        , CPN_RGDT
-        , CPN_STR_DATE
-        , CPN_END_DATE
-
-	  FROM COUPON 
-      JOIN CPN_PM USING (CPN_CODE)
-      JOIN MEMBER USING (MEM_NO)
-      
-      
-      WHERE MEM_NO = ?
+		SELECT 
+	         
+		        CPN_NAME
+		        , CPN_DC
+		        , CPN_RGDT
+		        , CPN_STR_DATE
+		        , CPN_END_DATE
+		        , MEM_NO
+	
+		  FROM COUPON 
+	      JOIN CPN_PM USING (CPN_CODE)
+	      JOIN MEMBER USING (MEM_NO)
+	      
+	      
+	      WHERE MEM_NO = ?
+		  	
 	  	
-  	
-  	</entry>
+  	</entry> -->
   	
   	
   

@@ -4,7 +4,7 @@
 			   , java.util.ArrayList, com.kh.coupon.model.vo.Coupon" %>
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<Coupon> list = (ArrayList<Coupon>)request.getAttribute("list");
+	ArrayList<Coupon> adlist = (ArrayList<Coupon>)request.getAttribute("adlist");
 	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
@@ -23,15 +23,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     
-    <!-- css -->
-    <link rel="stylesheet" href="<%= contextPath %>/resources/css/adminPageMenubar.css">
-
-    <!-- content css-->
-    <link rel="stylesheet" type="text/css" href="">
+ <style>
     
-    <style>
-    
-
 
 .outer{
 
@@ -88,6 +81,7 @@
     width:70px;
     
     }
+    
     .btn a:hover{background-color: rgb(243, 225, 192);}
     
     
@@ -139,7 +133,7 @@
                 </div>
                     <div class="search-wrap" style="margin-left:520px;">
                         <form class="form-inline" action="/action_page.php">
-                        	<input class="form-control mr-sm-2" type="text" placeholder="Search" ">
+                        	<input class="form-control mr-sm-2" type="text" placeholder="Search">
                         	<button class="btn btn-outline-info" type="submit" >검색</button>
                     	</form>
                     </div> <br>
@@ -163,22 +157,27 @@
                 </thead>
                 <tbody>
                    <!-- 조회된 결과가 없을 경우 -->
-		                <% if(list.isEmpty()){ %>
+		                <% if(adlist.isEmpty()){ %>
 		                	<tr>
-		                		<td colspan="6">조회된 회원이 없습니다.</td>
+		                		<td colspan="5">조회된 회원이 없습니다.</td>
 		                	</tr>
 		                <% }else{%>
 		                <!-- 조회된 결과가 있-->
-		                <% for(Coupon c : list) {%>
+		                <% for(Coupon cp : adlist) {%>
                     <tr>
                         <td><input type="checkbox"></td>
-                        <td><%= c.getCpn_Code() %></td>
-                        <td><%= c.getCpn_Name() %></td>
-                        <td><%= c.getCpn_Str_Date() %>~ <%= c.getCpn_End_Date() %></td>
-                        <td><%= c.getCpn_Dc() %>%</td>
-                        <td><%= c.getCpn_Rgdt() %></td>
+                        <td><%= cp.getCpn_Code() %></td>
+                        <td><%= cp.getCpn_Name() %></td>
+                        <td><%= cp.getCpn_Str_Date() %>
+                        <span>~</span> 
+                        <%= cp.getCpn_End_Date() %></td>
+                        <td><%= cp.getCpn_Dc() %></td>
+                        <td><%= cp.getCpn_Rgdt() %></td>
                         
                     </tr>
+                    <% } %>
+                   
+                   <% } %>
                    
                 </tbody>
 
@@ -187,21 +186,16 @@
         </div>
 
        
-        <!-- 버튼, 페이징 구역 -->
-        <div class="bottomArea">
-
-    
-    
             <!-- 페이징  -->
             <div align="center" class="pagingArea">
                     
-                    <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
+                    	
                     <% if(currentPage == 1) {%>
                     	<button disabled>&laquo;</button>
 	                    <button disabled>&lt;</button>			
                     <%} else {%>
-	                    <button onclick="location.href='<%=contextPath%>/list.no?currentPage=1';">&laquo;</button>
-	                    <button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage-1%>';">&lt;</button>			
+	                    <button onclick="location.href='<%=contextPath%>/listadmin.cpn?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=contextPath%>/listadmin.cpn?currentPage=<%=currentPage-1%>';">&lt;</button>			
 					<% } %>
 					
 					<% for(int p=startPage; p<=endPage; p++ ) {%>
@@ -209,85 +203,26 @@
 						<% if(currentPage == p) {%>
                         	<button disabled><%= p %></button>
                         <% }else{ %>				
-	                        <button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%= p %>';"><%= p %></button>
+	                        <button onclick="location.href='<%=contextPath%>/listadmin.cpn?currentPage=<%= p %>';"><%= p %></button>
                         <% } %>		
                 	<% } %>
                 	
-                	<!--  마지막 페이지일 경우 >,>> 버튼 disabled -->
+                	
                 	<% if(currentPage == maxPage){ %>
                 		<button disabled>&gt;</button>
 	                    <button disabled>&raquo;</button>
                 	<% } else{ %>
-                		<button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=currentPage+1%>';">&gt;</button>
-	                    <button onclick="location.href='<%=contextPath%>/list.no?currentPage=<%=maxPage%>';">&raquo;</button>
-                	<% } %>
-             </div>
+                		<button onclick="location.href='<%=contextPath%>/listadmin.cpn?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=contextPath%>/listadmin.cpn?currentPage=<%=maxPage%>';">&raquo;</button>
+                	
+					<% } %>
 
-             <!-- 버튼 쿠폰발송 -->
-            <div id="send-button" class="btn">
-                <a href="/<%=request.getContextPath() %>/send.coupon" id="btn2">쿠폰발송</a> 
-            </div>   
-			
-		</div>
-
-    </div>
+             	</div>
+			</div>
+    	</div>
                 
 
 
-    <script>
-        $(function(){
-
-            $(".submenu").click(function(){
-                var $p = $(this).next();    
-
-                if($p.css("display")=="none"){
-                    $(this).siblings("p").slideUp();
-                    $p.slideDown(); 
-                }else{    
-                    $p.slideUp();  
-                }
-
-            })
-        })
-
-    </script>
     
-    <!-- 로그인 모달 -->
-        <!-- The Modal -->
-        <div class="modal fade" id="loginModal" align="center" >
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content" >
-              
-                <!-- Modal body -->
-                <br>
-                <div class="modal-body">
-                    <span><i class="bi bi-person-circle"></i></span> 관리자 로그인
-                </div>
-                
-                <form action="<%=contextPath%>/login.ad" method="post">
-                    <div class="input-group mb-3" id="modalContent1">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                      </div>
-                      <input name="memId" id="memId" size="25" type="text" placeholder="아이디" required>
-                    </div>
-                    <div class="input-group mb-3" id="modalContent2">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="bi bi-key"></i></span>
-                        </div>
-                        <input name="memPwd" id="memPwd" size="25" type="password" placeholder=" 비밀번호" required>
-                    </div>
-                    
-                    <!-- Modal footer -->
-                    <div id="modalFooter">
-                      <button type="submit" id="okBtn" class="btn btn-warning">로그인</button>
-                      <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">취 소</button>
-                    </div>
-                </form>
-                               
-              </div>
-            </div>
-          </div>
-    
-</body>
+	</body>
 </html>
