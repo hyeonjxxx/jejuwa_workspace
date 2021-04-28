@@ -56,7 +56,7 @@ public class NoticeUserListServlet extends HttpServlet {
 				pageLimit = 5;
 				
 				// * boardLimit : 한 페이지 내에 보여질 게시글 최대 갯수
-				boardLimit = 5;
+				boardLimit = 6;
 						
 				maxPage = (int)Math.ceil((double)listCount / boardLimit);
 				

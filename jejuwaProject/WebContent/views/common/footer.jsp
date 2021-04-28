@@ -33,8 +33,7 @@
         <footer id="footer" style="margin: 0px;">
             <div class="customer_center">
                 <div class="customer_center_left" style="margin-top:6px;">
-                    <a href="">공지사항</a>
-                    <a href="" style="margin-left:20px;">공지사항 업데이트</a>
+                    <a href="<%=request.getContextPath()%>/list.uno?currentPage=1">공지사항</a>
                     <a href="" style="margin-left:40px;">더보기<img src="<%= request.getContextPath() %>/resources/images/right_ch.png" height="20"></a>
                 </div>
                 <div class="customer_center_right">
