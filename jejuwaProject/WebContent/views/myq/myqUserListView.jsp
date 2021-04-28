@@ -48,7 +48,7 @@
 </head>
 <body>
 	<%@ include file="../common/customerMenubar.jsp" %>
-	<input type="hidden" id="loginUser" name="memId" value=<%= login.getMemId() %> >
+	
 	<div class="outer">
         <br><br>
         <h2>1:1 문의</h2>

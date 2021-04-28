@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.common.model.vo.PageInfo;
 import com.kh.myq.model.service.MYQService;
@@ -33,7 +34,10 @@ public class MYQUserListViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String memId = request.getParameter("memId");
+		
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("login"));
+		String memId = (String) session.getAttribute("login");
 		
 		int listCount;     // 현재 총 게시글 횟수
 		int currentPage;   // 현재 페이지(즉, 요청한 페이지)
@@ -43,7 +47,7 @@ public class MYQUserListViewServlet extends HttpServlet {
 		int maxPage;       // 전체 페이지들 중 가장 마지막 페이지(listCount, boardLimit를 가지고 구할것)
 		int startPage;     // 현재 페이지에 하단에 보여질 페이징 바의 시작수(currentPage, pageLimit를 가지고 구할것)
 		int endPage;       // 현재 페이지에 하단에 보여질 페이징 바의 끝 수 (statPage, pageLimit, maxPage를 가지고 구할 것)
-		System.out.println(memId);
+		
 		// * listCount : 총 게시글 갯수 조회해서 담기
 		listCount = new MYQService().selectListCountUser(memId);
 		System.out.println(listCount);
