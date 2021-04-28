@@ -161,4 +161,55 @@
 			       ATTACHMENT
 	</entry>
 	
+	
+	<entry key="insertUser">
+		 INSERT INTO 
+		             MYQ_NO
+				   , MYQ_CATEGORY
+				   , MYQ_TITLE
+				   , MYQ_CONTENT
+				   , MYQ_ENROLL_DATE
+				   , MEM_NO
+				   , P_CODE
+				   , MEM_ID
+				   , MEM_NAME
+				   , P_NAME
+				
+			    JOIN MEMBER USING (MEM_NO)
+			    JOIN PRODUCT USING (P_CODE)
+				
+				VALUES 
+				     ( 
+				       SEQ_MQNO.NEXTVAL
+				     , ?
+				     , ?
+				     , ?
+				     , SYSDATE
+				     , ?
+				     , ?
+				     , ?
+				     , ?
+				     , ?
+				     )
+	</entry>
+	
+	<entry key="insertUserAttachment">
+		INSERT 
+			INTO ATTACHMENT
+			(
+				FILE_NO
+			  , ORG_FILENAME
+			  , MDF_FILENAME
+			  , FILE_PATH
+			  , P_CODE
+			)
+			VALUES
+			(
+			    SEQ_FNO.NEXTVAL
+			  , ?
+			  , ?
+			  , ? 
+			  , ?
+			)
+	</entry>
 </properties>

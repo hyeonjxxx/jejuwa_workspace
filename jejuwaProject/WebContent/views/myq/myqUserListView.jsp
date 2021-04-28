@@ -121,7 +121,7 @@
         <!-- 관리자 게시글 권한 -->
             <div style="display: block; text-align: right;" class="btn">
                 <button id="btn1">선택삭제</button>
-                <button id="btn2" style="margin-left:30px; margin-right:40px;">글 작성</button> 
+                <button type="button" id="btn2" style="margin-left:30px; margin-right:40px;" onclick="location.href='<%=request.getContextPath()%>/enroll.umyq'">글 작성</button> 
             </div>     
 
         <!-- 버튼, 페이징 구역 -->

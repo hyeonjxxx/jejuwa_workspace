@@ -4,8 +4,9 @@
 /* .outer 스타일 통일 */
 
 
+
 .outer{
-    height: 700px;
+    height: 1000px;
     width: 70%;
     margin: 30px 20px;
     float: left;
@@ -54,7 +55,7 @@
     text-decoration: none; 
     text-align: center;
     color:white; 
-    background-color: dimgray;
+    background-color: #ffc107;
     display: block;
     padding:7px;
     border-radius:4px;
