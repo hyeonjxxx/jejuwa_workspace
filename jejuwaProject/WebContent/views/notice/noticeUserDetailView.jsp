@@ -33,8 +33,13 @@
                 <br>
                 <div>제주와 <%= n.getEnrollDate() %> </div>
             </div>            
-            <div class="NoticeContent" style="height:400px">
+            <div class="NoticeContent" >
             	<p>
+            		<% if(n.getOriginFileName() != null){%>
+            			<br>
+            			<img id="noticeImg" src="<%= contextPath %>/<%=n.getFilePath()%>">
+            			<br>
+            		<% }%>
                 	<%= n.getNoticeContent() %>
                 </p>
             </div>
@@ -62,5 +67,7 @@
         </div>
 
     </div>
+    
+    <%@ include file = "../common/footer.jsp" %>
 </body>
 </html>

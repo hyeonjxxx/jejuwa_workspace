@@ -35,6 +35,9 @@
             </div>            
             <div class="NoticeContent">
             	<p>
+            		<% if(n.getOriginFileName() != null){%>
+            			<img id="noticeImg" src="<%= contextPath %>/<%=n.getFilePath()%>"> <br>
+            		<% }%>
                 	<%= n.getNoticeContent() %>
                 </p>
             </div>
