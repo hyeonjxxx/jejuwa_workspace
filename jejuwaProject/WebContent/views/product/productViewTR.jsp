@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo" %>
 <%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();	
 %>
 <!DOCTYPE html>
 <html>
@@ -61,7 +67,7 @@
                                 <div class="lowest"><input type="text" value=""></div>
                                 <div align="left"> ~ </div> 
                                 <div class="highes"><input type="text" value=""></div>
-                        </div>
+                        	</div>
                             
                         </div>
         
@@ -69,11 +75,8 @@
                           <a type="submit" class="enter">검색</a>
                             <a type="reset" class="rset"> 초기화</a>  
                         </div>
-                        
-                        
                     </div>
                 </aside>
-    
             </div>
     
             <div class="main">
@@ -85,22 +88,22 @@
 		        <div class="pdt_wrap">
 		             <ul class="pdtList">
 		        	<%for(Product p : list) {%> 
-		                        <li class=pdtArea>
-		                        <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
-		                            <div class="pdtBox">
-		                                <a >
-		                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 165px"></div>
-		                                    <div class="pdtInfo">
-		                                        <p class="pdtName"><%=p.getpName() %></p>
-		                                        <p class="pdtPrice"><%=p.getPrice() %>원</p>
-		                                    </div>
-		                                </a>
-		                            </div>
-		                        </li>
+		             	<li class=pdtArea>
+		                  <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
+		                   <div class="pdtBox">
+			                     <a>
+			                      <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 165px"></div>
+			                       <div class="pdtInfo">
+			                           <p class="pdtName"><%=p.getpName() %></p>
+			                           <p class="pdtPrice"><%=p.getPrice() %>원</p>
+			                         </div>
+			                       </a>
+		                     </div>
+		                  </li>
 					<% } %>		
 					</ul>
-		
 		        </div>
+	   		 </div>
 		        
 		        <script>
 		        	$(function(){
@@ -112,11 +115,45 @@
 		        </script>
 
 
+	        <!-- 페이징 구역 -->
+	        <div class="bottomArea">
+	            <!-- 페이징  -->
+	            <div align="center" class="pagingArea">
+	                    
+                    <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
+                    <% if(currentPage == 1) {%>
+                    	<button disabled>&laquo;</button>
+	                    <button disabled>&lt;</button>			
+                    <%} else {%>
+	                    <button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%=currentPage-1%>';">&lt;</button>			
+					<% } %>
+					
+					<% for(int p=startPage; p<=endPage; p++ ) {%>
+					
+						<% if(currentPage == p) {%>
+                        	<button disabled><%= p %></button>
+                        <% }else{ %>				
+	                        <button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%= p %>';"><%= p %></button>
+                        <% } %>		
+                	<% } %>
+                	
+                	<!-- 내가 보는 페이지가 마지막 페이지일 경우 >,>> 버튼 disabled -->
+                	<% if(currentPage == maxPage){ %>
+                		<button disabled>&gt;</button>
+	                    <button disabled>&raquo;</button>
+                	<% } else{ %>
+                		<button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%=maxPage%>';">&raquo;</button>
+                	<% } %>
+             	</div>
+    		</div>
+    		
+    		
+    		
 
-
-
+		</div>
     </div>	
-
-
+	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

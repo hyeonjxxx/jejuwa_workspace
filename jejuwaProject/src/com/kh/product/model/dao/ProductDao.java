@@ -401,7 +401,7 @@ public class ProductDao {
 		}
 		
 		// 투어 카테고리 선택 
-		public ArrayList<Product> selectThList_TR(Connection conn) {
+		public ArrayList<Product> selectThList_TR(Connection conn, PageInfo pi) {
 			ArrayList<Product> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -410,6 +410,8 @@ public class ProductDao {
 			try {
 				pstmt = conn.prepareStatement(sql);
 				rset = pstmt.executeQuery();
+				pstmt.setInt(1, (pi.getCurrentPage() -1 ) * pi.getBoardLimit()+1);
+				pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
 
 				while(rset.next()) {
 					
@@ -431,6 +433,33 @@ public class ProductDao {
 			}		
 			
 			return list;
+		}
+		
+		public int selectListCount_TR(Connection conn) {
+			
+			int listCount = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String sql = prop.getProperty("selectListCount_TR");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) { //무조건 한행을 움직여줘야 게시글 갯수알수있음
+					listCount = rset.getInt("LISTCOUNT"); //별칭으로 조회
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			return listCount;
 		}
 
 
@@ -529,6 +558,40 @@ public class ProductDao {
 			
 			return list;
 		}
+		
+		//지역으로 검색
+		public ArrayList<Product> selectThList_SS(Connection conn) {
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("selectThList_SS");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+
+				while(rset.next()) {
+					
+					Product p = new Product();
+					p.setpCode(rset.getString("p_code"));
+					p.setpName(rset.getString("p_name"));
+					p.setPrice(rset.getInt("price"));
+					p.setBasicPath(rset.getString("basic_path"));
+				
+					list.add(p);				
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(rset);
+				close(pstmt);
+			}		
+			
+			return list;
+		}
+		
 		
 		// 관리자페이지 - 검색기능
 		public ArrayList<Product> searchOptions(Connection conn, String searchOp, String keyword) {
@@ -706,4 +769,6 @@ public class ProductDao {
 			return p;
 				
 		}
+
+
 }

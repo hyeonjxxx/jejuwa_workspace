@@ -85,22 +85,22 @@
 		        <div class="pdt_wrap">
 		             <ul class="pdtList">
 		        	<%for(Product p : list) {%> 
-		                        <li class=pdtArea>
-		                        <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
-		                            <div class="pdtBox">
-		                                <a >
-		                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 165px"></div>
-		                                    <div class="pdtInfo">
-		                                        <p class="pdtName"><%=p.getpName() %></p>
-		                                        <p class="pdtPrice"><%=p.getPrice() %>원</p>
-		                                    </div>
-		                                </a>
-		                            </div>
-		                        </li>
+		             	<li class=pdtArea>
+		                  <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
+		                   <div class="pdtBox">
+			                     <a>
+			                      <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 165px"></div>
+			                       <div class="pdtInfo">
+			                           <p class="pdtName"><%=p.getpName() %></p>
+			                           <p class="pdtPrice"><%=p.getPrice() %>원</p>
+			                         </div>
+			                       </a>
+		                     </div>
+		                  </li>
 					<% } %>		
 					</ul>
-		
 		        </div>
+	   		 </div>
 		        
 		        <script>
 		        	$(function(){
@@ -114,8 +114,9 @@
 
 
 
-
+		</div>
     </div>	
+	<%@ include file="../common/footer.jsp" %>
 
 
 </body>

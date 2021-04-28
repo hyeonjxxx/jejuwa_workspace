@@ -266,8 +266,6 @@
 	    
 	        <!-- 페이징 구역 -->
 	        <div class="bottomArea">
-	   
-	            
 	            <!-- 페이징  -->
 	            <div align="center" class="pagingArea">
 	                    
@@ -297,11 +295,10 @@
                 		<button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%=currentPage+1%>';">&gt;</button>
 	                    <button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%=maxPage%>';">&raquo;</button>
                 	<% } %>
-             </div>
-
-	
+             	</div>
+    		</div>
     
-    </div>
+	</div>    
     
 </body>
 </html>

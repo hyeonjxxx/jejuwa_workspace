@@ -124,11 +124,18 @@ public class ProductService {
 
 
 	// 투어 카테고리 선택
-	public ArrayList<Product> selectThList_TR() {
+	public ArrayList<Product> selectThList_TR(PageInfo pi) {
 		Connection conn = getConnection();
-		ArrayList<Product> list = new ProductDao().selectThList_TR(conn);
+		ArrayList<Product> list = new ProductDao().selectThList_TR(conn, pi);
 		close(conn);
 		return list;
+	}
+	
+	public int selectListCount_TR() {
+		Connection conn = getConnection();
+		int listCount = new ProductDao().selectListCount_TR(conn);
+		close(conn);
+		return listCount;
 	}
 
 	public ArrayList<Product> selectThList_TT() {
@@ -153,6 +160,14 @@ public class ProductService {
 		return list;
 	}
 	
+	// local로 조회
+	public ArrayList<Product> selectThList_SS() {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().selectThList_SS(conn);
+		close(conn);
+		return list;
+	}
+	
 	// list에서 option으로 검색
 	/**
 	 * @param searchOp : 검색 options
@@ -171,7 +186,8 @@ public class ProductService {
 		ArrayList<Product> list = new ProductDao().searchKeyword(conn, keyword);
 		close(conn);
 		return list;
-	}	
+	}
+	
 	
 	
 	
@@ -202,5 +218,7 @@ public class ProductService {
 		
 		return p;
 	}
+
+
 	
 }
