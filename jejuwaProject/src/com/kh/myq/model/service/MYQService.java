@@ -105,5 +105,29 @@ public class MYQService {
 		
 		return list;
 	}
+
+
+	public MYQ selectDetailUser(int myqNo) {
+		Connection conn = getConnection();
+		System.out.println(myqNo);
+		MYQ q = new MYQDao().selectDetailUser(conn, myqNo);
+		
+		System.out.println(q);
+		
+		close(conn);
+		
+		return q;
+	}
+
+
+	public Attachment selectAttachmentUser(int myqNo) {
+		Connection conn = getConnection();
+		
+		Attachment at = new MYQDao().selectAttachmentUser(conn, myqNo);
+		
+		close(conn);
+		
+		return at;
+	}
 	
 }

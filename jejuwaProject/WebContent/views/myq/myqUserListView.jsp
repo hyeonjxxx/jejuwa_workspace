@@ -168,6 +168,16 @@
              </div>
 		</div>
 	</div>
+
+	<script>
+		// 상세보기 요청
+		$("#memberList>tbody>tr").click(function(){
+				location.href='<%=request.getContextPath()%>/detail.umyq?mno='+$(this).children().eq(1).text();
+				// /detail.amyq?mno=글번호
+				// #memberList>tbody>tr 여기 tr의 자손들 중에 2번째(=eq(1))의 text를 가져오겠다. 
+			})
+	</script>
+
     <br><br>
     <%@ include file="../common/footer.jsp" %>
 </body>

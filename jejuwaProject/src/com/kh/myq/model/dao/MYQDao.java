@@ -278,5 +278,79 @@ public class MYQDao {
 		return list;
 	}
 
+	public MYQ selectDetailUser(Connection conn, int myqNo) {
+		// SELECT
+		MYQ q = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		System.out.println(myqNo);
+		String sql = prop.getProperty("selectDetailUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, myqNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) { 
+				q = new MYQ(rset.getInt("MYQ_NO")
+						  , rset.getString("MYQ_CATEGORY")
+						  , rset.getString("MYQ_TITLE")
+						  , rset.getString("MYQ_CONTENT")
+						  , rset.getDate("MYQ_ENROLL_DATE")
+						  , rset.getString("MYQ_ANS_CONTENT")
+						  , rset.getDate("MYQ_ANS_DATE")
+						  , rset.getInt("MEM_NO")
+						  , rset.getString("P_CODE")
+						  , rset.getString("MEM_ID")
+						  , rset.getString("P_NAME")
+						  , rset.getString("MEM_NAME"));
+						}
+			System.out.println(q);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return q;
+	}
+
+	public Attachment selectAttachmentUser(Connection conn, int myqNo) {
+		// SELECT
+		Attachment at = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAttachmentUser");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) { 
+				at = new Attachment(rset.getInt("FILE_NO")
+						  , rset.getString("ORG_FILENAME")
+						  , rset.getString("MDF_FILENAME")
+						  , rset.getString("FILE_PATH")
+						  , rset.getString("REF_BOARD_TYPE")
+						  , rset.getInt("REF_BOARD_NO")
+						  , rset.getInt("MYQ_NO")
+						  , rset.getString("P_CODE"));
+						}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return at;
+	}
+
 
 }
