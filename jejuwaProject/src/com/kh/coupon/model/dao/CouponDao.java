@@ -21,6 +21,7 @@ public class CouponDao {
 	
 	
 	public CouponDao() {
+		
 		String filename = CouponDao.class.getResource("/sql/coupon/coupon-mapper.xml").getPath();
 		
 		try {
@@ -33,104 +34,58 @@ public class CouponDao {
 	}
 	
 	
-	
-	//마이쿠폰리스트 
 	public int selectListCount(Connection conn) {
-		// select문 => ResultSet(게시글 총 수)
+		
+//		1개 조회  select 정수값 총게시글 수 
 		int listCount = 0;
-		ResultSet rset = null;
+		
 		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
 		String sql = prop.getProperty("selectListCount");
 		
 		try {
-			pstmt = conn.prepareStatement(sql); // 완성된 sql
+			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
+			
 			
 			if(rset.next()) {
 				listCount = rset.getInt("LISTCOUNT");
+				//별칭으로 했으면 똑같이 별칭으로 뽑아야함.
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		return listCount;
-	}
-	
-	
-// 마이쿠폰리스트 조회 
-	public ArrayList<Coupon> selectList(Connection conn, PageInfo pi){
-		// select문 => ResultSet(여러행)
-		ArrayList<Coupon> mylist = new ArrayList<>();
-		ResultSet rset = null;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("selectList");
 		
-		try {
-			pstmt = conn.prepareStatement(sql); // 미완성 sql문
-			/*
-			 * startRow = (currentPage - 1) * boardLimit + 1
-			 * endRow = currentPage * boardLimit
-			 */
-			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
-			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				mylist.add(new Coupon(rset.getString("CPN_NAME"),
-									rset.getInt("CPN_DC"),
-									rset.getDate("CPN_RGDT"),
-									rset.getDate("CPN_STR_DATE"),
-									rset.getDate("CPN_END_DATE")
-									));
-			}			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return mylist;
+		return listCount;
+		
 	}
 	
 	
+	//	관리자 쿠폰조회 
 	
 	
-	
-	
-	
-	
-	
-	
-	
-//	관리자 쿠폰조회 
 	public ArrayList<Coupon> adminCouponList(Connection conn, PageInfo pi){
 		// select문 => ResultSet객체 (여러행)
-		ArrayList<Coupon> list = new ArrayList<>();
+		ArrayList<Coupon> adlist = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectList");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			/*
-			 * ex) boardLimit : 10 라는 가정하에 
-			 * currentPage = 1	=> startRow : 1		endRow : 10
-			 * currentPage = 2	=> startRow : 11	endRow : 20
-			 * currentPage = 3	=> startRow : 21	endRow : 30
-			 * 
-			 * startRow = (currentPage - 1) * boardLimit + 1
-			 * endRow = currentPage * boardLimit
-			 */
+			
 			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
 			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Coupon(rset.getInt("cpn_code"),
+				adlist.add(new Coupon(rset.getInt("cpn_code"),
 								   rset.getString("cpn_name"),
 								   rset.getInt("cpn_dc"),
 								   rset.getDate("cpn_rgdt"),
@@ -145,76 +100,112 @@ public class CouponDao {
 			close(pstmt);
 		}
 		
-		return list;
+		return adlist;
 	}
 	
-//	관리자 list
-	
-		
 
-
-public ArrayList<Coupon> selectListCoupon(Connection conn) {
-//	여러행 조회 select문
-	
-	ArrayList<Coupon> list = new ArrayList<>();
-	PreparedStatement pstmt = null;
-	ResultSet rset = null;
-	
-	String sql = prop.getProperty("selectListCoupon");
 	
 	
-	try {
-		pstmt = conn.prepareStatement(sql);
-		rset = pstmt.executeQuery();
-		
-		while(rset.next()) {
-			list.add(new Coupon(rset.getInt("cpn_code"),
-							   rset.getString("cpn_name"),
-							   rset.getInt("cpn_dc"),
-							   rset.getDate("cpn_rgdt"),
-							   rset.getDate("cpn_str_date"),
-							   rset.getDate("cpn_end_date")));
-		}
-	} catch (SQLException e) {
-		
-		e.printStackTrace();
-	}finally {
-		close(rset);
-		close(pstmt);
-	}
-	
-	return list;
-	
-	
-}
-//쿠폰갯수 조회 한행조회 
-public int selectCouponCount(Connection conn) {
-
-	int CouponCount = 0;
-	
-	PreparedStatement pstmt = null;
-	ResultSet rset = null;
-	
-	String sql = prop.getProperty("selectCouponCount");
-	
-	try {
-		pstmt = conn.prepareStatement(sql);
-		rset = pstmt.executeQuery();
-		
-		if(rset.next()) {
-			CouponCount = rset.getInt("CouponCount");
-		}
-		
-	} catch (SQLException e) {
-		e.printStackTrace();
-	} finally {
-		close(rset);
-		close(pstmt);
-	}
-	
-	return CouponCount;
-	
-}
+//		public ArrayList<Coupon> selectMyCouponList(Connection conn){
+//			// select문 => ResultSet(여러행)
+//			ArrayList<Coupon> mylist = new ArrayList<>();
+//			PreparedStatement pstmt = null;
+//			ResultSet rset = null;
+//			String sql = prop.getProperty("selectList");
+//			
+//			try {
+//				pstmt = conn.prepareStatement(sql); // 미완성 sql문
+//				/*
+//				 * startRow = (currentPage - 1) * boardLimit + 1
+//				 * endRow = currentPage * boardLimit
+//				 */
+//				pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+//				pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+//				
+//				rset = pstmt.executeQuery();
+//				
+//				while(rset.next()) {
+//					mylist.add(new Coupon(rset.getString("CPN_NAME"),
+//										rset.getInt("CPN_DC"),
+//										rset.getDate("CPN_RGDT"),
+//										rset.getDate("CPN_STR_DATE"),
+//										rset.getDate("CPN_END_DATE")
+//										));
+//				}			
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			} finally {
+//				close(rset);
+//				close(pstmt);
+//			}
+//			return mylist;
+//		}
+//		
+//		
+//
+//
+//public ArrayList<Coupon> selectListCoupon(Connection conn) {
+////	여러행 조회 select문
+//	
+//	ArrayList<Coupon> list = new ArrayList<>();
+//	PreparedStatement pstmt = null;
+//	ResultSet rset = null;
+//	
+//	String sql = prop.getProperty("selectListCoupon");
+//	
+//	
+//	try {
+//		pstmt = conn.prepareStatement(sql);
+//		rset = pstmt.executeQuery();
+//		
+//		while(rset.next()) {
+//			list.add(new Coupon(rset.getInt("cpn_code"),
+//							   rset.getString("cpn_name"),
+//							   rset.getInt("cpn_dc"),
+//							   rset.getDate("cpn_rgdt"),
+//							   rset.getDate("cpn_str_date"),
+//							   rset.getDate("cpn_end_date")));
+//		}
+//	} catch (SQLException e) {
+//		
+//		e.printStackTrace();
+//	}finally {
+//		close(rset);
+//		close(pstmt);
+//	}
+//	
+//	return list;
+//	
+//	
+//}
+////쿠폰갯수 조회 한행조회 
+//public int selectCouponCount(Connection conn) {
+//
+//	int CouponCount = 0;
+//	
+//	PreparedStatement pstmt = null;
+//	ResultSet rset = null;
+//	
+//	String sql = prop.getProperty("selectCouponCount");
+//	
+//	try {
+//		pstmt = conn.prepareStatement(sql);
+//		rset = pstmt.executeQuery();
+//		
+//		if(rset.next()) {
+//			CouponCount = rset.getInt("CouponCount");
+//		}
+//		
+//	} catch (SQLException e) {
+//		e.printStackTrace();
+//	} finally {
+//		close(rset);
+//		close(pstmt);
+//	}
+//	
+//	return CouponCount;
+//	
+//}
 }
 
 

@@ -87,7 +87,7 @@
                         <a href="">리뷰관리</a><br>
                     </p>
                     
-                    <div class="stop"> <a href="<%=contextPath%>/admincoupon.do?currentPage=1">쿠폰 관리</a></div>
+                    <div class="stop"> <a href="<%=contextPath%>/listadmin.cpn?currentPage=1">쿠폰 관리</a></div>
             </div> 
                 
             <!-- 내용  -->

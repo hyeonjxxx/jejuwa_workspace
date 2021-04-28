@@ -169,6 +169,41 @@ public int insertReview(Connection conn, Review ir) {
 	}
 		
 	
+
+public ArrayList<Review> selectReviewListPr(Connection conn, String pcoder){
+	//select문 여러행 조회
+	ArrayList<Review> listr = new ArrayList<>();
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	String sql = prop.getProperty("selectReviewListPr");
+	
+	try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, pcoder);
+		
+		rset = pstmt.executeQuery();
+		while(rset.next()) {
+			listr.add(new Review(rset.getString("mem_id"),
+								 rset.getString("pcode"),
+								 rset.getString("rv_content"),
+								 rset.getDate("rv_date"),
+								 rset.getString("rv_status")));
+		}
+;	} catch (SQLException e) {
+		
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+		
+	}
+	return listr;
+	
+	
+	
+	
+	
+}
 	
 	
 	

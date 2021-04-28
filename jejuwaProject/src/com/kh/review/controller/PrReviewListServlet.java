@@ -1,4 +1,4 @@
-package com.kh.coupon.controller;
+package com.kh.review.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,21 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.common.model.vo.PageInfo;
-import com.kh.coupon.model.service.CouponService;
-import com.kh.coupon.model.vo.Coupon;
+import com.google.gson.Gson;
+import com.kh.review.model.service.ReviewService;
+import com.kh.review.model.vo.Review;
 
 /**
- * Servlet implementation class MyCouponListServlet
+ * Servlet implementation class PrReviewListServlet
  */
-@WebServlet("/list.mycpn")
-public class MyCouponListServlet extends HttpServlet {
-	private static final long serialVersionUID =1L;
-
+@WebServlet("/rvlist.bo")
+public class PrReviewListServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public MyCouponListServlet() {
+    public PrReviewListServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -31,19 +32,19 @@ public class MyCouponListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		
-		//쿠폰리스트 조회 후 
+		String pcoder = request.getParameter("pco");
 		
+		ArrayList<Review> listr = new ReviewService().selectReviewListPr(pcoder);
 		
-		ArrayList<Coupon> mylist = new CouponService().selectMyCouponList();
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new Gson();
+		gson.toJson(listr, response.getWriter());
 		
-	
-		request.setAttribute("mylist",mylist);
-		request.getRequestDispatcher("views/coupon/myCouponList.jsp").forward(request,response);
-		
-
-}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

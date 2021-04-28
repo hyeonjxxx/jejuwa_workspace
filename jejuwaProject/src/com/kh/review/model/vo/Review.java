@@ -57,6 +57,7 @@ public Review(int review_No, String mem_No, String p_Code, String rv_Content, Da
 	}
 
 
+	
 
 
 	public int getReview_No() {
@@ -65,13 +66,28 @@ public Review(int review_No, String mem_No, String p_Code, String rv_Content, Da
 
 
 
+	// 상품상세 리뷰조회 
+	public Review(String mem_No, String p_Code, String rv_Content, Date rv_Date, String rv_Status) {
+		super();
+		this.mem_No = mem_No;
+		this.p_Code = p_Code;
+		this.rv_Content = rv_Content;
+		this.rv_Date = rv_Date;
+		this.rv_Status = rv_Status;
+	}
 
+
+
+	
+	
 	public void setReview_No(int review_No) {
 		this.review_No = review_No;
 	}
 
 
 
+
+	
 
 	public String getMem_No() {
 		return mem_No;

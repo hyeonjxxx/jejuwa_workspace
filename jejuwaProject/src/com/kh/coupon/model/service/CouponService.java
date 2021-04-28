@@ -1,10 +1,8 @@
 package com.kh.coupon.model.service;
 
 
-import static com.kh.common.JDBCTemplate.close;
-import static com.kh.common.JDBCTemplate.commit;
-import static com.kh.common.JDBCTemplate.getConnection;
-import static com.kh.common.JDBCTemplate.rollback;
+import static com.kh.common.JDBCTemplate.*;
+
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -13,22 +11,31 @@ import com.kh.common.model.vo.PageInfo;
 import com.kh.coupon.model.dao.CouponDao;
 import com.kh.coupon.model.vo.Coupon;
 
+
+
 public class CouponService {
 
+//	조회게시글 총 갯수 
 	
 	public int selectListCount() {
 		Connection conn = getConnection();
 		int listCount = new CouponDao().selectListCount(conn);
+		
 		close(conn);
+		
 		return listCount;
+		
 	}
 	
+//----------------------관리자 쿠폰조회 
 	
-	public ArrayList<Coupon> selectList(PageInfo pi){
+	public ArrayList<Coupon> adminCouponList(PageInfo pi) {
+		
 		Connection conn = getConnection();
-		ArrayList<Coupon> mylist = new CouponDao().selectList(conn, pi);
+		ArrayList<Coupon> adlist = new CouponDao().adminCouponList(conn, pi);
 		close(conn);
-		return mylist;
+		return adlist;
+			
 	}
 	
 	
