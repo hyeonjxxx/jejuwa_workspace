@@ -34,6 +34,7 @@
             <div class="divisionLine"></div>
         </div>
         
+		<!--리스트에 담겨있는하는데 불러서 오질 못하네... 그리고 console엔 있다가 없어짐 왜????? -->
 		<script>
             function searchGo(){
             	if(window.event.keyCode == 13){

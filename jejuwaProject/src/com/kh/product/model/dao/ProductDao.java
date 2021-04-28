@@ -539,8 +539,7 @@ public class ProductDao {
 			
 			// searchOp이 상품명/지역/테마인 경우 + 검색어
 			
-			switch(searchOp) {	
-			case "pname": 
+			if(searchOp.equals("pname")) {	
 				
 				sql=prop.getProperty("adminSearchpName");
 				try {
@@ -563,10 +562,8 @@ public class ProductDao {
 					close(pstmt);
 				}
 				
-				break;
-				
-			case "local": 
-				
+			}else if(searchOp.equals("local")){	
+			
 				sql=prop.getProperty("adminSearchLocal"); 
 				try {
 					pstmt = conn.prepareStatement(sql);
@@ -588,10 +585,7 @@ public class ProductDao {
 					close(pstmt);
 				}
 								
-				break;
-				
-			case "theme": 
-				
+			}else{
 				sql=prop.getProperty("adminSearchTheme"); 
 				try {
 					pstmt = conn.prepareStatement(sql);
@@ -613,13 +607,9 @@ public class ProductDao {
 					close(rset);
 					close(pstmt);
 				}
-								
-				break;
-									
-									
 			}
 			
-
+			System.out.println(list);
 			return list;
 		}		
 		
@@ -642,7 +632,6 @@ public class ProductDao {
 					             rset.getInt("price"),
 					             rset.getString("basic_path")));
 						
-						//System.out.println(list);
 					}
 					
 				} catch (SQLException e) {

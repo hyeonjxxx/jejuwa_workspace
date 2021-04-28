@@ -43,7 +43,7 @@
                     <div class="filter">
                         <p>필터</p>
                         <div class="rating">
-                            평점<br>
+                         	   평점<br>
                             <input type="radio" name="total" id="total" checked> 전체 <br>
                             <input type="radio" name="4point" id="4poin"> 4점 이상 <br>
                             <input type="radio" name="5point" id="5point"> 5점 이상 <br>
@@ -74,8 +74,10 @@
                         
                     </div>
                 </aside>
-    
             </div>
+            <script>
+			/* 지역버튼 클릭시, 지역이 00인 상품만 조회(카레고리+필터있는 페이지로) */
+            </script>
     
             <div class="main">
                 <div class="sortBar" align="right">
