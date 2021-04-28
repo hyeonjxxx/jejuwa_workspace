@@ -14,6 +14,8 @@ public class Product {
 	private String themeCode;
 	private String cpnName;
 	private int memNo;
+	private String localName;
+	private String themeName;
 	
 	public int getMemNo() {
 		return memNo;
@@ -76,17 +78,29 @@ public class Product {
 	}	
 	
 	// 썸네일리스트 조회시
-	public Product( String pName, int price, String basicPath, String detailPath) {
+	public Product(String pCode, String pName, int price, String basicPath) {
 		super();
+		this.pCode = pCode;
 		this.pName = pName;
 		this.price = price;
-		this.basicPath = basicPath;
 		this.basicPath = basicPath;
 	}
 	
 	public String getpCode() {
 		return pCode;
 	}
+
+	public Product(String pName, String pCode, int price, String basicPath, String detailPath, String localName,String themeName) {
+		super();
+		this.pCode = pCode;
+		this.pName = pName;
+		this.price = price;
+		this.basicPath = basicPath;
+		this.detailPath = detailPath;
+		this.localName = localName;
+		this.themeName = themeName;
+	}
+
 
 	public Product(String pName, String pCode, int price, String basicPath, String detailPath) {
 		super();
@@ -95,8 +109,7 @@ public class Product {
 		this.price = price;
 		this.basicPath = basicPath;
 		this.detailPath = detailPath;
-	}
-	
+	}	
 	
 	public Product(String pName, String pCode, int price, String basicPath, String detailPath, String cpnName) {
 		super();
@@ -109,6 +122,23 @@ public class Product {
 	}
 	
 	
+	
+	public String getLocalName() {
+		return localName;
+	}
+
+	public void setLocalName(String localName) {
+		this.localName = localName;
+	}
+
+	public String getThemeName() {
+		return themeName;
+	}
+
+	public void setThemeName(String themeName) {
+		this.themeName = themeName;
+	}
+
 	public String getCpnName() {
 		return cpnName;
 	}

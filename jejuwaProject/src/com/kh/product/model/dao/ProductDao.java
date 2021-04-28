@@ -380,8 +380,11 @@ public class ProductDao {
 									rset.getString("p_code"),
 							        rset.getInt("price"),
 							        rset.getString("basic_path"),
-							        rset.getString("deatil_path"));
+							        rset.getString("deatil_path"),
+							        rset.getString("local_name"),
+							        rset.getString("theme_name"));
 					
+					//System.out.println(p);
 				}
 				
 				
@@ -393,6 +396,7 @@ public class ProductDao {
 			}
 			
 			return p;
+			
 				
 		}
 		
@@ -600,6 +604,7 @@ public class ProductDao {
 					             rset.getInt("price"),
 					             rset.getInt("p_stock"),
 					             rset.getString("p_status")));
+						
 					}
 					
 				} catch (SQLException e) {
@@ -614,7 +619,7 @@ public class ProductDao {
 									
 			}
 			
-			System.out.println(list);
+
 			return list;
 		}		
 		
@@ -635,8 +640,9 @@ public class ProductDao {
 						list.add(new Product(rset.getString("p_code"),
 					             rset.getString("P_name"),
 					             rset.getInt("price"),
-					             rset.getInt("p_stock"),
-					             rset.getString("p_status")));
+					             rset.getString("basic_path")));
+						
+						//System.out.println(list);
 					}
 					
 				} catch (SQLException e) {

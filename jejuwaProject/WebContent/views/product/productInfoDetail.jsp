@@ -3,7 +3,6 @@
 <%@ page import="java.util.ArrayList, com.kh.product.model.vo.*,com.kh.common.model.vo.*,
  com.kh.member.model.vo.*, com.kh.like.model.vo.*" %>
 <%
-	//String contextPath = request.getContextPath();  //h_jejuwa
 	Product p = (Product)request.getAttribute("p");
 	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
 	Member loginUser = (Member)session.getAttribute("loginUser");
@@ -32,8 +31,8 @@
     <div class="content_wrap">
 
         <p class="groupBar">
-           <a href=""> 대분류</a>&nbsp;&nbsp;>
-           <a href=""> 중분류</a>&nbsp;&nbsp;
+           <a href="#"> <%=p.getLocalName() %></a>&nbsp;&nbsp;>
+           <a href="<!-- 테마에 따라 링크가 다름! -->"> <%=p.getThemeName() %></a>&nbsp;&nbsp;
         </p>
 
         <div class="pdtWrap">
@@ -43,11 +42,11 @@
                         <img src="<%=contextPath %>/<%= p.getBasicPath()%>" width="350" height="350" alt="">
                     </div>
                     <ul class="subImg">
-                    	<%--
+                    	<%-- 
                     	<%for(int i=1; i<list.size(); i++) {%>
-                        	<li><img src="" width="40"></li>
+                        	<li><img src="<%=contextPath%>/<%=list.get(i).getFilePath() + list.get(i).getMdfFileName() %>" width="40"></li>
                     	<%} %>
-                    	--%>
+                    	 --%>
                     </ul>
 
             </div>

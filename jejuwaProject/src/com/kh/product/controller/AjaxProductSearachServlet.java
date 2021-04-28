@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
@@ -44,7 +45,7 @@ public class AjaxProductSearachServlet extends HttpServlet {
 	}
 		
 		response.setContentType("application/json; charset=UTF-8");
-		
+		new Gson().toJson(list, response.getWriter());
 	
 	}
 

@@ -20,16 +20,29 @@
 
     <div class="content_wrap">
 
-
+	
+        <div class="searchBar">     
+            <form action="" id="searchForm" method="post">
+                <div id="searchBox">
+                    <input type="search" id="keyword" placeholder="[추천상품]제주시티투어" onkeyup="searchGo();">
+                </div>
+                    
+                <div id="searchBtn">
+                    <button type="sumbit"><img src="<%=contextPath%>/resources/images/loupe_c.png" width="30"></button>
+                </div>              
+            </form>
+            <div class="divisionLine"></div>
+        </div>
+        
 		<script>
-            function enterkey(){
-            	if(window.event.keyCode == 20){
+            function searchGo(){
+            	if(window.event.keyCode == 13){
 	            	var keyword = $("#keyword").val();
 	           		
 	            	console.log(keyword);
 	           		
            			$.ajax({
-           				url:"/searchUserAjax.pdt",
+           				url:"<%=contextPath%>/searchUserAjax.pdt",
            				type:"get",
            				data:{ keyword:keyword
            				}, success:function(list){
@@ -48,7 +61,7 @@
         					            + "<p class='pdtName'>" + list[i].pName + "</p>"
         					            + "<p class='pdtPrice'>" + list[i].prices + "원</p>"
        						            + "</div>" 
-       						            + "</li>";
+       						            + "</li>;"
            					}
             					
            					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
@@ -68,19 +81,8 @@
            		} 
             }
         </script>
-    
-        <div class="searchBar">     
-            <form action="" id="searchForm" method="post">
-                <div id="searchBox">
-                    <input type="search" id="keyword" placeholder="[추천상품]제주시티투어" onkeyup="searchGo();">
-                </div>
-                    
-                <div id="searchBtn">
-                    <button type=""><img src="<%=contextPath%>/resources/images/loupe_c.png" width="30"></button>
-                </div>              
-            </form>
-            <div class="divisionLine"></div>
-        </div>
+            
+        
 
         <div class="sortBar" align="right">
             <a href="">제주와 추천순<img src="<%=contextPath%>/resources/images/check_c.png" alt="" width="15"></a> &nbsp;&nbsp;

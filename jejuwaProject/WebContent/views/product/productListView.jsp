@@ -68,7 +68,7 @@
 	    				console.log(keyword);
 	    				
 	    				$.ajax({
-	    					url:"/searchAjax.pdt",
+	    					url:"searchAjax.pdt",
 	    					type:"get",
 	    					date:{searchOp:searchOp,
 	    						  keyword:keyword
@@ -91,7 +91,7 @@
 	    							}
 	    						}
 	    						$(".pdtListView tbody").html(result);
-            					$(".pagingArea").css("visibility", "hidden");
+	    						$(".pagingArea").css("visibility", "hidden");
 	    						
 	    			            $(function(){
 	    			            	$(".pdtListView>tbody>tr").click(function(){
@@ -144,7 +144,7 @@
 	                    <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
 	                    </div>
 	                    
-			             <script>
+			         <%--     <script>
 				       			
 				    	    	<!-- 항목 삭제 --> 
 				    	    	// 1. 체크된 항목이 한개 이상인지 확인
@@ -176,7 +176,7 @@
 				       					return false;
 				       				}
 				       			}
-				       	</script>	        
+				       	</script>	         --%>
 						</form>
 	                    
 	                </div>
@@ -202,17 +202,17 @@
 			            
 			            $(".check_single").on("click", function(){
 			                            
-			                            /* 체크된 체크박수 수 */
-			                            var selected_box = $(".check_single:checkbox:checked").length;
-			                            /* 전체 체크박스 수  */
-			                            var check_box = $(".check_single:checkbox").length;
+			                    /* 체크된 체크박수 수 */
+			                    var selected_box = $(".check_single:checkbox:checked").length;
+			                  /* 전체 체크박스 수  */
+			                   var check_box = $(".check_single:checkbox").length;
 			                            
-			                            /* 체크된 수 == 전체 수  => checkAll가 true */
-			                            if(selected_box == check_box){
-			                                $("#checkAll").prop("checked", true);
-			                            }else{
-			                                $("#checkAll").prop("checked", false);
-			                            }
+			                  /* 체크된 수 == 전체 수  => checkAll가 true */
+			                  if(selected_box == check_box){
+			                   		$("#checkAll").prop("checked", true);
+			                   }else{
+			                   		$("#checkAll").prop("checked", false);
+			                  }
 			            })
 			        })
 			    </script>	            
