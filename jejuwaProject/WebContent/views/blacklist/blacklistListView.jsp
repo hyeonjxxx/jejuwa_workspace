@@ -40,12 +40,11 @@
 
                 <div align="right" class="searchArea" >
                     <span href="" >
-                        <select name="memberStatus" id="">
-                            <option value="active">아이디</option>
-                            <option value="dormant">이름</option>
-                            <option value="dormant">전화번호</option>
+                        <select name="memberSearchCtg" id="memberSearchCtg">
+                            <option value="memId">아이디</option>
+                            <option value="memName">이름</option>
                         </select>
-                        <input type="text" style="width: 200px;"placeholder="검색">
+                        <input id="keyword" type="text" style="width: 200px;" onkeyup="enterkey();" placeholder="검색">
                     </span>              
                 </div>
             </div>
@@ -84,6 +83,61 @@
                 </tbody>
             </table>
             
+            <!-- AJax 키워드 검색 기능(카테고리 : 이름, 아이디, 전화번호) -->
+            <script>
+            	function enterkey(){
+            		if(window.event.keyCode == 13){
+	            		var searchCtg = $("#memberSearchCtg option:selected").val();
+	            		var keyword = $("#keyword").val();
+	            		
+	            		//console.log(searchCtg);
+	            		//console.log(keyword);
+	            		
+            			$.ajax({
+            				url:"searchAjax.bl",
+            				type:"get",
+            				data:{searchCtg:searchCtg,
+            					  keyword:keyword
+            				}, success:function(list){
+            					console.log(list);
+            					
+            					
+            					var result = "";
+            					if(list.length == 0){
+            						result = "<tr><td colspan='5'>조회된 회원이 없습니다.</td></tr>"
+            					}
+            					for(var i in list){
+            						
+            						result += "<tr class='test4'>"
+            							   + 	"<td><input type='checkbox'></td>"
+        						           +	"<td>" + list[i].memId + "</td>"
+        						           +	"<td>" + list[i].memName + "</td>"
+        						           +	"<td>" + list[i].restrictDate + "</td>"
+        						           +	"<td>" + list[i].reportedCount + "</td>"
+        						           + "</tr>";
+            					}
+            					
+            					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
+            					$("#memberList tbody").html(result);
+            					$(".pagingArea").css("visibility", "hidden");
+            					
+            					$(function(){
+            	            		$("#memberList>tbody>tr").click(function(){
+            	            			location.href='<%=contextPath%>/detail.bl?memId=' + $(this).children().eq(1).text();
+            	            		})
+            	            	})
+            					
+            					
+            				}, error:function(){
+            					console.log("ajax통신 실패");
+            				}
+            			});
+            		}
+            	}
+            </script> 
+            
+            
+            
             <script>
             	// 상세보기 요청
             	$(function(){
@@ -103,7 +157,7 @@
                 <div class="bottomArea">
 
                     <!-- 버튼 (선택삭제) -->
-                    <div align="right" class="btn" >
+                    <div align="right" class="btn blackBtn" >
                         <a href="" id="btn1"  data-toggle="modal" data-target="#unblacklist">블랙리스트 해제</a>
                     </div>                
                     
@@ -141,7 +195,7 @@
                      </div>
         
                      <!-- 버튼 (등록) -->
-                    <div align="right" class="btn">
+                    <div align="right" class="btn blackBtn">
                         <a href="" id="btn2" data-toggle="modal" data-target="#enrollBlacklist">블랙리스트 등록</a> 
                     </div>   
 
@@ -176,8 +230,8 @@
 
                     <!-- Modal footer -->
                     <div id="ubModalFooter">
-                        <button type="submit" id="okBtn" class="btn btn-warning" onclick="return removeBlacklist();">OK</button>
-                        <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+                        <button type="submit" id="okBtnBl" class="btn btn-warning" onclick="return removeBlacklist();">OK</button>
+                        <button id="cancleBtnBl" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
                     </div>
                     
                     <script>

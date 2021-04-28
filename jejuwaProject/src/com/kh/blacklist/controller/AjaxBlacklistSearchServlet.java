@@ -1,26 +1,30 @@
-package com.kh.myq.controller;
+package com.kh.blacklist.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.myq.model.service.MYQService;
-import com.kh.myq.model.vo.MYQ;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.kh.blacklist.model.service.BlacklistService;
+import com.kh.blacklist.model.vo.Blacklist;
 
 /**
- * Servlet implementation class MYQAdminAnsInsertServlet
+ * Servlet implementation class AjaxBlacklistSearchServlet
  */
-@WebServlet("/ans.amyq")
-public class MYQAdminAnsInsertServlet extends HttpServlet {
+@WebServlet("/searchAjax.bl")
+public class AjaxBlacklistSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MYQAdminAnsInsertServlet() {
+    public AjaxBlacklistSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,22 +34,24 @@ public class MYQAdminAnsInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
+		// Ajax
+		String searchCtg = request.getParameter("searchCtg");
+		String keyword = request.getParameter("keyword");
 		
-		// 관리자가 입력한 답글 받기
-		String answer = request.getParameter("answer");
-		int getMyq_no = Integer.parseInt(request.getParameter("getMyq_no"));
-		System.out.println(getMyq_no);
+		//System.out.println(searchCtg);
+		//System.out.println(keyword);
 		
-		int result = new MYQService().answer(answer, getMyq_no);
-		
-		//if(result>0) {
-			//request.getSession().setAttribute("alertMsg", "답글이 성공적으로 등록되었습니다.");
-		response.getWriter().print(result);
-			
-		//} else {
-			//request.getSession().setAttribute("alertMsg", "답글 등록에 실패하였습니다.");
-		//}
+		ArrayList<Blacklist> list = new BlacklistService().searchBlacklist(searchCtg, keyword);
+
+//		for(Member m : list) {
+//		System.out.println(m);
+//		}
+	
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+	
+	
 	}
 
 	/**

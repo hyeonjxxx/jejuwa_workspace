@@ -37,13 +37,14 @@
 
             <div align="right" class="searchArea" >
                 <span href="">
-                    <select name="memberStatus" id="Status" onchange="statusList();">
-                        <option value="active">활동회원</option>
-                        <option value="dormant">관리자</option>
+                    <select name="memberStatus" id="memberStatus">
+                        <option value="Y">활동회원</option>
+                        <option value="A">관리자</option>
                 	</select>
                 </span>
+                
                 <span href="" >
-                    <select name="memberStatus" id="memberSearchCtg">
+                    <select name="memberSearchCtg" id="memberSearchCtg">
                         <option value="memId">아이디</option>
                         <option value="memName">이름</option>
                         <option value="phone">전화번호</option>
@@ -90,13 +91,10 @@
             
             <!-- 멤버 활동회원/관리자/탈퇴회원 나눠보기 기능 중 -->
             <script>
-            	function statusList(){
-            		location.href="<%=contextPath%>"
-            	}
             </script>
             
             
-            
+            <!-- AJax 키워드 검색 기능(카테고리 : 이름, 아이디, 전화번호) -->
             <script>
             	function enterkey(){
             		if(window.event.keyCode == 13){

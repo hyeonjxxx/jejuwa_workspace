@@ -67,6 +67,7 @@ public class MYQService {
 		Connection conn = getConnection();
 		
 		int result = new MYQDao().answer(conn, answer, getMyq_no);
+		System.out.println(getMyq_no);
 		if(result>0) {
 			commit(conn);
 		} else {
@@ -75,6 +76,21 @@ public class MYQService {
 		close(conn);
 		
 		return result;
+	}
+
+	/**
+	 * 사용자 게시글 조회
+	 * @return
+	 */
+	public int selectListCountUser() {
+		
+		Connection conn = getConnection();
+		
+		int listCount = new MYQDao().selectListCountUser(conn);
+		close(conn);
+		
+		return listCount;
+		
 	}
 	
 }

@@ -22,9 +22,6 @@
     <!-- content css-->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/order/orderListView.css">   
 
-	<script>
-		var param = ${paramJson};
-	</script>
 
 </head>
 <body>
@@ -40,15 +37,16 @@
         
         <!-- 주문검색 -->
         <div class="listArea">
-        	
-      	 	<input type = "hidden" name = "page" value = "1">
       	 	<div class="search_option">
-                <select name="key" class = "searchForm" id="option">
+                <select name="orderSearch" class = "searchForm" id="orderSearch">
                     <option value="orderNo">주문번호</option>
+                    <option value="memNo">회원번호</option>
                 </select>
-                   <input type="search" name="search" value = "" id = "keyword">
+                   <input type="text" id = "keyword" onkeyup="enterkey();">
+                   
             </div>
          	
+         	<!-- jquery 방식을 통한 검색
          	<script>
          		$(document).ready(function(){
          			$("#keyword").keyup(function(){
@@ -59,13 +57,8 @@
          			})
          		})
          	</script>
-            <!-- 삭제/등록버튼 -->
-            <!-- 
-            <div class="btn">
-                <a href="#" class="btn btn-secondary btn-sm">삭 제</a>
-                <a href="#" class="btn btn-secondary btn-sm">등 록</a>
-            </div>
-    		-->
+         	-->
+         	
             <br>
             <table  id="productListView" border="1">
                 <thead>
@@ -104,7 +97,7 @@
 	                        <td><%= o.getMemNo() %></td>
 	                        
   	                        <!-- 변경 모달창 -->
-	                       	 <td>
+	                       	<td>
                             <div class="container">
                                 <!-- Button to Open the Modal -->
 								<button id = "change" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#orderModal<%=i%>" style="width: 50px; height: 30px;">
@@ -145,7 +138,7 @@
 	                                            </tr>
 	                                            <tr>
 	                                                <th>결제금액</th>
-	                                                <td><%= o.getAmount() %></td>
+	                                                <td><%= o.getAmount() %>원</td>
 	                                            </tr>
 	                                            <tr>
 	                                                <th>입금상태</th>
@@ -211,6 +204,56 @@
 	                                	})
 			                        </script>
 			                        
+			                        <script>
+							       		function enterkey(){
+							       			// 엔터키 눌렀을 때 실행
+							       			if(window.event.keyCode == 13){
+							       				var search = $("#orderSearch option:selected").val();
+							       				var keyword = $("#keyword").val();
+							       				
+							       				$.ajax({
+							       					url : "searchAjax.or",
+							       					type : "get",
+							       					data : {search : search,
+							       							keyword : keyword},
+							       					success : function(list){
+							       						console.log(list);
+							       						
+							       						var result = "";
+							       						if(list.length == 0){
+							       							result = "<tr><td colspan = '10'> 조회되는 예약 상품이 없습니다.</td></tr>"
+							       						}
+							       						for(var i in list){
+							       							result += "<tr class = 'test4'>"
+							       								    + "<td>" + list[i].orderNo + "</td>"
+							       			                        + "<td>" + list[i].orderDate + "</td>"
+							       			                        + "<td>" + list[i].amount + "</td>"
+							       			                        + "<td>" + list[i].travelDate + "</td>"
+							       			                        + "<td>" + list[i].travelUser + "</td>"
+							       			                        + "<td>" + list[i].travelEmail + "</td>"
+							       			                        + "<td>" + list[i].status + "</td>"
+							       			                        + "<td>" + list[i].cReason + "</td>"
+							       			                        + "<td>" + list[i].memNo + "</td>"
+																	+ "<td><button id = 'change' type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#orderModal<%=i%>' style='width: 50px; height: 30px;'>변경</button></td>"
+							       			                        + "</tr>";
+							       						}
+							       						
+							       						$("#productListView tbody").html(result);
+							       						$("#pagingArea").css("visibility", "hidden");
+							       						
+							       						$(function(){
+							       							$("#change").click(function(){
+							       								// 모달창 나오게
+							       							})
+							       							
+							       						})
+							       					}, error : function(){
+							       						console.log("ajax통신 실패");
+							       					}
+							       				});
+							       			}
+							       		}
+							         </script>
 			                        
 	                              
 	                               
@@ -218,6 +261,7 @@
 	                        </td>
 							
                     	</tr>
+                    	
                     <% } %>
                    <% } %>
                 </tbody>
@@ -226,6 +270,7 @@
             <br><br>
     
             <div align="center" class="pagination" id="pagingArea" style="margin: auto; position: relative; left: 330px;">
+				
 				<% if(currentPage != 1) { %>
             		<li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.or?currentPage=<%=currentPage-1%>';" style="color: black;">이전</button></li>
 				<% } %>
@@ -247,6 +292,7 @@
             </div>
 
         </div>
+       	
     </div>
 	
 </body>

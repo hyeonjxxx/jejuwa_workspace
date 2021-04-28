@@ -56,12 +56,56 @@
         <div class="area1">
             <!-- FAQ 검색 -->
             <div align="right" class="searchArea">
-                 <select name="memberStatus" id="">
+                 <select name="faqSearch" id="faqSearch">
                      <option value="title">제목</option>
+                     <option value="category">구분</option>
                  </select>
-                 <input type="text" placeholder="검색" id = "keyword">
+                 <input type="text" placeholder="검색" id = "keyword" onkeyup="enterkey();">
             </div>
             
+            <script>
+            function enterkey(){
+            	if(window.event.keyCode == 13){
+            		var search = $("#faqSearch option:selected").val();
+            		var keyword = $("#keyword").val();
+            		
+            		$.ajax({
+            			url : "searchAjax.fa",
+            			type : "get",
+            			data : {search : search,
+            				    keyword : keyword},
+            			success : function(list){
+            				var result = "";
+            				if(list.length == 0){
+            					result = "<tr><td colspan = '3'>조회된 공지사항이 없습니다.</td></tr>"
+            				}
+            				for(var i in list){
+            					result += "<tr>"
+			    	                    + "<td>" + list[i].faqNo + "</td>"
+			    	                    + "<td>" + list[i].qCategory + "</td>"
+			    	                    + "<td>" + list[i].faqTitle + "</td>"
+    	                        		+ "<tr>";
+            				}
+            				
+            				$("#faqTable tbody").html(result);
+            				$("#pagingArea").css("visibility", "hidden");
+            				
+            				$(function(){
+            					$("#faqTable>tbody>tr").click(function(){
+            						location.href = '<%=contextPath%>/detail.fa?fno=' + $(this).children().eq(0).text();
+            					})
+            				})
+            			}, error:function(){
+            				console.log("ajax통신 실패");
+            			}
+            		
+            		});
+            	}
+            }
+            
+            </script>
+            
+            <!-- jqeury 방식으로 검색 
             <script>
          		$(document).ready(function(){
          			$("#keyword").keyup(function(){
@@ -72,6 +116,7 @@
          			})
          		})
          	</script>
+         	-->
          	
         </div>
 

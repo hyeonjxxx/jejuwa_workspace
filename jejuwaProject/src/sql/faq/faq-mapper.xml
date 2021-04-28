@@ -86,6 +86,28 @@
 		 WHERE FAQ_NO = ? 
 	</entry>
 	
+	<!-- 검색어기능 -->
+	<entry key="searchTitle">
+		SELECT
+		        FAQ_NO
+		      , FAQ_TITLE
+		      , FAQ_CONTENT
+		      , Q_CATEGORY
+		   FROM FAQ
+		  WHERE FAQ_STATUS = 'Y'
+            AND FAQ_TITLE LIKE ?
+	</entry>
+	
+	<entry key="searchCategory">
+		SELECT
+		        FAQ_NO
+		      , FAQ_TITLE
+		      , FAQ_CONTENT
+		      , Q_CATEGORY
+		   FROM FAQ
+		  WHERE FAQ_STATUS = 'Y'
+            AND Q_CATEGORY LIKE ?
+	</entry>
 </properties>
 
 

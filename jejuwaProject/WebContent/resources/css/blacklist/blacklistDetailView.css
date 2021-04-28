@@ -49,7 +49,7 @@ background-color: lightgray; }
     margin-top: 20px;
     margin-left: 5px;
 }
-.btn a{
+.removeBlBtn a{
 text-decoration: none; 
 text-align: center;
 color:white; 
@@ -60,7 +60,11 @@ border-radius:4px;
 }
 #btn1{margin-left: 45px; width:150px;}
 #btn2{margin-left: 380px; width:100px;}
-.btn a:hover{background-color: orange;}
+.removeBlBtn a:hover{
+	background-color: orange;
+	color:white; 
+	text-decoration: none;
+	}
 #pwdBtn{height:30px}
 #pwdBtn>a{
     width:120px;

@@ -75,19 +75,22 @@
 	</entry>
 
 	<entry key="answer">
-		 INSERT 
-		   INTO MYQ
-		      ( 
-		        MYQ_NO
-			    MYQ_ANS_CONTENT
-			  , MYQ_ANS_DATE
-			  )
-		 VALUES 
-		      ( 
-		        ?
-		      , ?
-		      , SYSDATE
-		      )
+		 UPDATE 
+		 	    MYQ
+		    SET
+		        MYQ_ANS_CONTENT =? 
+			  , MYQ_ANS_DATE = SYSDATE
+		  WHERE 
+		        MYQ_NO = ?
+	</entry>
+	
+	<entry key="selectListCountUser">
+		SELECT 
+		   	   COUNT(*) LISTCOUNT
+	  	  FROM 
+	       	   MYQ
+	     WHERE 
+	           MEM_NO = ? 	       	   
 	</entry>
 
 </properties>

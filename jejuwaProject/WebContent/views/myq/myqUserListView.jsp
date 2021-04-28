@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+    pageEncoding="UTF-8"
+    import = "java.util.ArrayList,
+    		  com.kh.myq.model.vo.MYQ,
+    		  com.kh.common.model.vo.PageInfo"%> 
     
     
 <%
-/*
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
-	
+	ArrayList<MYQ> list = (ArrayList<MYQ>)request.getAttribute("list");
+
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
-*/
 %>    
 <!DOCTYPE html>
 <html>
@@ -47,7 +48,7 @@
 </head>
 <body>
 	<%@ include file="../common/customerMenubar.jsp" %>
-	
+	<input type:hidden name="memId" value="<%=login.getMemId() %>" >
 	<div class="outer">
         <input type="hidden" id="is_mobile_auth" value="F">
         <br><br>
@@ -58,19 +59,6 @@
         <br><br>
         
 
-        <div class="area1">
-
-            
-            <div align="right" class="searchArea">
-                <span href="" >
-                    <select name="memberStatus" id="">
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                        <option value="titleContent">제목+내용</option>
-                    </select>
-                    <input type="text" placeholder="검색">
-                </span>              
-            </div>
             
         </div>
 
@@ -79,58 +67,88 @@
             <table align="center" id="memberList">
                 <thead>
                     <tr>
+                        <th width="40" ><input type="checkbox" id="checkAll"></th>
                         <th width="90">번호</th>
-                        <th width="350">제목</th>
+                        <th width="300">제목</th>
+                        <th width="90">작성일</th>
                         <th width="90">답변여부</th>
-                        <th width="150">작성일</th>
                     </tr>
                 </thead>
                 <tbody>
                 	<!-- 조회된 결과가 없을 경우 -->
+                	<% if( list.isEmpty() ){ %>
 	                	<tr>
-	                		<td colspan="5">작성된 공지사항이 없습니다.</td>
+	                		<td colspan="5">작성된 문의사항이 없습니다.</td>
 	                	</tr>
+	                <% }else{ %>
+	                	<% for(MYQ q : list){ %>
 	                    <tr>
-	                        <td></td>
-	                        <td class="ch2"></td>
-	                        <td class="ch2"></td>
-	                        <td class="ch2"></td>
-	                        <td class="ch2"></td>
+	                    	<td><input id="choice_myq" type="checkbox"></td>
+	                        <td class="ch2"><%= q.getMyq_no() %></td>
+	                        <td class="ch2">
+								<% if( q.getP_code() == null){%>
+	                        		<%= q.getMyq_title() %>
+	                        	<% } else { %>
+	                        		<span style="color:red; border: 0px;">[<%= q.getP_code() %>]</span>
+	                        		<%= q.getMyq_title() %>
+	                        	<% } %>
+	                        </td>
+	                        <td class="ch2"><%= q.getMyq_enroll_date() %>
+	                        	
+	                        </td>
+	                        <td class="ch2">
+								<% if( q.getMyq_ans_date() == null){%>
+	                        		미답변
+	                        	<%}else{ %>
+	                        		답변
+	                        	<% } %>
+							</td>
 	                    </tr>
+	                    <% }} %>
                 </tbody>
             </table>
         </div>
 
-       
         <!-- 버튼, 페이징 구역 -->
-        <div class="bottomArea" align="center">
+        <div class="bottomArea">
 
-    
             <!-- 페이징  -->
-            <div class="pagingArea">
-            
-            	<!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
-
+            <div align="center" class="pagingArea">
+                    <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
+                    <% if(currentPage == 1) {%>
                     	<button disabled>&laquo;</button>
 	                    <button disabled>&lt;</button>			
-
-	                    <button onclick="">&laquo;</button>
-	                    <button onclick="">&lt;</button>			
-
-            <!-- 로그인 && 로그인한 사용자가 관리자인 경우 -->
-            <!-- 
-            <div align="right" class="btn">
-                <a href="" id="btn2">등 록</a> 
-            </div>
-             --> 
+                    <%} else {%>
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=<%=currentPage-1%>';">&lt;</button>			
+					<% } %>
+					
+					<% for(int p=startPage; p<=endPage; p++ ) {%>
+					
+						<% if(currentPage == p) {%>
+                        	<button disabled><%= p %></button>
+                        <% }else{ %>				
+	                        <button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=<%= p %>';"><%= p %></button>
+                        <% } %>		
+                	<% } %>
+                	
+                	<!-- 내가 보는 페이지가 마지막 페이지일 경우 >,>> 버튼 disabled -->
+                	<% if(currentPage == maxPage){ %>
+                		<button disabled>&gt;</button>
+	                    <button disabled>&raquo;</button>
+                	<% } else{ %>
+                		<button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=<%=maxPage%>';">&raquo;</button>
+                	<% } %>
+             </div>
+		</div>
 			
 		</div>
             <div class="write_btn">
                 <button type=button style=" text-align: right;" >글작성</button>        
-            </div>
-            
+            </div>=
         </div>
-</div>
+	</div>
     <br><br>
     <%@ include file="../common/footer.jsp" %>
 </body>

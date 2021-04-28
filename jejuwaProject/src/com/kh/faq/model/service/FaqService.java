@@ -100,4 +100,13 @@ public class FaqService {
 		return result;
 	}
 	
+	// 게시판 내 검색기능
+	public ArrayList<Faq> searchFaq(String search, String keyword) {
+		Connection conn = getConnection();
+		ArrayList<Faq> list = new FaqDao().searchFaq(conn, search, keyword);
+		close(conn);
+		return list;
+	}
+
+	
 }

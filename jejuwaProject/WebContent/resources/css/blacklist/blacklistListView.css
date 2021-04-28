@@ -54,7 +54,7 @@ background-color: lightgray; }
 
 
 /* 버튼 */
-.btn a{
+.blackBtn a{
 text-decoration: none; 
 text-align: center;
 color:white; 
@@ -65,7 +65,11 @@ border-radius:4px;
 width:150px;
 
 }
-.btn a:hover{background-color: orange;}
+.blackBtn a:hover{
+	background-color: orange;
+	text-decoration: none; 
+	color:white; 
+	}
 
 
 /* 페이징 구역 */

@@ -41,7 +41,6 @@
 	
 	<div class="cancelOuter">
 		
-                
         <table id="listArea" class="table table-striped"> 
         	<thead>  
 	            <h3>취소내역</h3>
@@ -50,7 +49,7 @@
 	            	<th width=150>주문번호</th>
 	                <th rowspan="2" width=500 >상품</th>
 	                <th rowspan="2" width=200>상세보기</th>
-	                <th rowspan="2" width=200>상태</th>
+	                <!-- <th rowspan="2" width=200>상태</th> -->
 	            </tr>
 	        </thead>
 
@@ -69,13 +68,14 @@
 					<%for(Order o : list){ %>
 						<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo() && o.getcReason() != null){ %>
 		            <tr align="center">
-		                <td><%=o.getOrderNo() %></td>	
-		                <td width=500 ><%=o.getpName() %></td>
-		                <td width=200><a href="<%= contextPath %>/detail.mpc?ono=<%=o.getOrderNo()%>" style="color: orange;">상세보기</a></td>
-		                <td width=200>
-		                    <input id="datepicker" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal" value="다시예약하기"></input>
+		                <td id = "detailOrder" width="100"><%=o.getOrderNo() %></td>	
+		                <td width="500" ><a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=o.getpCode()%>"><%=o.getpName() %></a></td>
+		                <td width="200" id= "detailView"><a href="<%= contextPath %>/detail.mpc?ono=<%=o.getOrderNo()%>" style="color: orange;">상세보기</a></td>
+		                <!-- td width=200>
+		                    <input id="datepicker" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#myModal" value="다시예약하기">
+		                    
 		                </td>
-		
+						-->
 		            </tr>
 		            	<%} %>
 		            	
@@ -84,11 +84,11 @@
 			</tbody>
 
         </table>
-        
+         
         <script>
         	$(function(){
-        		$("#listArea>tbody>tr").click(function(){
-        			location.href = '<%=contextPath%>/detail.mpc?ono=' + $(this).children().eq(0).text();
+        		$("#detailView").click(function(){
+        			location.href = '<%=contextPath%>/detail.mpc?ono=' + $("#detailOrder").text();
         		})
         	})
         

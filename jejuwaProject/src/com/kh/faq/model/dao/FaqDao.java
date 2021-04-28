@@ -222,6 +222,60 @@ public class FaqDao {
 		
 	}
 	
-	
-
+	public ArrayList<Faq> searchFaq(Connection conn, String search, String keyword){
+		ArrayList<Faq> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "";
+		
+		if(search.equals("title")) {
+			sql = prop.getProperty("searchTitle");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Faq(rset.getInt("FAQ_NO"),
+									 rset.getString("FAQ_TITLE"),
+									 rset.getString("FAQ_CONTENT"),
+									 rset.getString("Q_CATEGORY")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+		}
+		
+		// 카테고리로 검색
+		
+		if(search.equals("category")) {
+			sql = prop.getProperty("searchCategory");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Faq(rset.getInt("FAQ_NO"),
+									 rset.getString("FAQ_TITLE"),
+									 rset.getString("FAQ_CONTENT"),
+									 rset.getString("Q_CATEGORY")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+		}
+		
+		return list;
+	}
 }

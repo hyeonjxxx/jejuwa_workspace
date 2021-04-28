@@ -33,6 +33,10 @@ public class MemberListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		String status = request.getParameter("status");
+//		System.out.println(status);
+//		System.out.println("?");
+		
 		// 페이징 처리
 		int memberCount;
 		int currentPage;

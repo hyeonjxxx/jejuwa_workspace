@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.kh.blacklist.model.vo.Blacklist;
 import com.kh.common.model.vo.PageInfo;
+import com.kh.member.model.vo.Member;
 import com.kh.report.model.vo.Report;
 
 public class BlacklistDao {
@@ -188,4 +189,66 @@ public class BlacklistDao {
 		return result;
 	}
 	
+	
+	public ArrayList<Blacklist> searchBlacklist(Connection conn, String searchCtg, String keyword){
+		// select문 => ResultSet(여러 행)
+		ArrayList<Blacklist> list = new ArrayList<>();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = "";
+		
+		// 카테고리 : 아이디 로 검색한 경우
+		if(searchCtg.equals("memId")) {
+			sql=prop.getProperty("searchBlacklistId");
+			
+			try {
+				pstmt = conn.prepareStatement(sql); // 미완성 sql
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new Blacklist(rset.getInt("BLACKLIST_NO"),
+										   rset.getInt("MEM_NO"),
+									       rset.getString("MEM_ID"),
+									       rset.getString("MEM_NAME"),
+									       rset.getDate("RESTRICT_DATE"),
+									       rset.getInt("REPORTED_COUNT")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+		}
+		
+		
+		// 카테고리 : 이름 으로 검색한 경우
+		if(searchCtg.equals("memName")) {
+			sql=prop.getProperty("searchBlacklistName");
+			
+			try {
+				pstmt = conn.prepareStatement(sql); // 미완성 sql
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				while(rset.next()) {
+					list.add(new Blacklist(rset.getInt("BLACKLIST_NO"),
+										   rset.getInt("MEM_NO"),
+									       rset.getString("MEM_ID"),
+									       rset.getString("MEM_NAME"),
+									       rset.getDate("RESTRICT_DATE"),
+									       rset.getInt("REPORTED_COUNT")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+		}
+		
+		return list;
+		
+	}
 }
