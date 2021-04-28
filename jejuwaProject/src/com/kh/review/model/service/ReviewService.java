@@ -1,10 +1,7 @@
 
 package com.kh.review.model.service;
 
-import static com.kh.common.JDBCTemplate.close;
-import static com.kh.common.JDBCTemplate.commit;
-import static com.kh.common.JDBCTemplate.getConnection;
-import static com.kh.common.JDBCTemplate.rollback;
+import static com.kh.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -17,6 +14,7 @@ import com.kh.review.model.vo.Review;
 
 public class ReviewService {
 	
+//	조회게시글 총 갯수 
 	
 	public int selectListCount() {
 		Connection conn = getConnection();
@@ -33,9 +31,9 @@ public class ReviewService {
 	public ArrayList<Review> NoticeReviewList(PageInfo pi) {
 		
 		Connection conn = getConnection();
-		ArrayList<Review> list = new ReviewDao().NoticeReviewList(conn, pi);
+		ArrayList<Review> ctlist = new ReviewDao().NoticeReviewList(conn, pi);
 		close(conn);
-		return list;
+		return ctlist;
 			
 	}
 	

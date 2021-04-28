@@ -54,13 +54,13 @@ public class NoticeReviewServlet extends HttpServlet {
 	
 		
 		// * currentPage : 현재 요청한 페이지
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
 		// * pageLimit : 한 페이지 하단에 보여질 페이지 최대 갯수 (페이지 목록들을 몇 개 단위씩 보여줄건지)
-		pageLimit = 5;
+		pageLimit = 4;
 		
 		// * boardLimit : 한 페이지 내에 보여질 게시글 최대 갯수
-		boardLimit = 10;
+		boardLimit = 5;
 				
 		maxPage = (int)Math.ceil((double)listCount / boardLimit);
 		
@@ -92,13 +92,13 @@ public class NoticeReviewServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		// PageInfo 객체에 담기
+		// PageInfo 한공간에 담기
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		ArrayList<Review> list = new ReviewService().NoticeReviewList(pi);
+		ArrayList<Review> ctlist = new ReviewService().NoticeReviewList(pi);
 		
 		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
+		request.setAttribute("ctlist", ctlist);
 		
 		request.getRequestDispatcher("views/review/noticeReviewPage.jsp").forward(request, response);
 		
