@@ -31,7 +31,8 @@
 	        .myPageResercation{margin: auto;}
 	        .myPageResercation>h3{margin-top: 60px; font-size: 20px; font-weight: bold;}       
 	        th{padding: 10px;}
-	 
+			#orderList *{vertical-align: middle;}
+			#product{color: black; font-weight: bold;}
 	 </style>
 
 </head>
@@ -68,7 +69,10 @@
                        <tr align="center">
                        	<td id = "orderNo<%=i%>" width="100"><%=o.getOrderNo() %></td>
                            
-                           <td width="500"><a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=o.getpCode()%>"><%=o.getpName() %></a></td>
+                           <td width="500">
+                           	<img src="<%=contextPath %>/<%=o.getBasicPath() %>" width="50" height="50" alt="">
+                           	<a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=o.getpCode()%>" id="product"><%=o.getpName() %></a>
+                           </td>
                            <td id = "orderDetail<%=i%>" width="200" style="cursor:pointer; color: orange;">상세보기</td>
                            <td width="200">
                                <div style="margin: 0; padding: 0;"><%=o.getStatus() %></div>

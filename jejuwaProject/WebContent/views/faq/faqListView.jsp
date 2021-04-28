@@ -52,15 +52,18 @@
         <br>
         <h2>FAQ 관리</h2>
         <div class="divisionLine"></div>
+        <br>
+        
+        <br><br>
         
         <div class="area1">
             <!-- FAQ 검색 -->
-            <div align="right" class="searchArea">
+            <div align="right" class="searchArea" style = "margin-left:10px;">
                  <select name="faqSearch" id="faqSearch">
                      <option value="title">제목</option>
                      <option value="category">구분</option>
                  </select>
-                 <input type="text" placeholder="검색" id = "keyword" onkeyup="enterkey();">
+                 <input type="text" placeholder="검색" id = "keyword" onkeyup="enterkey();" >
             </div>
             
             <script>
@@ -125,9 +128,9 @@
             <table align="center" class="faqList" id = "faqTable">
                 <thead>
                     <tr>
-                        <th width="70">번호</th>
-                        <th width="100">구분</th>
-                        <th width="400">제목</th>
+                        <th width="80">번호</th>
+                        <th width="160">구분</th>
+                        <th width="440">제목</th>
                         
                     </tr>
                 </thead>
@@ -165,7 +168,7 @@
     
     <% if(loginUser != null){ %>
         <!--로그인했고, 로그인한 사용자가 admin일 경우 보여지는 div-->                
-        <a href="<%= contextPath %>/enrollForm.fa" id = "writeButton" class="btn btn-secondary btn-sm" >글작성</a>
+        <a href="<%= contextPath %>/enrollForm.fa" id = "writeButton" class="btn btn-secondary btn-sm" style = "margin-left:30px;">글작성</a>
         <br><br>
         
     <%} %>

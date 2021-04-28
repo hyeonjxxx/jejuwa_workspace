@@ -115,7 +115,8 @@ public class OrderDao {
 								   rset.getString("C_REASON"),
 								   rset.getInt("MEM_NO"),
 								   rset.getString("p_code"),
-								   rset.getString("P_NAME")));
+								   rset.getString("P_NAME"),
+								   rset.getString("BASIC_PATH")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
