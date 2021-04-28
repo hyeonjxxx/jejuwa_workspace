@@ -48,23 +48,32 @@
 </head>
 <body>
 	<%@ include file="../common/customerMenubar.jsp" %>
-	<input type:hidden name="memId" value="<%=login.getMemId() %>" >
+	<input type="hidden" id="loginUser" name="memId" value=<%= login.getMemId() %> >
 	<div class="outer">
-        <input type="hidden" id="is_mobile_auth" value="F">
         <br><br>
         <h2>1:1 문의</h2>
-        <div class="divisionLine"></div>
         <br>
         
-        <br><br>
-        
+        <br>
 
-            
-        </div>
+		<!-- 검색창 -->
+		<div class="area1">
+            <div align="right" class="searchArea">
+               
+                <span href="" >
+                    <select name="noticeSearchCtg" id="noticeSearchCtg">
+                        <option value="title">제목</option>
+                        <option value="content">내용</option>
+                        <option value="titleContent">제목+내용</option>
+                    </select>
+                    <input id="keyword" type="text" onkeyup="enterkey();" placeholder="검색">
+                </span>              
+            </div>
+		</div>
 
         <!-- 1:1문의 리스트 테이블 -->
         <div class="listArea">
-            <table align="center" id="memberList">
+            <table align="center" id="memberList"  class="table table-hover">
                 <thead>
                     <tr>
                         <th width="40" ><input type="checkbox" id="checkAll"></th>
@@ -97,10 +106,10 @@
 	                        	
 	                        </td>
 	                        <td class="ch2">
-								<% if( q.getMyq_ans_date() == null){%>
-	                        		미답변
-	                        	<%}else{ %>
+								<% if( q.getMyq_ans_date() != null && q.getMyq_ans_content() != null){%>
 	                        		답변
+	                        	<%}else{ %>
+	                        		미답변
 	                        	<% } %>
 							</td>
 	                    </tr>
@@ -108,19 +117,35 @@
                 </tbody>
             </table>
         </div>
+        <br>
+        <!-- 관리자 게시글 권한 -->
+            <div style="display: block; text-align: right;" class="btn">
+                <button id="btn1">선택삭제</button>
+                <button id="btn2" style="margin-left:30px; margin-right:40px;">글 작성</button> 
+            </div>     
 
         <!-- 버튼, 페이징 구역 -->
         <div class="bottomArea">
 
             <!-- 페이징  -->
             <div align="center" class="pagingArea">
+
+					<!-- 만약 조회된 결과 없을 경우 -->
+					<% if( list.isEmpty() ){ %>
+						<button disabled>&laquo;</button>
+	                    <button disabled>&lt;</button>
+						<button disabled>&gt;</button>
+	                    <button disabled>&raquo;</button>
+					<% } else{%>
+
+
                     <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
                     <% if(currentPage == 1) {%>
                     	<button disabled>&laquo;</button>
 	                    <button disabled>&lt;</button>			
                     <%} else {%>
-	                    <button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=1';">&laquo;</button>
-	                    <button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=<%=currentPage-1%>';">&lt;</button>			
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.umyq?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.umyq?currentPage=<%=currentPage-1%>';">&lt;</button>			
 					<% } %>
 					
 					<% for(int p=startPage; p<=endPage; p++ ) {%>
@@ -128,7 +153,7 @@
 						<% if(currentPage == p) {%>
                         	<button disabled><%= p %></button>
                         <% }else{ %>				
-	                        <button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=<%= p %>';"><%= p %></button>
+	                        <button onclick="location.href='<%=request.getContextPath()%>/list.umyq?currentPage=<%= p %>';"><%= p %></button>
                         <% } %>		
                 	<% } %>
                 	
@@ -137,17 +162,11 @@
                 		<button disabled>&gt;</button>
 	                    <button disabled>&raquo;</button>
                 	<% } else{ %>
-                		<button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=<%=currentPage+1%>';">&gt;</button>
-	                    <button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=<%=maxPage%>';">&raquo;</button>
-                	<% } %>
+                		<button onclick="location.href='<%=request.getContextPath()%>/list.umyq?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=request.getContextPath()%>/list.umyq?currentPage=<%=maxPage%>';">&raquo;</button>
+                	<% }} %>
              </div>
 		</div>
-			
-		</div>
-            <div class="write_btn">
-                <button type=button style=" text-align: right;" >글작성</button>        
-            </div>=
-        </div>
 	</div>
     <br><br>
     <%@ include file="../common/footer.jsp" %>

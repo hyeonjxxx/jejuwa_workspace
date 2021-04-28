@@ -33,6 +33,8 @@ public class MYQUserListViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String memId = request.getParameter("memId");
+		
 		int listCount;     // 현재 총 게시글 횟수
 		int currentPage;   // 현재 페이지(즉, 요청한 페이지)
 		int pageLimit;     // 한 페이지 하단에 보여질 페이징바의 페이지 최대갯수(몇개단위)
@@ -41,10 +43,10 @@ public class MYQUserListViewServlet extends HttpServlet {
 		int maxPage;       // 전체 페이지들 중 가장 마지막 페이지(listCount, boardLimit를 가지고 구할것)
 		int startPage;     // 현재 페이지에 하단에 보여질 페이징 바의 시작수(currentPage, pageLimit를 가지고 구할것)
 		int endPage;       // 현재 페이지에 하단에 보여질 페이징 바의 끝 수 (statPage, pageLimit, maxPage를 가지고 구할 것)
-		
+		System.out.println(memId);
 		// * listCount : 총 게시글 갯수 조회해서 담기
-		listCount = new MYQService().selectListCountUser();
-		
+		listCount = new MYQService().selectListCountUser(memId);
+		System.out.println(listCount);
 		// * currentPage : 현재 요청한 페이지
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
@@ -71,7 +73,7 @@ public class MYQUserListViewServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, MYQLimit, maxPage, startPage, endPage );
 		
 		// 2. 현재 요청한 페이지(currentPage)에 보여질 게시글 리스트 조회해오기
-		ArrayList<MYQ> list = new MYQService().selectListUser(pi);
+		ArrayList<MYQ> list = new MYQService().selectListUser(memId, pi);
 		
 		// 조회된 pi, list 객체 가져오기
 		request.setAttribute("pi", pi);

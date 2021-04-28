@@ -211,7 +211,7 @@ public class MYQDao {
 	 * @param conn
 	 * @return
 	 */
-	public int selectListCountUser(Connection conn) {
+	public int selectListCountUser(Connection conn, String memId) {
 		int listCount = 0;
 		
 		PreparedStatement pstmt = null;
@@ -221,6 +221,9 @@ public class MYQDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memId);
+			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -235,6 +238,44 @@ public class MYQDao {
 		}
 		
 		return listCount;
+	}
+
+	public ArrayList<MYQ> selectListUser(Connection conn, String memId, PageInfo pi) {
+		
+		ArrayList<MYQ> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectListUser");
+				
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, memId);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) { 
+				list.add(new MYQ(rset.getInt("MYQ_NO")
+					            , rset.getString("MYQ_CATEGORY")
+					            , rset.getString("MYQ_TITLE")
+					            , rset.getDate("MYQ_ENROLL_DATE")
+					            , rset.getDate("MYQ_ANS_DATE")
+					            , rset.getString("MEM_ID")
+					            , rset.getString("P_CODE")
+					            , rset.getString("MYQ_ANS_CONTENT")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+		
+		return list;
 	}
 
 

@@ -17,7 +17,7 @@
     
 /* 검색바 */
 .searchArea{
-    width: 680px;
+    width: 700px;
     margin-bottom: 10px;
 }
 .searchArea>span *{
@@ -29,6 +29,7 @@
 }
 
 /* 테이블 */
+/*
 .listArea{text-align:center;}
 .listArea>table{
     border:1px solid lightgray;
@@ -42,15 +43,18 @@
 .listArea>table *{
     border:1px solid rgb(189, 189, 189);
     padding:3px;}
-
-
- /* 버튼 + 페이징 구역 */
- .bottomArea{
-    margin: 15px;
-    margin-left: 50px;
+*/
+.listArea{text-align:center;}
+.listArea>table>tbody>tr:hover{
+    cursor:pointer;
 }
-.bottomArea *{float:left;}
 
+/* 버튼 + 페이징 구역*/
+.bottomArea{
+    margin: 15px;
+    width:700x;
+    /* margin-left: 500x; */
+}
 
 
 
@@ -60,10 +64,19 @@
 
 /* 페이징 구역 */
 .pagingArea{
-    width:300px;
-    margin-left:250px;
+    width:100%;
+    color:white;
+    border:1px solid white;
+    text-align: center;
 }
 .pagingArea *{
+	border-style: none;
+	background-color:white;
     margin-right: 5px;
     margin-top: 9px;
     border-radius:3px;}
+.pagingArea *:hover{
+	color:orange;
+	font-weight:bold;
+	cursor:pointer;
+}

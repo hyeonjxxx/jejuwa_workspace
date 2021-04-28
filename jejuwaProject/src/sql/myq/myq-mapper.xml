@@ -90,8 +90,36 @@
 		   	   COUNT(*) LISTCOUNT
 	  	  FROM 
 	       	   MYQ
+	      JOIN MEMBER USING (MEM_NO)
 	     WHERE 
-	           MEM_NO = ? 	       	   
+	           MEM_ID = ? 	       	   
 	</entry>
-
+	
+	
+	<entry key="selectListUser">
+		SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , Q.*
+		          FROM (
+		                SELECT 
+		                       MYQ_NO
+		                     , MYQ_CATEGORY
+		                     , MYQ_TITLE
+		                     , MYQ_ENROLL_DATE
+		                     , MYQ_ANS_DATE
+		                     , MEM_ID
+                             , P_CODE
+                             , MYQ_ANS_CONTENT
+		                  FROM 
+		                  	   MYQ 
+		                  JOIN MEMBER USING (MEM_NO)
+		                 WHERE MEM_ID = ?
+                      ORDER BY 
+                               MYQ_NO DESC	
+		                ) Q
+		        ) 
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
 </properties>

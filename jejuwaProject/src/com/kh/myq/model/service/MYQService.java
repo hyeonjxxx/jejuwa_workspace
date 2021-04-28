@@ -82,15 +82,28 @@ public class MYQService {
 	 * 사용자 게시글 조회
 	 * @return
 	 */
-	public int selectListCountUser() {
+	public int selectListCountUser(String memId) {
 		
 		Connection conn = getConnection();
 		
-		int listCount = new MYQDao().selectListCountUser(conn);
+		int listCount = new MYQDao().selectListCountUser(conn, memId);
+		
 		close(conn);
 		
 		return listCount;
 		
+	}
+
+
+	public ArrayList<MYQ> selectListUser(String memId, PageInfo pi) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<MYQ> list = new MYQDao().selectListUser(conn, memId, pi);
+		
+		close(conn);
+		
+		return list;
 	}
 	
 }

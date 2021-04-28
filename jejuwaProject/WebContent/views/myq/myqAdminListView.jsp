@@ -45,10 +45,7 @@
         <h2>1:1문의 관리</h2>
         <div class="divisionLine"></div>
         <br>
-        
         <br><br><br>
-        
-
         <div class="area1">
 
             
@@ -127,14 +124,22 @@
                    <!-- 관리자 게시글 권한 -->
             <div style="display: block; text-align: right;" class="btn">
                 <button id="btn1">선택삭제</button>
-                <button id="btn2" style="margin-left:30px; margin-right:40px;
-			">등 록</button> 
+                <button id="btn2" style="margin-left:30px; margin-right:40px;">등 록</button> 
             </div>     
         <!-- 버튼, 페이징 구역 -->
         <div class="bottomArea">
 
             <!-- 페이징  -->
             <div align="center" class="pagingArea">
+            
+            		<!-- 만약 조회된 결과 없을 경우 -->
+					<% if( list.isEmpty() ){ %>
+						<button disabled>&laquo;</button>
+	                    <button disabled>&lt;</button>
+						<button disabled>&gt;</button>
+	                    <button disabled>&raquo;</button>
+					<% } else{%>
+					
                     <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
                     <% if(currentPage == 1) {%>
                     	<button disabled>&laquo;</button>
@@ -160,7 +165,7 @@
                 	<% } else{ %>
                 		<button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=<%=currentPage+1%>';">&gt;</button>
 	                    <button onclick="location.href='<%=request.getContextPath()%>/list.amyq?currentPage=<%=maxPage%>';">&raquo;</button>
-                	<% } %>
+                	<% }} %>
              </div>
 		</div>
     </div>
