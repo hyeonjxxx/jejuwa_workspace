@@ -77,10 +77,10 @@
                 <thead>
                     <tr>
                         <th width="40" ><input type="checkbox" id="checkAll"></th>
-                        <th width="90">번호</th>
-                        <th width="300">제목</th>
-                        <th width="90">작성일</th>
-                        <th width="90">답변여부</th>
+                        <th width="100">번호</th>
+                        <th width="200">제목</th>
+                        <th width="150">작성일</th>
+                        <th width="150">답변여부</th>
                     </tr>
                 </thead>
                 <tbody>
