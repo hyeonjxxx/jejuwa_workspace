@@ -1,6 +1,7 @@
 package com.kh.mypage.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.kh.order.model.service.OrderService;
+import com.kh.order.model.vo.Order;
 
 /**
  * Servlet implementation class myPageMain
@@ -30,9 +34,14 @@ public class MyPageMain extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		ArrayList<Order> list = new OrderService().selectOrderList();
+		
+		request.setAttribute("list", list);
 		
 		RequestDispatcher view = request.getRequestDispatcher("views/mypage/myPageMain.jsp");
 		view.forward(request, response);
+		
+		
 	}
 
 	/**

@@ -82,15 +82,14 @@
                       <%} %>
 				
 				<script>
-                            	$(function(){
-                            		
-                            		$("#orderDetail").click(function(){
-                       		for(int i = 0; i<list.size(); i++){
-                       			$("#orderDetail").append('<div id="orderDetail" + i>');
-                            			})
-                      		})	
-                            	})
-                      </script>
+                   	$(function(){
+                       	$("#orderDetail").click(function(){
+                  			for(int i = 0; i<list.size(); i++){
+                  				$("#orderDetail").append('<div id="orderDetail" + i>');
+                       		})
+                 		})	
+                     })
+                </script>
                 <script>
                 	$(function(){
                 		$("#orderList>tbody>tr>#orderDetail<%=i%>").click(function(){

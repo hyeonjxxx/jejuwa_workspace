@@ -212,9 +212,9 @@
                	<!-- 아이콘영역 -->
                 <div id="icon0">
                     <div class="coupon">
-                            <a href="<%= request.getContextPath() %>/list.mp">
+                            <a href="<%= request.getContextPath() %>/list.mpr">
                                 <img src="<%= request.getContextPath() %>/resources/images/마이페이지.png" width="40px" alt="">
-                            <p><a href = "<%= request.getContextPath() %>/list.mp">마이페이지</a></p>
+                            <p><a href = "<%= request.getContextPath() %>/list.mpr">마이페이지</a></p>
                             </a>
                     </div>
                     <div class="coupon">
