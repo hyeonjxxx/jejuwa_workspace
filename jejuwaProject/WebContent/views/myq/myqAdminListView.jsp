@@ -102,7 +102,7 @@
 	                        	
 	                        </td>
 	                        <td class="ch2">
-								<% if( q.getMyq_ans_date() == null){%>
+								<% if( q.getMyq_ans_date() == null || q.getMyq_ans_content() == null){%>
 	                        		미답변
 	                        	<%}else{ %>
 	                        		답변

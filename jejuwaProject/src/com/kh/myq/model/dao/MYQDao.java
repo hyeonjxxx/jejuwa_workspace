@@ -180,7 +180,7 @@ public class MYQDao {
 	}
 
 	public int answer(Connection conn, String answer, int getMyq_no) {
-		// Insert 
+		// update
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -190,8 +190,8 @@ public class MYQDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, getMyq_no);
-			pstmt.setString(2, answer);
+			pstmt.setString(1, answer);
+			pstmt.setInt(2, getMyq_no);
 			
 			result = pstmt.executeUpdate();
 			
@@ -202,6 +202,38 @@ public class MYQDao {
 		}
 		
 		return result;
+	}
+	
+	
+	/** 
+	 * 사용자 게시글 조회
+	 * @param conn
+	 * @return
+	 */
+	public int selectListCountUser(Connection conn) {
+		int listCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectListCountUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return listCount;
 	}
 
 
