@@ -55,7 +55,7 @@
             <table align="center" id="memberList">
                 <thead>
                     <tr>
-                        <th width="30" ><input type="checkbox"></th>
+                        <th width="30" ><input type="checkbox" name="selectall" onclick="selectAll(this);"></th>
                         <th width="200">아이디</th>
                         <th width="120">이름</th>
                         <th width="220">활동중지일</th>
@@ -72,7 +72,7 @@
                 	<!-- 조회된 결과가 있을 경우 -->
                 		<% for(Blacklist b : list) { %>
 		                    <tr>
-		                        <td><input type="checkbox"></td>
+		                        <td><input type="checkbox" name="selectOne" onclick='checkSelectAll()'></td>
 		                        <td><%= b.getMemId() %></td>
 		                        <td><%= b.getMemName() %></td>
 		                        <td><%= b.getRestrictDate() %></td>
@@ -83,7 +83,7 @@
                 </tbody>
             </table>
             
-            <!-- AJax 키워드 검색 기능(카테고리 : 이름, 아이디, 전화번호) -->
+            <!-- AJax 키워드 검색 기능(카테고리 : 이름, 아이디) -->
             <script>
             	function enterkey(){
             		if(window.event.keyCode == 13){
@@ -108,7 +108,7 @@
             					}
             					for(var i in list){
             						
-            						result += "<tr class='test4'>"
+            						result += "<tr>"
             							   + 	"<td><input type='checkbox'></td>"
         						           +	"<td>" + list[i].memId + "</td>"
         						           +	"<td>" + list[i].memName + "</td>"
@@ -136,8 +136,6 @@
             	}
             </script> 
             
-            
-            
             <script>
             	// 상세보기 요청
             	$(function(){
@@ -145,6 +143,37 @@
             			location.href='<%=contextPath%>/detail.bl?memId=' + $(this).children().eq(1).text();
             		})
             	})
+            	
+            	
+            	// 체크박스 1(낱개로 모두 체크하는 경우 전체 체크 박스 true, 하나라도 체크해제된 경우 전체 체크 박스 false)
+       			function checkSelectAll()  {
+       			  // 전체 체크박스
+       			  const checkboxes 
+       			    = document.querySelectorAll('input[name="selectOne"]');
+       			  // 선택된 체크박스
+       			  const checked 
+       			    = document.querySelectorAll('input[name="selectOne"]:checked');
+       			  // select all 체크박스
+       			  const selectAll 
+       			    = document.querySelector('input[name="selectall"]');
+       			  
+       			  if(checkboxes.length === checked.length)  {
+       			    selectAll.checked = true;
+       			  }else {
+       			    selectAll.checked = false;
+       			  }
+
+       			}
+
+            	// 체크박스 전체 체크, 전체 해제
+       			function selectAll(selectAll)  {
+       			  const checkboxes 
+       			     = document.getElementsByName('selectOne');
+       			  
+       			  checkboxes.forEach((checkbox) => {
+       			    checkbox.checked = selectAll.checked
+       			  })
+       			}
             
             </script>
             

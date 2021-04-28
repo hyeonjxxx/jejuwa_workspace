@@ -60,7 +60,7 @@
             <table align="center" id="memberList">
                 <thead>
                     <tr>
-                        <th width="40" ><input type="checkbox" id="checkAll" onclick="cAll();"></th>
+                        <th width="40" ><input type="checkbox" name="selectall" onclick="selectAll(this);"></th>
                         <th width="90">번호</th>
                         <th width="320">제목</th>
                         <th width="90">조회수</th>
@@ -77,7 +77,7 @@
 	                <!-- 조회된 결과가 있을 경우 -->
 	                	<% for(Notice n : list) {%>
 		                    <tr>
-		                        <td><input id="test3" type="checkbox"></td>
+		                        <td><input type="checkbox" name="selectOne" onclick='checkSelectAll()'></td>
 		                        <td class="ch2"><%= n.getNoticeNo() %></td>
 		                        <td class="ch2"><%= n.getNoticeTitle() %></td>
 		                        <td class="ch2"><%= n.getNoticeCount() %></td>
@@ -88,6 +88,7 @@
                 </tbody>
             </table>
             
+            <!-- AJax 키워드 검색 기능(카테고리 : 제목, 내용, 제목+내용) -->
             <script>
             	function enterkey(){
             		if(window.event.keyCode == 13){
@@ -110,7 +111,7 @@
             						result = "<tr><td colspan='5'>조회된 공지사항이 없습니다.</td></tr>"
             					}
             					for(var i in list){
-            						result += "<tr class='test4'>"
+            						result += "<tr>"
         						       	   + 	"<td><input id='test3' type='checkbox'></td>"
         						      	   +	"<td>" + list[i].noticeNo + "</td>"
         						           +	"<td>" + list[i].noticeTitle + "</td>"
@@ -149,18 +150,36 @@
             	})
             	
             	
+            	// 체크박스 1(낱개로 모두 체크하는 경우 전체 체크 박스 true, 하나라도 체크해제된 경우 전체 체크 박스 false)
+       			function checkSelectAll()  {
+       			  // 전체 체크박스
+       			  const checkboxes 
+       			    = document.querySelectorAll('input[name="selectOne"]');
+       			  // 선택된 체크박스
+       			  const checked 
+       			    = document.querySelectorAll('input[name="selectOne"]:checked');
+       			  // select all 체크박스
+       			  const selectAll 
+       			    = document.querySelector('input[name="selectall"]');
+       			  
+       			  if(checkboxes.length === checked.length)  {
+       			    selectAll.checked = true;
+       			  }else {
+       			    selectAll.checked = false;
+       			  }
+
+       			}
+
+            	// 체크박스 전체 체크, 전체 해제
+       			function selectAll(selectAll)  {
+       			  const checkboxes 
+       			     = document.getElementsByName('selectOne');
+       			  
+       			  checkboxes.forEach((checkbox) => {
+       			    checkbox.checked = selectAll.checked
+       			  })
+       			}
             	
-            	// 일부선택시 상세보기로 넘어가지 않도록
-            	
-            	
-            	// 체크박스 : 전체선택
-       			function cAll(){
-                		if($("#checkAll").prop("checked")){
-                			$("input[type=checkbox]").prop("checked", true);
-                		}else{
-                			$("input[type=checkbox]").prop("checked", false);
-                		}
-               	}
              </script>  	
              
              
