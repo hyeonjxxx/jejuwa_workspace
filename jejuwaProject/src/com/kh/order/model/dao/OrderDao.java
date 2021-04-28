@@ -307,4 +307,73 @@ public class OrderDao {
 		
 		return result;
 	}
+	
+	public ArrayList<Order> searchOrder(Connection conn, String search, String keyword){
+		
+		ArrayList<Order> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = "";
+		
+		// 주문번호로 검색했을 때
+		if(search.equals("orderNo")) {
+			sql = prop.getProperty("searchOrderNo");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Order(rset.getInt("ORDER_NO"),
+									   rset.getDate("ORDER_DATE"),
+									   rset.getInt("AMOUNT"),
+									   rset.getString("TRAVEL_DATE"),
+									   rset.getString("TRAVEL_USER"),
+									   rset.getString("TRAVEL_EMAIL"),
+									   rset.getString("STATUS"),
+									   rset.getInt("MEM_NO"),
+									   rset.getString("P_CODE"),
+									   rset.getString("p_NAME")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+		}
+		
+		if(search.equals("memNo")) {
+			sql = prop.getProperty("searchMemNo");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) {
+					list.add(new Order(rset.getInt("ORDER_NO"),
+									   rset.getDate("ORDER_DATE"),
+									   rset.getInt("AMOUNT"),
+									   rset.getString("TRAVEL_DATE"),
+									   rset.getString("TRAVEL_USER"),
+									   rset.getString("TRAVEL_EMAIL"),
+									   rset.getString("STATUS"),
+									   rset.getInt("MEM_NO"),
+									   rset.getString("P_CODE"),
+									   rset.getString("p_NAME")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+		}
+		return list;
+		
+	}
 }
