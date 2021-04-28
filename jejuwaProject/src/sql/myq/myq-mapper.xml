@@ -26,6 +26,7 @@
 		                     , MYQ_ANS_DATE
 		                     , MEM_ID
                              , P_CODE
+                             , MYQ_ANS_CONTENT
 		                  FROM 
 		                  	   MYQ 
 		                  JOIN MEMBER USING (MEM_NO)

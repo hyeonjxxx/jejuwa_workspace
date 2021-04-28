@@ -37,7 +37,7 @@ public class MYQ {
 	
 
 	public MYQ(int myq_no, String myq_category, String myq_title, Date myq_enroll_date, Date myq_ans_date,
-			String mem_id, String p_code) {
+			String mem_id, String p_code, String myq_ans_content) {
 		super();
 		this.myq_no = myq_no;
 		this.myq_category = myq_category;
@@ -46,6 +46,7 @@ public class MYQ {
 		this.myq_ans_date = myq_ans_date;
 		this.mem_id = mem_id;
 		this.p_code = p_code;
+		this.myq_ans_content = myq_ans_content;
 	}
 	
 	

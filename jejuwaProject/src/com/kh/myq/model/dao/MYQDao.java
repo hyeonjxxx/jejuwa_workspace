@@ -91,7 +91,8 @@ public class MYQDao {
 				            , rset.getDate("MYQ_ENROLL_DATE")
 				            , rset.getDate("MYQ_ANS_DATE")
 				            , rset.getString("MEM_ID")
-				            , rset.getString("P_CODE")));
+				            , rset.getString("P_CODE")
+				            , rset.getString("MYQ_ANS_CONTENT")));
 			
 			
 			}
