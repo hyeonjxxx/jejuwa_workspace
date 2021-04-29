@@ -36,14 +36,14 @@
             <div id="panel">
                 <img src="<%=contextPath%>/resources/images/jejuMap.png" alt="jejuMap" width="350" >
            
-                <button class="ss">성산/우도</button>
-                <button class="hd">함덕/구좌</button>
-                <button class="jj">제주시</button>
-                <button class="aw">애월</button>
-                <button class="hl">한림/협재</button>
-                <button class="jm">중문</button>
-                <button class="sg">서귀포</button>
-                <button class="ps">표선</button>                
+                <button class="ss" name="SS">성산/우도</button>
+                <button class="hd" name="HD">함덕/구좌</button>
+                <button class="jj" name="JJ">제주시</button>
+                <button class="aw" name="AW">애월</button>
+                <button class="hl" name="HL">한림/협재</button>
+                <button class="jm" name="JM">중문</button>
+                <button class="sg" name="SG">서귀포</button>
+                <button class="ps" name="PS">표선</button>                
             </div>
 
             <div class="divisionLine"></div>
@@ -57,12 +57,15 @@
 	        });
         });
         </script>
+        
+        <!-- 지역코드 넘겨서 넘긴 값으로 조회되롞!! SQL문 1개로   -->
         <script type="text/javascript">
-        $(".ss").click(function(){
+        $("#panel>button").click(function(){
         	$.ajax({
         		url:'search_SS.pdt',
         		method: 'post',
-        		success:function(list){
+        		data:{ 
+        		},success:function(list){
         			console.log(list);
  
         			var result = "";

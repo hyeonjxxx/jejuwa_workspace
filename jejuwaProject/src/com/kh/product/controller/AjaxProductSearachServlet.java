@@ -39,10 +39,7 @@ public class AjaxProductSearachServlet extends HttpServlet {
 	
 		ArrayList<Product> list = new ProductService().searchOptions(searchOp, keyword);
 		
-		
-		for(Product p : list) {
-		System.out.println(p);
-	}
+	
 		
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(list, response.getWriter());

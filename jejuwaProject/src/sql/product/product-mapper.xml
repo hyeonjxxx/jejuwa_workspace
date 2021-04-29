@@ -214,7 +214,7 @@
 		  ORDER BY P_CODE DESC       	
 	</entry>
 	
-	<entry key="selectListCount">
+	<entry key="selectListCount_TR">
 		SELECT COUNT(*) LISTCOUNT 
 			   FROM PRODUCT	
 		 WHERE THEME_CODE = 'TR'  

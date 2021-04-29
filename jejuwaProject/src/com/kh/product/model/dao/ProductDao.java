@@ -672,7 +672,7 @@ public class ProductDao {
 				}
 			}
 			
-			System.out.println(list);
+			//System.out.println(list);
 			return list;
 		}		
 		
@@ -704,6 +704,7 @@ public class ProductDao {
 					close(pstmt);
 				}
 				
+				System.out.println(list);
 				return list;
 		}	
 		

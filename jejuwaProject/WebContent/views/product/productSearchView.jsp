@@ -22,28 +22,28 @@
 
 	
         <div class="searchBar">     
-            <form action="" id="searchForm" method="post">
+            
                 <div id="searchBox">
-                    <input type="search" id="keyword" placeholder="[추천상품]제주시티투어" onkeyup="searchGo();">
+                    <input type="search" id="keyword" placeholder="[추천상품]제주시티투어"">
+                    <button type="button"><img  onclick="searchGo();" src="<%=contextPath%>/resources/images/loupe_c.png" width="30"></button>
                 </div>
                     
                 <div id="searchBtn">
-                    <button type="sumbit"><img src="<%=contextPath%>/resources/images/loupe_c.png" width="30"></button>
                 </div>              
-            </form>
+            
             <div class="divisionLine"></div>
         </div>
         
 		<!--리스트에 담겨있는하는데 불러서 오질 못하네... 그리고 console엔 있다가 없어짐 왜????? -->
 		<script>
             function searchGo(){
-            	if(window.event.keyCode == 13){
+            	//if(window.event.keyCode == 13){
 	            	var keyword = $("#keyword").val();
 	           		
 	            	console.log(keyword);
 	           		
            			$.ajax({
-           				url:"<%=contextPath%>/searchUserAjax.pdt",
+           				url:"searchUserAjax.pdt",
            				type:"get",
            				data:{ keyword:keyword
            				}, success:function(list){
@@ -60,9 +60,9 @@
         					      	    + "<div class='pdtPhoto'>" + "<img src='" + list[i].basicPath  + "' style='width: 220px; height: 147px'>" + "</div>"
         					            + "<div class='pdtInfo'>" 
         					            + "<p class='pdtName'>" + list[i].pName + "</p>"
-        					            + "<p class='pdtPrice'>" + list[i].prices + "원</p>"
+        					            + "<p class='pdtPrice'>" + list[i].price + "원</p>"
        						            + "</div>" 
-       						            + "</li>;"
+       						            + "</li>"
            					}
             					
            					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
@@ -79,7 +79,7 @@
            					console.log("ajax통신 실패!!");
            				}
            			});
-           		} 
+           		//} 
             }
         </script>
             

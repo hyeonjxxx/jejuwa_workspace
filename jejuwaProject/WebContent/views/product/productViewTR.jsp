@@ -95,7 +95,7 @@
 			                      <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 165px"></div>
 			                       <div class="pdtInfo">
 			                           <p class="pdtName"><%=p.getpName() %></p>
-			                           <p class="pdtPrice"><%=p.getPrice() %>원</p>
+			                           <p class="pdtPrice"><%=p.getPrice() %>원<	/p>
 			                         </div>
 			                       </a>
 		                     </div>
@@ -125,8 +125,8 @@
                     	<button disabled>&laquo;</button>
 	                    <button disabled>&lt;</button>			
                     <%} else {%>
-	                    <button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=1';">&laquo;</button>
-	                    <button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%=currentPage-1%>';">&lt;</button>			
+	                    <button onclick="location.href='<%=contextPath%>/trView.pdt?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=contextPath%>/trView.pdt?currentPage=<%=currentPage-1%>';">&lt;</button>			
 					<% } %>
 					
 					<% for(int p=startPage; p<=endPage; p++ ) {%>
@@ -134,7 +134,7 @@
 						<% if(currentPage == p) {%>
                         	<button disabled><%= p %></button>
                         <% }else{ %>				
-	                        <button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%= p %>';"><%= p %></button>
+	                        <button onclick="location.href='<%=contextPath%>/trView.pdt?currentPage=<%= p %>';"><%= p %></button>
                         <% } %>		
                 	<% } %>
                 	
@@ -143,8 +143,8 @@
                 		<button disabled>&gt;</button>
 	                    <button disabled>&raquo;</button>
                 	<% } else{ %>
-                		<button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%=currentPage+1%>';">&gt;</button>
-	                    <button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%=maxPage%>';">&raquo;</button>
+                		<button onclick="location.href='<%=contextPath%>/trView.pdt?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=contextPath%>/trView.pdt?currentPage=<%=maxPage%>';">&raquo;</button>
                 	<% } %>
              	</div>
     		</div>
