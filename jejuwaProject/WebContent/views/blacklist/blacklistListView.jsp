@@ -56,27 +56,25 @@
                 <thead>
                     <tr>
                         <th width="30" ><input type="checkbox" name="selectall" onclick="selectAll(this);"></th>
-                        <th width="200">아이디</th>
-                        <th width="120">이름</th>
-                        <th width="220">활동중지일</th>
-                        <th width="120">누적 신고수</th>
+                        <th width="230">아이디</th>
+                        <th width="150">이름</th>
+                        <th width="250">활동중지일</th>
                     </tr>
                 </thead>
                 <tbody>
                 	<!-- 조회된 결과가 없을 경우 -->
                 	<% if(list.isEmpty()){ %>
                 		<tr>
-                			<td colspan="5">조회된 회원이 없습니다.</td>
+                			<td colspan="4">조회된 회원이 없습니다.</td>
                 		</tr>
                 	<% } else{%>
                 	<!-- 조회된 결과가 있을 경우 -->
                 		<% for(Blacklist b : list) { %>
 		                    <tr>
-		                        <td><input type="checkbox" name="selectOne" onclick='checkSelectAll()'></td>
+		                        <td><input type="checkbox" id="selectOne" name="selectOne" onclick='checkSelectAll()'></td>
 		                        <td><%= b.getMemId() %></td>
 		                        <td><%= b.getMemName() %></td>
 		                        <td><%= b.getRestrictDate() %></td>
-		                        <td><%= b.getReportedCount() %></td>
 		                    </tr>
 	                    <% } %>
                     <% } %>
@@ -104,16 +102,15 @@
             					
             					var result = "";
             					if(list.length == 0){
-            						result = "<tr><td colspan='5'>조회된 회원이 없습니다.</td></tr>"
+            						result = "<tr><td colspan='4'>조회된 회원이 없습니다.</td></tr>"
             					}
             					for(var i in list){
             						
             						result += "<tr>"
-            							   + 	"<td><input type='checkbox'></td>"
+            							   + 	"<td><input type='checkbox' id='selectOne' name='selectOne' onclick='checkSelectAll()'></td>"
         						           +	"<td>" + list[i].memId + "</td>"
         						           +	"<td>" + list[i].memName + "</td>"
         						           +	"<td>" + list[i].restrictDate + "</td>"
-        						           +	"<td>" + list[i].reportedCount + "</td>"
         						           + "</tr>";
             					}
             					
@@ -121,13 +118,16 @@
             					$("#memberList tbody").html(result);
             					$(".pagingArea").css("visibility", "hidden");
             					
-            					$(function(){
-            	            		$("#memberList>tbody>tr").click(function(){
+            					// 상세보기 요청
+            					$("#memberList>tbody>tr").click(function(e){
+            	            		if(e.target.type == 'checkbox'){
+            	            			return;
+            	            		}else{
             	            			location.href='<%=contextPath%>/detail.bl?memId=' + $(this).children().eq(1).text();
-            	            		})
-            	            	})
+            	            		}
+            	            	});
             					
-            					
+            	            		
             				}, error:function(){
             					console.log("ajax통신 실패");
             				}
@@ -138,11 +138,13 @@
             
             <script>
             	// 상세보기 요청
-            	$(function(){
-            		$("#memberList>tbody>tr").click(function(){
+            	$("#memberList>tbody>tr").click(function(e){
+            		if(e.target.type == 'checkbox'){
+            			return;
+            		}else{
             			location.href='<%=contextPath%>/detail.bl?memId=' + $(this).children().eq(1).text();
-            		})
-            	})
+            		}
+            	});
             	
             	
             	// 체크박스 1(낱개로 모두 체크하는 경우 전체 체크 박스 true, 하나라도 체크해제된 경우 전체 체크 박스 false)
