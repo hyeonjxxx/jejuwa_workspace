@@ -88,7 +88,7 @@
 					            <p style="font-size: 20px; font-weight: bold;">할인적용</p> <br>
 					            <select name="" id="" class="form-control">
 				                	<option value="" selected>쿠폰선택안함</option>
-					                <option value=""><%=p.getCpnName() %></option>
+					                <option value="<%=p.getCpnName()%>"><%=p.getCpnName() %></option>
 					            </select>
 					            <br><br>
 					            <hr>

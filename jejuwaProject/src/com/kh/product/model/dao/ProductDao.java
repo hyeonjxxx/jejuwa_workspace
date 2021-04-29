@@ -669,8 +669,8 @@ public class ProductDao {
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, memNo);
-				pstmt.setString(2, pCode);
+				pstmt.setString(1, pCode);
+				pstmt.setInt(2, memNo);
 				
 				result = pstmt.executeUpdate();
 				

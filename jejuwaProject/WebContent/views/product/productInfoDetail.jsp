@@ -71,10 +71,11 @@
 						
 						
                         <div class="icon" align="right">
-                            <a id="kakao-link-btn" href="javascript:sendLink()"><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></button>
-                            </a>
+                            <a id="kakao-link-btn" href="javascript:sendLink()"><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></a>
                            
-                            <% if(count == 0){ %>
+                           	<% if(loginUser == null){ %>
+                           		<img id="heart" onclick="likeProduct();" src="<%=contextPath %>/resources/images/emptyHeart.png" alt="like" width="33">
+                            <% }else if(count == 0){ %>
                             	<img id="heart" onclick="likeProduct();" src="<%=contextPath %>/resources/images/emptyHeart.png" alt="like" width="33">
                             <% }else{ %>
                             	<img id="heart" onclick="deleteProduct();" src="<%=contextPath %>/resources/images/fullHeart.png" alt="like" width="33">
@@ -153,11 +154,6 @@
 						  //]]>
 						</script>
 
-
-
-						 
-                        
-						
 						
                     </div>
 						

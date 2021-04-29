@@ -43,9 +43,15 @@ public class ProductInfoDetailServlet extends HttpServlet {
 		
 		//System.out.println(p);
 		//System.out.println(list);
-		int memNo = ((Member)request.getSession().getAttribute("loginUser")).getMemNo();
+		
+		int memNo = 0;
+		if(request.getSession().getAttribute("loginUser") != null) {
+			memNo = ((Member)request.getSession().getAttribute("loginUser")).getMemNo();		
+		}
+		
 		int count = new ProductService().likeCount(pCode, memNo);
 		
+		System.out.println(count);
 		Product p = new ProductService().selectInfoProduct(pCode);
 			
 		request.setAttribute("p", p);

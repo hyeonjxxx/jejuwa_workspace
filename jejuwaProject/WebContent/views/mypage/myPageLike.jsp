@@ -49,7 +49,11 @@
         <h3>좋아요</h3>
         <hr>
         <%if(list.isEmpty()){ %>
-        	좋아요 상품이 없습니다.
+        	<ul class="gallery" align = "center">
+				<li>
+	        		좋아요 상품이 없습니다.
+	  			</li>
+			</ul>
         <%}else{ %>	
 	        <%for(Like l : list){ %>
 	        	<%if(loginUser != null && loginUser.getMemNo()==l.getMemNo()){ %>		

@@ -46,7 +46,7 @@
                    
             </div>
          	
-         	<!-- jquery 방식을 통한 검색
+         	<!-- jquery 방식을 통한 검색-->
          	<script>
          		$(document).ready(function(){
          			$("#keyword").keyup(function(){
@@ -57,7 +57,7 @@
          			})
          		})
          	</script>
-         	-->
+         	
          	
             <br>
             <table  id="productListView" border="1">
@@ -204,6 +204,7 @@
 	                                	})
 			                        </script>
 			                        
+			                        <!--  
 			                        <script>
 							       		function enterkey(){
 							       			// 엔터키 눌렀을 때 실행
@@ -254,7 +255,7 @@
 							       			}
 							       		}
 							         </script>
-			                        
+			                        -->
 	                              
 	                               
 	                            </div>
