@@ -138,27 +138,47 @@ public class ProductService {
 		return listCount;
 	}
 
-	public ArrayList<Product> selectThList_TT() {
+	public ArrayList<Product> selectThList_TT(PageInfo pi) {
 		Connection conn = getConnection();
-		ArrayList<Product> list = new ProductDao().selectThList_TT(conn);
+		ArrayList<Product> list = new ProductDao().selectThList_TT(conn, pi);
 		close(conn);
 		return list;
 	}		
-		
-		
-	public ArrayList<Product> selectThList_AY() {
+
+	public int selectListCount_TT() {
 		Connection conn = getConnection();
-		ArrayList<Product> list = new ProductDao().selectThList_AY(conn);
+		int listCount = new ProductDao().selectListCount_TT(conn);
+		close(conn);
+		return listCount;
+	}	
+		
+	public ArrayList<Product> selectThList_AY(PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().selectThList_AY(conn, pi);
 		close(conn);
 		return list;
-	}		
-		
-	public ArrayList<Product> selectThList_FD() {
+	}	
+	
+	public int selectListCount_AY() {
 		Connection conn = getConnection();
-		ArrayList<Product> list = new ProductDao().selectThList_FD(conn);
+		int listCount = new ProductDao().selectListCount_AY(conn);
+		close(conn);
+		return listCount;
+	}	
+		
+	public ArrayList<Product> selectThList_FD(PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().selectThList_FD(conn, pi);
 		close(conn);
 		return list;
 	}
+
+	public int selectListCount_FD() {
+		Connection conn = getConnection();
+		int listCount = new ProductDao().selectListCount_FD(conn);
+		close(conn);
+		return listCount;
+	}	
 	
 	// local로 조회
 	public ArrayList<Product> selectThList_SS() {
@@ -187,6 +207,7 @@ public class ProductService {
 		close(conn);
 		return list;
 	}
+	
 	
 	
 	

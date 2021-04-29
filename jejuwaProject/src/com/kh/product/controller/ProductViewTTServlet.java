@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
@@ -32,8 +33,38 @@ public class ProductViewTTServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Product> list = new ProductService().selectThList_TT();
+		int listCount;		
+		int currentPage;	
+		int pageLimit;		
+		int boardLimit;		
 		
+
+		int maxPage;		
+		int startPage;		
+		int endPage;		
+		
+		listCount = new ProductService().selectListCount_TT();
+		
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		System.out.println(currentPage);
+		
+		pageLimit = 5;
+		
+		boardLimit = 9;
+				
+		maxPage = (int)Math.ceil((double)listCount / boardLimit);
+		
+		
+		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
+		endPage = startPage + pageLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		ArrayList<Product> list = new ProductService().selectThList_TT(pi);
+		
+		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/product/productViewTT.jsp").forward(request, response);
 

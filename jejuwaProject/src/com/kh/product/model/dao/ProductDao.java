@@ -463,7 +463,7 @@ public class ProductDao {
 		}
 
 
-		public ArrayList<Product> selectThList_TT(Connection conn) {
+		public ArrayList<Product> selectThList_TT(Connection conn, PageInfo pi) {
 			ArrayList<Product> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -471,6 +471,8 @@ public class ProductDao {
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, (pi.getCurrentPage() -1 ) * pi.getBoardLimit()+1);
+				pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
 				rset = pstmt.executeQuery();
 
 				while(rset.next()) {
@@ -494,8 +496,34 @@ public class ProductDao {
 			
 			return list;
 		}
+		
+		public int selectListCount_TT(Connection conn) {
+			int listCount = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String sql = prop.getProperty("selectListCount_TT");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) { //무조건 한행을 움직여줘야 게시글 갯수알수있음
+					listCount = rset.getInt("LISTCOUNT"); //별칭으로 조회
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			return listCount;
+		}				
 
-		public ArrayList<Product> selectThList_AY(Connection conn) {
+		public ArrayList<Product> selectThList_AY(Connection conn, PageInfo pi) {
 			ArrayList<Product> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -503,6 +531,8 @@ public class ProductDao {
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, (pi.getCurrentPage() -1 ) * pi.getBoardLimit()+1);
+				pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
 				rset = pstmt.executeQuery();
 
 				while(rset.next()) {
@@ -526,8 +556,34 @@ public class ProductDao {
 			
 			return list;
 		}
+		
+		public int selectListCount_AY(Connection conn) {
+			int listCount = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String sql = prop.getProperty("selectListCount_AY");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) { //무조건 한행을 움직여줘야 게시글 갯수알수있음
+					listCount = rset.getInt("LISTCOUNT"); //별칭으로 조회
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			return listCount;
+		}		
 
-		public ArrayList<Product> selectThList_FD(Connection conn) {
+		public ArrayList<Product> selectThList_FD(Connection conn, PageInfo pi) {
 			ArrayList<Product> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
@@ -535,6 +591,8 @@ public class ProductDao {
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, (pi.getCurrentPage() -1 ) * pi.getBoardLimit()+1);
+				pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
 				rset = pstmt.executeQuery();
 
 				while(rset.next()) {
@@ -558,6 +616,32 @@ public class ProductDao {
 			
 			return list;
 		}
+		
+		public int selectListCount_FD(Connection conn) {
+			int listCount = 0;
+			
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String sql = prop.getProperty("selectListCount_FD");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) { //무조건 한행을 움직여줘야 게시글 갯수알수있음
+					listCount = rset.getInt("LISTCOUNT"); //별칭으로 조회
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			}
+			return listCount;
+		}				
 		
 		//지역으로 검색
 		public ArrayList<Product> selectThList_SS(Connection conn) {
@@ -677,7 +761,8 @@ public class ProductDao {
 		}		
 		
 		// 사용자 검색기능
-		public ArrayList<Product> searchKeyword(Connection conn, String keyword) {
+		public ArrayList<Product> searchKeyword(Connection conn, String keyword)
+				{
 			ArrayList<Product>list = new ArrayList<>();
 			ResultSet rset = null;
 			PreparedStatement pstmt = null;
@@ -707,7 +792,24 @@ public class ProductDao {
 				
 				return list;
 		}	
-		
+
+		/*
+		 * public int selectListCount_User(Connection conn) { int listCount = 0;
+		 * 
+		 * PreparedStatement pstmt = null; ResultSet rset = null;
+		 * 
+		 * String sql = prop.getProperty("selectListCount_User");
+		 * 
+		 * try { pstmt = conn.prepareStatement(sql); rset = pstmt.executeQuery();
+		 * 
+		 * if(rset.next()) { //무조건 한행을 움직여줘야 게시글 갯수알수있음 listCount =
+		 * rset.getInt("LISTCOUNT"); //별칭으로 조회
+		 * 
+		 * }
+		 * 
+		 * } catch (SQLException e) { e.printStackTrace(); }finally { close(rset);
+		 * close(pstmt); } return listCount; }
+		 */
 		
 		
 		// 좋아요 카운트
@@ -771,6 +873,8 @@ public class ProductDao {
 			return p;
 				
 		}
+
+
 
 
 }

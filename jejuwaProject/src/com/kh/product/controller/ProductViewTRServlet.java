@@ -50,7 +50,7 @@ public class ProductViewTRServlet extends HttpServlet {
 		
 		pageLimit = 5;
 		
-		boardLimit = 6;
+		boardLimit = 9;
 				
 		maxPage = (int)Math.ceil((double)listCount / boardLimit);
 		
@@ -63,10 +63,9 @@ public class ProductViewTRServlet extends HttpServlet {
 		
 		// PageInfo 객체에 담기
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		request.setAttribute("pi", pi);
-		
-		
 		ArrayList<Product> list = new ProductService().selectThList_TR(pi);
+		
+		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/product/productViewTR.jsp").forward(request, response);
 

@@ -148,7 +148,7 @@
 	                    <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
 	                    </div>
 	                    
-			            <%-- <script>
+			            <script>
 				       			
 				    	    	<!-- 항목 삭제 --> 
 				    	    	// 1. 체크된 항목이 한개 이상인지 확인
@@ -174,13 +174,13 @@
 						    		}
 					    		}
 					    		
-				       			function deletePwd(){
+				       		 	<%-- function deletePwd(){
 				       				if($("input[name=adminPwd]").val() != <%= loginUser.getMemPwd()%>){
 				       					alert("관리자 비밀번호가 일치하지 않습니다.");
 				       					return false;
 				       				}
-				       			}
-				       	</script>	          --%>
+				       			}  --%>
+				       	</script>	         
 						</form>
 	                    
 	                </div>
@@ -243,7 +243,7 @@
 	                		 <% for(Product p : list){ %>
 	                		 	<tr>
 	                            <input type="hidden" name="pcode" value="<%=p.getpCode()%>">       		 	
-	                   			    <td><input type="checkbox" class="check_single"></td>
+	                   			    <td><input type="checkbox" class="check_single" name="L"></td>
 									<td><%= p.getpCode()  %></td>
 									<td><%= p.getpName() %></td>
 									<td><%= p.getPrice() %></td>

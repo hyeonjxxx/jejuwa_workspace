@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
@@ -31,9 +32,38 @@ public class ProductViewAYServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int listCount;		
+		int currentPage;	
+		int pageLimit;		
+		int boardLimit;		
 		
-		ArrayList<Product> list = new ProductService().selectThList_AY();
+
+		int maxPage;		
+		int startPage;		
+		int endPage;		
 		
+		listCount = new ProductService().selectListCount_AY();
+		
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		
+		pageLimit = 5;
+		
+		boardLimit = 9;
+				
+		maxPage = (int)Math.ceil((double)listCount / boardLimit);
+		
+		
+		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
+		endPage = startPage + pageLimit - 1;
+		if(endPage > maxPage) {
+			endPage = maxPage;
+		}
+		
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		ArrayList<Product> list = new ProductService().selectThList_AY(pi);
+		
+		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/product/productViewAY.jsp").forward(request, response);
 

@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo" %>
 <%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
-		
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();	
 %>
 <!DOCTYPE html>
 <html>
@@ -113,7 +118,42 @@
 		        	
 		        </script>
 
-	     
+
+	        <!-- 페이징 구역 -->
+	        <div class="bottomArea">
+	            <!-- 페이징  -->
+	            <div align="center" class="pagingArea">
+	                    
+                    <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
+                    <% if(currentPage == 1) {%>
+                    	<button disabled>&laquo;</button>
+	                    <button disabled>&lt;</button>			
+                    <%} else {%>
+	                    <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%=currentPage-1%>';">&lt;</button>			
+					<% } %>
+					
+					<!-- 마지막페이지는   endpage보다 작다 -->
+					<% for(int p=startPage; p<=endPage; p++ ) {%>
+					
+						<% if(currentPage == p) {%>
+                        	<button disabled><%= p %></button>
+                        <% }else{ %>				
+	                        <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%= p %>';"><%= p %></button>
+                        <% } %>		
+                	<% } %>
+                	
+                	<!-- 내가 보는 페이지가 마지막 페이지일 경우 >,>> 버튼 disabled -->
+                	<% if(currentPage == maxPage){ %>
+                		<button disabled>&gt;</button>
+	                    <button disabled>&raquo;</button>
+                	<% } else{ %>
+                		<button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%=maxPage%>';">&raquo;</button>
+                	<% } %>
+             	</div>
+    		</div>
+    			     
 
 
 		</div>

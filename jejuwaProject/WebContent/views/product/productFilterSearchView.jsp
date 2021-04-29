@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product" %>
 <%
-	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");	
 %>       
 <!DOCTYPE html>
 <html>
@@ -97,38 +97,39 @@
                  -->
 
 
-		<div class="pdt_wrap">
-             <ul class="pdtList">
-        	<%
-        		for (Product p : list) {
-        	%> 
-                        <li class=pdtArea>
-                        <input type="hidden" value="<%=p.getpCode()%>">
-                            <div class="pdtBox">
-                                <a >
-                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px; height: 165px;"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName"><%=p.getpName() %></p>
-                                        <p class="pdtPrice"><%=p.getPrice() %>원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-			<% } %>		
-			</ul>
+		        <div class="pdt_wrap">
+		             <ul class="pdtList">
+		        	<%for(Product p : list) {%> 
+		             	<li class=pdtArea>
+		                  <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
+		                   <div class="pdtBox">
+			                     <a>
+			                      <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 165px"></div>
+			                       <div class="pdtInfo">
+			                           <p class="pdtName"><%=p.getpName() %></p>
+			                           <p class="pdtPrice"><%=p.getPrice() %>원</p>
+			                         </div>
+			                       </a>
+		                     </div>
+		                  </li>
+					<% } %>		
+					</ul>
+		        </div>
+	   		 </div>
+		        
+		        <script>
+		        	$(function(){
+		        		$(".pdtArea").click(function(){
+		        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+		        		})	
+		        	})
+		        	
+		        </script>
 
-        </div>
-        
-        <script>
-        	$(function(){
-        		$(".pdtArea").click(function(){
-        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
-        		})	
-        	})
-        	
-        </script>
 
-        </div>
+		</div>
+    </div>	
+	<%@ include file="../common/footer.jsp" %>
 
 
 </body>

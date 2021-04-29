@@ -240,9 +240,9 @@
 	</div><br><br>
     <div class="navWrap" align="center">
         <div class="menu"><a href="<%= request.getContextPath()%>/trView.pdt?currentPage=1">투어</a></div>
-        <div class="menu"><a href="<%= request.getContextPath() %>/ttView.pdt">티켓</a></div>
-        <div class="menu"><a href="<%= request.getContextPath() %>/ayView.pdt">액티비티</a></div>
-        <div class="menu"><a href="<%= request.getContextPath() %>/fdView.pdt">맛집</a></div>
+        <div class="menu"><a href="<%= request.getContextPath() %>/ttView.pdt?currentPage=1">티켓</a></div>
+        <div class="menu"><a href="<%= request.getContextPath() %>/ayView.pdt?currentPage=1">액티비티</a></div>
+        <div class="menu"><a href="<%= request.getContextPath() %>/fdView.pdt?currentPage=1">맛집</a></div>
         <div class="menu"><a href="<%= request.getContextPath() %>/list.uno?currentPage=1">고객센터</a></div>
 
     
