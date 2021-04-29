@@ -43,6 +43,7 @@ public class CouponService {
 	public Coupon selectCoupon(int memNo) {
 		Connection conn = getConnection();
 		Coupon c = new CouponDao().selectCoupon(conn, memNo);
+		//System.out.println(c);
 		close(conn);
 		
 		return c;

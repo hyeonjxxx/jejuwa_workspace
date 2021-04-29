@@ -233,6 +233,8 @@ public class CouponDao {
 							  rset.getInt("CPN_MIN"),
 							  rset.getInt("MEM_NO"));
 			}
+			
+			//System.out.println(c);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
