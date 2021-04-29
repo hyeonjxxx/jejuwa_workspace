@@ -150,36 +150,7 @@
 	                    
 			            <script>
 				       			
-				    	    	<!-- 항목 삭제 --> 
-				    	    	// 1. 체크된 항목이 한개 이상인지 확인
-				    	    	// 1_1. 한개 이상일 경우 -> 관리자 비밀번호 입력 후 삭제
-				    	    	// 1_2. else -> alert창에  문구 출력
-					    		function deletePDT(){
-					    			var form = document.L; // 리스트의 폼이름 선언
-					    			var cDel = false;// 삭제할 항목을 선택했는지
-					    			
-					    			if(document.getElementsByClass("check_single").length>0){
-					    				for(var i=0; i<doucumentElementsByClass("check_single").length; i++){
-					    					if(doucmnet.getElementsByName("check_single"[i].checked) == true){
-					    						cDel = true;
-					    						break;
-					    					}
-					    				}
-					    			}
-						    		if(cDel){
-						    			form.action="/delete.pdt"
-						    			form.submit();
-						    		}else{
-						    			alert("삭세할 항목을 선택해주세요")
-						    		}
-					    		}
-					    		
-				       		 	<%-- function deletePwd(){
-				       				if($("input[name=adminPwd]").val() != <%= loginUser.getMemPwd()%>){
-				       					alert("관리자 비밀번호가 일치하지 않습니다.");
-				       					return false;
-				       				}
-				       			}  --%>
+
 				       	</script>	         
 						</form>
 	                    
