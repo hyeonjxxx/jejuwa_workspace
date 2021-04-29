@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import = "com.kh.member.model.vo.Member"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,13 +35,21 @@
         <footer id="footer" style="margin: 0px;">
             <div class="customer_center">
                 <div class="customer_center_left" style="margin-top:6px;">
-                    <a href="<%=request.getContextPath()%>/list.uno?currentPage=1">공지사항</a>
-                    <a href="" style="margin-left:40px;">더보기<img src="<%= request.getContextPath() %>/resources/images/right_ch.png" height="20"></a>
+                    <a href="<%=request.getContextPath()%>/list.uno?currentPage=1" style=" font-family: 'Noto Sans JP', sans-serif; font-size: 20px; text-decoration: none; color:#3f3f3f;
+font-weight: 550;">공지사항</a>
                 </div>
                 <div class="customer_center_right">
-                <button type="button" class="btn btn-warning btn-oneOnOne"><a href="">1:1문의하기</a></button>
-                &nbsp;
-                <button type="button" class="btn btn-outline-warning"><a href="">자주하는 질문</a></button>
+                <!-- 1:1문의 링크 (로그인 , 비로그인) -->
+			<% if((Member)session.getAttribute("loginUser") == null){ %>
+                <button type="button" class="btn btn-warning btn-oneOnOne">
+                	<a href="<%= request.getContextPath() %>/lgview.me" style="text-decoration:none;" onclick="loginIs();">1:1문의하기</a>
+                </button>&nbsp;
+            <% } else{ %>
+            	<button type="button" class="btn btn-warning btn-oneOnOne">
+            		<a href="<%=request.getContextPath() %>/list.umyq?currentPage=1" style="text-decoration:none;" > 1:1문의내역 </a>
+            	</button>&nbsp;
+			<% } %>
+                <button type="button" class="btn btn-outline-warning"><a href="<%= request.getContextPath() %>/list.ufa">자주하는 질문</a></button>
                 </div>
             </div>
             <div id="footer">
@@ -85,5 +95,10 @@
             </div>
         </footer>
     </div>
+    <script>
+		function loginIs(){
+			alert("로그인이 필요한 서비스입니다. 로그인해주세요.");
+		}
+    </script>
 </body>
 </html>

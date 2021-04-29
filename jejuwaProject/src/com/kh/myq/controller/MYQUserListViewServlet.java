@@ -50,7 +50,7 @@ public class MYQUserListViewServlet extends HttpServlet {
 		
 		// * listCount : 총 게시글 갯수 조회해서 담기
 		listCount = new MYQService().selectListCountUser(memId);
-		System.out.println(listCount);
+		
 		// * currentPage : 현재 요청한 페이지
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		

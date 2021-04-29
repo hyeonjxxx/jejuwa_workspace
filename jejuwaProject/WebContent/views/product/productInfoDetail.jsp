@@ -189,8 +189,19 @@
                 </li>
                 <li onclick="" ><p>사용정보</p></li>
                 <li onclick=""><p>최소/환불</p></li>
-                <li onclick="" ><p><a href="<%=request.getContextPath() %>/rvlist.bo">리뷰(<!--리뷰건수 카운트-->)건</p></li>
-                <li onclick="" ><p>상품문의</p></li>
+                <li onclick="" ><p><a href="<%=request.getContextPath() %>/rvlist.bo">리뷰(<!--리뷰건수 카운트-->)건</a></p></li>
+                <% if(loginUser == null){ %>
+                	<li onclick="login();" ><p>상품문의</p></li>
+                	<script>
+                		function login(){
+                			alert("로그인이 필요한 서비스입니다. 로그인 해주세요");
+                			location.href="<%= request.getContextPath() %>/lgview.me";
+                		}
+                	</script>
+                <% }else{ %>
+                	<li onclick="location.href='<%=request.getContextPath() %>/penroll.umyq?pcode=<%= p.getpCode() %>'" ><p>상품문의</p></li>
+                <% } %>
+                
             </ul>
             <div id="tap01" class="taps">
                <img src="<%=contextPath %>/<%= p.getDetailPath()%>" style="width:680px">            

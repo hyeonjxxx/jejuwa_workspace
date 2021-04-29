@@ -41,7 +41,7 @@ public class MYQService {
 	public MYQ selectDetailAdmin(int myqNo) {
 		
 		Connection conn = getConnection();
-		System.out.println(myqNo);
+		
 		MYQ q = new MYQDao().selectDetailAdmin(conn, myqNo);
 		
 		System.out.println(q);
@@ -68,7 +68,7 @@ public class MYQService {
 		Connection conn = getConnection();
 		
 		int result = new MYQDao().answer(conn, answer, getMyq_no);
-		System.out.println(getMyq_no);
+		
 		if(result>0) {
 			commit(conn);
 		} else {
@@ -110,10 +110,9 @@ public class MYQService {
 
 	public MYQ selectDetailUser(int myqNo) {
 		Connection conn = getConnection();
-		System.out.println(myqNo);
+		
 		MYQ q = new MYQDao().selectDetailUser(conn, myqNo);
 		
-		System.out.println(q);
 		
 		close(conn);
 		
@@ -137,19 +136,22 @@ public class MYQService {
 		
 		int result1 = new MYQDao().insertUser(conn, q);
 		
-		int result2 = 1;
-		if(list != null ) {
-			result2 = new MYQDao().insertUserAttachment(conn, list);
+		
+		// list에 담긴 값이 없을 때 == 0, 담긴 값이 있을 때 !=0
+		if(list.size() != 0) {
+			new MYQDao().insertUserAttachment(conn, list);
 		}
 		
-		if(result1 > 0 && result2 > 0) {
+		
+		
+		if(result1 > 0 ) { // 게시글 insert 성공
 			commit(conn);
-		} else { //insert실패
+		} else { // 게시글 insert실패
 			rollback(conn);
 		} 
 		close(conn);
-		
-		return result1 * result2;
+		System.out.println(q.getMyq_no());
+		return result1;
 	}
 	
 }

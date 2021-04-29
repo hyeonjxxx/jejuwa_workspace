@@ -36,7 +36,7 @@ public class MYQUserDetailViewServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		// 디테일리스트 뷰 요청시 클릭한 문의글 번호 뽑아서 담기
-		int myqNo = Integer.parseInt(request.getParameter("mno"));
+		int myqNo = Integer.parseInt(request.getParameter("myqno"));
 		
 		// 1. 문의 상세조회
 		MYQ q = new MYQService().selectDetailUser(myqNo);

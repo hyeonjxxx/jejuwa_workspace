@@ -172,7 +172,6 @@
 				 , MYQ_CONTENT
 				 , MYQ_ENROLL_DATE
 				 , MEM_NO
-				 , P_CODE
 				 )
 		    VALUES 
 				 ( 
@@ -182,7 +181,6 @@
 				 , ?
 				 , SYSDATE
 				 , ?
-				 , ? 
 		         )
 	</entry>
 	

@@ -57,7 +57,6 @@ public class MYQUserInserServlet extends HttpServlet {
 			q.setMyq_title(multiRequest.getParameter("title"));
 			q.setMyq_content(multiRequest.getParameter("content"));
 			q.setMem_no(Integer.parseInt(multiRequest.getParameter("memNo")));
-			q.setP_code(multiRequest.getParameter("pCode"));
 			
 			// 3_2. Attachment테이블에 insert할 데이터뽑기 => Attachment객체
 			// 단, 여러개의  첨부파일이 있을것이기 때문에 해당 Attachment객체들을 ArrayList에 담기
@@ -79,17 +78,19 @@ public class MYQUserInserServlet extends HttpServlet {
 				}
 			}
 			
-			// 4. 사진게시판 작성용 서비스 호출 및 결과받기
+			// 4. 사진게시판 작성용 서비스 호출 및 결과받기(리스트 다시 조회하기)
 			int result = new MYQService().insertUser(q, list);
+			
 			if(result > 0 ) { // 성공 => /list.th url 재요청 => 사진게시판 리스트페이지
 				
 				request.getSession().setAttribute("alertMsg", "문의 등록 성공");
-				response.sendRedirect(request.getContextPath() + "/detail.umyq");
+				response.sendRedirect(request.getContextPath() + "/detail.umyq?myqno=" + q.getMyq_no());
 				
 			} else { // 실패 => 에러문구 담아서 에러페이지 포워딩
 				
 				request.getSession().setAttribute("alertMsg", "문의 등록 실패");
 			}
+			
 		}
 	}
 

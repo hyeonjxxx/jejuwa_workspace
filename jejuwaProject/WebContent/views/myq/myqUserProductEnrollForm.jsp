@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import = "com.kh.product.model.vo.*"%>
+<% Product p = (Product)request.getAttribute("p"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +14,11 @@
 </head>
 <body>
 
-	<%@ include file="../common/customerMenubar.jsp" %>
+	<%@ include file="../common/loginUserMenubar.jsp" %>
 
 	<div class="outer" >
         <br>
-        <h2>문의사항 등록</h2>
+        <h2>상품 문의사항 등록</h2>
         <div class="divisionLine"></div>
         <br>
         
@@ -40,14 +42,8 @@
                             <th>분류</th>
                             <td colspan="2">
                                 <select name="category" id="category">
-                                    <option value="none">선택</option>
-                                    <option value="회원" name="op_member" id="op_member">회원</option>
                                     <option value="주문/결제" name="op_payment" id="op_payment">주문/결제</option>
-                                    <option value="환불" name="op_exchange" id="op_exchange">환불</option>
-                                    <option value="이벤트" name="op_evnet" id="op_event">이벤트</option>
-                                    <option value="기타" name="op_etc" id="op_etc">기타</option>
                                 </select>
-                            <span id="op_product_info" style="color:red;">상품문의는 상품 상세페이지에서 해주시기 바랍니다 :)</span>
 
                             </td>
                         </tr>
@@ -65,7 +61,7 @@
                         <tr>
                             <th>내용</th>
                             <td colspan="2">
-                                <textarea name="content" id="content" cols="75" rows="18" style="resize:none;" placeholder="내용을 입력해주세요" required></textarea>
+                                <textarea name="content" id="content" cols="75" rows="18" style="resize:none;" placeholder="내용을 입력해주세요" ></textarea>
                             </td>
                         </tr>
                     </table>
@@ -77,11 +73,23 @@
 			
 			            <!-- 버튼 (목록으로) -->
 			            <div class="btn">
-			                <a href="<%=contextPath%>/list.umyq?currentPage=1" id="btn4">목록으로</a>
+			                <a href="<%=contextPath%>/infoDetail.pdt?pcode=<%=p.getpCode() %>" id="btn4">상품페이지로</a>
+			                <!-- 상품 창에서 -> 이미지 클릭시 이동하는 스크립트구문  -->
+					
+					<scirpt>
+					$(function(){
+		        		$(".pdtArea").click(function(){
+		        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode=
+							=> <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
+							즉, 전달받은 pcode값 받아와서 여기다가 넣어놓기
+		        		})	
+		        	})
+		        	<!-- pdtArea클릭시 이동할 함수 => infoDetail.pdt?pcode='' -->
+		        	</scirpt>
 			            </div> 
 			             <!-- 버튼 (등 록) -->
 			            <div class="btn">
-			                <a href="<%=contextPath%>/insert.umyq" id="btn4" data-toggle="modal" data-target="#enrollBtn" >글 작성</a>
+			                <a href="" id="btn4" data-toggle="modal" data-target="#enrollBtn" >글 작성</a>
 			            </div>   			
 					</div>
 					

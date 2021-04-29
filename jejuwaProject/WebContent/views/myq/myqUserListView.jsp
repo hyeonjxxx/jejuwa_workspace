@@ -123,7 +123,9 @@
                 <button id="btn1">선택삭제</button>
                 <button type="button" id="btn2" style="margin-left:30px; margin-right:40px;" onclick="location.href='<%=request.getContextPath()%>/enroll.umyq'">글 작성</button> 
             </div>     
+		<script>
 
+		</script>
         <!-- 버튼, 페이징 구역 -->
         <div class="bottomArea">
 
@@ -172,8 +174,8 @@
 	<script>
 		// 상세보기 요청
 		$("#memberList>tbody>tr").click(function(){
-				location.href='<%=request.getContextPath()%>/detail.umyq?mno='+$(this).children().eq(1).text();
-				// /detail.amyq?mno=글번호
+				location.href='<%=request.getContextPath()%>/detail.umyq?myqno='+$(this).children().eq(1).text();
+				// /detail.amyq?myqno=글번호
 				// #memberList>tbody>tr 여기 tr의 자손들 중에 2번째(=eq(1))의 text를 가져오겠다. 
 			})
 	</script>
