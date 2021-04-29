@@ -142,11 +142,16 @@
 		        <br><br>        
 		        <!-- 버튼 -->
 		        <div align="right" class="btnArea">
-		            <div id="btnBack"><a href="<%=contextPath %>/list.pdt?currentPage=1">목록으로</a></div>
+		            <div id="btnBack"><a href="<%=contextPath%>/list.pdt?currentPage=1">목록으로</a></div>
 		            <!-- Button to Open the Modal -->
 		            <button type="button" id="btnEnroll" data-toggle="modal" data-target="#updateModal">수 정</button>
+		            <div id="deleteBtn"><a href="<%=contextPath %>/delete.pdt?pcode=<%=p.getpCode() %>" data-target="#deleteModal"  onclick="delPDT">삭 제</a></div>
 		        </div>
+		        
 		        <!-- The Modal -->
+		        
+		        <%-- <% if(("button[id=btnEnroll]").equals("btnEnroll")) {%> --%>
+		        
 		        <div class="modal fade" id="updateModal"  align="center">
 		            <div class="modal-dialog modal-dialog-centered">
 		                <div class="modal-content">
@@ -165,8 +170,52 @@
 		                </div>
 		            </div>
 		        </div>
-        
+<%-- 		        <%} else {%>
+			    <!-- The Modal -->
+			       <div class="modal fade" id="deleteModal" align="center" >
+			         <div class="modal-dialog modal-dialog-centered">
+			           <div class="modal-content" >
+			           
+			                             
+			             <!-- Modal body -->
+			             
+			             <div class="modal-body">
+			               	공지사항을 삭제하시겠습니까?
+			             </div>
+			             
+			             <form action="<%=contextPath%>/delete.pdt?pcode=<%=p.getpCode()%>" method="post">        
+			             <div class="input-group mb-3" id="modalContent">
+			               <div class="input-group-prepend">
+			                 <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
+			               </div>
+			               <input name="adminPw" size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon1">
+			                              
+			             </div>
+			             
+			             <!-- Modal footer -->
+			             <div id="modalFooter">
+			               <button type="submit" id="okBtn1" class="btn btn-warning" onclick="return deleteNotice();">OK</button>
+			               <button type="button" id="cancleBtn1" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+			             </div>	        
+					        
+					        <script>
+					        function delPDT(){
+					        	if($("input[name=adimPw]").val() != <%=loginUser.getMemPwd()%>){
+					        		alert("비밀번호가 일치하지 않습니다.");
+					        		return false;
+					        	}
+			       			}
+					        
+					        </script>
+		                </div>
+		            </div>
+		        </div>		        
+		        
+		        <%} %> --%>
+		                
             </form>
+	   
+
 
         
     </div>	

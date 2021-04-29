@@ -33,7 +33,15 @@ public class ProductDeleteServlet extends HttpServlet {
 		String pCode = request.getParameter("pcode");
 		int result = new ProductService().deleteProduct(pCode);
 		
-		response.sendRedirect(request.getContextPath()+"/list.pdt?currentPage=1");
+		
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "상품이 삭제되었습니다.");
+			response.sendRedirect(request.getContextPath()+"/list.pdt?currentPage=1");
+		}else {
+			request.getSession().setAttribute("alertMsg", "상품 삭제를 실패했습니다.");
+			response.sendRedirect(request.getContextPath() + "/updateForm.pdt?pcode=" + pCode);
+		}
+		
 	}
 
 	/**

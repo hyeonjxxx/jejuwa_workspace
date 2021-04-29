@@ -96,20 +96,15 @@
         </div>
             <div class="product-list">
                 <div class="product-list2" >
-                    <a href="#" class="product">
-                    <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
-                    <div class="product-name">제주시티투어</div>
-                    <div class="product-price">128,000 <label for="" id="price-won">원</label></div></a>
-
-                    <a href="#" class="product">
-                    <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
-                    <div class="product-name">제주시티투어</div>
-                    <div class="product-price">128,000 <label for="" id="price-won">원 </div></a>
-
-                    <a href="#" class="product">
-                    <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
-                    <div class="product-name">제주시티투어</div>
-                    <div class="product-price">128,000 <label for="" id="price-won">원</div></a>
+            <%for(Product p : list) {%> 
+            	<input type="hidden" name="pcode" value="<%=p.getpCode()%>">
+                <a>
+                <img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px; height: 165px">
+                <div class="product-name"><%=p.getpName() %></div>
+                <div class="product-price"><%=p.getPrice() %> <label for="" id="price-won">원 </div>
+                </a>
+			<% } %>	
+            </div>
                 </div>
             </div>
 

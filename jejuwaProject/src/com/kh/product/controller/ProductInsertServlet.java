@@ -88,7 +88,10 @@ public class ProductInsertServlet extends HttpServlet {
 			int result = new ProductService().insertProduct(p, at);
 			
 			if(result > 0) {
-				request.getSession().setAttribute("alertMsg", "상품이 성공적으로 등록되었습니다.");
+				request.getSession().setAttribute("alertMsg", "상품이 등록되었습니다. :)");
+				response.sendRedirect(request.getContextPath()+"/list.pdt?currentPage=1");
+			}else {
+				request.getSession().setAttribute("alertMsg", "상품 등록에 실패하였습니다. :(");
 				response.sendRedirect(request.getContextPath()+"/list.pdt?currentPage=1");
 			}
 		}

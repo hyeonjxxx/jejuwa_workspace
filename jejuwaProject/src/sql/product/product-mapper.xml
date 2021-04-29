@@ -115,7 +115,7 @@
 		UPDATE
 		       PRODUCT
 		   SET P_STATUS = 'N'
-		 WHERE NOTICE_NO = ?		
+		 WHERE P_CODE = ?		
 	</entry>	
 	
 	<entry key="updateProduct">
