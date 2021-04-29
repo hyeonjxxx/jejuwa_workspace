@@ -57,6 +57,7 @@
 
         <!-- 공지사항 리스트 테이블 -->
         <div class="listArea">
+        	
             <table align="center" id="memberList">
                 <thead>
                     <tr>
@@ -77,7 +78,7 @@
 	                <!-- 조회된 결과가 있을 경우 -->
 	                	<% for(Notice n : list) {%>
 		                    <tr>
-		                        <td><input type="checkbox" name="selectOne" onclick='checkSelectAll()'></td>
+		                        <td><input type="checkbox" id="selectOne" name="selectOne" value="<%=n.getNoticeNo()%>"></td>
 		                        <td class="ch2"><%= n.getNoticeNo() %></td>
 		                        <td class="ch2"><%= n.getNoticeTitle() %></td>
 		                        <td class="ch2"><%= n.getNoticeCount() %></td>
@@ -87,6 +88,7 @@
 	                <% } %>   
                 </tbody>
             </table>
+            
             
             <!-- AJax 키워드 검색 기능(카테고리 : 제목, 내용, 제목+내용) -->
             <script>
@@ -112,7 +114,7 @@
             					}
             					for(var i in list){
             						result += "<tr>"
-        						       	   + 	"<td><input id='test3' type='checkbox'></td>"
+        						       	   + 	"<td><input type='checkbox' id='selectOne' name='selectOne' onclick='checkSelectAll()' ></td>"
         						      	   +	"<td>" + list[i].noticeNo + "</td>"
         						           +	"<td>" + list[i].noticeTitle + "</td>"
         						           +	"<td>" + list[i].noticeCount + "</td>"
@@ -124,11 +126,15 @@
             					$("#memberList tbody").html(result);
             					$(".pagingArea").css("visibility", "hidden");
             					
-            					$(function(){
-            	            		$("#memberList>tbody>tr").click(function(){
+            					
+            					// 상세보기 요청
+            					$("#memberList>tbody>tr").click(function(e){
+            	            		if(e.target.type == 'checkbox'){
+            	            			return;
+            	            		}else{
             	            			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children().eq(1).text();
-            	            		})
-            	            	})
+            	            		}
+            	            	});
             					
             					
             				}, error:function(){
@@ -143,11 +149,13 @@
             <script>
             
             	// 상세보기 요청
-            	$(function(){
-            		$("#memberList>tbody>tr").click(function(){
+            	$("#memberList>tbody>tr").click(function(e){
+            		if(e.target.type == 'checkbox'){
+            			return;
+            		}else{
             			location.href='<%=contextPath%>/detail.no?nno=' + $(this).children().eq(1).text();
-            		})
-            	})
+            		}
+            	});
             	
             	
             	// 체크박스 1(낱개로 모두 체크하는 경우 전체 체크 박스 true, 하나라도 체크해제된 경우 전체 체크 박스 false)
@@ -180,7 +188,7 @@
        			  })
        			}
             	
-             </script>  	
+             </script>  
              
              
 
@@ -192,8 +200,39 @@
 
             <!-- 로그인 && 로그인한 사용자가 글 작성자인 경우 -->
             <div align="right" class="btn noticeListbtn">
-                <a href="" id="btn1">선택삭제</a>
-            </div>                
+                <a href="" id="btn1" >선택삭제</a>
+       
+                
+            </div>
+            
+            <!-- 선택 삭제 -->
+             <script>
+             	
+             	$("#btn1").click(function(){
+         			var cnt = $("input[name='selectOne']:checked").length;
+                    var arr = [];
+                    
+                    if(cnt == 0){
+                        alert("삭제할 공지사항을 선택해주세요.");
+                        return;
+            		}else{
+            			arr.push($(this).next().text());
+            			}
+                    	$("input[name='selectOne']:checked").each(function(key) {
+                            //arr.push($(this).next().text());
+                            //console.log($(this).eq(1).text());
+                            //console.log(arr);
+                    		console.log(arr);
+                        });
+                    
+            	});
+             
+             </script>	
+             
+             
+             
+            
+            
             
     
             <!-- 페이징  -->

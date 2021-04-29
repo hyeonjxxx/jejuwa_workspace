@@ -203,52 +203,118 @@
 	
 	<!-- 카테고리 TR -->
 	<entry key="selectThList_TR">
-		SELECT 
-				P_CODE
-			  , P_NAME
-			  , PRICE
-			  , BASIC_PATH
-		   FROM PRODUCT	
-		  WHERE P_STATUS = 'Y' 
-		    AND THEME_CODE = 'TR'
-		  ORDER BY P_CODE DESC       	
-	</entry>		
+		SELECT * 
+		  FROM (
+		  		SELECT
+		  			  ROWNUM RNUM
+					  , PDT. *
+		  		   FROM (
+				SELECT 
+						P_CODE
+					  , P_NAME
+					  , PRICE
+					  , BASIC_PATH
+				   FROM PRODUCT	
+				  WHERE P_STATUS = 'Y' 
+				    AND THEME_CODE = 'TR'
+				  ORDER BY P_CODE DESC  
+				  			) PDT	  
+				  		
+		  	  )
+		WHERE RNUM BETWEEN ? AND ? 	      	
+	</entry>
+	
+	<entry key="selectListCount_TR">
+		SELECT COUNT(*) LISTCOUNT 
+			   FROM PRODUCT	
+		 WHERE THEME_CODE = 'TR'  
+	</entry>			
+
 
 	<entry key="selectThList_TT">
-		SELECT 
-				P_CODE
-			  , P_NAME
-			  , PRICE
-			  , BASIC_PATH
-		   FROM PRODUCT	
-		  WHERE P_STATUS = 'Y' 
-		    AND THEME_CODE = 'TT'
-		  ORDER BY P_CODE DESC       	
+		SELECT * 
+		  FROM (
+		  		SELECT
+		  			  ROWNUM RNUM
+					  , PDT. *
+		  		   FROM (	
+						SELECT 
+								P_CODE
+							  , P_NAME
+							  , PRICE
+							  , BASIC_PATH
+						   FROM PRODUCT	
+						  WHERE P_STATUS = 'Y' 
+						    AND THEME_CODE = 'TT'
+						  ORDER BY P_CODE DESC 
+				  			) PDT	  
+				  		
+		  	  )
+		WHERE RNUM BETWEEN ? AND ? 	       	
 	</entry>
+
+	<entry key="selectListCount_TT">
+		SELECT COUNT(*) LISTCOUNT 
+			   FROM PRODUCT	
+		 WHERE THEME_CODE = 'TT'  
+	</entry>		
 	
 	<entry key="selectThList_AY">
-		SELECT 
-				P_CODE
-			  , P_NAME
-			  , PRICE
-			  , BASIC_PATH
-		   FROM PRODUCT	
-		  WHERE P_STATUS = 'Y' 
-		    AND THEME_CODE = 'AY'
-		  ORDER BY P_CODE DESC       	
+		SELECT * 
+		  FROM (
+		  		SELECT
+		  			  ROWNUM RNUM
+					  , PDT. *
+		  		   FROM (	
+						SELECT 
+								P_CODE
+							  , P_NAME
+							  , PRICE
+							  , BASIC_PATH
+						   FROM PRODUCT	
+						  WHERE P_STATUS = 'Y' 
+						    AND THEME_CODE = 'AY'
+						  ORDER BY P_CODE DESC 
+				  			) PDT	  
+				  		
+		  	  )
+		WHERE RNUM BETWEEN ? AND ? 	      	
 	</entry>
+
+	<entry key="selectListCount_AY">
+		SELECT COUNT(*) LISTCOUNT 
+			   FROM PRODUCT	
+		 WHERE THEME_CODE = 'AY'  
+	</entry>			
+	
 	
 	<entry key="selectThList_FD">
-		SELECT 
-				P_CODE
-			  , P_NAME
-			  , PRICE
-			  , BASIC_PATH
-		   FROM PRODUCT	
-		  WHERE P_STATUS = 'Y' 
-		    AND THEME_CODE = 'FD'
-		  ORDER BY P_CODE DESC       	
+		SELECT * 
+		  FROM (
+		  		SELECT
+		  			  ROWNUM RNUM
+					  , PDT. *
+		  		   FROM (	
+						SELECT 
+								P_CODE
+							  , P_NAME
+							  , PRICE
+							  , BASIC_PATH
+						   FROM PRODUCT	
+						  WHERE P_STATUS = 'Y' 
+						    AND THEME_CODE = 'FD'
+						  ORDER BY P_CODE DESC 
+				  			) PDT	  
+				  		
+		  	  )
+		WHERE RNUM BETWEEN ? AND ? 	      	
 	</entry>
+	
+	<entry key="selectListCount_FD">
+		SELECT COUNT(*) LISTCOUNT 
+			   FROM PRODUCT	
+		 WHERE THEME_CODE = 'FD'  
+	</entry>	
 	
 	<!-- 관리자페이지에서 검색기능 -->
 	<entry key="adminSearchpName">
@@ -292,16 +358,22 @@
 	
 	<!-- 사용자페이지에서 검색기능 -->
 	<entry key="userSearchpName">
-		SELECT
-				P_CODE
-			  , P_NAME
-			  , PRICE
-			  , BASIC_PATH
-		   FROM PRODUCT	
-		  WHERE P_STATUS = 'Y' 
-		    AND P_NAME LIKE ?  
-		  ORDER BY P_CODE DESC	
+			SELECT
+					  P_CODE
+					, P_NAME
+					, PRICE
+					, BASIC_PATH
+				 FROM PRODUCT
+			    WHERE P_STATUS = 'Y'
+				  AND P_NAME LIKE ?
+				ORDER BY P_CODE DESC		  
+	</entry>	
+
+	<entry key="selectListCount_User">
+		SELECT COUNT(*) LISTCOUNT 
+			   FROM PRODUCT	  
 	</entry>		
+		
 	
 	<!-- 좋아요 카운트 -->
 	<entry key="likeCount">
@@ -325,6 +397,7 @@
 		    AND P_STATUS = 'Y'
 
 	</entry>
+
 	
 	<!-- 결제페이지에서 쿠폰리스트 조회 -->
 	<entry key="">

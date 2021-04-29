@@ -23,10 +23,14 @@
         <br>
         
         <br>
+        
+        <!-- 로그인 && 관리자일 경우에 보여지는 div -->
+        
         <div class="btn3" align="right">
             <a href="<%=contextPath%>/updateForm.no?nno=<%= n.getNoticeNo() %>">수 정</a>
             <a href="" data-toggle="modal" data-target="#deleteNotice">삭 제</a>
         </div>
+        
         <div class="noticeArea">
             <div class="title">
                 <div><b><%= n.getNoticeTitle() %></b></div>
@@ -65,7 +69,7 @@
 
     </div>
     
-           <!-- 비밀번호 초기화 모달 -->
+           <!-- 공지사항 삭제 모달 -->
        <!-- The Modal -->
        <div class="modal fade" id="deleteNotice" align="center" >
          <div class="modal-dialog modal-dialog-centered">
