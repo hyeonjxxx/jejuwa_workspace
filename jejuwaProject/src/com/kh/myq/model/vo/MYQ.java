@@ -66,6 +66,12 @@ public class MYQ {
 		this.p_name = p_name;
 		this.mem_name = mem_name;
 	}
+	
+	
+	public MYQ(int myq_no) {
+		super();
+		this.myq_no = myq_no;
+	}
 
 	public int getMyq_no() {
 		return myq_no;

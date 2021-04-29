@@ -136,21 +136,17 @@ public class MYQService {
 		
 		int result1 = new MYQDao().insertUser(conn, q);
 		
-		
 		// list에 담긴 값이 없을 때 == 0, 담긴 값이 있을 때 !=0
 		if(list.size() != 0) {
 			new MYQDao().insertUserAttachment(conn, list);
 		}
-		
-		
-		
+
 		if(result1 > 0 ) { // 게시글 insert 성공
 			commit(conn);
 		} else { // 게시글 insert실패
 			rollback(conn);
 		} 
 		close(conn);
-		System.out.println(q.getMyq_no());
 		return result1;
 	}
 	

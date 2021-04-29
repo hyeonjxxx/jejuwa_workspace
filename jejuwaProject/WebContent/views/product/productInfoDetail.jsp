@@ -196,10 +196,18 @@
                 		function login(){
                 			alert("로그인이 필요한 서비스입니다. 로그인 해주세요");
                 			location.href="<%= request.getContextPath() %>/lgview.me";
+							request.setCharacterEncoding("utf-8");
                 		}
                 	</script>
                 <% }else{ %>
-                	<li onclick="location.href='<%=request.getContextPath() %>/penroll.umyq?pcode=<%= p.getpCode() %>'" ><p>상품문의</p></li>
+                	<li onclick="myq_p();" ><p>상품문의</p></li>
+                	<script>
+                		function myq_p(){
+                			location.href="<%=request.getContextPath() %>/penroll.umyq?pcode=<%= p.getpCode() %>"
+                					// pCode, pName 값 같이 전달하기 (같이 전달할때는 &이걸로 연결)
+                			
+                		}
+                	</script>
                 <% } %>
                 
             </ul>

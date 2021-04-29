@@ -120,7 +120,7 @@
         <br>
         <!-- 관리자 게시글 권한 -->
             <div style="display: block; text-align: right;" class="btn">
-                <button id="btn1">선택삭제</button>
+					<button id="btn4" data-toggle="modal" data-target="#enrollBtn" >삭제하기</button>
                 <button type="button" id="btn2" style="margin-left:30px; margin-right:40px;" onclick="location.href='<%=request.getContextPath()%>/enroll.umyq'">글 작성</button> 
             </div>     
 		<script>
@@ -128,6 +128,26 @@
 		</script>
         <!-- 버튼, 페이징 구역 -->
         <div class="bottomArea">
+			<!-- 삭제버튼 모달 -->
+			<div class="modal fade" id="enrollBtn" align="center" >
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content" >
+															 
+						<!-- Modal body -->
+						<br>
+						<div class="modal-body">
+								선택한 문의를 삭제하시겠습니까??
+						</div>
+								
+						<!-- Modal footer -->
+						<div id="modalFooter">
+							<button type="button" id="okBtn" class="btn btn-warning">OK</button>
+							<button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+						</div>
+					</div>
+				 </div>
+		   </div>
+
 
             <!-- 페이징  -->
             <div align="center" class="pagingArea">
@@ -173,11 +193,59 @@
 
 	<script>
 		// 상세보기 요청
-		$("#memberList>tbody>tr").click(function(){
-				location.href='<%=request.getContextPath()%>/detail.umyq?myqno='+$(this).children().eq(1).text();
-				// /detail.amyq?myqno=글번호
-				// #memberList>tbody>tr 여기 tr의 자손들 중에 2번째(=eq(1))의 text를 가져오겠다. 
-			})
+		// $("#memberList>tbody>tr").click(function(){
+		// 		location.href='<%=request.getContextPath()%>/detail.umyq?myqno='+$(this).children().eq(1).text();
+		// 		// /detail.amyq?myqno=글번호
+		// 		// #memberList>tbody>tr 여기 tr의 자손들 중에 2번째(=eq(1))의 text를 가져오겠다. 
+		// 	})
+
+		// 체크박스 체크
+		$("#memberList>tbody>tr").click(function(e){
+            		if(e.target.type == 'checkbox'){
+            			return;
+            		}else{
+            			location.href='<%=contextPath%>/detail.umyq?myqno='+ $(this).children().eq(1).text();
+            		}
+        });
+
+		$("#checkAll").on("click", function () {
+        	$(this).parents("#memberList").find('input').prop("checked", $(this).is(":checked"));
+    	});
+		
+
+			if($('input[id="choice_myq"]').is(":checked") == true){
+				$(".btn #btn4").removeAttr('disabled');
+			} else{
+				$(".btn #btn4").attr("disabled", true);
+			}
+			// $('input[id="choice_myq"]').is(":checked")(function(){
+			// 	$('#btn4').attr('disabled', true);
+			// 	// if(this.checked){
+				// 	$("input.applicable:checkbox").prop("disabled", true);
+			
+			
+		// 	.is(":checked"))
+		// 		$("#btn4").prop('disabled', false);
+		
+		// 		$("#btn4").prop('disabled', false);
+		
+		// })
+			
+
+
+	// 		$(this).prop('checked')
+
+	// 		if(tmpp==true || ss>0){
+    // $(".btnArea button").prop("disabled",false);
+    // }
+    // else{
+    // $(".btnArea button").prop("disabled",true);
+    // }
+		
+
+		
+
+		
 	</script>
 
     <br><br>

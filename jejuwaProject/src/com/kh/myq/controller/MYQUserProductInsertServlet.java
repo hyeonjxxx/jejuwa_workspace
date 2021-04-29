@@ -20,7 +20,7 @@ import com.oreilly.servlet.MultipartRequest;
 /**
  * Servlet implementation class MYQUserInserServlet
  */
-@WebServlet("/insertp.umyq")
+@WebServlet("/insert.umyq")
 public class MYQUserInserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -57,7 +57,6 @@ public class MYQUserInserServlet extends HttpServlet {
 			q.setMyq_title(multiRequest.getParameter("title"));
 			q.setMyq_content(multiRequest.getParameter("content"));
 			q.setMem_no(Integer.parseInt(multiRequest.getParameter("memNo")));
-			
 			
 			// 3_2. Attachment테이블에 insert할 데이터뽑기 => Attachment객체
 			// 단, 여러개의  첨부파일이 있을것이기 때문에 해당 Attachment객체들을 ArrayList에 담기

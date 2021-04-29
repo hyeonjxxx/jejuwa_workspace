@@ -358,6 +358,8 @@ public class MYQDao {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertUser");
 		
+		ResultSet rset = null;
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			

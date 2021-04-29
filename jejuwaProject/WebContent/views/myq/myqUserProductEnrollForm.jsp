@@ -8,17 +8,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- content css-->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/myq/myUserEnrollForm.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/myq/myqUserEnrollForm.css">
 
 
 </head>
 <body>
 
-	<%@ include file="../common/loginUserMenubar.jsp" %>
+	<%@ include file="../common/customerMenubar.jsp" %>
 
 	<div class="outer" >
         <br>
-        <h2>상품 문의사항 등록</h2>
+        <h2>문의사항 등록</h2>
         <div class="divisionLine"></div>
         <br>
         
@@ -42,9 +42,8 @@
                             <th>분류</th>
                             <td colspan="2">
                                 <select name="category" id="category">
-                                    <option value="주문/결제" name="op_payment" id="op_payment">주문/결제</option>
+                                    <option value="op_product">상품문의</option>
                                 </select>
-
                             </td>
                         </tr>
                         <tr>
@@ -61,7 +60,7 @@
                         <tr>
                             <th>내용</th>
                             <td colspan="2">
-                                <textarea name="content" id="content" cols="75" rows="18" style="resize:none;" placeholder="내용을 입력해주세요" ></textarea>
+                                <textarea name="content" id="content" cols="75" rows="18" style="resize:none;" placeholder="내용을 입력해주세요" required></textarea>
                             </td>
                         </tr>
                     </table>
@@ -73,23 +72,13 @@
 			
 			            <!-- 버튼 (목록으로) -->
 			            <div class="btn">
+                            
 			                <a href="<%=contextPath%>/infoDetail.pdt?pcode=<%=p.getpCode() %>" id="btn4">상품페이지로</a>
 			                <!-- 상품 창에서 -> 이미지 클릭시 이동하는 스크립트구문  -->
-					
-					<scirpt>
-					$(function(){
-		        		$(".pdtArea").click(function(){
-		        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode=
-							=> <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
-							즉, 전달받은 pcode값 받아와서 여기다가 넣어놓기
-		        		})	
-		        	})
-		        	<!-- pdtArea클릭시 이동할 함수 => infoDetail.pdt?pcode='' -->
-		        	</scirpt>
-			            </div> 
+                        </div>
 			             <!-- 버튼 (등 록) -->
 			            <div class="btn">
-			                <a href="" id="btn4" data-toggle="modal" data-target="#enrollBtn" >글 작성</a>
+			                <a href="<%=contextPath%>/insert.umyq" id="btn4" data-toggle="modal" data-target="#enrollBtn" >글 작성</a>
 			            </div>   			
 					</div>
 					
@@ -122,17 +111,9 @@
                 console.log("zzz");
                 e.preventDefault();
 
-                // Check
-                // 아이디 인증 체크
-                if($('#category option:selected').val() == "none") {
-                    $('#op_product_info').change().text("문의 내용을 분류해주세요 !!")
-                    return false;
-                }
-
                 $('#enrollForm').submit();
             });
-
-        $('#category').val()
+            
         function enterkey(){
             if(window.event.keyCode == 13){
                 var search = $("#faqSearch option:selected").val();

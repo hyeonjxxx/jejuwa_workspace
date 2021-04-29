@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import = "com.kh.product.model.vo.*"%>
-<% Product p = (Product)request.getAttribute("p"); %>
+<% 
+   Product p = (Product)request.getAttribute("p");
+	// productInfo에 있는 객체 Product의 값들을 현 jsp에 객체 가져오기
+	// 객체에 담긴 값을 하나하나 뽑을수 있게 된다.
+	request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +15,7 @@
 <!-- content css-->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/myq/myqUserEnrollForm.css">
 
-<style>
 
-
-</style>
 </head>
 <body>
 
@@ -26,18 +28,19 @@
         <br>
         
         <br>
-
+		
         <div class="enrollForm">
-                <form id="enrollForm" action="<%=contextPath%>/insert.umyq" method="post" enctype="multipart/form-data">
+                <form id="enrollForm" action="<%=contextPath%>/insertp.umyq" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="memNo" value="<%=login.getMemNo() %>">
                     <input type="hidden" name="memId" value="<%= login.getMemId() %>">
                     <input type="hidden" name="memName" value="<%= login.getMemName() %>">
+                    
                     <!-- 제목, 내용, 첨부파일 -->
                     <table align="center" id="enrollTable">
                         <tr>
                             <th>제목</th>
                             <td colspan="2">
-                                <input type="text" name="title" size="72" placeholder="제목을 입력해주세요" required>
+                                <span style="color:red;"><%= p.getpName() %></span><input type="text" name="title" size="72" placeholder="제목을 입력해주세요" required>
                             </td>
                         </tr>
 
@@ -45,24 +48,18 @@
                             <th>분류</th>
                             <td colspan="2">
                                 <select name="category" id="category">
-                                    <option value="none">선택</option>
-                                    <option value="회원" name="op_member" id="op_member">회원</option>
-                                    <option value="주문/결제" name="op_payment" id="op_payment">주문/결제</option>
-                                    <option value="환불" name="op_exchange" id="op_exchange">환불</option>
-                                    <option value="이벤트" name="op_evnet" id="op_event">이벤트</option>
-                                    <option value="기타" name="op_etc" id="op_etc">기타</option>
+                                    <option value="상품문의" name="op_product" id="op_product">상품문의</option>
                                 </select>
-                            <span id="op_product_info" style="color:red;">상품문의는 상품 상세페이지에서 해주시기 바랍니다 :)</span>
 
                             </td>
                         </tr>
                         <tr>
                             <th>첨부파일</th>
-                            <td id="file_target">첨부파일 추가<!-- 이미지 클릭시 화살표나오면서 파일 담을수있는 리스트 나오기 FAQ보기 -->
-	                            <td colspan="2" style="display: none;">
-	                                <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 1);"><br>
-	                                <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 2);"><br>
-	                                <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 3);">
+                            <td>화살표<!-- 이미지 클릭시 화살표나오면서 파일 담을수있는 리스트 나오기 FAQ보기 -->
+	                            <td colspan="2">
+	                                <input type="file" name="upfile1" id="upfile1" onchange="loadImg(this, 1);"><br>
+	                                <input type="file" name="upfile2" id="upfile2" onchange="loadImg(this, 2);"><br>
+	                                <input type="file" name="upfile3" id="upfile3" onchange="loadImg(this, 3);">
 	                            </td>
                             </td>
                             <!-- 대표이미지?? 흠... -->
@@ -82,7 +79,7 @@
 			
 			            <!-- 버튼 (목록으로) -->
 			            <div class="btn">
-			                <a href="<%=contextPath%>/list.umyq?currentPage=1" id="btn4">목록으로</a>
+			                <a href="<%=contextPath%>/list.umyq?currentPage=1" id="btn4">상품으로</a>
 			            </div> 
 			             <!-- 버튼 (등 록) -->
 			            <div class="btn">
@@ -129,28 +126,46 @@
 
                 $('#enrollForm').submit();
             });
-            
-            $(function(){
-            $("#file_target").click(function(){
-            	console.log("asdasdasd");
-            	var $p = $(this).next(); // jQuery 방식으로 선택한 요소를 담아둘 때 변수명 앞에 $를 붙인다.
+
+        $('#category').val()
+        function enterkey(){
+            if(window.event.keyCode == 13){
+                var search = $("#faqSearch option:selected").val();
+                var keyword = $("#keyword").val();
                 
-                if($p.css("display") == "none"){
-                    $(this).siblings("#upfile").slideUp();
-                     // 보여지게
-                     $p.slideDown();
-                    
-                }else{
-                    $p.slideUp();
-                    //  사라지게
-                }
-				
-				/*
-                // slideDown 또는 slideUp 시킬 p 요소
+                $.ajax({
+                    url : "searchAjax.fa",
+                    type : "get",
+                    data : {search : search,
+                            keyword : keyword},
+                    success : function(list){
+                        var result = "";
+                        if(list.length == 0){
+                            result = "<tr><td colspan = '3'>조회된 공지사항이 없습니다.</td></tr>"
+                        }
+                        for(var i in list){
+                            result += "<tr>"
+                                    + "<td>" + list[i].faqNo + "</td>"
+                                    + "<td>" + list[i].qCategory + "</td>"
+                                    + "<td>" + list[i].faqTitle + "</td>"
+                                    + "<tr>";
+                        }
+                        
+                        $("#faqTable tbody").html(result);
+                        $("#pagingArea").css("visibility", "hidden");
+                        
+                        $(function(){
+                            $("#faqTable>tbody>tr").click(function(){
+                                location.href = '<%=contextPath%>/detail.fa?fno=' + $(this).children().eq(0).text();
+                            })
+                        })
+                    }, error:function(){
+                        console.log("ajax통신 실패");
+                    }
                 
-				*/
-            })
-        })
+                });
+            }
+        }
     </script>
     <%@ include file="../common/footer.jsp" %>
 </body>
