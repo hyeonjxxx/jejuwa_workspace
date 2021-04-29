@@ -208,7 +208,14 @@ public class ProductService {
 		return list;
 	}
 	
-	
+	// 판매순
+	public ArrayList<Product> bestSelect() {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().bestSelect(conn);
+		close(conn);
+		
+		return list;
+	}	
 	
 	
 	

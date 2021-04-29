@@ -370,9 +370,34 @@
 	</entry>	
 
 	<entry key="selectListCount_User">
+	
 		SELECT COUNT(*) LISTCOUNT 
 			   FROM PRODUCT	  
-	</entry>		
+	</entry>
+	
+	<entry key="bestSelect">
+	<![CDATA[
+    SELECT *
+    FROM(
+        SELECT 
+        		P_CODE
+        	  , P_NAME
+        	  , PRICE
+        	  , BASIC_PATH
+        	  , P_STOCK
+        	  , RANK() 
+        	    OVER(ORDER BY P_STOCK ASC) rankPDT
+           FROM PRODUCT
+          WHERE P_STOCK != 0
+    	)
+    WHERE rankPDT <= 3]]>		    
+	</entry>
+	
+	<entry key="티켓/투어 중 추천상품!">
+	<![CDATA[
+  	
+  	]]>		    
+	</entry>			
 		
 	
 	<!-- 좋아요 카운트 -->

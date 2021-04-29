@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.member.model.vo.Member"%>
+    pageEncoding="UTF-8" import="com.kh.member.model.vo.Member, com.kh.product.model.vo.*, java.util.ArrayList"%>
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	// 로그인 전  managerMenubar.jsp  로딩시 : null
 	// 로그인 성공후 managerMenbubar.jsp 로딩시 : 로그인한 회원의 정보들이 담겨있는 객체
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -63,26 +64,30 @@
 
     <div class="medium">
         <label for="" class="medieum-font">제주와 추천상품</label>
-    </div>
+     </div>
         <div class="product-list">
             <div class="product-list2" >
-                <a href="#" class="product">
-                <img src="/jejuwa/resources/images/reco_1.png" alt="" width="245">
-                <div class="product-name">제주시티투어</div>
-                <div class="product-price">128,000 <label for="" id="price-won">원 </div></a>
-
-                <a href="#" class="product">
-                <img src="/jejuwa/resources/images/reco_1.png" alt="" width="245">
-                <div class="product-name">제주시티투어</div>
-                <div class="product-price">128,000 <label for="" id="price-won">원</div></a>
-
-                <a href="#" class="product">
-                <img src="/jejuwa/resources/images/reco_1.png" alt="" width="245">
-                <div class="product-name">제주시티투어</div>
-                <div class="product-price">128,000 <label for="" id="price-won">원</div></a>
+            <%for(Product p : list) {%> 
+            	<input type="hidden" name="pcode" value="<%=p.getpCode()%>">
+                <a>
+                <img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px; height: 165px">
+                <div class="product-name"><%=p.getpName() %></div>
+                <div class="product-price"><%=p.getPrice() %> <label for="" id="price-won">원 </div>
+                </a>
+			<% } %>	
             </div>
 
-        </div>
+        </div> 
+        
+
+		        <script>
+		        	$(function(){
+		        		$(".product-list2").click(function(){
+		        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+		        		})	
+		        	})
+		        	
+		        </script>        
 
         <!-- 제주와 투어/티켓 인기 -->
 

@@ -133,13 +133,13 @@
         </script>
 
 
-		<div align="center" class="pageingArea">
+<!-- 		<div align="center" class="pageingArea">
             <button>이전</button>
             <button>x</button>
             <button>x</button>
             <button>다음</button>
 
-        </div>
+        </div> -->
 
 
 

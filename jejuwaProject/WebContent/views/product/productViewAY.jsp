@@ -94,7 +94,7 @@
 		                        <li class=pdtArea>
 		                        <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
 		                            <div class="pdtBox">
-		                                <a >
+		                                <a>
 		                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px; height: 165px"></div>
 		                                    <div class="pdtInfo">
 		                                        <p class="pdtName"><%=p.getpName() %></p>
