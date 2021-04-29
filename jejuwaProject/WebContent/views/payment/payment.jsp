@@ -89,8 +89,11 @@
 					        <li id="discount" class="container p-3 my-3 bg-dark text-white">
 					            <p style="font-size: 20px; font-weight: bold;">할인적용</p> <br>
 					            <select name="" id="" class="form-control">
-				                	<option value="" selected>쿠폰선택안함</option>
-					                <option value=""><%=c.getCpn_Name() %></option>
+									<%if(c == null){ %>
+					            		<option value="" selected>쿠폰선택안함</option>
+									<%}else{ %>
+					                	<option value=""><%=c.getCpn_Name() %></option>
+					                <%} %>
 					            </select>
 					            <br><br>
 					            <hr>

@@ -234,20 +234,27 @@ public int getCpn_Min() {
 
 
 
-
-
-
-
-
 public void setCpn_Min(int cpn_Min) {
 	this.cpn_Min = cpn_Min;
+}
+
+public int getMemNo() {
+	return memNo;
+}
+
+public void setMemNo(int memNo) {
+	this.memNo = memNo;
+}
+
+@Override
+public String toString() {
+	return "Coupon [cpn_Code=" + cpn_Code + ", cpn_Name=" + cpn_Name + ", cpn_Dc=" + cpn_Dc + ", cpn_Rgdt=" + cpn_Rgdt
+			+ ", cpn_Str_Date=" + cpn_Str_Date + ", cpn_End_Date=" + cpn_End_Date + ", cpn_Min=" + cpn_Min + ", memNo="
+			+ memNo + "]";
 }
 
 
 //-------------------------
 
-	
-	
-	
 	
 }

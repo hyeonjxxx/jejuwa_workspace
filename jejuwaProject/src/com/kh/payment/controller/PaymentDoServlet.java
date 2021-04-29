@@ -38,12 +38,9 @@ public class PaymentDoServlet extends HttpServlet {
 		String pcode = request.getParameter("pcode");
 		String travleDate = request.getParameter("travleDate");
 		
-		
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
 		int memNo = loginUser.getMemNo();
-		System.out.println(memNo);
-		
 		
 		Product p = new ProductService().selectPayment(pcode);
 		Coupon c = new CouponService().selectCoupon(memNo);
@@ -51,7 +48,9 @@ public class PaymentDoServlet extends HttpServlet {
 		//request.setAttribute("list", list);
 		
 		request.setAttribute("p", p);
+		//System.out.println(p);
 		request.setAttribute("c", c);
+		//System.out.println(c);
 		request.setAttribute("travleDate", travleDate);
 		request.getRequestDispatcher("views/payment/payment.jsp").forward(request, response);
 	}
