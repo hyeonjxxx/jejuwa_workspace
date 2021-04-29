@@ -77,10 +77,10 @@
                 <thead>
                     <tr>
                         <th width="40" ><input type="checkbox" id="checkAll"></th>
-                        <th width="90">번호</th>
-                        <th width="300">제목</th>
-                        <th width="90">작성일</th>
-                        <th width="90">답변여부</th>
+                        <th width="100">번호</th>
+                        <th width="200">제목</th>
+                        <th width="150">작성일</th>
+                        <th width="150">답변여부</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -121,7 +121,7 @@
         <!-- 관리자 게시글 권한 -->
             <div style="display: block; text-align: right;" class="btn">
                 <button id="btn1">선택삭제</button>
-                <button id="btn2" style="margin-left:30px; margin-right:40px;">글 작성</button> 
+                <button type="button" id="btn2" style="margin-left:30px; margin-right:40px;" onclick="location.href='<%=request.getContextPath()%>/enroll.umyq'">글 작성</button> 
             </div>     
 
         <!-- 버튼, 페이징 구역 -->
@@ -168,6 +168,16 @@
              </div>
 		</div>
 	</div>
+
+	<script>
+		// 상세보기 요청
+		$("#memberList>tbody>tr").click(function(){
+				location.href='<%=request.getContextPath()%>/detail.umyq?mno='+$(this).children().eq(1).text();
+				// /detail.amyq?mno=글번호
+				// #memberList>tbody>tr 여기 tr의 자손들 중에 2번째(=eq(1))의 text를 가져오겠다. 
+			})
+	</script>
+
     <br><br>
     <%@ include file="../common/footer.jsp" %>
 </body>

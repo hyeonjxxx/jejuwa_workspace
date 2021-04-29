@@ -37,7 +37,8 @@ public class AjaxProductSearachUserServlet extends HttpServlet {
 		String keyword = request.getParameter("keyword");
 		System.out.println(keyword);
 	
-		ArrayList<Product> list = new ProductService().searchKeyword(keyword);		
+		ArrayList<Product> list = new ProductService().searchKeyword(keyword);	
+		System.out.println(list);
 		
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(list, response.getWriter());

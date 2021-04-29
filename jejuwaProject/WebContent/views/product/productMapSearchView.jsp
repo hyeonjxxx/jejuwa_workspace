@@ -36,14 +36,14 @@
             <div id="panel">
                 <img src="<%=contextPath%>/resources/images/jejuMap.png" alt="jejuMap" width="350" >
            
-                <button class="ss">성산/우도</button>
-                <button class="hd">함덕/구좌</button>
-                <button class="jj">제주시</button>
-                <button class="aw">애월</button>
-                <button class="hl">한림/협재</button>
-                <button class="jm">중문</button>
-                <button class="sg">서귀포</button>
-                <button class="ps">표선</button>                
+                <button class="ss" name="SS">성산/우도</button>
+                <button class="hd" name="HD">함덕/구좌</button>
+                <button class="jj" name="JJ">제주시</button>
+                <button class="aw" name="AW">애월</button>
+                <button class="hl" name="HL">한림/협재</button>
+                <button class="jm" name="JM">중문</button>
+                <button class="sg" name="SG">서귀포</button>
+                <button class="ps" name="PS">표선</button>                
             </div>
 
             <div class="divisionLine"></div>
@@ -57,6 +57,58 @@
 	        });
         });
         </script>
+        
+        <!-- 지역코드 넘겨서 넘긴 값으로 조회되롞!! SQL문 1개로   -->
+        <script type="text/javascript">
+        $("#panel>button").click(function(){
+        	$.ajax({
+        		url:'search_SS.pdt',
+        		method: 'post',
+        		data:{ 
+        		},success:function(list){
+        			console.log(list);
+ 
+        			var result = "";
+					if(list.length == 0){
+						result = "<ul class='pdtList'>검색결과가 존재하지 않습니다.</ul>"
+					}
+					for(var i in list){
+	        				result += "<li class='pdtArea'>"
+        						+ "<input type='hidden' name='pcode' value='"+ list[i].pCode + "'>"
+        						+ " <div class='pdtBox'>"
+        						+ "<a>"
+        						+ "<div class='pdtPhoto'><img src='" + document.domain + "/" + list[i].basicPath + "'" + "style='width: 220px;'>"
+        						+ "</div>"
+        						+ "<div class='pdtInfo'>"
+        						+ "<p class='pdtName'>" + list[i].pName + "</p>"
+        						+ "<p class='pdtPrice'>" + list[i].Price + "원</p>"
+        						+ "</div>"
+        						+ "</a>"
+        						+ "</div>"
+        						+ "</li>"
+					}
+					
+					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
+					$(".pdtList").html(result);
+					$(".pagingArea").css("visibility", "hidden");
+					
+			       
+		        	$(function(){
+		        		$(".pdtArea").click(function(){
+		        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+		        		});	
+		        	});
+        			
+        			
+        		},error:function(){
+        			console.log("ajax통신 실패!!")
+        		}
+        	});
+        	
+        	
+        });
+                
+        </script>
 
 
         <div class="category">
@@ -67,9 +119,6 @@
                 <li><a href="<%=contextPath%>/ayMapSearch.pdt">액티비티</a></li>
             </ul>
         </div>
-        <script>
-      
-        </script>
         
 
         <div class="sortBar" align="right">
@@ -98,50 +147,13 @@
 
         </div>
         
-        <script>
-        /* 지도로 검색(지역필터링) */
-<%--         $(function(){
-        	
-        	$ajax({
-        		url:"<%=contextPath%>/local_ss.pdt",
-        		data: 요청시 전달값  {local:<%= p.getLocalCode()%>},
-        		success:function(list){
-        			
-        			var result = "";
-        			for(var i in list){
-        				result += "<li class='pdtArea'>"
-        						+ "<input type='hidden' name='pcode' value='<%=p.getpCode()%>'>"
-        						+ " <div class="pdtBox">"
-        						+ "<a >"
-        						+ "<div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;">"
-        						+ "</div>"
-        						+ "<div class="pdtInfo">"
-        						+ "<p class='pdtName'>" + <%=list[i].getpName() %> +"</p>"
-        						+ "<p class="pdtPrice"><%=p.getPrice() %>원</p>"
-        						+ "</div>"
-        						+ "</a>"
-        						+ "</div>"
-        						+ "</li>"
-        			}
-        		
-        			$(".pdtList").html(result); 
-        		},error:function(){
-        			console.log("지도로 검색 실패")
-        		}
-        		
-        	});
-        	
-        	
-        })
-        
-         --%>
-        
+        <script>      
         /* 상품클릭시 */
         	$(function(){
         		$(".pdtArea").click(function(){
         			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
-        		})	
-        	})
+        		});	
+        	});
         	
         </script>
            

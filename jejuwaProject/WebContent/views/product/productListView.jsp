@@ -45,32 +45,32 @@
 	        <div class="listArea">
 	            
 	            <div class="searchArea">
-	                <form  class="searchForm" method="get">
+	                
 	                    <select name="searchOp" id="searchOp">
 	                        <option value="pname">상품명</option>
 	                        <option value="local">지역</option>
 	                        <option value="theme">테마</option> 
 	                    </select>
 	                    
-	                    <input type="search" name="keyword" id="keyword" onkeyup="searchGo();">
-	                    <button type="submit" id="searchBtn"><img src="<%=contextPath %>/resources/images/lookup.png" width="25" align="right"></button>
-	                </form>    
+	                    <input type="search" name="keyword" id="keyword" >
+	                    <button type="button" id="searchBtn"><img onclick="searchGo();" src="<%=contextPath %>/resources/images/lookup.png" width="25" align="right"></button>
+	                
 	            </div>
 	            
 			<script type="text/javascript">	    		
 	    		/* 옵션 + 검색어 검색 */
 	    		function searchGo(){
-	    			if(window.event.keyCode == 13){
+	    			//if(window.event.keyCode == 13){
 	    				var searchOp = $("#searchOp option:selected").val();
 	    				var keyword = $("#keyword").val();
 	    				
-	    				consloe.log(searchOp);
+	    				//consloe.log(searchOp);
 	    				console.log(keyword);
 	    				
 	    				$.ajax({
 	    					url:"searchAjax.pdt",
 	    					type:"get",
-	    					date:{searchOp:searchOp,
+	    					data:{searchOp:searchOp,
 	    						  keyword:keyword
 	    					}, success:function(list){
 	    						console.log(list);
@@ -104,7 +104,7 @@
 	    					
 	    					
 	    				});
-	    			}
+	    			//}
 	    		}
 	    	</script>	            
 	            
@@ -266,8 +266,6 @@
 	    
 	        <!-- 페이징 구역 -->
 	        <div class="bottomArea">
-	   
-	            
 	            <!-- 페이징  -->
 	            <div align="center" class="pagingArea">
 	                    
@@ -297,11 +295,10 @@
                 		<button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%=currentPage+1%>';">&gt;</button>
 	                    <button onclick="location.href='<%=contextPath%>/list.pdt?currentPage=<%=maxPage%>';">&raquo;</button>
                 	<% } %>
-             </div>
-
-	
+             	</div>
+    		</div>
     
-    </div>
+	</div>    
     
 </body>
 </html>

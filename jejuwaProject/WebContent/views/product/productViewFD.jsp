@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.kh.product.model.vo.Product, com.kh.common.model.vo.PageInfo"%>
 <%
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+		
 %>
 <!DOCTYPE html>
 <html>
@@ -101,6 +102,7 @@
 					</ul>
 		
 		        </div>
+		     </div>  
 		        
 		        <script>
 		        	$(function(){
@@ -111,12 +113,11 @@
 		        	
 		        </script>
 
+	     
 
 
-
-
+		</div>
     </div>	
-
-
+	<%@ include file="../common/footer.jsp" %>	
 </body>
 </html>

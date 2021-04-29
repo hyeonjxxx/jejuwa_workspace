@@ -278,5 +278,138 @@ public class MYQDao {
 		return list;
 	}
 
+	public MYQ selectDetailUser(Connection conn, int myqNo) {
+		// SELECT
+		MYQ q = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		System.out.println(myqNo);
+		String sql = prop.getProperty("selectDetailUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, myqNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) { 
+				q = new MYQ(rset.getInt("MYQ_NO")
+						  , rset.getString("MYQ_CATEGORY")
+						  , rset.getString("MYQ_TITLE")
+						  , rset.getString("MYQ_CONTENT")
+						  , rset.getDate("MYQ_ENROLL_DATE")
+						  , rset.getString("MYQ_ANS_CONTENT")
+						  , rset.getDate("MYQ_ANS_DATE")
+						  , rset.getInt("MEM_NO")
+						  , rset.getString("P_CODE")
+						  , rset.getString("MEM_ID")
+						  , rset.getString("P_NAME")
+						  , rset.getString("MEM_NAME"));
+						}
+			System.out.println(q);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return q;
+	}
+
+	public Attachment selectAttachmentUser(Connection conn, int myqNo) {
+		// SELECT
+		Attachment at = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAttachmentUser");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) { 
+				at = new Attachment(rset.getInt("FILE_NO")
+						  , rset.getString("ORG_FILENAME")
+						  , rset.getString("MDF_FILENAME")
+						  , rset.getString("FILE_PATH")
+						  , rset.getString("REF_BOARD_TYPE")
+						  , rset.getInt("REF_BOARD_NO")
+						  , rset.getInt("MYQ_NO")
+						  , rset.getString("P_CODE"));
+						}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return at;
+	}
+
+	public int insertUser(Connection conn, MYQ q) {
+		// insert문
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, q.getMyq_category());
+			pstmt.setString(2, q.getMyq_title());
+			pstmt.setString(3, q.getMyq_content());
+			pstmt.setInt(4, q.getMem_no());
+			pstmt.setString(5, q.getP_code());
+			pstmt.setString(6, q.getMem_id());
+			pstmt.setString(7, q.getMem_name());
+			pstmt.setString(8, q.getP_name());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int insertUserAttachment(Connection conn, ArrayList<Attachment> list) {
+		// insert문
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertUserAttachment");
+		
+		try {
+			
+			// 매번 한 행 실행할 때 하나씩 차곡차곡 넣었지만 지금은 배열이므로 반복문 돌리겠다.
+			// list 숫자만큼 at라는 객체에 하나씩 담아줌
+			for( Attachment at : list ) {
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, at.getOrgFileName());
+				pstmt.setString(2, at.getMdfFileName());
+				pstmt.setString(3, at.getFilePath());
+				pstmt.setString(4, at.getpCode());
+				
+				result = pstmt.executeUpdate();	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 
 }

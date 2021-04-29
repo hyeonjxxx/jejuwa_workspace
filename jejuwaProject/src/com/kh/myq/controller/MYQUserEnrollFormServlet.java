@@ -1,29 +1,23 @@
-package com.kh.product.controller;
+package com.kh.myq.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.kh.product.model.service.ProductService;
-import com.kh.product.model.vo.Product;
-
 /**
- * Servlet implementation class AjaxProductSearachServlet
+ * Servlet implementation class MYQUserEnrollFormServlet
  */
-@WebServlet("/searchAjax.pdt")
-public class AjaxProductSearachServlet extends HttpServlet {
+@WebServlet("/enroll.umyq")
+public class MYQUserEnrollFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxProductSearachServlet() {
+    public MYQUserEnrollFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,18 +26,7 @@ public class AjaxProductSearachServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//ajax
-		String searchOp = request.getParameter("searchOp");
-		String keyword = request.getParameter("keyword");
-	
-		ArrayList<Product> list = new ProductService().searchOptions(searchOp, keyword);
-		
-	
-		
-		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(list, response.getWriter());
-	
+		request.getRequestDispatcher("views/myq/myqUserEnrollForm.jsp").forward(request, response);
 	}
 
 	/**

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.common.model.vo.PageInfo;
+import com.kh.member.model.vo.Member;
 import com.kh.myq.model.service.MYQService;
 import com.kh.myq.model.vo.MYQ;
 
@@ -34,10 +35,9 @@ public class MYQUserListViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Member member = (Member)request.getSession().getAttribute("loginUser");
 		
-		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("login"));
-		String memId = (String) session.getAttribute("login");
+		String memId = member.getMemId();
 		
 		int listCount;     // 현재 총 게시글 횟수
 		int currentPage;   // 현재 페이지(즉, 요청한 페이지)

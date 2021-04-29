@@ -9,6 +9,7 @@ import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.myq.model.dao.MYQDao;
 import com.kh.myq.model.vo.MYQ;
+import com.kh.product.model.dao.ProductDao;
 
 public class MYQService {
 
@@ -104,6 +105,51 @@ public class MYQService {
 		close(conn);
 		
 		return list;
+	}
+
+
+	public MYQ selectDetailUser(int myqNo) {
+		Connection conn = getConnection();
+		System.out.println(myqNo);
+		MYQ q = new MYQDao().selectDetailUser(conn, myqNo);
+		
+		System.out.println(q);
+		
+		close(conn);
+		
+		return q;
+	}
+
+
+	public Attachment selectAttachmentUser(int myqNo) {
+		Connection conn = getConnection();
+		
+		Attachment at = new MYQDao().selectAttachmentUser(conn, myqNo);
+		
+		close(conn);
+		
+		return at;
+	}
+
+
+	public int insertUser(MYQ q, ArrayList<Attachment> list) {
+		Connection conn = getConnection();
+		
+		int result1 = new MYQDao().insertUser(conn, q);
+		
+		int result2 = 1;
+		if(list != null ) {
+			result2 = new MYQDao().insertUserAttachment(conn, list);
+		}
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else { //insert실패
+			rollback(conn);
+		} 
+		close(conn);
+		
+		return result1 * result2;
 	}
 	
 }
