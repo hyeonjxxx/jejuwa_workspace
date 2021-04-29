@@ -84,10 +84,11 @@ public class MYQUserInserServlet extends HttpServlet {
 			if(result > 0 ) { // 성공 => /list.th url 재요청 => 사진게시판 리스트페이지
 				
 				request.getSession().setAttribute("alertMsg", "문의 등록 성공");
-				response.sendRedirect(request.getContextPath() + "/list.umyq");
+				response.sendRedirect(request.getContextPath() + "/detail.umyq");
 				
 			} else { // 실패 => 에러문구 담아서 에러페이지 포워딩
 				
+				request.getSession().setAttribute("alertMsg", "문의 등록 실패");
 			}
 		}
 	}
