@@ -212,13 +212,7 @@
 		  WHERE P_STATUS = 'Y' 
 		    AND THEME_CODE = 'TR'
 		  ORDER BY P_CODE DESC       	
-	</entry>
-	
-	<entry key="selectListCount_TR">
-		SELECT COUNT(*) LISTCOUNT 
-			   FROM PRODUCT	
-		 WHERE THEME_CODE = 'TR'  
-	</entry>			
+	</entry>		
 
 	<entry key="selectThList_TT">
 		SELECT 
@@ -255,19 +249,6 @@
 		    AND THEME_CODE = 'FD'
 		  ORDER BY P_CODE DESC       	
 	</entry>
-
-	<entry key="selectThList_SS">
-		SELECT 
-				P_CODE
-			  , P_NAME
-			  , PRICE
-			  , BASIC_PATH
-		   FROM PRODUCT	
-		  WHERE P_STATUS = 'Y' 
-		    AND LOCAL_CODE = 'SS'
-		  ORDER BY P_CODE DESC       	
-	</entry>	
-	
 	
 	<!-- 관리자페이지에서 검색기능 -->
 	<entry key="adminSearchpName">
@@ -333,7 +314,7 @@
 	
 	<!-- 결제페이지에서 조회되는 컬럼들 -->
 	<entry key="selectPayment">
-				SELECT 
+		 SELECT 
 			    P_NAME
 			  , P_CODE
 			  , PRICE
@@ -345,5 +326,20 @@
 
 	</entry>
 	
+	<!-- 결제페이지에서 쿠폰리스트 조회 -->
+	<entry key="">
+		SELECT
+		       CPN_CODE
+		     , CPN_NAME
+		     , CPN_DC
+		     , CPN_RGDT
+		     , CPN_STR_DATE
+		     , CPN_END_DATE
+		     , CPN_MIN
+		     , MEM_NO
+		  FROM COUPON
+		  JOIN CPN_PM USING (CPN_CODE)
+		 WHERE MEM_NO = ?
 
+	</entry>
 </properties>

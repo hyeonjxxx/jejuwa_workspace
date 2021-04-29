@@ -714,10 +714,11 @@ public class ProductDao {
 		
 		
 		public int likeCount(Connection conn, String pCode, int memNo) {
-			// update문
+			// select문
 			
 			int result = 0;
 			PreparedStatement pstmt = null;
+			ResultSet rset = null;
 			String sql = prop.getProperty("likeCount");
 			
 			try {
@@ -725,7 +726,7 @@ public class ProductDao {
 				pstmt.setString(1, pCode);
 				pstmt.setInt(2, memNo);
 				
-				result = pstmt.executeUpdate();
+				rset = pstmt.executeQuery();
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

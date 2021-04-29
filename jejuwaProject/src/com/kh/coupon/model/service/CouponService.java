@@ -38,6 +38,16 @@ public class CouponService {
 			
 	}
 	
+	// 결제페이지에서 쿠폰 조회
+	
+	public Coupon selectCoupon(int memNo) {
+		Connection conn = getConnection();
+		Coupon c = new CouponDao().selectCoupon(conn, memNo);
+		close(conn);
+		
+		return c;
+	}
+	
 	
 	
 }

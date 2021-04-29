@@ -68,6 +68,22 @@
 	  	
   	</entry> -->
   	
+  	<!-- 결제페이지에서 쿠폰리스트 조회 -->
+	<entry key="selectCoupon">
+		SELECT
+		       CPN_CODE
+		     , CPN_NAME
+		     , CPN_DC
+		     , CPN_RGDT
+		     , CPN_STR_DATE
+		     , CPN_END_DATE
+		     , CPN_MIN
+		     , MEM_NO
+		  FROM COUPON
+		  JOIN CPN_PM USING (CPN_CODE)
+		 WHERE MEM_NO = ?
+
+	</entry>
   	
   
 </properties>

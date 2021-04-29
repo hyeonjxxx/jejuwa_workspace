@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import = "java.util.ArrayList, 
     com.kh.payment.model.vo.Payment, com.kh.product.model.vo.*
-    , com.kh.member.model.vo.Member, com.kh.order.model.vo.Order"%>
+    , com.kh.member.model.vo.Member, com.kh.order.model.vo.Order
+    , com.kh.coupon.model.vo.Coupon"%>
 <%
 	////ArrayList<Payment> list = (ArrayList<Payment>)request.getAttribute("list");
 	//Payment pa = (Payment)request.getAttribute("pa");
 	Product p = (Product)request.getAttribute("p");
+	Coupon c = (Coupon)request.getAttribute("c");
 	Member m = (Member)request.getAttribute("m");
 	String travleDate = (String)request.getAttribute("travleDate");
 	Member loginUser = (Member)session.getAttribute("loginUser");
@@ -88,7 +90,7 @@
 					            <p style="font-size: 20px; font-weight: bold;">할인적용</p> <br>
 					            <select name="" id="" class="form-control">
 				                	<option value="" selected>쿠폰선택안함</option>
-					                <option value="<%=p.getCpnName()%>"><%=p.getCpnName() %></option>
+					                <option value=""><%=c.getCpn_Name() %></option>
 					            </select>
 					            <br><br>
 					            <hr>
