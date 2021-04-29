@@ -211,7 +211,7 @@
                </div> 
                 
                <div class="btn2" id="udBtn">
-                   <a href="" id="btn3" data-toggle="modal" data-target="#updateMember">회원정보 수정</a> 
+                   <a href="" id="btn3" onclick="return checkRequered();" data-toggle="modal" data-target="#updateMember">회원정보 수정</a> 
                </div>   
                
            </div> 
@@ -343,6 +343,23 @@
 	       				}
 	       			}
 	       	</script>
+	       	
+	       	<!-- 회원정보 수정시 필수 입력 사항 입력해야만 모달 띄우기 -->
+	        <script>
+          	 	function checkRequered(){
+          	 		if($("input[name=memName]").val().trim() == ''){
+          	 			alert("이름을 입력하세요.");
+          	 			$("#btn3").attr("data-target", false);
+          	 			$("input[name=memName]").focus();
+          	 		} else if($("input[name=phone]").val().trim() == ''){
+          	 			alert("전화번호를 입력하세요.");
+          	 			$("#btn3").attr("data-target", false);
+          	 			$("input[name=phone]").focus();
+          	 		}else {
+          	 			$("#btn3").attr("data-target", "#updateMember");
+          	 		}
+          	 	}
+              </script>
 	       
              </div>
            </div>
