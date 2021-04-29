@@ -106,6 +106,36 @@
 	        BY RESTRICT_DATE DESC
 	</entry>
 	
+	
+	<!-- [휘경] 1_1블랙리스트 등록을 위한 회원 번호 불러오기 -->
+	<entry key="findMemNo">
+		SELECT MEM_NO
+		  FROM MEMBER
+		 WHERE STATUS = 'Y'
+		   AND MEM_ID = ?
+	</entry>
+	
+	<!-- [휘경] 1_1 불러온 회원번호로 블랙리스트 등록 -->
+	<entry key="enrollBlacklist">
+		INSERT
+		  INTO BLACKLIST
+		  (
+		    BLACKLIST_NO
+		  , MEM_NO
+		  , RESTRICT_DATE
+		  , REPORTED_COUNT
+		  )
+		  VALUES
+		  (
+		    SEQ_BNO.NEXTVAL
+		  , ?
+		  , SYSDATE
+		  , 0
+		  )
+	</entry>
+	
+	
+	
 </properties>
 
 

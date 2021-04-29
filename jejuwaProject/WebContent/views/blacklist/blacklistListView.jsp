@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.kh.common.model.vo.PageInfo
 			   , java.util.ArrayList
-			   , com.kh.blacklist.model.vo.Blacklist" %>
+			   , com.kh.blacklist.model.vo.Blacklist
+			   , java.text.SimpleDateFormat
+			   , java.util.Date" %>
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Blacklist> list = (ArrayList<Blacklist>)request.getAttribute("list");
@@ -11,6 +13,11 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	String today = sdf.format (new Date());
+
+	
 %> 			   
 <!DOCTYPE html>
 <html>
@@ -284,7 +291,7 @@
     <!-- The Modal -->
     <div class="modal fade" id="enrollBlacklist" align="center" >
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content2">     
+            <div class="modal-content" id="enrollBlakcBtn">     
 
 
                 <!-- Modal Header -->
@@ -295,21 +302,23 @@
 
 
                 <!-- Modal body -->
-                
+                <form action="<%= contextPath %>/enroll.bl" method="post">
+                <input type="hidden" name="memNo2" value="<%=loginUser.getMemNo()%>">
+               
                 <div class="modal-body" id="modal-body">
                     <table>
                         <tr>
                             <th width="100px">아이디</th>
-                            <td colspan="2">user05</td>
+                            <td colspan="2"><input type="text" id="blackId" name="memId" placeholder="   아이디를 입력하세요"></td>
                         </tr>
                         <tr>
                             <th>사유</th>
-                            <td width="130x" style="border-right-color: white;"><input type="checkbox"> 욕설/비방</td>
-                            <td width="130px"><input type="checkbox"> 게시글도배</td>
+                            <td width="130x" style="border-right-color: white;"><input type="radio" name="reason" id="reason1"> <label for="reason1">욕설/비방</label></td>
+                            <td width="130px"><input type="radio" name="reason" id="reason2"><label for="reason2">게시글도배</label></td>
                         </tr>
                         <tr>
                             <th>처리날짜</th>
-                            <td colspan="2">2021.03.27</td>
+                            <td colspan="2"><%= today %></td>
                         </tr>
                     </table>
                 </div>
@@ -317,9 +326,10 @@
 
                 <!-- Modal footer -->
                 <div id="modalFooter">
-                    <button id="okBtn" class="btn btn-warning">등 록</button>
+                    <button type="submit" id="okBtn" class="btn btn-warning">등 록</button>
                     <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">취 소</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>

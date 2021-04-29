@@ -248,6 +248,62 @@ public class BlacklistDao {
 		}
 		
 		return list;
+	}
+	
+	/**
+	 * [휘경] 관리자 권한으로 블랙리스트 등록(1_1 회원아이디로 회원 번호 조회해오기)
+	 * @param conn
+	 * @param memId
+	 * @return
+	 */
+	public int findMemNo(Connection conn, String memId) {
+		// select => ResultSet (한 행)
+		int memNo = 0;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("findMemNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql문
+			pstmt.setString(1, memId);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				memNo = rset.getInt("MEM_NO");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return memNo;
 		
 	}
+	
+	/**
+	 * [휘경] 1_2 불러온 회원 번호로 블랙리스트 등록
+	 * @param conn
+	 * @param memNo
+	 * @return
+	 */
+	public int enrollBlacklist(Connection conn, int memNo) {
+		// update문 => 처리된 행 수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("enrollBlacklist");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			pstmt.setInt(1, memNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
 }

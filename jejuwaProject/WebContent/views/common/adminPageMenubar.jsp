@@ -128,7 +128,7 @@
         <!-- The Modal -->
         <div class="modal fade" id="loginModal" align="center" >
             <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content" >
+              <div class="modal-content" id="loginModalContent" >
               
                 <!-- Modal body -->
                 <br>

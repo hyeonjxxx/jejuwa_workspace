@@ -78,7 +78,7 @@
 	                <!-- 조회된 결과가 있을 경우 -->
 	                	<% for(Notice n : list) {%>
 		                    <tr>
-		                        <td><input type="checkbox" id="selectOne" name="selectOne" value="<%=n.getNoticeNo()%>"></td>
+		                        <td><input type="checkbox" id="selectOne" name="selectOne" onclick='checkSelectAll()'></td>
 		                        <td class="ch2"><%= n.getNoticeNo() %></td>
 		                        <td class="ch2"><%= n.getNoticeTitle() %></td>
 		                        <td class="ch2"><%= n.getNoticeCount() %></td>

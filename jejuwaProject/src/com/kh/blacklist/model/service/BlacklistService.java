@@ -92,7 +92,33 @@ public class BlacklistService {
 	}
 	
 	
+	/**
+	 * [휘경] 관리자 권한으로 블랙리스트 등록(1_1 회원아이디로 회원 번호 조회해오기)
+	 * @param memId
+	 * @return
+	 */
+	public int findMemNo(String memId) {
+		Connection conn = getConnection();
+		int memNo = new BlacklistDao().findMemNo(conn, memId);
+		close(conn);
+		return memNo;
+	}
 	
-	
-	
+	/**
+	 * [휘경] 1_2 불러온 회원 번호로 블랙리스트 등록
+	 * @param memNo
+	 * @return
+	 */
+	public int enrollBlacklist(int memNo) {
+		Connection conn = getConnection();
+		int result = new BlacklistDao().enrollBlacklist(conn, memNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
