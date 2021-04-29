@@ -409,9 +409,9 @@ public class ProductDao {
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
-				rset = pstmt.executeQuery();
 				pstmt.setInt(1, (pi.getCurrentPage() -1 ) * pi.getBoardLimit()+1);
 				pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+				rset = pstmt.executeQuery();
 
 				while(rset.next()) {
 					
@@ -694,6 +694,7 @@ public class ProductDao {
 					             rset.getString("P_name"),
 					             rset.getInt("price"),
 					             rset.getString("basic_path")));
+						//System.out.println(list);
 						
 					}
 					
@@ -704,7 +705,6 @@ public class ProductDao {
 					close(pstmt);
 				}
 				
-				System.out.println(list);
 				return list;
 		}	
 		
@@ -714,10 +714,11 @@ public class ProductDao {
 		
 		
 		public int likeCount(Connection conn, String pCode, int memNo) {
-			// update문
+			// select문
 			
 			int result = 0;
 			PreparedStatement pstmt = null;
+			ResultSet rset = null;
 			String sql = prop.getProperty("likeCount");
 			
 			try {
@@ -725,7 +726,7 @@ public class ProductDao {
 				pstmt.setString(1, pCode);
 				pstmt.setInt(2, memNo);
 				
-				result = pstmt.executeUpdate();
+				rset = pstmt.executeQuery();
 				
 			} catch (SQLException e) {
 				e.printStackTrace();

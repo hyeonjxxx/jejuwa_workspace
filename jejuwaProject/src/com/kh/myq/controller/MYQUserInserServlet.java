@@ -44,7 +44,7 @@ public class MYQUserInserServlet extends HttpServlet {
 			int maxSize = 10 * 1024 * 1024;
 			
 			// 1_2. 저장할 폴더의 물리적인 경로
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/thumbnail_upfiles/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/myq_upfiles/");
 			
 			// 2. request => multipartRequest
 			// 이 코드 하나로 내가 지정한 폴더에 파일들이 업로드 될 것임!!! 
@@ -58,9 +58,6 @@ public class MYQUserInserServlet extends HttpServlet {
 			q.setMyq_content(multiRequest.getParameter("content"));
 			q.setMem_no(Integer.parseInt(multiRequest.getParameter("memNo")));
 			q.setP_code(multiRequest.getParameter("pCode"));
-			q.setMem_id(multiRequest.getParameter("memId"));
-			q.setMem_name(multiRequest.getParameter("memName"));
-			q.setP_name(multiRequest.getParameter("pName"));
 			
 			// 3_2. Attachment테이블에 insert할 데이터뽑기 => Attachment객체
 			// 단, 여러개의  첨부파일이 있을것이기 때문에 해당 Attachment객체들을 ArrayList에 담기
@@ -68,14 +65,13 @@ public class MYQUserInserServlet extends HttpServlet {
 			ArrayList<Attachment> list = new ArrayList<>();
 			
 			for(int i=1; i<=3; i++) {
-				String key ="file" + i;
+				String key ="upfile" + i;
 				if(multiRequest.getOriginalFileName(key) != null) {
 					// Attachment 객체 생성 + 원본명, 수정명, 폴더경로, 파일레벨(0/1)
 					Attachment at = new Attachment();
 					at.setOrgFileName(multiRequest.getOriginalFileName(key));
 					at.setMdfFileName(multiRequest.getFilesystemName(key));
 					at.setFilePath("resources/myq_upfiles/");
-					at.setpCode(multiRequest.getParameter("pCode"));
 					
 					// 각 객체생성을 차곡차곡 list에 추가하기
 					list.add(at);

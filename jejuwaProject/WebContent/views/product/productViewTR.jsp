@@ -95,7 +95,7 @@
 			                      <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 165px"></div>
 			                       <div class="pdtInfo">
 			                           <p class="pdtName"><%=p.getpName() %></p>
-			                           <p class="pdtPrice"><%=p.getPrice() %>원<	/p>
+			                           <p class="pdtPrice"><%=p.getPrice() %>원</p>
 			                         </div>
 			                       </a>
 		                     </div>
@@ -129,7 +129,8 @@
 	                    <button onclick="location.href='<%=contextPath%>/trView.pdt?currentPage=<%=currentPage-1%>';">&lt;</button>			
 					<% } %>
 					
-					<% for(int p=startPage; p<=endPage; p++ ) {%>
+					<!-- 마지막페이지는   endpage보다 작다 -->
+					<% for(int p=startPage; p<endPage; p++ ) {%>
 					
 						<% if(currentPage == p) {%>
                         	<button disabled><%= p %></button>

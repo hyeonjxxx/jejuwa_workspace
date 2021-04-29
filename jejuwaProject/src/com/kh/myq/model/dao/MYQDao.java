@@ -366,10 +366,7 @@ public class MYQDao {
 			pstmt.setString(3, q.getMyq_content());
 			pstmt.setInt(4, q.getMem_no());
 			pstmt.setString(5, q.getP_code());
-			pstmt.setString(6, q.getMem_id());
-			pstmt.setString(7, q.getMem_name());
-			pstmt.setString(8, q.getP_name());
-			
+			System.out.println(q);
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -398,8 +395,8 @@ public class MYQDao {
 				pstmt.setString(1, at.getOrgFileName());
 				pstmt.setString(2, at.getMdfFileName());
 				pstmt.setString(3, at.getFilePath());
-				pstmt.setString(4, at.getpCode());
 				
+				System.out.println(at);
 				result = pstmt.executeUpdate();	
 			}
 		} catch (SQLException e) {

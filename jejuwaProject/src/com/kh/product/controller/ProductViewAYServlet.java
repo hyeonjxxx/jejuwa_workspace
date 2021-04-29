@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.common.model.vo.PageInfo;
 import com.kh.product.model.service.ProductService;
 import com.kh.product.model.vo.Product;
 
 /**
  * Servlet implementation class ProductMapTRServlet
  */
-@WebServlet("/trView.pdt")
-public class ProductViewTRServlet extends HttpServlet {
+@WebServlet("/ayView.pdt")
+public class ProductViewAYServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductViewTRServlet() {
+    public ProductViewAYServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,42 +32,10 @@ public class ProductViewTRServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int listCount;		
-		int currentPage;	
-		int pageLimit;		
-		int boardLimit;		
+		ArrayList<Product> list = new ProductService().selectThList_AY();
 		
-
-		int maxPage;		
-		int startPage;		
-		int endPage;		
-		
-		listCount = new ProductService().selectListCount_TR();
-		
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		System.out.println(currentPage);
-		
-		pageLimit = 5;
-		
-		boardLimit = 6;
-				
-		maxPage = (int)Math.ceil((double)listCount / boardLimit);
-		
-		
-		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
-		endPage = startPage + pageLimit - 1;
-		if(endPage > maxPage) {
-			endPage = maxPage;
-		}
-		
-		// PageInfo 객체에 담기
-		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		request.setAttribute("pi", pi);
-		
-		
-		ArrayList<Product> list = new ProductService().selectThList_TR(pi);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/product/productViewTR.jsp").forward(request, response);
+		request.getRequestDispatcher("views/product/productViewAY.jsp").forward(request, response);
 
 		
 	}

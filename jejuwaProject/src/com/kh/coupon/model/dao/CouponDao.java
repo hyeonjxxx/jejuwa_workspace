@@ -206,14 +206,42 @@ public class CouponDao {
 //	return CouponCount;
 //	
 //}
+	
+	
+	// 결제페이지에서 쿠폰 조회
+	
+	public Coupon selectCoupon(Connection conn, int memNo) {
+		
+		Coupon c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCoupon");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				c= new Coupon(rset.getInt("CPN_CODE"),
+							  rset.getString("CPN_NAME"),
+							  rset.getInt("CPN_DC"),
+							  rset.getDate("CPN_RGDT"),
+							  rset.getDate("CPN_STR_DATE"),
+							  rset.getDate("CPN_END_DATE"),
+							  rset.getInt("CPN_MIN"),
+							  rset.getInt("MEM_NO"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return c;
+	}
 }
-
-
-
-
-
-
-
-
 
 

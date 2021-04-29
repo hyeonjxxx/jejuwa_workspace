@@ -13,7 +13,7 @@ public class Coupon {
 	private Date cpn_Str_Date;
 	private Date cpn_End_Date;
 	private int cpn_Min;
-
+	private int memNo;
 	
 	
 	public Coupon() {}
@@ -31,14 +31,6 @@ public class Coupon {
 	}
 
 
-	
-
-
-
-
-
-	
-	
 	// 관리자 쿠폰조회 
 
 public Coupon(int cpn_Code, String cpn_Name, int cpn_Dc, Date cpn_Rgdt, Date cpn_Str_Date, Date cpn_End_Date) {
@@ -62,7 +54,26 @@ public Coupon(String cpn_Name, int cpn_Dc, Date cpn_Rgdt, Date cpn_Str_Date, Dat
 	this.cpn_Rgdt = cpn_Rgdt;
 	this.cpn_Str_Date = cpn_Str_Date;
 	this.cpn_End_Date = cpn_End_Date;
+	
+	
+	// 결제페이지 쿠폰리스트 조회
+	
 }
+
+public Coupon(int cpn_Code, String cpn_Name, int cpn_Dc, Date cpn_Rgdt, Date cpn_Str_Date, Date cpn_End_Date,
+		int cpn_Min, int memNo) {
+	super();
+	this.cpn_Code = cpn_Code;
+	this.cpn_Name = cpn_Name;
+	this.cpn_Dc = cpn_Dc;
+	this.cpn_Rgdt = cpn_Rgdt;
+	this.cpn_Str_Date = cpn_Str_Date;
+	this.cpn_End_Date = cpn_End_Date;
+	this.cpn_Min = cpn_Min;
+	this.memNo = memNo;
+}
+
+
 
 
 

@@ -24,12 +24,31 @@
 
         <div class="enrollForm">
                 <form id="enrollForm" action="<%=contextPath%>/insert.umyq" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="memNo" value="<%=login.getMemNo() %>">
+                    <input type="hidden" name="memId" value="<%= login.getMemId() %>">
+                    <input type="hidden" name="memName" value="<%= login.getMemName() %>">
                     <!-- 제목, 내용, 첨부파일 -->
                     <table align="center" id="enrollTable">
                         <tr>
                             <th>제목</th>
                             <td colspan="2">
                                 <input type="text" name="title" size="72" placeholder="제목을 입력해주세요" required>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>분류</th>
+                            <td colspan="2">
+                                <select name="category" id="category">
+                                    <option value="none">선택</option>
+                                    <option value="회원" name="op_member" id="op_member">회원</option>
+                                    <option value="주문/결제" name="op_payment" id="op_payment">주문/결제</option>
+                                    <option value="환불" name="op_exchange" id="op_exchange">환불</option>
+                                    <option value="이벤트" name="op_evnet" id="op_event">이벤트</option>
+                                    <option value="기타" name="op_etc" id="op_etc">기타</option>
+                                </select>
+                            <span id="op_product_info" style="color:red;">상품문의는 상품 상세페이지에서 해주시기 바랍니다 :)</span>
+
                             </td>
                         </tr>
                         <tr>
@@ -80,7 +99,7 @@
 			                           
 			                   <!-- Modal footer -->
 			                   <div id="modalFooter">
-			                       <button type="submit" id="okBtn" class="btn btn-warning">OK</button>
+			                       <button type="button" id="okBtn" class="btn btn-warning">OK</button>
 			                       <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
 			                   </div>
 			               </div>
@@ -90,6 +109,22 @@
         </div>
     </div>
     <script>
+            $('#okBtn').click(function(e) {
+
+                console.log("zzz");
+                e.preventDefault();
+
+                // Check
+                // 아이디 인증 체크
+                if($('#category option:selected').val() == "none") {
+                    $('#op_product_info').change().text("문의 내용을 분류해주세요 !!")
+                    return false;
+                }
+
+                $('#enrollForm').submit();
+            });
+
+        $('#category').val()
         function enterkey(){
             if(window.event.keyCode == 13){
                 var search = $("#faqSearch option:selected").val();

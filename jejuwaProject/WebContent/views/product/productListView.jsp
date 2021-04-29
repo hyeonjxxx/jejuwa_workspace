@@ -81,6 +81,7 @@
 	    						}else{
 	    							for(var i in list){
 	    								result += "<tr>"
+	    										+ "<input type='hidden' name='pcode' value='" + list[i].pCode + "'>"
 	    										+ "<td><input type='checkbox' class='check_single'></td>"
 	    								        + "<td>" +list[i].pCode + "</td>"
 	    								        + "<td>" +list[i].pName + "</td>"
@@ -93,11 +94,14 @@
 	    						$(".pdtListView tbody").html(result);
 	    						$(".pagingArea").css("visibility", "hidden");
 	    						
-	    			            $(function(){
-	    			            	$(".pdtListView>tbody>tr").click(function(){
-	    			            		location.href = '<%= contextPath%>/updateForm.pdt?pcode='+ $(this).children().eq(0).val();
-	    			            	})
-	    			            })
+	    		            	$(".pdtListView>tbody>tr").click(function(e){
+	    		            		
+	    		            		if(e.target.type=='checkbox'){
+	    		            			return;
+	    		            		}
+	    		            		//쿼리스트림 이용해서 요청할 url작성
+	    		            		location.href = '<%= contextPath%>/updateForm.pdt?pcode='+ $(this).children().eq(0).val();
+	    		            	})
 	    					}, error:function(){
 	    						console.log("ajax 통신 실패!!!!")
 	    					}
@@ -113,7 +117,7 @@
 	            <!-- 삭제/등록버튼 -->
 	            <div class="btnArea">
 	                <!-- <div id="deleteBtn"><a href="">삭 제</a></div> -->
-	                <button type="button" id="deleteBtn" data-toggle="modal" data-target="#deleteModal">삭 제</button>
+	                <button type="button" id="deleteBtn" onclick="deletePDT();" data-toggle="modal" data-target="#deleteModal">삭 제</button>
 	                <button id="enrollBtn"><a href="<%=contextPath %>/enroll.pdt">등 록</a></button>
 	            </div>
 	    	</div>
@@ -144,7 +148,7 @@
 	                    <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
 	                    </div>
 	                    
-			         <%--     <script>
+			            <%-- <script>
 				       			
 				    	    	<!-- 항목 삭제 --> 
 				    	    	// 1. 체크된 항목이 한개 이상인지 확인
@@ -176,7 +180,7 @@
 				       					return false;
 				       				}
 				       			}
-				       	</script>	         --%>
+				       	</script>	          --%>
 						</form>
 	                    
 	                </div>
@@ -254,7 +258,11 @@
 	            
 	            <script>
 	            $(function(){
-	            	$(".pdtListView>tbody>tr").click(function(){
+	            	$(".pdtListView>tbody>tr").click(function(e){
+	            		
+	            		if(e.target.type=='checkbox'){
+	            			return;
+	            		}
 	            		//쿼리스트림 이용해서 요청할 url작성
 	            		location.href = '<%= contextPath%>/updateForm.pdt?pcode='+ $(this).children().eq(0).val();
 	            	})

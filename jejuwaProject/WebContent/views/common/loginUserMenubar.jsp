@@ -173,19 +173,21 @@
 
             <div id="header_2">
             
-                <form action="" id="search_form">
+              <form action="<%=contextPath %>/mainSearch.pdt" id="search_form">
                     
                     <div id="search_btn" style="width: 10%;">
                         <!--<input type="submit" value="검색">-->
-                        <button><img style="width: 100%; height: 100%;" src="<%= request.getContextPath() %>/resources/images/돋보기.png"></button>
+                        <button type="submit"><img  style="width: 100%; height: 100%;" src="<%= request.getContextPath() %>/resources/images/돋보기.png"></button>
                     </div>
                     
                     <div id="search_text">
-                        <input type="search" name="keyword">
+                        <input type="search" name="keyword" id="keyword">
                         <div class="clear"></div>
                     </div>
-                </form>
+                </form> 
             </div>
+          
+            
             <!-- 로그인 전 -->
          <% if( login == null){  %>
 			<div id="header_3">
@@ -237,8 +239,9 @@
 
 	</div><br><br>
     <div class="navWrap" align="center">
-        <div class="menu"><a href="<%= request.getContextPath()%>/trView.pdt">투어</a></div>
+        <div class="menu"><a href="<%= request.getContextPath()%>/trView.pdt?currentPage=1">투어</a></div>
         <div class="menu"><a href="<%= request.getContextPath() %>/ttView.pdt">티켓</a></div>
+        <div class="menu"><a href="<%= request.getContextPath() %>/ayView.pdt">액티비티</a></div>
         <div class="menu"><a href="<%= request.getContextPath() %>/fdView.pdt">맛집</a></div>
         <div class="menu"><a href="<%= request.getContextPath() %>/list.uno?currentPage=1">고객센터</a></div>
 
