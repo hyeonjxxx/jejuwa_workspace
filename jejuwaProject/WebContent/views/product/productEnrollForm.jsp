@@ -62,7 +62,7 @@
                     </tr>                    
                     <tr>
                         <td>*상품명</td>
-                        <td><input type="text" name="pName" id="pName" required></td>
+                        <td><input type="text" name="pName" id="pName" size="40px" required></td>
                     </tr>
                     <tr>
                         <td>*기본 이미지</td>

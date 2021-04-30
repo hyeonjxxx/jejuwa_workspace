@@ -25,10 +25,11 @@
 
 /* searchArea */
 .searchArea{
-  float: left; 
-  width: 50%; 
-  outline: none;  
-  margin-left: 5px;
+    float: left;
+    width: 280px;
+    outline: none;
+    margin-left: 5px;
+    position: relative;
 }
 .searchForm{float: left; margin: auto; }
 .searchForm select, .searchForm input{
@@ -36,7 +37,11 @@
   border-radius: 3px;
   border:1px solid rgb(146, 145, 145);
 }
-
+button#searchBtn {
+    float: left;
+    margin:-30px 258px 0;
+    position: absolute;
+}
 .searchArea button{
   position: relative;
   margin-left: -38px;
@@ -80,8 +85,8 @@
 table *{border:1px solid rgb(226, 225, 225); padding:3px }
 .pdtListView{
   width: 750px;
-  margin: auto;
-  margin-top:30px;  
+  margin:24px 20px; 
+  float : left;
   text-align: center;
   border-collapse: collapse;
 }

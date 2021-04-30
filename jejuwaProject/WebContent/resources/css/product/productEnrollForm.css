@@ -32,6 +32,10 @@ td, span{font-size: 14px; padding: 3px 0;height: 40px;}
     display: block;
     color:white; 
   }
+.btnArea a:hover{
+	color: white;
+	text-decoration: none;
+}  
 
   .btnArea div, #btnEnroll{ 
     background-color: dimgray;
