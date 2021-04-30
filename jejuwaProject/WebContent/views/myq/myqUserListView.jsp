@@ -218,6 +218,8 @@
 			} else{
 				$(".btn #btn4").attr("disabled", true);
 			}
+
+			$('input[id="choic_myq"]':checked).length >0
 			// $('input[id="choice_myq"]').is(":checked")(function(){
 			// 	$('#btn4').attr('disabled', true);
 			// 	// if(this.checked){

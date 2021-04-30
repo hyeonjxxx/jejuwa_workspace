@@ -123,6 +123,12 @@ public class Product {
 	
 	
 	
+	public Product(String pName, String pCode ) {
+		super();
+		this.pName = pName;
+		this.pCode = pCode;
+	}
+
 	public String getLocalName() {
 		return localName;
 	}

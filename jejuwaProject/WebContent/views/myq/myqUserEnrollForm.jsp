@@ -86,7 +86,7 @@
 			            </div> 
 			             <!-- 버튼 (등 록) -->
 			            <div class="btn">
-			                <a href="<%=contextPath%>/insert.umyq" id="btn4" data-toggle="modal" data-target="#enrollBtn" >글 작성</a>
+			                <a href="<%=contextPath%>/insertp.umyq" id="btn4" data-toggle="modal" data-target="#enrollBtn" >글 작성</a>
 			            </div>   			
 					</div>
 					

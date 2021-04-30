@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.myq.model.service.MYQService;
+import com.kh.product.model.vo.Product;
+
 /**
  * Servlet implementation class MYQUserProductEnrollFormServlet
  */
@@ -28,7 +31,12 @@ public class MYQUserProductEnrollFormServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		request.getRequestDispatcher("views/myq/myqUserProductEnrollForm2.jsp").forward(request, response);
+		String pcode = request.getParameter("pcode");
+		Product p = new MYQService().selectProduct(pcode);
+		
+		request.setAttribute("p", p);
+		
+		request.getRequestDispatcher("views/myq/myqUserProductEnrollForm.jsp").forward(request, response);
 	}
 
 	/**

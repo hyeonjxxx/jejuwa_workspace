@@ -30,7 +30,7 @@
     /* 버튼 */
     .bottomArea{
         /* margin: 30px; */
-        margin-left: 450px;
+        margin-left: 355px;
     }
     /* .bottomArea *{float:left; margin-left: 5px;} */
     #btn4{
@@ -41,7 +41,6 @@
     display: block;
     padding:7px;
     border-radius:4px;
-    width:100px;
     
     }
     .btn a:hover{background-color: orange;}

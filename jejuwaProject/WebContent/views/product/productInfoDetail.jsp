@@ -203,9 +203,11 @@
                 	<li onclick="myq_p();" ><p>상품문의</p></li>
                 	<script>
                 		function myq_p(){
-                			location.href="<%=request.getContextPath() %>/penroll.umyq?pcode=<%= p.getpCode() %>"
-                					// pCode, pName 값 같이 전달하기 (같이 전달할때는 &이걸로 연결)
                 			
+                					// pCode, pName 값 같이 전달하기 (같이 전달할때는 &이걸로 연결)
+                			location.href =  "<%=request.getContextPath() %>/penroll.umyq?pcode=<%=p.getpCode()%>";	
+                					
+                			console.log(<%=p.getpCode()%>);
                 		}
                 	</script>
                 <% } %>

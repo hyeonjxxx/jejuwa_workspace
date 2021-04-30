@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.myq.model.vo.MYQ;
+import com.kh.product.model.vo.Product;
 
 public class MYQDao {
 	
@@ -399,6 +400,65 @@ public class MYQDao {
 				
 				result = pstmt.executeUpdate();	
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public Product selectProduct(Connection conn, String pcode) {
+		// select문
+		
+		Product p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, pcode);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				p = new Product(rset.getString("P_NAME")
+						      , rset.getString("P_CODE"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return p;
+	}
+
+	public int insertProductUser(Connection conn, MYQ q) {
+		// insert문
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertProductUser");
+		
+		ResultSet rset = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, q.getMyq_category());
+			pstmt.setString(2, q.getMyq_title());
+			pstmt.setString(3, q.getMyq_content());
+			pstmt.setInt(4, q.getMem_no());
+			pstmt.setString(5, q.getP_code());
+			
+			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

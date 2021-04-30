@@ -8,12 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- content css-->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/myq/myqUserProductEnrollForm.css">
-
-<style>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/myq/myqUserEnrollForm.css">
 
 
-</style>
 </head>
 <body>
 
@@ -32,15 +29,12 @@
                     <input type="hidden" name="memNo" value="<%=login.getMemNo() %>">
                     <input type="hidden" name="memId" value="<%= login.getMemId() %>">
                     <input type="hidden" name="memName" value="<%= login.getMemName() %>">
-                    <input type="hidden" name="pCode" value="<%= p.getpCode() %>">
-                    <input type="hidden" name="pName" value="<%= p.getpName() %>">
                     <!-- 제목, 내용, 첨부파일 -->
                     <table align="center" id="enrollTable">
                         <tr>
                             <th>제목</th>
-                            <td colspan="2" >
-                            	<span style="color:red"><b>[<%= p.getpName() %>]</b></span>
-                            	<input type="text" name="title" size="72" value="" required>
+                            <td colspan="2">
+                                <input type="text" name="title" size="72" placeholder="제목을 입력해주세요" required>
                             </td>
                         </tr>
 
@@ -48,18 +42,17 @@
                             <th>분류</th>
                             <td colspan="2">
                                 <select name="category" id="category">
-                                    <option value="상품문의" name="op_product" id="op_product">상품문의</option>
+                                    <option value="op_product">상품문의</option>
                                 </select>
-
                             </td>
                         </tr>
                         <tr>
                             <th>첨부파일</th>
-                            <td id="file_target">첨부파일 추가<!-- 이미지 클릭시 화살표나오면서 파일 담을수있는 리스트 나오기 FAQ보기 -->
-	                            <td colspan="2" style="display: none;">
-	                                <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 1);"><br>
-	                                <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 2);"><br>
-	                                <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 3);">
+                            <td>화살표<!-- 이미지 클릭시 화살표나오면서 파일 담을수있는 리스트 나오기 FAQ보기 -->
+	                            <td colspan="2">
+	                                <input type="file" name="upfile1" id="upfile1" onchange="loadImg(this, 1);"><br>
+	                                <input type="file" name="upfile2" id="upfile2" onchange="loadImg(this, 2);"><br>
+	                                <input type="file" name="upfile3" id="upfile3" onchange="loadImg(this, 3);">
 	                            </td>
                             </td>
                             <!-- 대표이미지?? 흠... -->
@@ -79,15 +72,17 @@
 			
 			            <!-- 버튼 (목록으로) -->
 			            <div class="btn">
-			                <a href="<%=contextPath%>/infoDetail.pdt?pcode=<%= p.getpCode() %>" id="btn4" >상품 상세페이지로</a>
-			            </div> 
+                            
+			                <a href="<%=contextPath%>/infoDetail.pdt?pcode=<%=p.getpCode() %>" id="btn4">상품페이지로</a>
+			                <!-- 상품 창에서 -> 이미지 클릭시 이동하는 스크립트구문  -->
+                        </div>
 			             <!-- 버튼 (등 록) -->
 			            <div class="btn">
 			                <a href="<%=contextPath%>/insert.umyq" id="btn4" data-toggle="modal" data-target="#enrollBtn" >글 작성</a>
 			            </div>   			
 					</div>
 					
-			        <!-- 문의사항 등록 모달 -->
+			        <!-- 공지사항 등록 모달 -->
 			       <!-- The Modal -->
 			       <div class="modal fade" id="enrollBtn" align="center" >
 			           <div class="modal-dialog modal-dialog-centered">
@@ -110,44 +105,53 @@
                 </form>
         </div>
     </div>
-    <div style="clear:both;">asdasd<br>asdasd<br>asdasdasd<br></div>
     <script>
             $('#okBtn').click(function(e) {
 
                 console.log("zzz");
                 e.preventDefault();
 
-                // Check
-                // 아이디 인증 체크
-                if($('#category option:selected').val() == "none") {
-                    $('#op_product_info').change().text("문의 내용을 분류해주세요 !!")
-                    return false;
-                }
-
                 $('#enrollForm').submit();
             });
             
-            $(function(){
-            $("#file_target").click(function(){
-            	console.log("asdasdasd");
-            	var $p = $(this).next(); // jQuery 방식으로 선택한 요소를 담아둘 때 변수명 앞에 $를 붙인다.
+        function enterkey(){
+            if(window.event.keyCode == 13){
+                var search = $("#faqSearch option:selected").val();
+                var keyword = $("#keyword").val();
                 
-                if($p.css("display") == "none"){
-                    $(this).siblings("#upfile").slideUp();
-                     // 보여지게
-                     $p.slideDown();
-                    
-                }else{
-                    $p.slideUp();
-                    //  사라지게
-                }
-				
-				/*
-                // slideDown 또는 slideUp 시킬 p 요소
+                $.ajax({
+                    url : "searchAjax.fa",
+                    type : "get",
+                    data : {search : search,
+                            keyword : keyword},
+                    success : function(list){
+                        var result = "";
+                        if(list.length == 0){
+                            result = "<tr><td colspan = '3'>조회된 공지사항이 없습니다.</td></tr>"
+                        }
+                        for(var i in list){
+                            result += "<tr>"
+                                    + "<td>" + list[i].faqNo + "</td>"
+                                    + "<td>" + list[i].qCategory + "</td>"
+                                    + "<td>" + list[i].faqTitle + "</td>"
+                                    + "<tr>";
+                        }
+                        
+                        $("#faqTable tbody").html(result);
+                        $("#pagingArea").css("visibility", "hidden");
+                        
+                        $(function(){
+                            $("#faqTable>tbody>tr").click(function(){
+                                location.href = '<%=contextPath%>/detail.fa?fno=' + $(this).children().eq(0).text();
+                            })
+                        })
+                    }, error:function(){
+                        console.log("ajax통신 실패");
+                    }
                 
-				*/
-            })
-        })
+                });
+            }
+        }
     </script>
     <%@ include file="../common/footer.jsp" %>
 </body>

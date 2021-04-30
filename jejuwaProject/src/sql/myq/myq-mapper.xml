@@ -205,8 +205,38 @@
 			)
 	</entry>
 	
-	<entry key="">
+	<entry key="selectProduct">
+		SELECT 
+		       P_NAME
+		     , P_CODE
+		  FROM 
+		       PRODUCT
+		 WHERE	
+		       P_CODE = ?
 
+	</entry>
 	
+		<entry key="insertProductUser">
+		 	INSERT 
+		   	  INTO MYQ
+		   	     (
+		           MYQ_NO
+				 , MYQ_CATEGORY
+			     , MYQ_TITLE
+				 , MYQ_CONTENT
+				 , MYQ_ENROLL_DATE
+				 , MEM_NO
+				 , P_CODE
+				 )
+		    VALUES 
+				 ( 
+				   SEQ_MQNO.NEXTVAL
+				 , ?
+				 , ?
+				 , ?
+				 , SYSDATE
+				 , ?
+				 , ?
+		         )
 	</entry>
 </properties>
