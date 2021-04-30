@@ -200,7 +200,7 @@
 
             <!-- 로그인 && 로그인한 사용자가 글 작성자인 경우 -->
             <div align="right" class="btn noticeListbtn">
-                <a href="" id="btn1" >선택삭제</a>
+                <a href="" id="btn1" data-toggle="modal" data-target="#deleteNotice">선택삭제</a>
        
                 
             </div>
@@ -214,10 +214,11 @@
                     
                     if(cnt == 0){
                         alert("삭제할 공지사항을 선택해주세요.");
-                        return;
+                        $("#btn1").attr("data-target", false);
             		}else{
-            			arr.push($(this).next().text());
-            			}
+            			//arr.push($(this).next().text());
+            			$("#btn1").attr("data-target", "#deleteNotice");
+            		}
                     	$("input[name='selectOne']:checked").each(function(key) {
                             //arr.push($(this).next().text());
                             //console.log($(this).eq(1).text());
@@ -270,9 +271,52 @@
             <div align="right" class="btn noticeListbtn">
                 <a href="<%= contextPath %>/enrollForm.no" id="btn2">등 록</a> 
             </div>   
-			
 		</div>
-
     </div>
+    
+    
+    <!-- 공지사항 삭제 모달 -->
+       <!-- The Modal -->
+       <div class="modal fade" id="deleteNotice" align="center" >
+         <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content" >
+           
+                             
+             <!-- Modal body -->
+             <br>
+             <div class="modal-body">
+               	공지사항을 삭제하시겠습니까?
+             </div>
+             
+             <form action="" method="post">        
+             <div class="input-group mb-3" id="modalContent">
+               <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
+               </div>
+               <input name="adminPwd" size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon1">
+                              
+             </div>
+             
+             <!-- Modal footer -->
+             <div id="modalFooter">
+               <button type="submit" id="okBtn1" class="btn btn-warning" onclick="return deleteNotice();">OK</button>
+               <button type="button" id="cancleBtn1" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+             </div>
+             
+             <script>
+	       			function deleteNotice(){
+	       				if($("input[name=adminPwd]").val() != <%= loginUser.getMemPwd()%>){
+	       					alert("관리자 비밀번호가 일치하지 않습니다.");
+	       					return false;
+	       				}
+	       			}
+	       	</script>
+	       		
+             </form> 
+           </div>
+         </div>
+       </div>
+    
+    
 </body>
 </html>

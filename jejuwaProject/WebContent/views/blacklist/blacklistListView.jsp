@@ -240,6 +240,32 @@
                     
                 </div>
     </div>
+    
+    
+    <!-- 선택 삭제 -->
+      <script>
+      	
+      	$("#btn1").click(function(){
+  			var cnt = $("input[name='selectOne']:checked").length;
+             var arr = [];
+             
+             if(cnt == 0){
+                 alert("블랙리스트를 해제할 회원을 선택해주세요.");
+                 $("#btn1").attr("data-target", false);
+     		}else{
+     			//arr.push($(this).next().text());
+     			$("#btn1").attr("data-target", "#unblacklist");
+     		}
+             	$("input[name='selectOne']:checked").each(function(key) {
+                     //arr.push($(this).next().text());
+                     //console.log($(this).eq(1).text());
+                     //console.log(arr);
+             		console.log(arr);
+                 });
+             
+     	});
+      
+      </script>	
 
 
      <!-- 블랙리스트 해제 모달 -->
