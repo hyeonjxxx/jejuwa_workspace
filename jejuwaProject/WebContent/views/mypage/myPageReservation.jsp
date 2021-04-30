@@ -55,16 +55,18 @@
             		</tr>
             	</thead>
                 <tbody>
-                	<%if(list.isEmpty()){ %>
+			<%for(int i =0; i<1; i++){ Order o = list.get(i); %>
+               	<%if(o.getStatus().equals("취소")){ %>
                      <!-- 조회된 결과가 없을 경우 -->
                      <!-- 왜 조회된 결과 없으면 안나올까? -->
                      <tr align="center">
-                         <td rowspan = "4" align="center">조회된 리스트가 없습니다.</td>
+                         <td colspan = "4" align="center">조회된 리스트가 없습니다.</td>
                      </tr>
-                    <%}else{ %>
-
-                    <!-- 조회된 결과가 있을 경우 -->
-			<%for(int i =0; i<list.size(); i++){ Order o = list.get(i); %>
+                <%}else %>
+                
+             <%} %>
+                   	<!-- 조회된 결과가 있을 경우 -->
+             <%for(int i =0; i<list.size(); i++){ Order o = list.get(i); %>      	
 				<%if(loginUser != null && loginUser.getMemNo() == o.getMemNo() && o.getcReason() == null && !o.getStatus().equals("취소")) {%>
                        <tr align="center">
                        	<td id = "orderNo<%=i%>" width="100"><%=o.getOrderNo() %></td>
@@ -79,8 +81,7 @@
                               	<%--<a href = "<%=contextPath%>/delete.or?ono=<%= o.getOrderNo() %>" >즉시취소</a> --%>
                            </td>
                        </tr>
-                      <%} %>
-				
+                 
 				<script>
                    	$(function(){
                        	$("#orderDetail").click(function(){
@@ -90,6 +91,7 @@
                  		})	
                      })
                 </script>
+                
                 <script>
                 	$(function(){
                 		$("#orderList>tbody>tr>#orderDetail<%=i%>").click(function(){
@@ -99,8 +101,7 @@
                 </script>
 				
                     	<%} %>
-                    <%} %>
-                    
+                   <%} %> 
                     
                     
                 </tbody>

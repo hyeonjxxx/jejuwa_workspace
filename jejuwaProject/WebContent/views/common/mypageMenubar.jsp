@@ -40,7 +40,7 @@
 		.myPageAll a{text-decoration: none; margin: -30px;}
 		.myPageAll ul {margin-top: -5px;}
 		.myPageAll ul li{margin-top: 10px;}
-		.mypagewrap{width: 1000px; height:800px;  margin: auto; margin-top: 50px;}
+		.mypagewrap{width: 1000px; height:1200px;  margin: auto; margin-top: 50px;}
 		
 		.mypagewrap>div{width: 100%;}
 		.mypagecontent{height: 100%;}
