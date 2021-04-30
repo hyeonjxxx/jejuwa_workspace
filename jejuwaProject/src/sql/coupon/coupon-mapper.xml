@@ -2,73 +2,60 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-		<!-- 쿠폰 총 갯수  -->
 
-	<entry key="selectListCount">
+	<entry key="adminCouponList">
 	
-		SELECT 
-			COUNT(*) LISTCOUNT
-		  FROM 
-		  	COUPON
-		  
-	</entry>
-
-		<!-- 관리자쿠폰리스트 조회 -->
-
-
-			<entry key="adminCouponList">
-			
-			
-			SELECT *
+		SELECT *
 		    FROM (
 		            SELECT
 		                ROWNUM RNUM
 		                , A.*
 		            FROM (
 		            	SELECT
-		                     CPN_CODE
+                             MEM_NO
+                           , CPN_CODE
 		                   , CPN_NAME
 		                   , CPN_DC
 		                   , CPN_RGDT
 		                   , CPN_STR_DATE
 		                   , CPN_END_DATE
-		                   
-		            FROM   COUPON C
-		            ORDER
-		                 BY CPN_RGDT DESC
+				          
+		            FROM   COUPON
+                    JOIN   CPN_PM USING(CPN_CODE)
+		            
 		            ) A
 		
 		    )
 		WHERE RNUM BETWEEN ? AND ?
-			
+		ORDER
+             BY CPN_RGDT DESC
+               
 	</entry>
-
-
-<!-- 
-	<entry key="selectListCoupon">
-
-마이페이지 쿠폰조회
 	
-		SELECT 
-	         
-		        CPN_NAME
-		        , CPN_DC
-		        , CPN_RGDT
-		        , CPN_STR_DATE
-		        , CPN_END_DATE
-		        , MEM_NO
+	<entry key="insertCoupon">
+		INSERT
+            INTO COUPON
+            (
+              CPN_CODE
+             ,CPN_NAME
+             ,CPN_DC
+             ,CPN_STR_DATE
+             ,CPN_END_DATE
+             ,CPN_MIN
+             )
+             VALUES
+             (
+              SEQ_CCO.NEXTVAL
+              , ?
+              , ?
+              , ?
+              , ?
+              , ?
+              )
+              
+	</entry>
 	
-		  FROM COUPON 
-	      JOIN CPN_PM USING (CPN_CODE)
-	      JOIN MEMBER USING (MEM_NO)
-	      
-	      
-	      WHERE MEM_NO = ?
-		  	
-	  	
-  	</entry> -->
-  	
-  	<!-- 결제페이지에서 쿠폰리스트 조회 -->
+	  	<!-- 결제페이지에서 쿠폰리스트 조회 -->
 	<entry key="selectCoupon">
 		SELECT
 		       CPN_CODE
@@ -84,6 +71,6 @@
 		 WHERE MEM_NO = ?
 
 	</entry>
-  	
-  
+	
 </properties>
+

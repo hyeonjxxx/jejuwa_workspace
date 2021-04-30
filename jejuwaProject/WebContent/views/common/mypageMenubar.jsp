@@ -131,7 +131,7 @@
                             <h2 id="Menu"><a>구매혜택</a></h2>
                             <ul>
                                 <li class="subMenu">
-                                    <a href="<%=contextPath%>/list.mycpn">쿠폰조회</a>
+                                    <a href="<%=contextPath%>/list.mycpn?currentPage=1">쿠폰조회</a>
                                 </li>
                             </ul>
                         </li>

@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.kh.common.model.vo.PageInfo
-			   	,com.kh.coupon.model.vo.Coupon, java.util.ArrayList" %>
+			   	,com.kh.coupon.model.vo.*, java.util.ArrayList"
+			    %>
 <%
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<Coupon> mylist = (ArrayList<Coupon>)request.getAttribute("mylist");
-	
-	int currentPage = pi.getCurrentPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
-	int maxPage = pi.getMaxPage();
+PageInfo pi = (PageInfo)request.getAttribute("pi");
+ArrayList<Coupon> adlist = (ArrayList<Coupon>)request.getAttribute("adlist");
+
+
+
+int currentPage = pi.getCurrentPage();
+int startPage = pi.getStartPage();
+int endPage = pi.getEndPage();
+int maxPage = pi.getMaxPage();
 %>   
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -185,24 +190,7 @@ th{padding: 10px; width:800px;}
 <%@ include file = "../common/mypageMenubar.jsp" %>
 	
      <!-- 마이페이지 컨텐츠 -->
-            <div class="content_2" >
-             
-                 
-                    <div class="pointbox">
-                        <ul class="info" id="pointinfo" >
-                            <li id="reservation" onclick="">
-                                <span>예약</span>
-                                <a href="" id="count">1 <em class="unit">건</em></a>
-                            </li>
-
-                            <li id="coupon" onclick="">
-                                <span>쿠폰</span>
-                                <a href="" id="count">1 <em class="unit">개</em></a>
-                            </li>
-                            <br>
-                        </ul>
-                    </div>
-
+           
                <br><br>
 
                <div class="outer">
@@ -217,35 +205,47 @@ th{padding: 10px; width:800px;}
     <table class="table table-hover" >
         <thead>
             <tr>
-                <tr align="center" width="750px">
-                    <th width="400px">발급일</th>
-                    <th width="500px">쿠폰명</th>
-                    <th width="500px">할인</th>
-                    <th width="1000px">사용기간</th>
+                <tr align="center" >
+                    <th width="200px">발급일</th>
+                    <th width="400px">쿠폰명</th>
+                    <th width="100px">할인</th>
+                    <th width="500px" rowspan="2">사용기간</th>
                 </tr>
             </tr>
         </thead>
         
         <tbody>
+        
+       
+       
+       
           <!-- 조회된 결과가 없을경우  -->
-        <%if(mylist.isEmpty()) { %>
+        <%if(adlist.isEmpty()) { %>
         	<tr>
-        		<td colspan="4" align="center">존재하는 쿠폰이 없습니다.</td>
+        		<td colspan="6" align="center">존재하는 쿠폰이 없습니다.</td>
         	</tr>
         	
         	
         	<% }else{ %>
-        		<% for(Coupon c : mylist) { %>
+        		
+        	
+        		<% for(Coupon cp : adlist) { %>
+        			<%if(loginUser != null && loginUser.getMemNo()==cp.getMem_No()){ %>
             	<tr>
-	              	<td><%= c.getCpn_Rgdt()%></td>
-	                <td><%= c.getCpn_Name()%></td>
-	                <td><%= c.getCpn_Dc()%></td>
-	                <td><%= c.getCpn_Str_Date()%> <span> ~ </span> <%=c.getCpn_End_Date()%></td>
+	              	<td width="200px" align="center"><%= cp.getCpn_Rgdt()%></td>
+	                <td width="400px" align="center"><%= cp.getCpn_Name()%></td>
+	                <td width="100px" align="center"><%= cp.getCpn_Dc()%>%</td>
+	                <td width="300px" align="center" rowspan="2"><%=cp.getCpn_Str_Date()%> ~ <%=cp.getCpn_End_Date()%></td>
+	                
 	                
            		 </tr>
             
           	 <% } %>
           <% } %>
+          <% } %>
+          
+          
+          
         </tbody>
     </table>
     <br><br>
@@ -261,17 +261,16 @@ th{padding: 10px; width:800px;}
         <!-- 버튼, 페이징 구역 -->
         <div class="bottomArea" align="center">
 
-    
-            <!-- 페이징  -->
-            <div class="pagingArea">
-            
-            	<!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
+    <!-- 페이징  -->
+            <div align="center" class="pagingArea">
+                    
+                    	
                     <% if(currentPage == 1) {%>
                     	<button disabled>&laquo;</button>
 	                    <button disabled>&lt;</button>			
                     <%} else {%>
-	                    <button onclick="location.href='<%=request.getContextPath()%>/list.mycoupon?currentPage=1';">&laquo;</button>
-	                    <button onclick="location.href='<%=request.getContextPath()%>/list.mycoupon?currentPage=<%=currentPage-1%>';">&lt;</button>			
+	                    <button onclick="location.href='<%=contextPath%>/listadmin.cpn?currentPage=1';">&laquo;</button>
+	                    <button onclick="location.href='<%=contextPath%>/listadmin.cpn?currentPage=<%=currentPage-1%>';">&lt;</button>			
 					<% } %>
 					
 					<% for(int p=startPage; p<=endPage; p++ ) {%>
@@ -279,20 +278,21 @@ th{padding: 10px; width:800px;}
 						<% if(currentPage == p) {%>
                         	<button disabled><%= p %></button>
                         <% }else{ %>				
-	                        <button onclick="location.href='<%=request.getContextPath()%>/list.mycoupon?currentPage=<%= p %>';"><%= p %></button>
+	                        <button onclick="location.href='<%=contextPath%>/listadmin.cpn?currentPage=<%= p %>';"><%= p %></button>
                         <% } %>		
                 	<% } %>
                 	
-                	<!-- 내가 보는 페이지가 마지막 페이지일 경우 >,>> 버튼 disabled -->
+                	
                 	<% if(currentPage == maxPage){ %>
                 		<button disabled>&gt;</button>
 	                    <button disabled>&raquo;</button>
                 	<% } else{ %>
-                		<button onclick="location.href='<%=request.getContextPath()%>/list.mycoupon?currentPage=<%=currentPage+1%>';">&gt;</button>
-	                    <button onclick="location.href='<%=request.getContextPath()%>/list.mycoupon?currentPage=<%=maxPage%>';">&raquo;</button>
-                	<% } %>
-            </div>
-         
+                		<button onclick="location.href='<%=contextPath%>/listadmin.cpn?currentPage=<%=currentPage+1%>';">&gt;</button>
+	                    <button onclick="location.href='<%=contextPath%>/listadmin.cpn?currentPage=<%=maxPage%>';">&raquo;</button>
+                	
+					<% } %>
+
+             	</div>
              
                     <hr>
                     <div class="Information">
@@ -302,9 +302,10 @@ th{padding: 10px; width:800px;}
                         * 주문/취소 시 이용기간이 남아 있는 쿠폰인 경우 재발급됩니다. <br>
                     </p>
                    </div>
+                   
             </div>
 
-        </div>
-
+       
+<%@ include file = "../common/footer.jsp" %>
 </body>
 </html>

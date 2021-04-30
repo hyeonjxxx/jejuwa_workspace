@@ -10,7 +10,8 @@
 	
 		SELECT COUNT(*) LISTCOUNT
 		  FROM REVIEW
-		  STATUS = 'Y'
+		  WHERE RV_STATUS = 'Y'
+		 
 		</entry>
 
 
@@ -103,19 +104,44 @@ WHERE RNUM BETWEEN ? AND ?;
 	<!-- 상품리뷰조회   -->
 	<entry key="selectReviewListPr">
 			
-				 SELECT   
-			        MEM_ID
+			SELECT   
+					 REVIEW_NO
+			          MEM_NO
+			        , MEM_ID
 			        , P_CODE
 			        , RV_CONTENT
 			        , RV_DATE
-			        , RV_STATUS
-			    FROM REVIEW R
+
+			    FROM REVIEW 
 			    JOIN MEMBER USING (MEM_NO)
-			    WHERE P_CODE = ? <!-- 문자열로 -->
-			    AND  R.RV_STATUS = 'Y'
+                WHERE P_CODE = ?
+
 			    ORDER 
-			        BY RV_DATE DESC;
+			        BY RV_DATE DESC
+		
+		
 		
 	
 	</entry>
+	
+	<!--상품 리뷰 insert -->
+  	<entry key="insertReviewPr">
+  	
+			  	
+		INSERT
+			 INTO REVIEW
+			    (
+			     REVIEW_NO
+			    ,RV_CONTENT
+			    ,RV_DATE
+			    )
+			    
+			  VALUES
+			    (
+			      SEQ.RVNO.NEXTVAL
+			      ,?
+			      ,?
+			      )
+    </entry>
+  
 </properties>
