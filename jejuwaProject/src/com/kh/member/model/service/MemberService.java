@@ -306,7 +306,42 @@ public class MemberService {
 		return list;
 	}
 
+	/**
+	 * [휘경] 멤버 상태로 검색
+	 * @param status
+	 * @return
+	 */
+	public ArrayList<Member> searchMember2(String status){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new MemberDao().searchMember2(conn, status);
+		close(conn);
+		return list;
+	}
 
+	
+	/**
+	 * [휘경] 멤버 수 조회2
+	 * @return
+	 */
+	public int selectMemberCount2(String status) {
+		Connection conn = getConnection();
+		int memberCount = new MemberDao().selectMemberCount2(conn, status);
+		close(conn);
+		return memberCount;
+	}
+	
+	
+	/**
+	 * [휘경] 현재 요청한 페이지(currentPage)에 보여질 회원 리스트 조회2
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Member> selectList2(PageInfo pi, String status){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new MemberDao().selectList2(conn, pi, status);
+		close(conn);
+		return list;
+	}
 
 
 }

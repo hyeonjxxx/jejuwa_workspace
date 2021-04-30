@@ -11,6 +11,8 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
+	
+	String currentStatus = (String)request.getAttribute("status");
 %> 
 <!DOCTYPE html>
 <html>
@@ -38,9 +40,10 @@
             <div align="right" class="searchArea" >
                 <span href="">
                     <select name="memberStatus" id="memberStatus" onchange="changeStatus();">
-                        <option value="Y">활동회원</option>
-                        <option value="A">관리자</option>
-                        <option value="N">탈퇴회원</option>
+                        
+                        <option value="Y" <% if(currentStatus.equals("Y")){%>selected="selected"<%}%>>활동회원</option>
+						<option value="A" <% if(currentStatus.equals("A")){%>selected="selected"<%}%>>관리자</option>
+						<option value="N" <% if(currentStatus.equals("N")){%>selected="selected"<%}%>>탈퇴회원</option>
                 	</select>
                 </span>
                 
