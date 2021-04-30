@@ -100,12 +100,12 @@
      	// 관리자 기능 구현 마지막에 로그인 접속 제한 걸 것
         $(function(){
 			
-        	$(".submenu").click(function(){
-            //$(".submenu, .stop").click(function(){
+        	
+            $(".submenu, .stop").click(function(){
             	
-            	//if(로그인유저가 널인경우){
-            		//alert("관리자 로그인이 필요한 서비스입니다.");
-            	//}else{
+            	if(<%=loginUser == null%>){
+            		alert("관리자 로그인이 필요한 서비스입니다.");
+            	}else{
             		
                 var $p = $(this).next();    
 
@@ -116,7 +116,7 @@
                     $p.slideUp();  
                 }
             		
-            	//}
+            	}
             		
 
             })

@@ -48,14 +48,14 @@ public class AdminMainPageServlet extends HttpServlet {
 		
 		
 		// 2021.04.29 관리자 페이지 접근 제한 예정
-//		if(loginUser == null || !loginUser.getStatus().equals("A")) {
-//			session.setAttribute("alertMsg", "관리자 권한이 필요한 서비스입니다.");
-//			response.sendRedirect(request.getContextPath());
-//		}else {
+		if(loginUser != null && !loginUser.getStatus().equals("A")) {
+			session.setAttribute("alertMsg", "관리자 권한이 필요한 서비스입니다.");
+			response.sendRedirect(request.getContextPath());
+		}else {
 			session.setAttribute("loginUser", loginUser);
 			request.getRequestDispatcher("views/common/adminPageMenubar.jsp").forward(request, response);
-//			
-//		}
+			
+		}
 	}
 
 	/**

@@ -257,10 +257,9 @@
      			$("#btn1").attr("data-target", "#unblacklist");
      		}
              	$("input[name='selectOne']:checked").each(function(key) {
-                     //arr.push($(this).next().text());
+                     arr.push($(this).next().text());
                      //console.log($(this).eq(1).text());
                      //console.log(arr);
-             		console.log(arr);
                  });
              
      	});
