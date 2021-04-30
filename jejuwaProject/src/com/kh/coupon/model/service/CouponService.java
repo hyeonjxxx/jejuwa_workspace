@@ -49,6 +49,31 @@ public class CouponService {
 		return c;
 	}
 	
+	//마이페이지 쿠폰
+	
+	public int mySelectListCount() {
+		Connection conn = getConnection();
+		int listCount = new CouponDao().selectListCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+		
+	}
+	
+	//관리자 쿠폰등록하기  insert 
+	
+	public int insertCoupon(Coupon ic) {
+		Connection conn = getConnection();
+		int result = new CouponDao().insertCoupon(conn, ic);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
 	
 }
