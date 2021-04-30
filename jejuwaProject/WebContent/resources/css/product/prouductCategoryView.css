@@ -8,7 +8,7 @@ div{box-sizing: border-box;}
 .content_wrap{width: 1000px; height: 600px; margin: auto;}
 
 .content_wrap>div{width: 100%;}
-.content{height: 100%;}
+.content{height:1350px;}
 
 .content>div{height: 100%; float: left;}
 .side{width: 20%;}
@@ -139,4 +139,10 @@ div{box-sizing: border-box;}
 .pdtArea:hover{
 	box-shadow: rgb(33 37 41 / 10%) 0px 4px 8px 0px; 
 	cursor: pointer;
+}
+
+/*페이징  */
+#pagingArea {
+    float: left;
+    margin: 70px 315px;
 }
