@@ -393,10 +393,24 @@
     WHERE rankPDT <= 3]]>		    
 	</entry>
 	
-	<entry key="티켓/투어 중 추천상품!">
-	<![CDATA[
-  	
-  	]]>		    
+	<entry key="saleSelect">
+ 		SELECT * 
+		  FROM (
+		  		SELECT
+		  			  ROWNUM RNUM
+					  , PDT. *  
+                      FROM(      
+                        SELECT DISTINCT T.P_CODE,
+                                  P_NAME
+                                , PRICE
+                                , BASIC_PATH
+                            FROM TORDER T   
+                            JOIN PRODUCT P ON( T.P_CODE=P.P_CODE)
+                            WHERE P_STATUS = 'Y'
+                                            ) PDT	  
+		  		
+		  	  )
+		WHERE RNUM BETWEEN 1 AND 6
 	</entry>			
 		
 	

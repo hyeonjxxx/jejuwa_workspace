@@ -76,7 +76,7 @@
             <table align="center" id="memberList"  class="table table-hover">
                 <thead>
                     <tr>
-                        <th width="40" ><input type="checkbox" id="checkAll"></th>
+                        <th width="40" ><input type="checkbox" id="checkAll" name="checkAll"></th>
                         <th width="100">번호</th>
                         <th width="200">제목</th>
                         <th width="150">작성일</th>
@@ -91,8 +91,8 @@
 	                	</tr>
 	                <% }else{ %>
 	                	<% for(MYQ q : list){ %>
-	                    <tr>
-	                    	<td><input id="choice_myq" type="checkbox"></td>
+	                    <tr> 
+	                    	<td><input id="choice_myq" name ="choice_myq" type="checkbox"></td>
 	                        <td class="ch2"><%= q.getMyq_no() %></td>
 	                        <td class="ch2">
 								<% if( q.getP_code() == null){%>
@@ -191,6 +191,7 @@
 		</div>
 	</div>
 
+
 	<script>
 		// 상세보기 요청
 		// $("#memberList>tbody>tr").click(function(){
@@ -208,49 +209,97 @@
             		}
         });
 
+
+
 		$("#checkAll").on("click", function () {
         	$(this).parents("#memberList").find('input').prop("checked", $(this).is(":checked"));
     	});
 		
 
-			if($('input[id="choice_myq"]').is(":checked") == true){
-				$(".btn #btn4").removeAttr('disabled');
-			} else{
-				$(".btn #btn4").attr("disabled", true);
-			}
+		// $(function(){
+		// 	$("input[id=choice_myq]").on("click", function(){
+		// 		if ($("input[id=choice_myq]:checked").length >0 ) {
+		// 			$(".btn #btn4").prop("disabled", false);
+		// 			console.log("체크박스있을때");
 
-			//$('input[id="choic_myq"]':checked).length >0
-			// $('input[id="choice_myq"]').is(":checked")(function(){
-			// 	$('#btn4').attr('disabled', true);
-			// 	// if(this.checked){
-				// 	$("input.applicable:checkbox").prop("disabled", true);
-			
-			
-		// 	.is(":checked"))
-		// 		$("#btn4").prop('disabled', false);
-		
-		// 		$("#btn4").prop('disabled', false);
-		
+
+					
+		// 			var myq_no = $('input[id=choice_myq]:checked').parent().siblings(1).html() // 체크한 곳의 myq_no 가져오기
+
+
+
+
+		// 		} else{
+		// 			$(".btn #btn4").prop("disabled", true);
+		// 			console.log("체크박스없을때");
+		// 		}
+		// 	})
 		// })
+
+		function test() {
+        var select_obj = '';
+  
+        $('input[type="checkbox"]:checked').each(function (index) {
+            if (index != 0) {
+                select_obj += ', ';
+            }
+            select_obj += $(this).val();
+        });
+  
+        alert(select_obj);
+    	}
+
+
+		$("#okBtn").click(function(){
 			
 
+			var length = $('input[id=choice_myq]:checked').length; // 체크된 숫자갯수
 
-	// 		$(this).prop('checked')
+			console.log("숫자갯수" + length);
 
-	// 		if(tmpp==true || ss>0){
-    // $(".btnArea button").prop("disabled",false);
-    // }
-    // else{
-    // $(".btnArea button").prop("disabled",true);
-    // }
+			var myq_arr = [ ];
+			
+			$('input[id=choice_myq]:checked').each(function(){
+
+				var myq_no = $('input[id=choice_myq]:checked').parent().siblings(1).html() // 체크된 게시물 번호
+
+				myq_arr.push($(this).attr(myq_no))
+
+				console.log("게시글번호" + myq_no);
+			});
+
+			console.log("배열" + myq_arr);
+			// 체크된 게시물 번호 배열에 담았음
+			console.log(myq_arr);
+			// $.ajax = {
+            //     type: "POST",
+            //     url: "delete.myq",
+            //     data: "RPRT_ODR=" + arr + "&CNT=" + cnt,
+            //     dataType:"json",
+            //     success: function(jdata){
+            //         if(jdata != 1) {
+            //             alert("삭제 오류");
+            //         }
+            //         else{
+            //             alert("삭제 성공");
+            //         }
+            //     },
+            //     error: function(){alert("서버통신 오류");}
+            // };
+
+			// }
+
+		})
+		
 		
 
+		 
 		
 
 		
 	</script>
 
     <br><br>
-    <%@ include file="../common/footer.jsp" %>
+    <!-- </%@ include file="../common/footer.jsp" %> -->
 </body>
 </html>
