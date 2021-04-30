@@ -21,13 +21,13 @@ import com.oreilly.servlet.MultipartRequest;
  * Servlet implementation class MYQUserInserServlet
  */
 @WebServlet("/insertp.umyq")
-public class MYQUserProductInserServlet extends HttpServlet {
+public class MYQUserProductInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MYQUserProductInserServlet() {
+    public MYQUserProductInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
