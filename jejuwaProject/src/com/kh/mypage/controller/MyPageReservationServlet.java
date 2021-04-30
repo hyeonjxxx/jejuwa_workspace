@@ -36,7 +36,7 @@ public class MyPageReservationServlet extends HttpServlet {
 		
 		
 		ArrayList<Order> list = new OrderService().selectOrderList();
-		System.out.println(list);
+		//System.out.println(list);
 		// jsp에도 list가 담겨야됨!
 		
 		//request.setAttribute("o", o);

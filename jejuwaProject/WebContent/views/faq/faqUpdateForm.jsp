@@ -70,8 +70,8 @@
             <br><br>
             
 	        <div class="bottomArea" align="center">
-				<button type = "submit">수정하기</button>
-				<button type ="button" onclick = "history.back();">뒤로가기</button>
+				<button type = "submit" class="btn btn-info">수정하기</button>
+				<button type ="button" class="btn btn-warning" onclick = "history.back();">뒤로가기</button>
 	        </div>
         </form>
     </div>
