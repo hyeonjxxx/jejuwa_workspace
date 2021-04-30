@@ -1,4 +1,4 @@
-div, form, input{border: 1 solid gray; box-sizing: border-box;}
+div, form, input{box-sizing: border-box;}
 
 button{background-color:orange; border: 1px solid orange;}
 
@@ -91,3 +91,5 @@ a { text-decoration: none; }
     }
     /* clean으로 비워주기 */
     .clear {clear:both; height:0; overflow:hidden;}
+    
+   

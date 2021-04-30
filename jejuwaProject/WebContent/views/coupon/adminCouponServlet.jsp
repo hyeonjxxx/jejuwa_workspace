@@ -37,15 +37,22 @@
         float: left;
         
     }
+    
+   
+    
     /* 쿠폰관리 타이틀 */
 
     #coupon_title{
        font-weight: 800;
+       padding:20px;
     }
 
    
     /* 테이블 */
-    .listArea{text-align:center;}
+    .listArea{
+    text-align:center;
+    padding:25px;
+    }
     
    
     .listArea>table>tbody>tr:hover{
@@ -54,7 +61,8 @@
     }
     .listArea>table *{
         magin:10px;
-        padding:10px;}
+        padding:8px;
+        }
     
     
     /* 버튼 + 페이징 구역*/
@@ -108,7 +116,7 @@
 	<%@ include file="../common/adminPageMenubar.jsp" %>
 	
 
-	<div class="wrap">
+	
         <!-- 헤더 -->
         
 
@@ -133,12 +141,13 @@
             <table  align="center" id="memberList">
                 <thead>
                     <tr>
-                        <th width="30px" ><input type="checkbox"></th>
-                        <th width="100px">쿠폰코드</th>
-                        <th width="200px">쿠폰명</th>
-                        <th width="300px">기간</th>
-                        <th width="100px">할인율</th>
-                        <th width="200px">등록일</th>
+                        <th width="10px" ><input type="checkbox"></th>
+                          <th width="200px">등록일</th>
+                        <th width="90px">쿠폰코드</th>
+                        <th width="170px">쿠폰명</th>
+                        <th width="290px">기간</th>
+                        <th width="70px">할인율</th>
+                      
                         
                     </tr>
                 </thead>
@@ -153,13 +162,14 @@
 			                <% for(Coupon cp : adlist) {%>
 		                    <tr>
 		                        <td><input type="checkbox"></td>
+		                        <td><%=cp.getCpn_Rgdt()%></td>
 		                        <td><%=cp.getCpn_Code()%></td>
 		                        <td><%=cp.getCpn_Name()%></td>
 		                        <td><%=cp.getCpn_Str_Date()%>
 		                        <span>~</span> 
 		                        <%=cp.getCpn_End_Date()%></td>
 		                        <td><%=cp.getCpn_Dc()%>%</td>
-		                        <td><%=cp.getCpn_Rgdt()%></td>
+		                        
 		                        
 		                    </tr>
                     	<% } %>
@@ -213,8 +223,6 @@
               
                         	<a href="<%= contextPath %>/list.go" class="btn btn-outline-info">
                         	쿠폰등록</a>
-                        	
-                        	<button class="btn btn-outline-info" type="button" >삭제</button>
                         	
                  </div>
 			</div>

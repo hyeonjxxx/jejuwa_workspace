@@ -228,7 +228,7 @@
                     <div class="coupon">
                             <a href="">
                             <img src="<%= request.getContextPath() %>/resources/images/쿠폰.png" width="40px" alt="">
-                                <p>쿠폰</p>
+                                <p><a href = "<%=request.getContextPath()%>/list.mycpn?currentPage=1">쿠폰</a></p>
                             </a>
                     </div>
                     <div class="clear"></div>
