@@ -37,7 +37,7 @@ public class ProductBestSelectListServlet extends HttpServlet {
 		ArrayList<Product> list = new ProductService().bestSelect();
 				
 		request.setAttribute("list", list);	
-		request.getRequestDispatcher("views/common/mainPage.jsp").forward(request, response);
+		//request.getRequestDispatcher("views/common/mainPage.jsp").forward(request, response);
 		
 		
 	}
