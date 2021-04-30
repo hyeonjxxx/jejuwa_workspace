@@ -29,12 +29,10 @@
     
     /* 버튼 */
     .bottomArea{
-        /* margin: 35px; */
+    	margin-left:50px;
         float:right;
-        margin-right: 9px;
     }
-    /* .bottomArea *{float:left; margin-left: 5px;} */
-    .btn a{
+    #deleteBtn a, #backBtn a, #nUpdateBtn{
     text-decoration: none; 
     text-align: center;
     color:white; 
@@ -44,12 +42,27 @@
     border-radius:4px;
     width:100px;
     }
-    #btn1{margin-left: 45px;}
-    #btn2{margin-left: 286px;}
+    
+    #nUpdateBtn{
+    text-decoration: none; 
+    text-align: center;
+    color:white; 
+    background-color: dimgray;
+    display: block;
+    border-radius:4px;
+    width:100px;
+    }
+    #deleteBtn1{margin-left: 50px;}
+    #backBtn2{margin-left: 350px;}
 
     /* 목록으로 버튼만 보이게 할 경우 */
     /* #btn4{margin-left: 650px;} */
     
-    .btn a:hover{background-color: orange;}
+    #deleteBtn a:hover, #backBtn a:hover, #nUpdateBtn a:hover{
+    text-decoration: none; 
+    background-color: orange;
+    color:white;}
+    
+    
     
     

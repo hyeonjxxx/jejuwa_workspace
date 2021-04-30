@@ -56,17 +56,17 @@
                         </tr>
                     </table>
                         <div class="bottomArea">
-				            <div class="btn">
-				                <a href="" id="btn1">삭 제</a>
+				            <div class="btn" id="deleteBtn">
+				                <a href="" id="deleteBtn1">삭 제</a>
 				            </div> 
 				            
-				            <div class="btn">
-				                <a href="<%=contextPath%>/list.no?currentPage=1"" id="btn2">목록으로</a>
+				            <div class="btn" id="backBtn">
+				                <a href="<%=contextPath%>/list.no?currentPage=1"" id="backBtn2">목록으로</a>
 				            </div> 
 				            
 				            <div class="btn">
 				            	<!-- a태그로 하면 submit이 불가능하네,,, -->
-				                <button type="submit" id="btn3">수 정</button> 
+				                <button type="submit" id="nUpdateBtn" class="btn">수 정</button> 
 				            </div>   
 				        </div>
                 </form>

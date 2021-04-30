@@ -271,11 +271,11 @@
         <!-- The Modal -->
         <div class="modal fade" id="unblacklist" align="center" >
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">     
+                <div class="modal-content" id="enrollbBtn">     
 
                     <!-- Modal body -->
                     <br>
-                    <div class="modal-body" >
+                    <div class="modal-body" id="unblacklistBody" >
                         	블랙리스트를 해제하시겠습니까?
                     </div>
                     
@@ -321,7 +321,7 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header" id="modal-header">
-                    <h4 class="modal-title">블랙리스트 등록</h4>
+                    <h4 class="modal-title" id="benrollTitle">블랙리스트 등록</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 

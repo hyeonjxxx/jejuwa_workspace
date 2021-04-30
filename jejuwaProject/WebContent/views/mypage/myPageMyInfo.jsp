@@ -210,7 +210,7 @@
         <!-- The Modal -->
         <div class="modal fade" id="updatePwd" align="center">
             <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content" >   
+              <div class="modal-content" id="updatePwdModalContent">   
 
                     <!-- Modal body -->
                     
@@ -221,7 +221,7 @@
                     </div>
                     
                     <form action="<%= contextPath %>/updatePwd.me" method="post">            
-                    <div class="input-group mb-3" id="modalContent1">
+                    <div class="input-group mb-3" id="updatePwdModalContent2">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 &nbsp;&nbsp;현재 비밀번호 입력
@@ -229,7 +229,7 @@
                         </div>
                         <input size="25" type="password" name="memPwd" required>
                     </div>
-                    <div class="input-group mb-3" id="modalContent2">
+                    <div class="input-group mb-3" id="updatePwdModalContent2">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 &nbsp;&nbsp;&nbsp;&nbsp;변경할 비밀번호
@@ -238,7 +238,7 @@
                         <input size="25" type="password" name="updatePwd" required>
                         <input name="memNo" type="hidden" value="<%=memNo%>">
                     </div>
-                    <div class="input-group mb-3" id="modalContent3">
+                    <div class="input-group mb-3" id="updatePwdModalContent2">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
                                 	변경할 비밀번호 확인
@@ -271,7 +271,7 @@
        <!-- The Modal -->
        <div class="modal fade" id="updateMember" align="center" >
            <div class="modal-dialog modal-dialog-centered">
-             <div class="modal-content" id="modal-content2">
+             <div class="modal-content" id="updateMemberModalContent">
              
                <!-- Modal body -->
                <br>
@@ -280,7 +280,7 @@
                </div>
                
                             
-               <div class="input-group mb-3" id="modalContent">
+               <div class="input-group mb-3" id="updateMemberModalContent2">
                  <div class="input-group-prepend">
                    <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
                  </div>
