@@ -20,7 +20,7 @@ public class CouponService {
 	public int selectListCount() {
 		Connection conn = getConnection();
 		int listCount = new CouponDao().selectListCount(conn);
-		
+		System.out.println("서비스 리스트카운트" + listCount);
 		close(conn);
 		
 		return listCount;

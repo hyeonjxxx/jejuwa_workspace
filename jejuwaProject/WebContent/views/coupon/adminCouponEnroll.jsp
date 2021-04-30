@@ -81,23 +81,23 @@
                         <td><input type="date" name="start_cpn"> ~ <input type="date" name="end_cpn"></td>
                     </tr>
                     <tr>
-                        <td width="100" required>* 할인율(%) </td>
-                        <td><input type="number" style="width: 100px;" min="3" max="50" name="dc">%</td>
+                        <td width="100">* 할인율(%) </td>
+                        <td><input type="number" style="width: 100px;" min="3" max="50" name="dc" required>%</td>
                     </tr>
                     <tr>
                         <td width="100">* 쿠폰사용조건</td>
-                        <td><input type="number" name="use" id="" placeholder="10,000" min="10000"max="100000">원 이상 사용가능</td>
+                        <td><input type="number" name="use" id="" placeholder="10,000" min="10000"max="100000" required>원 이상 사용가능</td>
                     </tr>
                 </table>
                 	
                     <div align="right" class="btn">
 			            <div id="btnBack"><a href="<%=contextPath%>/listadmin.cpn?currentPage=1">목록</a></div><!-- 쿠폰목록조회페이지로 -->
-			            <div id="btnEnroll">
+			            <div id="btnEnroll"> </div>
 			            <button type = "submit" >등록하기</button>
 		            </div>
             
           
-        </div>
+       
             </form>
 
         </div>

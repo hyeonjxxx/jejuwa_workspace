@@ -149,20 +149,20 @@
 		                		<td colspan="5">조회된 회원이 없습니다.</td>
 		                	</tr>
 		                <% }else{%>
-		                <!-- 조회된 결과가 있-->
-		                <% for(Coupon cp : adlist) {%>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td><%=cp.getCpn_Code()%></td>
-                        <td><%=cp.getCpn_Name()%></td>
-                        <td><%=cp.getCpn_Str_Date()%>
-                        <span>~</span> 
-                        <%=cp.getCpn_End_Date()%></td>
-                        <td><%=cp.getCpn_Dc()%>%</td>
-                        <td><%=cp.getCpn_Rgdt()%></td>
-                        
-                    </tr>
-                    <% } %>
+			                <!-- 조회된 결과가 있-->
+			                <% for(Coupon cp : adlist) {%>
+		                    <tr>
+		                        <td><input type="checkbox"></td>
+		                        <td><%=cp.getCpn_Code()%></td>
+		                        <td><%=cp.getCpn_Name()%></td>
+		                        <td><%=cp.getCpn_Str_Date()%>
+		                        <span>~</span> 
+		                        <%=cp.getCpn_End_Date()%></td>
+		                        <td><%=cp.getCpn_Dc()%>%</td>
+		                        <td><%=cp.getCpn_Rgdt()%></td>
+		                        
+		                    </tr>
+                    	<% } %>
                    
                    <% } %>
                    

@@ -54,9 +54,9 @@ public class AdminCouponServlet extends HttpServlet {
 		
 		
 		// * listCount : 총 게시글 갯수 조회해서 담기
-		listCount = new ReviewService().selectListCount();
-	
+		listCount = new CouponService().selectListCount();
 		
+		System.out.println(listCount);
 		// * currentPage : 현재 요청한 페이지
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
@@ -100,9 +100,12 @@ public class AdminCouponServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
 		ArrayList<Coupon> adlist = new CouponService().adminCouponList(pi);
-		
+		System.out.println(adlist);
 		request.setAttribute("pi", pi);
 		request.setAttribute("adlist", adlist);
+		
+		 //System.out.println(adlist);
+
 		
 		request.getRequestDispatcher("views/coupon/adminCouponServlet.jsp").forward(request, response);
 		
