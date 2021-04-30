@@ -28,7 +28,7 @@
         <br>
 
         <div class="enrollForm">
-                <form id="enrollForm" action="<%=contextPath%>/insert.umyq" method="post" enctype="multipart/form-data">
+                <form id="enrollForm" action="<%=contextPath%>/insertp.umyq" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="memNo" value="<%=login.getMemNo() %>">
                     <input type="hidden" name="memId" value="<%= login.getMemId() %>">
                     <input type="hidden" name="memName" value="<%= login.getMemName() %>">
@@ -83,7 +83,7 @@
 			            </div> 
 			             <!-- 버튼 (등 록) -->
 			            <div class="btn">
-			                <a href="<%=contextPath%>/insert.umyq" id="btn4" data-toggle="modal" data-target="#enrollBtn" >글 작성</a>
+			                <a href="<%=contextPath%>/insertp.umyq" id="btn4" data-toggle="modal" data-target="#enrollBtn" >글 작성</a>
 			            </div>   			
 					</div>
 					

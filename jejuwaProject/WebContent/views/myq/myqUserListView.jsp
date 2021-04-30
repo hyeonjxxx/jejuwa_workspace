@@ -98,7 +98,7 @@
 								<% if( q.getP_code() == null){%>
 	                        		<%= q.getMyq_title() %>
 	                        	<% } else { %>
-	                        		<span style="color:red; border: 0px;">[<%= q.getP_code() %>]</span>
+	                        		<span style="color:red; border: 0px;">[<%= q.getP_name() %>]</span>
 	                        		<%= q.getMyq_title() %>
 	                        	<% } %>
 	                        </td>
@@ -219,7 +219,7 @@
 				$(".btn #btn4").attr("disabled", true);
 			}
 
-			$('input[id="choic_myq"]':checked).length >0
+			//$('input[id="choic_myq"]':checked).length >0
 			// $('input[id="choice_myq"]').is(":checked")(function(){
 			// 	$('#btn4').attr('disabled', true);
 			// 	// if(this.checked){

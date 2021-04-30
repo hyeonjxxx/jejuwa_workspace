@@ -27,9 +27,11 @@
 		                     , MEM_ID
                              , P_CODE
                              , MYQ_ANS_CONTENT
+                             , P_NAME
 		                  FROM 
 		                  	   MYQ 
 		                  JOIN MEMBER USING (MEM_NO)
+		             LEFT JOIN PRODUCT USING (P_CODE)
                       ORDER BY 
                                MYQ_NO DESC	
 		                ) Q
@@ -112,9 +114,11 @@
 		                     , MEM_ID
                              , P_CODE
                              , MYQ_ANS_CONTENT
+                             , P_NAME
 		                  FROM 
 		                  	   MYQ 
 		                  JOIN MEMBER USING (MEM_NO)
+		             LEFT JOIN PRODUCT USING (P_CODE)
 		                 WHERE MEM_ID = ?
                       ORDER BY 
                                MYQ_NO DESC	
