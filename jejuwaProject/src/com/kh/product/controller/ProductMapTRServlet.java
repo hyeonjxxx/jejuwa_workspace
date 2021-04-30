@@ -32,7 +32,7 @@ public class ProductMapTRServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Product> list = new ProductService().selectThList_TR();
+		ArrayList<Product> list = new ProductService().selectThList_TR(null);
 		
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/product/productMapSearchView.jsp").forward(request, response);

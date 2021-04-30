@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.kh.member.model.vo.Member"%>
+    pageEncoding="UTF-8" import="com.kh.member.model.vo.Member, java.util.ArrayList, com.kh.product.model.vo.Product"%>
 <%
 	Member loginUser = (Member)session.getAttribute("loginUser");
 	// 로그인 전  managerMenubar.jsp  로딩시 : null
 	// 로그인 성공후 managerMenbubar.jsp 로딩시 : 로그인한 회원의 정보들이 담겨있는 객체
+	
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -62,51 +65,54 @@
      <!-- 추천상품 -->
 
     <div class="medium">
-        <label for="" class="medieum-font">제주와 추천상품</label>
+        <label for="" class="medieum-font">제주와 인기상품</label>
     </div>
-        <div class="product-list">
-            <div class="product-list2" >
-                <a href="#" class="product">
-                <img src="/jejuwa/resources/images/reco_1.png" alt="" width="245">
-                <div class="product-name">제주시티투어</div>
-                <div class="product-price">128,000 <label for="" id="price-won">원 </div></a>
-
-                <a href="#" class="product">
-                <img src="/jejuwa/resources/images/reco_1.png" alt="" width="245">
-                <div class="product-name">제주시티투어</div>
-                <div class="product-price">128,000 <label for="" id="price-won">원</div></a>
-
-                <a href="#" class="product">
-                <img src="/jejuwa/resources/images/reco_1.png" alt="" width="245">
-                <div class="product-name">제주시티투어</div>
-                <div class="product-price">128,000 <label for="" id="price-won">원</div></a>
-            </div>
-
-        </div>
 
         <!-- 제주와 투어/티켓 인기 -->
+             <div class="pdt_wrap">
+	             <ul class="pdtList">
+	             </ul>
+             </div>
 
-        <div class="medium">
-            <label for="" class="medieum-font">투어/티켓 인기상품</label>
-        </div>
-            <div class="product-list">
-                <div class="product-list2" >
-                    <a href="#" class="product">
-                    <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
-                    <div class="product-name">제주시티투어</div>
-                    <div class="product-price">128,000 <label for="" id="price-won">원</label></div></a>
+		<script>
+		$(document).ready(function(){
+      
+           			$.ajax({
+           				url:"<%=contextPath%>/saleList.pdt",
+           				type:"get", 
+           				success:function(list){
+           					console.log(list);
+            				
+           					var result ="";
+           					for(var i in list){            						
+            					result += "<li class=pdtArea>"
+            							+ "<input type='hidden' value=" + list[i].pCode +">"
+        					      	    + "<div class='pdtPhoto'>" + "<img src='" + list[i].basicPath  + "' style='width: 220px; height: 147px'>" + "</div>"
+        					            + "<div class='pdtInfo'>" 
+        					            + "<p class='pdtName'>" + list[i].pName + "</p>"
+        					            + "<p class='pdtPrice'>" + list[i].price + "원</p>"
+       						            + "</div>" 
+       						            + "</li>"
+           						}
+            					
+           					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
+            				$(".pdtList").html(result);
+           				
+            				$(function() {
+            					$(".pdtArea").click(function() {
+            						location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+            	        		});	
+            	        	})
+           					
+           					
+           				}, error:function(){
+           					console.log("ajax통신 실패!!");
+           				}
+           			});
+           	
+            });
+        </script>
 
-                    <a href="#" class="product">
-                    <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
-                    <div class="product-name">제주시티투어</div>
-                    <div class="product-price">128,000 <label for="" id="price-won">원 </div></a>
-
-                    <a href="#" class="product">
-                    <img src="<%= contextPath %>/resources/images/reco_1.png" alt="" width="245">
-                    <div class="product-name">제주시티투어</div>
-                    <div class="product-price">128,000 <label for="" id="price-won">원</div></a>
-                </div>
-            </div>
 
         <%@ include file="../common/footer.jsp" %>
 

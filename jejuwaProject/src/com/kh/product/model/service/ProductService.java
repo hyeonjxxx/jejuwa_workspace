@@ -208,7 +208,7 @@ public class ProductService {
 		return list;
 	}
 	
-	// 판매순
+	// 인기순
 	public ArrayList<Product> bestSelect() {
 		Connection conn = getConnection();
 		ArrayList<Product> list = new ProductDao().bestSelect(conn);
@@ -217,6 +217,12 @@ public class ProductService {
 		return list;
 	}	
 	
+	public ArrayList<Product> saleSelect() {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().saleSelect(conn);
+		close(conn);
+		return list;
+	}	
 	
 	
 	// 좋아요 관련 

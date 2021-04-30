@@ -811,7 +811,7 @@ public class ProductDao {
 		 * close(pstmt); } return listCount; }
 		 */
 		
-		// 판매순 --> 재고량 낮은 순
+		// 인기순 --> 재고량 낮은 순
 		public ArrayList<Product> bestSelect(Connection conn) {
 			ArrayList<Product> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
@@ -831,7 +831,7 @@ public class ProductDao {
 					p.setBasicPath(rset.getString("basic_path"));
 				
 					list.add(p);				
-					System.out.println(list);
+					//System.out.println(list);
 					
 				}
 				
@@ -845,7 +845,37 @@ public class ProductDao {
 		}
 		
 		
-		
+		public ArrayList<Product> saleSelect(Connection conn) {
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("saleSelect");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+
+				while(rset.next()) {
+					
+					Product p = new Product();
+					p.setpCode(rset.getString("p_code"));
+					p.setpName(rset.getString("p_name"));
+					p.setPrice(rset.getInt("price"));
+					p.setBasicPath(rset.getString("basic_path"));
+				
+					list.add(p);				
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(rset);
+				close(pstmt);
+			}		
+			return list;
+		}
+				
 		
 		// 좋아요 카운트
 		

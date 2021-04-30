@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 
     <!-- content css-->
-    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/productEnrollForm.css"> 
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/productUpdateForm.css"> 
     
     <!-- modal icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
@@ -147,10 +147,10 @@
 		            <button type="button" id="btnEnroll" data-toggle="modal" data-target="#updateModal">수 정</button>
 		            <div id="deleteBtn"><a href="<%=contextPath %>/delete.pdt?pcode=<%=p.getpCode() %>" data-target="#deleteModal"  onclick="delPDT">삭 제</a></div>
 		        </div>
+		  </form>
 		        
 		        <!-- The Modal -->
 		        
-		        <%-- <% if(("button[id=btnEnroll]").equals("btnEnroll")) {%> --%>
 		        
 		        <div class="modal fade" id="updateModal"  align="center">
 		            <div class="modal-dialog modal-dialog-centered">
@@ -163,14 +163,14 @@
 		                    
 		                    <!-- Modal footer -->
 		                    <div class="modal-footer" align="center">
-		                    <button type="submit" id="okBtn" class="btn btn-warning">OK</button>
-		                    <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+		                    <button type="submit" id="okBtn" class="btn btn-warning">확인 </button>
+		                    <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">취 소</button>
 		                    </div>
 		                    
 		                </div>
 		            </div>
 		        </div>
-<%-- 		        <%} else {%>
+		        
 			    <!-- The Modal -->
 			       <div class="modal fade" id="deleteModal" align="center" >
 			         <div class="modal-dialog modal-dialog-centered">
@@ -180,7 +180,7 @@
 			             <!-- Modal body -->
 			             
 			             <div class="modal-body">
-			               	공지사항을 삭제하시겠습니까?
+			               	싱픔을 삭제하시겠습니까?
 			             </div>
 			             
 			             <form action="<%=contextPath%>/delete.pdt?pcode=<%=p.getpCode()%>" method="post">        
@@ -194,8 +194,8 @@
 			             
 			             <!-- Modal footer -->
 			             <div id="modalFooter">
-			               <button type="submit" id="okBtn1" class="btn btn-warning" onclick="return deleteNotice();">OK</button>
-			               <button type="button" id="cancleBtn1" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+			               <button type="submit" id="okBtn1" class="btn btn-warning" onclick="return deleteNotice();">확 인</button>
+			               <button type="button" id="cancleBtn1" data-dismiss="modal" class="btn btn-secondary">취 소</button>
 			             </div>	        
 					        
 					        <script>
@@ -207,13 +207,13 @@
 			       			}
 					        
 					        </script>
+					        </form>
 		                </div>
 		            </div>
 		        </div>		        
 		        
-		        <%} %> --%>
 		                
-            </form>
+ 
 	   
 
 
