@@ -37,7 +37,7 @@ public class MYQUserProductInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
+		System.out.println("여기는 상품문의");
 		// 첨부파일 넣기 
 		if(ServletFileUpload.isMultipartContent(request)) {
 			// 1_1. 용량 제한
@@ -58,8 +58,8 @@ public class MYQUserProductInsertServlet extends HttpServlet {
 			q.setMyq_content(multiRequest.getParameter("content"));
 			q.setMem_no(Integer.parseInt(multiRequest.getParameter("memNo")));
 			q.setP_code(multiRequest.getParameter("pCode"));
-			q.setP_name(multiRequest.getParameter("pName"));
 			
+			System.out.println("담긴 객체" + q);
 			
 			// 3_2. Attachment테이블에 insert할 데이터뽑기 => Attachment객체
 			// 단, 여러개의  첨부파일이 있을것이기 때문에 해당 Attachment객체들을 ArrayList에 담기
@@ -82,6 +82,9 @@ public class MYQUserProductInsertServlet extends HttpServlet {
 			
 			// 4. (리스트 다시 조회하기)
 			int result = new MYQService().insertProductUser(q, list);
+			
+			System.out.println(q);
+			System.out.println(list);
 
 			if(result > 0 ) { // 성공 => /list.th url 재요청 => 사진게시판 리스트페이지
 				

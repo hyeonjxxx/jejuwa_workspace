@@ -37,7 +37,7 @@ public class MYQUserInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
+		System.out.println("여기는 일반문의");
 		// 첨부파일 넣기 
 		if(ServletFileUpload.isMultipartContent(request)) {
 			// 1_1. 용량 제한
@@ -80,6 +80,7 @@ public class MYQUserInsertServlet extends HttpServlet {
 			
 			// 4. (리스트 다시 조회하기)
 			int result = new MYQService().insertUser(q, list);
+
 
 			if(result > 0 ) { // 성공 => /list.th url 재요청 => 사진게시판 리스트페이지
 				

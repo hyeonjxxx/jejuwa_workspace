@@ -90,7 +90,7 @@
 								<% if( q.getP_code() == null){%>
 	                        		<%= q.getMyq_title() %>
 	                        	<% } else { %>
-	                        		<span style="color:red; border: 0px;">[<%= q.getP_code() %>]</span>
+	                        		<span style="color:red; border: 0px;">[<%= q.getP_name() %>]</span>
 	                        		<%= q.getMyq_title() %>
 	                        	<% } %>
 	                        </td>
@@ -120,12 +120,7 @@
 			</script>
 		
         </div>
-
-                   <!-- 관리자 게시글 권한 -->
-            <div style="display: block; text-align: right;" class="btn">
-                <button id="btn1">선택삭제</button>
-                <button id="btn2" style="margin-left:30px; margin-right:40px;">등 록</button> 
-            </div>     
+   
         <!-- 버튼, 페이징 구역 -->
         <div class="bottomArea">
 

@@ -86,7 +86,7 @@
 			            </div> 
 			             <!-- 버튼 (등 록) -->
 			            <div class="btn">
-			                <a href="<%=contextPath%>/insertp.umyq" id="btn4" data-toggle="modal" data-target="#enrollBtn" >글 작성</a>
+			                <a href="<%=contextPath%>/insert.umyq" id="btn4" data-toggle="modal" data-target="#enrollBtn" >글 작성</a>
 			            </div>   			
 					</div>
 					
@@ -121,7 +121,7 @@
                 e.preventDefault();
 
                 // Check
-                // 아이디 인증 체크
+                // 문의분류 체크
                 if($('#category option:selected').val() == "none") {
                     $('#op_product_info').change().text("문의 내용을 분류해주세요 !!")
                     return false;

@@ -165,20 +165,21 @@ public class MYQService {
 
 	public int insertProductUser(MYQ q, ArrayList<Attachment> list) {
 		Connection conn = getConnection();
-		
+		System.out.println("서비스에 담긴 객체" + q);
 		int result1 = new MYQDao().insertProductUser(conn, q);
 		
 		// list에 담긴 값이 없을 때 == 0, 담긴 값이 있을 때 !=0
 		if(list.size() != 0) {
 			new MYQDao().insertUserAttachment(conn, list);
 		}
-
+		
 		if(result1 > 0 ) { // 게시글 insert 성공
 			commit(conn);
 		} else { // 게시글 insert실패
 			rollback(conn);
 		} 
 		close(conn);
+		
 		return result1;
 		
 	}

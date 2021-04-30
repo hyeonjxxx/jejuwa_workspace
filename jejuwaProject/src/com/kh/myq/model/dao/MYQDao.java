@@ -93,7 +93,8 @@ public class MYQDao {
 				            , rset.getDate("MYQ_ANS_DATE")
 				            , rset.getString("MEM_ID")
 				            , rset.getString("P_CODE")
-				            , rset.getString("MYQ_ANS_CONTENT")));
+				            , rset.getString("MYQ_ANS_CONTENT")
+				            , rset.getString("P_NAME")));
 			
 			
 			}
@@ -266,7 +267,8 @@ public class MYQDao {
 					            , rset.getDate("MYQ_ANS_DATE")
 					            , rset.getString("MEM_ID")
 					            , rset.getString("P_CODE")
-					            , rset.getString("MYQ_ANS_CONTENT")));
+					            , rset.getString("MYQ_ANS_CONTENT")
+					            , rset.getString("P_NAME")));
 				}
 				
 			} catch (SQLException e) {
@@ -456,7 +458,7 @@ public class MYQDao {
 			pstmt.setString(3, q.getMyq_content());
 			pstmt.setInt(4, q.getMem_no());
 			pstmt.setString(5, q.getP_code());
-			
+			System.out.println("세팅된 p코드" + q.getP_code());
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
