@@ -32,7 +32,18 @@
         padding:10px;
         margin-top: 30px;
         border-top-color:  lightgray;
-        }        
+        }
+    .NoticeContent p{
+	padding-left: 10px;
+	padding-right:30px;
+	padding-top:30px;
+	padding-bottom:30px;
+	margin-bottom: 0px;
+    }
+    .NoticeContent img{
+    	padding-bottom: 30px;
+    	margin-bottom: 0px;
+    }        
     #fileArea{
         color:gray;
         padding-left: 10px;
