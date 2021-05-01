@@ -21,9 +21,12 @@
 		                      , Q_CATEGORY
 		                   FROM FAQ
 		                  WHERE FAQ_STATUS = 'Y'
+		                  ORDER
+		                     BY FAQ_NO DESC
 		                        )A
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
+		 
 	</entry>
 	
 	<entry key="selectFaqUserList">

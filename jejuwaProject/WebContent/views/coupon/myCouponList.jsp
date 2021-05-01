@@ -162,7 +162,7 @@ width:750px;
                    
             </div>
 
-       	</div>
+       	</div>	
 
 <!-- 푸터와 내려와야,, -->
 <%@ include file = "../common/footer.jsp" %>
