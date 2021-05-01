@@ -138,9 +138,8 @@ public class MYQService {
 		int result1 = new MYQDao().insertUser(conn, q);
 		
 		// list에 담긴 값이 없을 때 == 0, 담긴 값이 있을 때 !=0
-		if(list.size() != 0) {
-			new MYQDao().insertUserAttachment(conn, list);
-		}
+		
+		new MYQDao().insertUserAttachment(conn, list);
 
 		if(result1 > 0 ) { // 게시글 insert 성공
 			commit(conn);
@@ -173,6 +172,8 @@ public class MYQService {
 			new MYQDao().insertUserAttachment(conn, list);
 		}
 		
+		System.out.println(conn);
+		
 		if(result1 > 0 ) { // 게시글 insert 성공
 			commit(conn);
 		} else { // 게시글 insert실패
@@ -185,15 +186,17 @@ public class MYQService {
 	}
 
 
-	public int deleteUserMYQ(ArrayList list) {
+	public int deleteUserMYQ(String myq_no) {
 		
 		Connection conn = getConnection();
 		
-		int result = new MYQDao().deleteUserMYQ(conn, list);
+		int result1 =new MYQDao().deleteUserAttachment(conn, myq_no);
+		
+		int result2 = new MYQDao().deleteUserMYQ(conn, myq_no);
 		
 		close(conn);
 		
-		return result;
+		return result2;
 	}
 	
 }

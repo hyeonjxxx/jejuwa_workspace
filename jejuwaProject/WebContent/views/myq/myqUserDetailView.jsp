@@ -106,7 +106,7 @@
 			<% if( at == null){%>
             	<b>첨부파일 없음</b>
             <% } else {%>
-               	첨부파일 <a href="<%=contextPath%>/<%=at.getFilePath()%>"><%=at.getOrgFileName() %></a>
+               	첨부파일 <a href="<%=contextPath%>/<%=at.getFilePath()%>/<%= at.getMdfFileName() %>"><%=at.getOrgFileName() %></a>
             <%} %>
             </div>
 

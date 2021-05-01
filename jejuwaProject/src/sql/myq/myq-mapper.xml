@@ -75,6 +75,8 @@
 			 , P_CODE
 		  FROM 
 		       ATTACHMENT
+		 WHERE 
+			   MYQ_NO = ?
 	</entry>
 
 	<entry key="answer">
@@ -163,6 +165,8 @@
 				 , P_CODE
 			  FROM 
 			       ATTACHMENT
+			 WHERE 
+			       MYQ_NO = ?
 	</entry>
 	
 	
@@ -242,5 +246,18 @@
 				 , ?
 				 , ?
 		         )
+	</entry>
+	
+	<entry key="deleteUserAttachment">
+	
+		
+	</entry>
+	
+	<entry key="deleteUserMYQ">
+		DELETE 
+		  FROM 
+		       MYQ
+         WHERE 
+               MYQ_NO IN (  ?  )
 	</entry>
 </properties>

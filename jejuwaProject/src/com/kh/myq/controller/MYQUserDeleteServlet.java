@@ -34,20 +34,27 @@ public class MYQUserDeleteServlet extends HttpServlet {
 		
 		String[] arrayParam2 = request.getParameterValues("myq_no[]");
 		
-		String myq_no = "'" + String.join("', '", arrayParam2) + "'";
+		String myq_no = String.join(", ", arrayParam2);
 		
+		
+		
+		System.out.println(arrayParam2);
+		System.out.println(myq_no);
 		System.out.println("DELETE FROM table_name WHEERE myq_no IN (" + myq_no + ");");
+		
+		int result = new MYQService().deleteUserMYQ(myq_no);
 		
 		//DELETE FROM table_name WHEERE myq_no IN ('23', '25', '32');
 		
 		//for(int i=0; i<list.size(); i++) {
 		//	list.indexOf(i)
 		//}
-		
-		//int result = new MYQService().deleteUserMYQ(list);
-		
-		//System.out.println(list);
-
+		if(result>0) {
+			request.getSession().setAttribute("alertMsg", "문의 삭제 성공");
+			response.sendRedirect(request.getContextPath() + "/list.umyq?currentPage=1");
+		} else {
+			request.getSession().setAttribute("alertMsg", "문의 삭제 실패");
+		}
 
 	}
 

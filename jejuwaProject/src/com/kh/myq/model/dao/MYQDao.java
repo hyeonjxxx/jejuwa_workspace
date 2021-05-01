@@ -160,6 +160,8 @@ public class MYQDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setInt(1, myqNo);
+			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) { 
@@ -333,6 +335,8 @@ public class MYQDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setInt(1, myqNo);
+			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) { 
@@ -467,8 +471,30 @@ public class MYQDao {
 		
 		return result;
 	}
+	
 
-	public int deleteUserMYQ(Connection conn, ArrayList list) {
+	public int deleteUserAttachment(Connection conn, String myq_no) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteUserAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, myq_no);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteUserMYQ(Connection conn, String myq_no) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -477,15 +503,20 @@ public class MYQDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, list.get(0));
+			pstmt.setString(1, myq_no);
+			
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		
-		return 0;
+		return result;
 	}
+
 
 
 }

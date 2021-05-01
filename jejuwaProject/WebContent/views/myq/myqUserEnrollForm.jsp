@@ -60,9 +60,9 @@
                             <th>첨부파일</th>
                             <td id="file_target">첨부파일 추가<!-- 이미지 클릭시 화살표나오면서 파일 담을수있는 리스트 나오기 FAQ보기 -->
 	                            <td colspan="2" style="display: none;">
-	                                <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 1);"><br>
-	                                <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 2);"><br>
-	                                <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 3);">
+	                                <input type="file" name="upfile" id="upfile" ><br>
+	                                <input type="file" name="upfile" id="upfile" ><br>
+	                                <input type="file" name="upfile" id="upfile" >
 	                            </td>
                             </td>
                             <!-- 대표이미지?? 흠... -->

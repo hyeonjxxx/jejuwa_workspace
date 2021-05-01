@@ -80,6 +80,7 @@ public class MYQUserProductInsertServlet extends HttpServlet {
 				}
 			}
 			
+			System.out.println("상품문첨부파일 리스트 확인" + list);
 			// 4. (리스트 다시 조회하기)
 			int result = new MYQService().insertProductUser(q, list);
 			
