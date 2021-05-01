@@ -73,7 +73,7 @@
        <!-- The Modal -->
        <div class="modal fade" id="deleteNotice" align="center" >
          <div class="modal-dialog modal-dialog-centered">
-           <div class="modal-content" >
+           <div class="modal-content" id="deleteNoticeModalContent">
            
                              
              <!-- Modal body -->
@@ -83,7 +83,7 @@
              </div>
              
              <form action="<%=contextPath%>/delete.no?nno=<%=n.getNoticeNo()%>" method="post">        
-             <div class="input-group mb-3" id="modalContent">
+             <div class="input-group mb-3" id="deleteNoticeModalContent2">
                <div class="input-group-prepend">
                  <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
                </div>
@@ -93,8 +93,8 @@
              
              <!-- Modal footer -->
              <div id="modalFooter">
-               <button type="submit" id="okBtn1" class="btn btn-warning" onclick="return deleteNotice();">OK</button>
-               <button type="button" id="cancleBtn1" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+               <button type="submit" id="dnBtn" class="btn btn-warning" onclick="return deleteNotice();">OK</button>
+               <button type="button" id="dncancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
              </div>
              
              <script>

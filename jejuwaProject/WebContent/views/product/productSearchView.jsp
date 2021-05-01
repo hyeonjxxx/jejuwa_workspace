@@ -24,7 +24,7 @@
         <div class="searchBar">     
             
                 <div id="searchBox">
-                    <input type="search" id="keyword" placeholder="[추천상품]제주시티투어"">
+                    <input type="search" id="keyword_pdt" placeholder="[추천상품]제주시티투어"">
                     <button type="button"><img  onclick="searchGo();" src="<%=contextPath%>/resources/images/loupe_c.png" width="30"></button>
                 </div>
                     
@@ -38,21 +38,19 @@
 		<script>
             function searchGo(){
             	//if(window.event.keyCode == 13){
-	            	var keyword = $("#keyword").val();
+	            	var keyword = $("#keyword_pdt").val();
 	           		
 	            	console.log(keyword);
 	           		
            			$.ajax({
-           				url:"searchUserAjax.pdt",
+           				url:"highList_TT.pdt",
            				type:"get",
-           				data:{ keyword:keyword
-           				}, success:function(list){
+           				success:function(list){
            					console.log(list);
-            					
-            					
+           					
            					var result = "";
            					if(list.length == 0){
-           						result = "<li>검색결과가 존재하지 않습니다</li>"
+           						result = "<li class=pdtArea>검색결과가 존재하지 않습니다</li>"
            					}
            					for(var i in list){            						
             					result += "<li class=pdtArea>"

@@ -80,7 +80,7 @@
                     </tr>
                     <tr>
                         <td>*상품명</td>
-                        <td><input type="text" name="pName" id="pName" value="<%=p.getpName()%>"></td>
+                        <td><input type="text" name="pName" id="pName" value="<%=p.getpName()%>" size="40px"></td>
                     </tr>
                     <tr>
                         <td>상품코드</td>
@@ -142,19 +142,17 @@
 		        <br><br>        
 		        <!-- 버튼 -->
 		        <div align="right" class="btnArea">
-		            <div id="btnBack"><a href="<%=contextPath%>/list.pdt?currentPage=1">목록으로</a></div>
+		            <button id="backBtn" onclick="'<%=contextPath%>/list.pdt?currentPage=1';">목록으로</button>
 		            <!-- Button to Open the Modal -->
-		            <button type="button" id="btnEnroll" data-toggle="modal" data-target="#updateModal">수 정</button>
-		            <div id="deleteBtn"><a href="<%=contextPath %>/delete.pdt?pcode=<%=p.getpCode() %>" data-target="#deleteModal"  onclick="delPDT">삭 제</a></div>
+		            <button type="button" id="enrollBtn" data-toggle="modal" data-target="#updateModal">수 정</button>
+		            <button type="button" id="deleteBtn" data-toggle="modal" data-target="#deleteModal">삭 제</button>
 		        </div>
-		  </form>
+		 
 		        
-		        <!-- The Modal -->
-		        
-		        
+		        <!-- The Modal --> 
 		        <div class="modal fade" id="updateModal"  align="center">
 		            <div class="modal-dialog modal-dialog-centered">
-		                <div class="modal-content">
+		                <div class="modal-content_pdt">
 		                
 		                    <!-- Modal body -->
 		                    <div class="modal-body">
@@ -174,13 +172,13 @@
 			    <!-- The Modal -->
 			       <div class="modal fade" id="deleteModal" align="center" >
 			         <div class="modal-dialog modal-dialog-centered">
-			           <div class="modal-content" >
+			           <div class="modal-content_pdt" >
 			           
 			                             
 			             <!-- Modal body -->
 			             
 			             <div class="modal-body">
-			               	싱픔을 삭제하시겠습니까?
+			               	상품을 삭제하시겠습니까?
 			             </div>
 			             
 			             <form action="<%=contextPath%>/delete.pdt?pcode=<%=p.getpCode()%>" method="post">        
@@ -194,7 +192,7 @@
 			             
 			             <!-- Modal footer -->
 			             <div id="modalFooter">
-			               <button type="submit" id="okBtn1" class="btn btn-warning" onclick="return deleteNotice();">확 인</button>
+			               <button type="submit" id="okBtn1" class="btn btn-warning" onclick="delPDT">확 인</button>
 			               <button type="button" id="cancleBtn1" data-dismiss="modal" class="btn btn-secondary">취 소</button>
 			             </div>	        
 					        
@@ -217,7 +215,7 @@
 	   
 
 
-        
+      	 </form>  
     </div>	
     	
 

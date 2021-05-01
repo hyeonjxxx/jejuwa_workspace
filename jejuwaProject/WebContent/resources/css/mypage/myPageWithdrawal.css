@@ -49,8 +49,8 @@ width:70px;
 }
 
 
-/* 비밀번호 초기화 모달 */
-#modal-content2 {width: 380px;}
+/* 회원 탈퇴 모달 */
+#withdrawalModalContent{width: 380px; background: #f7f7f7;}
 #modalContent div{margin:0px; margin-left: 50px;}
 #modalContent input{
     border: 1px solid lightgray;

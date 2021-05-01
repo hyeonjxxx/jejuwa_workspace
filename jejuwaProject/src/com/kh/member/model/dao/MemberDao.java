@@ -629,4 +629,114 @@ public class MemberDao {
 	}
 
 	
+	/**
+	 * [휘경] 멤버 상태로 검색
+	 * @param conn
+	 * @param status
+	 * @return
+	 */
+	public ArrayList<Member> searchMember2(Connection conn, String status){
+		// select문 => ResultSet(여러 행)
+		ArrayList<Member> list = new ArrayList<>();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("searchMember2");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql문
+			pstmt.setString(1, status);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Member(rset.getInt("MEM_NO"),
+									rset.getString("MEM_ID"),
+									rset.getString("MEM_NAME"),
+									rset.getString("PHONE"),
+									rset.getString("EMAIL"),
+									rset.getDate("ENROLL_DATE")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	
+	/**
+	 * [휘경] 멤버 수 조회2
+	 * @param conn
+	 * @return
+	 */
+	public int selectMemberCount2(Connection conn, String status) {
+		// select문 => ResultSet(멤버 수)
+		int memberCount = 0;
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectMemberCount2");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성된 sql
+			pstmt.setString(1, status);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				memberCount = rset.getInt("MEMBERCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return memberCount;
+	}
+	
+	
+	/**
+	 * [휘경] 현재 요청한 페이지(currentPage)에 보여질 회원 리스트 조회2
+	 * @param conn
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Member> selectList2(Connection conn, PageInfo pi, String status){
+		// select문 => ResultSet(여러행)
+		ArrayList<Member> list = new ArrayList<>();
+		ResultSet rset = null;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("selectList2");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 미완성 sql
+			/*
+			 * startRow = (currentPage - 1) * boardLimit + 1
+			 * endRow = currentPage * boardLimit
+			 */
+			pstmt.setString(1, status);
+			pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Member(rset.getInt("MEM_NO"),
+									rset.getString("MEM_ID"),
+									rset.getString("MEM_NAME"),
+									rset.getString("PHONE"),
+									rset.getString("EMAIL"),
+									rset.getDate("ENROLL_DATE")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	
 }

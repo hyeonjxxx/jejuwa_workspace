@@ -60,7 +60,7 @@ public int selectListCount(Connection conn) {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println("조회한 dao 리스트카운트" + listCount);
 		return listCount;
 		
 	}
@@ -91,7 +91,8 @@ public int selectListCount(Connection conn) {
 								   rset.getInt("cpn_dc"),
 								   rset.getDate("cpn_rgdt"),
 								   rset.getString("cpn_str_date"),
-								   rset.getString("cpn_end_date")
+								   rset.getString("cpn_end_date"),
+								   rset.getInt("cpn_min")
 								   ));
 			}
 			
@@ -102,6 +103,7 @@ public int selectListCount(Connection conn) {
 			close(pstmt);
 		}
 		
+		System.out.println(adlist);
 		return adlist;
 	}
 	

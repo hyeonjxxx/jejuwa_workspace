@@ -67,7 +67,6 @@
             <table align="center" id="memberList">
                 <thead>
                     <tr>
-                        <th width="40" ><input type="checkbox" id="checkAll"></th>
                         <th width="90">번호</th>
                         <th width="300">제목</th>
                         <th width="90">작성자</th>
@@ -84,7 +83,6 @@
 	                <% }else{ %>
 	                	<% for(MYQ q : list){ %>
 	                    <tr>
-	                    	<td><input id="choice_myq" type="checkbox"></td>
 	                        <td class="ch2"><%= q.getMyq_no() %></td>
 	                        <td class="ch2">
 								<% if( q.getP_code() == null){%>
@@ -113,7 +111,7 @@
             	<script>
 				// 상세보기 요청
 				$("#memberList>tbody>tr").click(function(){
-		                location.href='<%=request.getContextPath()%>/detail.amyq?mno='+$(this).children().eq(1).text();
+		                location.href='<%=request.getContextPath()%>/detail.amyq?mno='+$(this).children().eq(0).text();
 		                // /detail.amyq?mno=글번호
 		                // #memberList>tbody>tr 여기 tr의 자손들 중에 2번째(=eq(1))의 text를 가져오겠다. 
 		            })

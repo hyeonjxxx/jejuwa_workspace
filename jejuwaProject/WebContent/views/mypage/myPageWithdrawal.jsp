@@ -86,7 +86,7 @@
             <!-- The Modal -->
             <div class="modal fade" id="withdrawal" align="center" >
                 <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" id="modal-content2">
+                <div class="modal-content" id="withdrawalModalContent">
                 
                     <!-- Modal body -->
                     <br>

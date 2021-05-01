@@ -107,11 +107,11 @@
 	</entry>
 	
 	
-	<!-- [휘경] 멤버 수 조회(활동회원, 관리자) -->
+	<!-- [휘경] 멤버 수 조회(활동회원) -->
 	<entry key="selectMemberCount">
 		SELECT COUNT(*) MEMBERCOUNT
 		  FROM MEMBER
-		 WHERE STATUS IN ('A', 'Y')
+		 WHERE STATUS = 'Y'
 	</entry>
 	
 	
@@ -131,7 +131,7 @@
 		                     , PHONE
                      		 , ENROLL_DATE
 		                  FROM MEMBER
-		                 WHERE STATUS IN ('A', 'Y')
+		                 WHERE STATUS = 'Y'
 		                 ORDER
 		                    BY ENROLL_DATE DESC
 		               )A  
@@ -244,6 +244,56 @@
            AND PHONE LIKE ?
          ORDER
             BY ENROLL_DATE DESC
+	</entry>
+	
+	
+	<!-- [휘경] 관리자 멤버 검색(상태) -->
+	<entry key="searchMember2">
+		SELECT
+               MEM_NO
+             , MEM_ID
+             , MEM_NAME
+             , EMAIL
+             , PHONE
+             , ENROLL_DATE
+          FROM MEMBER
+         WHERE STATUS = ?
+         ORDER
+            BY ENROLL_DATE DESC
+	</entry>
+	
+	
+	<!-- [휘경] 멤버 수 조회(상태별) -->
+	<entry key="selectMemberCount2">
+		SELECT COUNT(*) MEMBERCOUNT
+		  FROM MEMBER
+		 WHERE STATUS =?
+	</entry>
+	
+	
+	
+	<!-- [휘경] 해당 페이지의 멤버 리스트 조회(상태별) -->
+	<entry key="selectList2">
+		SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       MEM_NO
+		                     , MEM_ID
+		                     , MEM_NAME
+		                     , EMAIL
+		                     , PHONE
+                     		 , ENROLL_DATE
+		                  FROM MEMBER
+		                 WHERE STATUS = ?
+		                 ORDER
+		                    BY ENROLL_DATE DESC
+		               )A  
+		       )
+		  WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 </properties>

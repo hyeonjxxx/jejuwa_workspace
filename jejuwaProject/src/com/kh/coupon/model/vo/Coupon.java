@@ -13,13 +13,14 @@ public class Coupon {
 	private String cpn_Str_Date;
 	private String cpn_End_Date;
 	private int cpn_Min;
+	
 	private int memNo;
 	
 	public Coupon() {}
 	
 	// 관리자 쿠폰조회 
 	public Coupon(int mem_No, int cpn_Code, String cpn_Name, int cpn_Dc, Date cpn_Rgdt, String cpn_Str_Date,
-			String cpn_End_Date) {
+			String cpn_End_Date, int cpn_Min) {
 		super();
 		this.mem_No = mem_No;
 		this.cpn_Code = cpn_Code;
@@ -28,6 +29,7 @@ public class Coupon {
 		this.cpn_Rgdt = cpn_Rgdt;
 		this.cpn_Str_Date = cpn_Str_Date;
 		this.cpn_End_Date = cpn_End_Date;
+		this.cpn_Min = cpn_Min;
 	}
 
 

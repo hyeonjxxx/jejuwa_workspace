@@ -1,4 +1,4 @@
-package com.kh.product.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,20 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kh.product.model.service.ProductService;
-import com.kh.product.model.vo.Product;
+import com.google.gson.GsonBuilder;
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class AjaxProductSearachServlet
+ * Servlet implementation class AjaxMemberSearchServlet2
  */
-@WebServlet("/mainSearch.pdt")
-public class ProductMainSearachUserServlet extends HttpServlet {
+@WebServlet("/searchAjax2.me")
+public class AjaxMemberSearchServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductMainSearachUserServlet() {
+    public AjaxMemberSearchServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +33,21 @@ public class ProductMainSearachUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		// Ajax
+		String status = request.getParameter("status");
+		//System.out.println(keyword);
 		
-		//ajax
-		String keyword_pdt = request.getParameter("keyword_pdt");
-	
-		ArrayList<Product> list = new ProductService().searchKeyword(keyword_pdt);
-		request.setAttribute("list", list);	
-		request.getRequestDispatcher("views/product/productFilterSearchView.jsp").forward(request, response);
-	
+		ArrayList<Member> list = new MemberService().searchMember2(status);
+		
+//				for(Member m : list) {
+//					System.out.println(m);
+//				}
+		
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+
 	}
 
 	/**

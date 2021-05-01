@@ -144,9 +144,6 @@
                             <h2 id="Menu"><a>활동내역</a></h2>
                             <ul>
                                 <li class="subMenu">
-                                    <a href="">나의 리뷰 내역</a>
-                                </li>
-                                <li class="subMenu">
                                     <a href="">1:1 문의내역</a>
                                 </li>
                             </ul>

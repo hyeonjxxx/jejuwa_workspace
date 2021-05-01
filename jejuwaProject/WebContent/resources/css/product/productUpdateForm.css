@@ -12,7 +12,6 @@
     background-color: lightgray;
     margin-top: 10px;
 }    
-
 /* 입력폼 */
 #pdtUpdateForm table {margin:30px 30px;}         
 #pdtUpdateForm input{margin:10px; border: 1px solid silver;}
@@ -21,18 +20,16 @@ td, span{font-size: 14px; padding: 3px 0;}
 
                
 /* 버튼 */
-.btnArea{width: 690px; margin: 100px 70px}
-.btnArea div:hover, #btnEnroll:hover{background-color: orange;}
-#btnEnroll{border: none;color:white; }
-
-.btnArea a {
+.btnArea{width: 690px; margin: 70px 70px}
+.btnArea button:hover{background-color: orange; clolr:white;}
+.btnArea>button>* {
     text-decoration: none; 
     line-height: 25px;
     display: block;
-    color:white; 
+    color:white;
   }
 
-  .btnArea div, #btnEnroll{ 
+ .btnArea>button{ 
     background-color: dimgray;
     width: 100px;    
     height: 30px;
@@ -41,12 +38,19 @@ td, span{font-size: 14px; padding: 3px 0;}
     float:right;
     margin-left: 30px;
     outline: none;
+    color:white;
+    border: none;
   }
             
 
   /* modal */
 
-.modal-content{width: 380px;}
+.modal-content_pdt{
+	width: 385px;     
+	background: whitesmoke;
+    padding: 15px;
+    border-radius: 2px;
+}
 #modalContent{margin-left:50px;}
 #modalContent input{
     border: 1px solid lightgray;

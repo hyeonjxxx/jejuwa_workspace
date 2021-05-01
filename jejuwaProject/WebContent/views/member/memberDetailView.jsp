@@ -223,7 +223,7 @@
        <!-- The Modal -->
        <div class="modal fade" id="resetPwd" align="center" >
          <div class="modal-dialog modal-dialog-centered">
-           <div class="modal-content" >
+           <div class="modal-content" id="resetPwdModalContent">
            
                              
              <!-- Modal body -->
@@ -233,7 +233,7 @@
              </div>
              
              <form action="<%= contextPath %>/resetPwd.me" method="post">        
-             <div class="input-group mb-3" id="modalContent">
+             <div class="input-group mb-3" id="resetPwdModalContent2">
                <div class="input-group-prepend">
                  <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
                </div>
@@ -269,7 +269,7 @@
        <!-- The Modal -->
        <div class="modal fade" id="deleteMember" align="center" >
            <div class="modal-dialog modal-dialog-centered">
-             <div class="modal-content" >
+             <div class="modal-content" id="deleteMemberModalContent">
              
                                
                <!-- Modal body -->
@@ -279,7 +279,7 @@
                </div>
                 
                <form action="<%= contextPath %>/delete.me" method="post">             
-               <div class="input-group mb-3" id="modalContent">
+               <div class="input-group mb-3" id="deleteMemberModalContent2">
                  <div class="input-group-prepend">
                    <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
                  </div>
@@ -312,7 +312,7 @@
        <!-- The Modal -->
        <div class="modal fade" id="updateMember" align="center" >
            <div class="modal-dialog modal-dialog-centered">
-             <div class="modal-content" >
+             <div class="modal-content" id="updateMemberModalContent">
              
                <!-- Modal body -->
                <br>
@@ -321,7 +321,7 @@
                </div>
                
                             
-               <div class="input-group mb-3" id="modalContent">
+               <div class="input-group mb-3" id="updateMemberModalContent2">
                  <div class="input-group-prepend">
                    <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
                  </div>

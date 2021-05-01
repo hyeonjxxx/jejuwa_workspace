@@ -30,7 +30,11 @@
 	<style>
     div, form, input{border: 1 solid gray; box-sizing: border-box;}
 
-    button{background-color:orange; border: 1px solid orange;}
+    .searchBtn1{
+    	background-color: orange;
+    	border: 1px solid orange;
+   		border-radius: 4px;
+    }
 
     .wrap{width: 1000px; margin: auto;}
 
@@ -43,7 +47,7 @@
     #header_2{width: 55%;}
     #header_3{width: 25%;}
 
-    a { text-decoration: none; } 
+    #header_3>a{ text-decoration: none; color:black;} 
 
     /* 세부_검색창폼만들기 */
     #header_2{position: relative;}
@@ -60,7 +64,12 @@
     #search_form>*{float: left; height: 100%;}
     #search_text{width: 90%;}
     #search_btn{width: 20%;}
-    #search_form input{width: 100%; height: 100%;} /*후손은 부등호 없음*/
+    #search_form input{
+    	width: 100%; height: 100%;
+        border: 1px solid #545b62;
+    	border-radius: 2px;
+    	outline: none;
+    } /*후손은 부등호 없음*/
 
 
     #header_1{position:relative;}
@@ -141,7 +150,10 @@
     }
 
     .menu a:hover{background:rgb(243, 224, 170);
-            color: coral;}
+            color: coral;
+            text-decoration:none;
+            }
+        
 
 	</style>
 
@@ -166,7 +178,7 @@
  <div class="wrap">
 	<div id="header">
             <div id="header_1">
-                <a href="<%=contextPath%>/views/common/mainPage.jsp">
+                <a href="<%=contextPath%>/jejuwa.go">
                 <img id="logo_img" src="<%= request.getContextPath() %>/resources/images/제주와 로고.png" alt="">
                 </a>
             </div>
@@ -177,11 +189,11 @@
                     
                     <div id="search_btn" style="width: 10%;">
                         <!--<input type="submit" value="검색">-->
-                        <button type="submit"><img  style="width: 100%; height: 100%;" src="<%= request.getContextPath() %>/resources/images/돋보기.png"></button>
+                        <button class="searchBtn1" type="submit"><img  style="width: 100%; height: 100%;" src="<%= request.getContextPath() %>/resources/images/돋보기.png"></button>
                     </div>
                     
                     <div id="search_text">
-                        <input type="search" name="keyword" id="keyword">
+                        <input type="search" name="keyword_pdt" id="keyword_pdt">
                         <div class="clear"></div>
                     </div>
                 </form> 
@@ -228,7 +240,7 @@
                     <div class="coupon">
                             <a href="">
                             <img src="<%= request.getContextPath() %>/resources/images/쿠폰.png" width="40px" alt="">
-                                <p>쿠폰</p>
+                                <p><a href = "<%=request.getContextPath()%>/list.mycpn?currentPage=1">쿠폰</a></p>
                             </a>
                     </div>
                     <div class="clear"></div>

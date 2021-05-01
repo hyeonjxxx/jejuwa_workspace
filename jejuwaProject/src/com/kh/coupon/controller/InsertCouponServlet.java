@@ -50,6 +50,7 @@ public class InsertCouponServlet extends HttpServlet {
 		int result = new CouponService().insertCoupon(ic);
 		
 		HttpSession session = request.getSession();
+		 System.out.println(ic);
 		
 		if(result > 0 ) {
 			

@@ -38,7 +38,8 @@ button{border:none; outline:none;}
 
 /* gropBar  */
 .groupBar{ width: 400px; margin: auto; margin-left: 30px;}
-.groupBar>a{font-size: 13px;}
+.groupBar>a{font-size: 13px;  color: black;}
+.groupBar>a:hover{text-decoration:none; color: black;}
 
 /* pdfImg */
 .mainImg{

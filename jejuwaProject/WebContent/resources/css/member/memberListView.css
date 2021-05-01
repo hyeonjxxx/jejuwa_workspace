@@ -14,11 +14,11 @@
     width: 800px;
     margin: 30px 20px;
     float: left;
+    overflow:auto;
   }
-
 /* 검색바 */
 .searchArea{
-    width: 750px;
+    width: 760px;
     margin-left: 5px;
     margin-bottom: 10px;
 }
@@ -27,7 +27,7 @@
     margin-left: 5px;
 }
 #memberStatus{
-	margin-right: 300px;
+	margin-right: 330px;
 }
 
 #select1{margin-right: 300px;}
@@ -41,6 +41,7 @@
 /* 테이블 */
 .listArea{text-align:center;}
 .listArea>table{
+	
     border:1px solid lightgray;
     border-collapse: collapse;
     }
@@ -57,7 +58,8 @@
 /* 페이징 구역 */
 .pagingArea{
     margin: 15px;
-    margin-left:260px;
+    margin-top : 25px;
+    margin-left:270px;
 }
 .pagingArea *{
     float:left;
