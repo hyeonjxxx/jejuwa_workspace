@@ -65,7 +65,7 @@
      <!-- 추천상품 -->
 
     <div class="medium">
-        <label for="" class="medieum-font">제주와 인기상품</label>
+        <label for="" class="medieum-font" id="best_pdt">제주와 인기상품</label>
     </div>
 
         <!-- 제주와 투어/티켓 인기 -->
@@ -87,7 +87,7 @@
            					for(var i in list){            						
             					result += "<li class=pdtArea>"
             							+ "<input type='hidden' value=" + list[i].pCode +">"
-        					      	    + "<div class='pdtPhoto'>" + "<img src='" + list[i].basicPath  + "' style='width: 220px; height: 147px'>" + "</div>"
+        					      	    + "<div class='pdtPhoto'>" + "<img src='" + list[i].basicPath  + "'>" + "</div>"
         					            + "<div class='pdtInfo'>" 
         					            + "<p class='pdtName'>" + list[i].pName + "</p>"
         					            + "<p class='pdtPrice'>" + list[i].price + "원</p>"

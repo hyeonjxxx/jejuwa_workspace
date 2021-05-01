@@ -90,7 +90,7 @@
             <div class="main">
                 <div class="sortBar" align="right">
                     <a href="">제주와 추천순<img src="<%=request.getContextPath() %>/resources/images/check_c.png" alt="" width="15"></a> &nbsp;&nbsp;
-                    <a onclick="highPrice();">높은 가격순<img src="<%=request.getContextPath() %>/resources/images/check_c.png" alt="" width="15"></a>
+                    <a onclick="highPrice();">높은가격순<img src="<%=request.getContextPath() %>/resources/images/check_c.png" alt="" width="15"></a>
                 </div>
             <script>
             function highPrice(){
@@ -110,7 +110,7 @@
            					for(var i in list){            						
             					result += "<li class=pdtArea>"
             							+ "<input type='hidden' value=" + list[i].pCode +">"
-        					      	    + "<div class='pdtPhoto'>" + "<img src='" + list[i].basicPath  + "' style='width: 220px; height: 147px'>" + "</div>"
+        					      	    + "<div class='pdtPhoto'>" + "<img src='" + list[i].basicPath  + "'>" + "</div>"
         					            + "<div class='pdtInfo'>" 
         					            + "<p class='pdtName'>" + list[i].pName + "</p>"
         					            + "<p class='pdtPrice'>" + list[i].price + "원</p>"
@@ -120,6 +120,7 @@
             					
            					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
             				$(".pdtList").html(result);
+           					$(".bottomArea").hide();
            				
             				$(function() {
             					$(".pdtArea").click(function() {
@@ -143,7 +144,7 @@
 		                  <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
 		                   <div class="pdtBox">
 			                     <a>
-			                      <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 165px"></div>
+			                      <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>"></div>
 			                       <div class="pdtInfo">
 			                           <p class="pdtName"><%=p.getpName() %></p>
 			                           <p class="pdtPrice"><%=p.getPrice() %>원</p>

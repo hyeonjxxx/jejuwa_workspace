@@ -91,7 +91,7 @@
             <div class="main">
                 <div class="sortBar" align="right">
                     <a href="">제주와 추천순<img src="<%=request.getContextPath() %>/resources/images/check_c.png" alt="" width="15"></a> &nbsp;&nbsp;
-                    <a href="">판매순<img src="<%=request.getContextPath() %>/resources/images/check_c.png" alt="" width="15"></a>
+                    <a href="">높은가격순<img src="<%=request.getContextPath() %>/resources/images/check_c.png" alt="" width="15"></a>
                 </div>       
                 
 		        <div class="pdt_wrap">

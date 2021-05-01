@@ -37,15 +37,15 @@
 	
 	#header_1{position:relative;}
 	#logo_img{
-	    margin: auto;
-	    margin-top: 28px;
-	    position: absolute;
-	    top: 0;
-	    bottom: 0;
-	    left: 0;
-	    right: 0;
-	    width: 80%;
-	    height: 80%;
+		    margin: auto;
+		    margin-top: 28px;
+		    position: absolute;
+		    top: 9px;
+		    bottom: 0;
+		    left: 4px;
+		    right: 0;
+		    width: 90%;
+		    height: 68%;
 	}
 	
 	#header_3{position:relative;}    

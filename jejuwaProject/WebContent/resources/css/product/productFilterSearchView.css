@@ -129,6 +129,12 @@ div{box-sizing: border-box;}
     width: 220px;
     height: 260px;
 }
+.pdtPhoto>img{
+	 width: 220px;
+	 height: 165px;
+	
+}
+
 .pdtList{margin: auto; padding: 0 5px;}
 .pdtList li{
     float: left;
