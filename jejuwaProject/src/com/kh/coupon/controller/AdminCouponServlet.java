@@ -104,6 +104,8 @@ public class AdminCouponServlet extends HttpServlet {
 		request.setAttribute("pi", pi);
 		request.setAttribute("adlist", adlist);
 		
+		System.out.println(pi);
+		System.out.println(adlist);
 		request.getRequestDispatcher("views/coupon/adminCouponServlet.jsp").forward(request, response);
 		
 
