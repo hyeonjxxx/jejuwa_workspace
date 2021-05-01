@@ -106,7 +106,7 @@
             	var $p = $(this).next(); // jQuery 방식으로 선택한 요소를 담아둘 때 변수명 앞에 $를 붙인다.
                 
                 if($p.css("display") == "none"){
-                    $(this).siblings("p").slideUp();
+                    $(this).siblings(".answer").slideUp();
                     $p.slideDown(); // 보여지게
                     
                 }else{
