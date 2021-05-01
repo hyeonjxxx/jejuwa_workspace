@@ -74,15 +74,15 @@
 
     #header_1{position:relative;}
     #logo_img{
-        margin: auto;
-        margin-top: 28px;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 80%;
-        height: 80%;
+		    margin: auto;
+		    margin-top: 28px;
+		    position: absolute;
+		    top: 9px;
+		    bottom: 0;
+		    left: 4px;
+		    right: 0;
+		    width: 90%;
+		    height: 68%;
     }
 
     #header_3{position:relative;}    
@@ -189,7 +189,7 @@
                     
                     <div id="search_btn" style="width: 10%;">
                         <!--<input type="submit" value="검색">-->
-                        <button class="searchBtn1" type="submit"><img  style="width: 100%; height: 100%;" src="<%= request.getContextPath() %>/resources/images/돋보기.png"></button>
+                        <button class="searchBtn1" type="submit" style="width:39px; height:31px"><img src="<%= request.getContextPath() %>/resources/images/돋보기.png" width="24"></button>
                     </div>
                     
                     <div id="search_text">

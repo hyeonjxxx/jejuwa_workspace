@@ -29,7 +29,30 @@
 	<%@ include file="../common/loginUserMenubar.jsp" %>
 
     <div class="content_wrap">
+    
+    <a class="moveToTop" href="#" style="right:2%; bottom:50px; position:fixed; z-index:9999999999;"><img alt="TOP" src="<%=contextPath%>/resources/images/MoveToTop_BTN.png" width="50%"></a>
 
+    <script type="text/javascript">
+        $(function(){
+          $(".moveToTop").hide(); // 탑 버튼 숨김 - 이걸 빼면 항상 보인다.
+             
+             $(window).scroll(function () {
+                 if ($(this).scrollTop() > 800) { // 스크롤 내릴 표시
+                     $('.moveToTop').fadeIn();
+                 } else {
+                     $('.moveToTop').fadeOut();
+                 }
+             });
+                     
+             $('.moveToTop').click(function () {
+                 $('body,html').animate({
+                     scrollTop: 0  //올라갈 위치 
+                 }, 400);  // 스크롤 속도를 
+                 return false;
+             });
+        }); 
+        </script> 
+        
         <p class="groupBar">
            <a href="#"> <%=p.getLocalName() %></a>&nbsp;&nbsp;>
            <a href="<!-- 테마에 따라 링크가 다름! -->"> <%=p.getThemeName() %></a>&nbsp;&nbsp;
@@ -183,12 +206,38 @@
         </div>
 
         <!-- 상품설명/리뷰 등.. -->
+	    <script>
+	    /*탭메뉴바 선택된 아들만  css주기  */
+	        $(document).ready(function(){
+	           $(".tap_title li").click(function(){
+	               var idx = $(this).index();
+	               $(".tap_title li").removeClass("current");
+	               $(".tap_title li").eq(idx).addClass("current");
+	           });
+	        });
+	    </script>        
         <div class="pdtTab">
-            <ul >
+            <ul class="tap_title">
                 <li onclick="" class="current"><p>상품설명</p>
                 </li>
-                <li onclick="" ><p>사용정보</p></li>
-                <li onclick=""><p>취소/환불</p></li>
+                <li class="useInfo" ><p>상품정보</p></li>
+                <script>
+	            $('.useInfo').click(function () {
+	                   $('body,html').animate({
+	                       scrollTop: 7600  //올라갈 위치 
+	                   }, 400);  // 스크롤 속도를 
+	                   return false;
+	               }); 
+                </script>
+                <li class="refund"><p>취소/환불</p></li>
+                <script>
+	            $('.refund').click(function () {
+	                   $('body,html').animate({
+	                       scrollTop: 8200  //올라갈 위치 
+	                   }, 400);  // 스크롤 속도를 
+	                   return false;
+	               });                
+                </script>
                 <li onclick="" ><p>리뷰</p></li>
                 <% if(loginUser == null){ %>
                 	<li onclick="login();" ><p>상품문의</p></li>

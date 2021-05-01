@@ -144,7 +144,7 @@ button{border:none; outline:none;}
 .pdtTab {
     float: left;  
     height: 8%;
-    margin: 100px 15px 0;
+    margin: 100px 15px 80px;
 }    
 .pdtTab ul{
     overflow: hidden;

@@ -26,6 +26,7 @@
         <div class="content">
 
             <div class="side">
+            <form action="">
                 <aside class="detailSearch">
                     <p>지도로 보기 <img src="<%=request.getContextPath() %>/resources/images/map.png" alt="" width="15"></p>
                     <div class="map">
@@ -44,9 +45,9 @@
                         <p>필터</p>
                         <div class="rating">
                          	   평점<br>
-                            <input type="radio" name="total" id="total" checked> 전체 <br>
-                            <input type="radio" name="4point" id="4poin"> 4점 이상 <br>
-                            <input type="radio" name="5point" id="5point"> 5점 이상 <br>
+                            <input type="radio" name="avg" id="total" selected> 전체 <br>
+                            <input type="radio" name="avg" id="4poin"> 4점 이상 <br>
+                            <input type="radio" name="avg" id="5point"> 5점 이상 <br>
                         </div>
                         
                         <div class="divisionLine"></div>
@@ -68,16 +69,15 @@
         
                         <div class="btnArea" align="center">
                           <a type="submit" class="enter">검색</a>
-                            <a type="reset" class="rset"> 초기화</a>  
+                            <a type="reset" class="reset"> 초기화</a>  
                         </div>
-                        
-                        
+                            
                     </div>
+                    
                 </aside>
+           	 </form>
             </div>
-            <script>
-			/* 지역버튼 클릭시, 지역이 00인 상품만 조회(카레고리+필터있는 페이지로) */
-            </script>
+
     
             <div class="main">
                 <div class="sortBar" align="right">
@@ -99,6 +99,7 @@
 
 		        <div class="pdt_wrap">
 		             <ul class="pdtList">
+		             <%if(list != null) {%>
 		        	<%for(Product p : list) {%> 
 		             	<li class=pdtArea>
 		                  <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
@@ -112,7 +113,10 @@
 			                       </a>
 		                     </div>
 		                  </li>
-					<% } %>		
+					<% } %>	
+					<%}else {%>
+							 <li class=pdtArea><div>검색 결과가 없습니다.<br>상품명을 검색해 보세요.</div></li>
+					<%} %>	
 					</ul>
 		        </div>
 	   		 </div>
