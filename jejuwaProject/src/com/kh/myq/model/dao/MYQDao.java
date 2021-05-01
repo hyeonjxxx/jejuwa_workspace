@@ -448,8 +448,6 @@ public class MYQDao {
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertProductUser");
 		
-		ResultSet rset = null;
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -468,6 +466,25 @@ public class MYQDao {
 		}
 		
 		return result;
+	}
+
+	public int deleteUserMYQ(Connection conn, ArrayList list) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteUserMYQ");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, list.get(0));
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
 	}
 
 

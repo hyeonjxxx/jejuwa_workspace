@@ -412,7 +412,18 @@
 		  	  )
 		WHERE RNUM BETWEEN 1 AND 6
 	</entry>			
-		
+
+	<entry key="highPrice_TT">
+				SELECT 
+				       P_CODE
+				     , P_NAME
+				     , PRICE
+				     , BASIC_PATH
+				  FROM PRODUCT 
+		         WHERE THEME_CODE = 'TT'
+		         ORDER BY PRICE DESC                               
+	</entry>			
+				
 	
 	<!-- 좋아요 카운트 -->
 	<entry key="likeCount">

@@ -183,5 +183,17 @@ public class MYQService {
 		return result1;
 		
 	}
+
+
+	public int deleteUserMYQ(ArrayList list) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MYQDao().deleteUserMYQ(conn, list);
+		
+		close(conn);
+		
+		return result;
+	}
 	
 }

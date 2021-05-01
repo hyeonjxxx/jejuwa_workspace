@@ -85,6 +85,7 @@
                 </thead>
                 <tbody>
                 	<!-- 조회된 결과가 없을 경우 -->
+					<!--  iNo = count - (page * limit 현재 페이지에 보여지는 숫자값으로 리로드-->
                 	<% if( list.isEmpty() ){ %>
 	                	<tr>
 	                		<td colspan="5">작성된 문의사항이 없습니다.</td>
@@ -92,7 +93,7 @@
 	                <% }else{ %>
 	                	<% for(MYQ q : list){ %>
 	                    <tr> 
-	                    	<td><input id="choice_myq" name ="choice_myq" type="checkbox"></td>
+	                    	<td><input id="choice_myq" name ="choice_myq" type="checkbox" value="<%= q.getMyq_no() %>"></td>
 	                        <td class="ch2"><%= q.getMyq_no() %></td>
 	                        <td class="ch2">
 								<% if( q.getP_code() == null){%>
@@ -250,46 +251,43 @@
     	}
 
 
-		$("#okBtn").click(function(){
-			
+		$(document).ready(function() {
+			$("#okBtn").click(function(){
+				var length = $('input[id=choice_myq]:checked').length; // 체크된 숫자갯수
 
-			var length = $('input[id=choice_myq]:checked').length; // 체크된 숫자갯수
+				console.log("숫자갯수" + length);
 
-			console.log("숫자갯수" + length);
+				var myq_arr = []; // 배열선언
+				
+				$('input[id=choice_myq]:checked').each(function(){
+					var myq_no = $(this).val(); // 내가 원하는 값을 value로 담아놓고 체크할 때 value값 담기(생각의전환 필요!) 
+					
+					myq_arr.push(myq_no);
+					// 배열에 담기
+				});
 
-			var myq_arr = [ ];
-			
-			$('input[id=choice_myq]:checked').each(function(){
-
-				var myq_no = $('input[id=choice_myq]:checked').parent().siblings(1).html() // 체크된 게시물 번호
-
-				myq_arr.push($(this).attr(myq_no))
-
-				console.log("게시글번호" + myq_no);
+				console.log("배열" + myq_arr);
+				// 체크된 게시물 번호 배열에 담았음
+				console.log(myq_arr);
+				$.ajax({
+					type: "POST",
+					url: "delete.umyq",
+					data: {
+						myq_no: myq_arr
+					},
+					success: function(jdata){
+						if(jdata != 1) {
+							alert("삭제 오류");
+						}
+						else{
+							alert("삭제 성공");
+						}
+					},
+					error: function(){alert("서버통신 오류");}
+				});
 			});
-
-			console.log("배열" + myq_arr);
-			// 체크된 게시물 번호 배열에 담았음
-			console.log(myq_arr);
-			// $.ajax = {
-            //     type: "POST",
-            //     url: "delete.myq",
-            //     data: "RPRT_ODR=" + arr + "&CNT=" + cnt,
-            //     dataType:"json",
-            //     success: function(jdata){
-            //         if(jdata != 1) {
-            //             alert("삭제 오류");
-            //         }
-            //         else{
-            //             alert("삭제 성공");
-            //         }
-            //     },
-            //     error: function(){alert("서버통신 오류");}
-            // };
-
-			// }
-
 		})
+		
 		
 		
 
