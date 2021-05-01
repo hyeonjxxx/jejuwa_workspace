@@ -188,7 +188,7 @@
                 <li onclick="" class="current"><p>상품설명</p>
                 </li>
                 <li onclick="" ><p>사용정보</p></li>
-                <li onclick=""><p>최소/환불</p></li>
+                <li onclick=""><p>취소/환불</p></li>
                 <li onclick="" ><p>리뷰</p></li>
                 <% if(loginUser == null){ %>
                 	<li onclick="login();" ><p>상품문의</p></li>
@@ -223,7 +223,8 @@
         
 
     </div>
-
+    
+<%@ include file="../common/footer.jsp" %>	
 
 </body>
 </html>

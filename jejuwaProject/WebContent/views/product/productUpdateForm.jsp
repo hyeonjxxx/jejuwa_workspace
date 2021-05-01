@@ -142,17 +142,17 @@
 		        <br><br>        
 		        <!-- 버튼 -->
 		        <div align="right" class="btnArea">
-		            <button id="backBtn" onclick="'<%=contextPath%>/list.pdt?currentPage=1';">목록으로</button>
+		            <button id="backBtn" type="button" onclick="location.href = '<%=contextPath%>/list.pdt?currentPage=1';" >목록으로</button>
 		            <!-- Button to Open the Modal -->
 		            <button type="button" id="enrollBtn" data-toggle="modal" data-target="#updateModal">수 정</button>
 		            <button type="button" id="deleteBtn" data-toggle="modal" data-target="#deleteModal">삭 제</button>
 		        </div>
-		 
+		
 		        
 		        <!-- The Modal --> 
 		        <div class="modal fade" id="updateModal"  align="center">
-		            <div class="modal-dialog modal-dialog-centered">
-		                <div class="modal-content_pdt">
+		           <div class="modal-dialog modal-dialog-centered">
+		                <div class="modal-content" id="modal-content_pdt">
 		                
 		                    <!-- Modal body -->
 		                    <div class="modal-body">
@@ -172,7 +172,7 @@
 			    <!-- The Modal -->
 			       <div class="modal fade" id="deleteModal" align="center" >
 			         <div class="modal-dialog modal-dialog-centered">
-			           <div class="modal-content_pdt" >
+			           <div class="modal-content" id="modal-content_pdt" >
 			           
 			                             
 			             <!-- Modal body -->
@@ -181,31 +181,30 @@
 			               	상품을 삭제하시겠습니까?
 			             </div>
 			             
-			             <form action="<%=contextPath%>/delete.pdt?pcode=<%=p.getpCode()%>" method="post">        
-			             <div class="input-group mb-3" id="modalContent">
-			               <div class="input-group-prepend">
-			                 <span class="input-group-text" id="basic-addon1" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
+			             <div class="input-group mb-3" id="modalContent" >
+			               <div class="input-group-prepend"  id="pwBar">
+			                 <span class="input-group-text" id="basic-addon11" ><i class="bi bi-key" style="padding-left:3px;"></i></span>
 			               </div>
-			               <input name="adminPw" size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon1">
+			               <input name="adminPw" size="25" type="password" placeholder=" 관리자 비밀번호" aria-label="관리자 비밀번호" aria-describedby="basic-addon11">
 			                              
 			             </div>
 			             
 			             <!-- Modal footer -->
 			             <div id="modalFooter">
-			               <button type="submit" id="okBtn1" class="btn btn-warning" onclick="delPDT">확 인</button>
+			               <button type="button" id="okBtn1" class="btn btn-warning" onclick="return delPDT()">확 인</button>
 			               <button type="button" id="cancleBtn1" data-dismiss="modal" class="btn btn-secondary">취 소</button>
 			             </div>	        
 					        
 					        <script>
 					        function delPDT(){
-					        	if($("input[name=adimPw]").val() != <%=loginUser.getMemPwd()%>){
+					        	if($("input[name=adminPw]").val() != <%=loginUser.getMemPwd()%>){
 					        		alert("비밀번호가 일치하지 않습니다.");
 					        		return false;
 					        	}
+					        	location.href="<%=contextPath%>/delete.pdt?pcode=<%=p.getpCode()%>";
 			       			}
 					        
 					        </script>
-					        </form>
 		                </div>
 		            </div>
 		        </div>		        
