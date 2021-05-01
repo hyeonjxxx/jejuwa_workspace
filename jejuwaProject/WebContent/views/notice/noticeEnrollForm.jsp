@@ -39,7 +39,7 @@
                         <tr>
                             <th>내용</th>
                             <td colspan="2">
-                                <textarea name="content" id="" cols="75" rows="18" style="resize:none;" placeholder="내용을 입력해주세요" ></textarea>
+                                <textarea name="content" id="" cols="75" rows="18" style="resize:none;" placeholder="내용을 입력해주세요" required></textarea>
                             </td>
                         </tr>
                     </table>
@@ -50,11 +50,11 @@
 			        <div class="bottomArea">
 			
 			            <!-- 버튼 (목록으로) -->
-			            <div class="btn">
-			                <a href="<%=contextPath%>/list.no?currentPage=1" id="btn1">목록으로</a>
+			            <div class="btn" id="noticeBtn">
+			                <a href="<%=contextPath%>/list.no?currentPage=1" id="noticeBack">목록으로</a>
 			            </div> 
 			             <!-- 버튼 (등 록) -->
-			            <div class="btn">
+			            <div class="btn" id="noticeBtn">
 			                <a data-toggle="modal" data-target="#enrollBtn" >등 록</a>
 			            </div>   			
 					</div>

@@ -73,7 +73,7 @@ border-radius:4px;
 
 
 /* 블랙리스트 해제 모달 */
-.modal-content{width: 380px;}
+#unblackContent{width: 380px;}
 #ubModalContent{margin-left:50px;}
 #ubModalContent input{
     border: 1px solid lightgray;

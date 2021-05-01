@@ -109,7 +109,7 @@
         <!-- The Modal -->
         <div class="modal fade" id="unblacklist" align="center" >
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">     
+                <div class="modal-content" id="unblackContent">     
 
                     <!-- Modal body -->
                     <br>
