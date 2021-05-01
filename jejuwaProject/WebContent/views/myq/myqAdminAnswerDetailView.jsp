@@ -167,6 +167,7 @@
 
 
         $("#answer_mdf").click(function(){
+            console.log("수정하기 실행?");
             $.ajax({
                 url: "detail.amyq",
                 type: "get",
@@ -194,7 +195,7 @@
         $("#answer_mdf_suc").click(function(){
             console.log("mdf_suc 실행?")
             $.ajax({
-                url: "ansS.amyq",
+                url: "ans.amyq",
                 type: "get",
                 data: {
                     answer:$("#answer_text").val(), // answer_text라는 key값으로 id가 answer_text인 값을 넘기겠다. 

@@ -249,7 +249,11 @@
 	</entry>
 	
 	<entry key="deleteUserAttachment">
-	
+		DELETE 
+		  FROM 
+		       ATTACHMENT
+         WHERE 
+               MYQ_NO IN (  ?  )
 		
 	</entry>
 	

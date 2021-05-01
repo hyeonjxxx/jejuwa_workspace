@@ -59,8 +59,6 @@ public class MYQUserProductInsertServlet extends HttpServlet {
 			q.setMem_no(Integer.parseInt(multiRequest.getParameter("memNo")));
 			q.setP_code(multiRequest.getParameter("pCode"));
 			
-			System.out.println("담긴 객체" + q);
-			
 			// 3_2. Attachment테이블에 insert할 데이터뽑기 => Attachment객체
 			// 단, 여러개의  첨부파일이 있을것이기 때문에 해당 Attachment객체들을 ArrayList에 담기
 			
@@ -68,6 +66,8 @@ public class MYQUserProductInsertServlet extends HttpServlet {
 			
 			for(int i=1; i<=3; i++) {
 				String key ="upfile" + i;
+				
+				System.out.println("이게머냐 " + multiRequest.getOriginalFileName(key));
 				if(multiRequest.getOriginalFileName(key) != null) {
 					// Attachment 객체 생성 + 원본명, 수정명, 폴더경로, 파일레벨(0/1)
 					Attachment at = new Attachment();
@@ -80,7 +80,6 @@ public class MYQUserProductInsertServlet extends HttpServlet {
 				}
 			}
 			
-			System.out.println("상품문첨부파일 리스트 확인" + list);
 			// 4. (리스트 다시 조회하기)
 			int result = new MYQService().insertProductUser(q, list);
 			

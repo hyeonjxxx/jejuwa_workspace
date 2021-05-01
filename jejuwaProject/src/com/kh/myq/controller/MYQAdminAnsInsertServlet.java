@@ -35,17 +35,16 @@ public class MYQAdminAnsInsertServlet extends HttpServlet {
 		// 관리자가 입력한 답글 받기
 		String answer = request.getParameter("answer");
 		int getMyq_no = Integer.parseInt(request.getParameter("getMyq_no"));
-		System.out.println(getMyq_no);
 		
 		int result = new MYQService().answer(answer, getMyq_no);
 		
-		//if(result>0) {
-			//request.getSession().setAttribute("alertMsg", "답글이 성공적으로 등록되었습니다.");
-		response.getWriter().print(result);
+		if(result>0) {
+			System.out.println("답변수정 실행되나?");
+			response.getWriter().print(result);
 			
-		//} else {
-			//request.getSession().setAttribute("alertMsg", "답글 등록에 실패하였습니다.");
-		//}
+		} else {
+			
+		}
 	}
 
 	/**

@@ -1,6 +1,8 @@
 package com.kh.myq.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,14 +42,14 @@ public class MYQUserDetailViewServlet extends HttpServlet {
 		
 		// 1. 문의 상세조회
 		MYQ q = new MYQService().selectDetailUser(myqNo);
-		Attachment at = new MYQService().selectAttachmentUser(myqNo);
+		ArrayList<Attachment> list = new MYQService().selectAttachmentUser(myqNo);
 		
 		System.out.println(q);
-		System.out.println(at);
+		System.out.println(list);
 		
 		// 받아온 q, at 값 Attribute영역에 세팅하기
 		request.setAttribute("q", q); 
-		request.setAttribute("at", at);
+		request.setAttribute("list", list);
 				
 		// 화면뿌려주기
 		request.getRequestDispatcher("views/myq/myqUserDetailView.jsp").forward(request, response);

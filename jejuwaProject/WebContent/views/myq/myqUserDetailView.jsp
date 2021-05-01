@@ -5,7 +5,6 @@
 			   , java.util.ArrayList" %>
 <%
 	MYQ q = (MYQ)request.getAttribute("q");
-	Attachment at = (Attachment)request.getAttribute("at");
 	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
@@ -105,11 +104,11 @@
 			
             <!-- 첨부파일이 있을 경우 -->
 		 <div id="fileArea">
-			<% if( at == null){%>
+			<% if( list.size() == 0){%>
             	<b>첨부파일 없음</b>
             <% } else {%>
               <% for(int i=1; i<list.size(); i++){ %>
-               	 첨부파일 <a href="<%=contextPath%>/<%=at.getFilePath()%>/<%= at.getMdfFileName() %>"><%=at.getOrgFileName() %></a><br>
+               	 첨부파일 <a href="<%=contextPath%>/<%= list().get(i).getFilePath()%>/<%= list.get(i).getMdfFileName() %>"><%= list().get(i).getOrgFileName() %></a><br>
                <% } %>
             <%} %>
             </div>

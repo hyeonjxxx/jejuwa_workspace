@@ -53,15 +53,15 @@ public class MYQService {
 	}
 
 
-	public Attachment selectAttachmentAdmin(int myqNo) {
+	public ArrayList<Attachment> selectAttachmentAdmin(int myqNo) {
 		
 		Connection conn = getConnection();
 		
-		Attachment at = new MYQDao().selectAttachmentAdmin(conn, myqNo);
+		ArrayList<Attachment> list = new MYQDao().selectAttachmentAdmin(conn, myqNo);
 		
 		close(conn);
 		
-		return at;
+		return list;
 	}
 
 
@@ -121,25 +121,25 @@ public class MYQService {
 	}
 
 
-	public Attachment selectAttachmentUser(int myqNo) {
+	public  ArrayList<Attachment> selectAttachmentUser(int myqNo) {
 		Connection conn = getConnection();
 		
-		Attachment at = new MYQDao().selectAttachmentUser(conn, myqNo);
+		 ArrayList<Attachment> list = new MYQDao().selectAttachmentUser(conn, myqNo);
 		
 		close(conn);
 		
-		return at;
+		return list;
 	}
 
 
-	public int insertUser(MYQ q, Attachment at) {
+	public int insertUser(MYQ q, ArrayList<Attachment> list) {
 		Connection conn = getConnection();
 		
 		int result1 = new MYQDao().insertUser(conn, q);
 		
 		// list에 담긴 값이 없을 때 == 0, 담긴 값이 있을 때 !=0
 		
-		new MYQDao().insertUserAttachment(conn, at);
+		new MYQDao().insertUserAttachment(conn, list);
 
 		if(result1 > 0 ) { // 게시글 insert 성공
 			commit(conn);
@@ -164,15 +164,13 @@ public class MYQService {
 
 	public int insertProductUser(MYQ q, ArrayList<Attachment> list) {
 		Connection conn = getConnection();
-		System.out.println("서비스에 담긴 객체" + q);
+		
 		int result1 = new MYQDao().insertProductUser(conn, q);
 		
 		// list에 담긴 값이 없을 때 == 0, 담긴 값이 있을 때 !=0
-		if(list.size() != 0) {
-			new MYQDao().insertUserAttachment(conn, list);
-		}
-		
-		System.out.println(conn);
+		new MYQDao().insertUserAttachment(conn, list);
+
+		System.out.println("connection에 담긴 값 " + conn);
 		
 		if(result1 > 0 ) { // 게시글 insert 성공
 			commit(conn);
@@ -190,13 +188,19 @@ public class MYQService {
 		
 		Connection conn = getConnection();
 		
-		int result1 =new MYQDao().deleteUserAttachment(conn, myq_no);
+		new MYQDao().deleteUserAttachment(conn, myq_no);
 		
-		int result2 = new MYQDao().deleteUserMYQ(conn, myq_no);
+		int result = new MYQDao().deleteUserMYQ(conn, myq_no);
 		
+		
+		if(result >0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
 		close(conn);
 		
-		return result2;
+		return result;
 	}
 	
 }

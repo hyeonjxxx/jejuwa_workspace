@@ -1,6 +1,8 @@
 package com.kh.myq.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,22 +33,21 @@ public class MYQAdminAnsSuccessServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 디테일리스트 뷰 요청시 클릭한 문의글 번호 뽑아서 담기
-		int myqNo = Integer.parseInt(request.getParameter("mno"));
+		request.setCharacterEncoding("utf-8");
 		
-		// 1. 문의 상세조회
-		MYQ q = new MYQService().selectDetailAdmin(myqNo);
-		Attachment at = new MYQService().selectAttachmentAdmin(myqNo);
+		// 관리자가 입력한 답글 받기
+		String answer = request.getParameter("answer");
+		int getMyq_no = Integer.parseInt(request.getParameter("getMyq_no"));
 		
-		System.out.println(q);
-		System.out.println(at);
+		int result = new MYQService().answer(answer, getMyq_no);
 		
-		// 받아온 q, at 값 Attribute영역에 세팅하기
-		request.setAttribute("q", q); 
-		request.setAttribute("at", at);
-				
-		// 화면뿌려주기
-		request.getRequestDispatcher("views/myq/myqAdminDetailView.jsp").forward(request, response);
-		response.setContentType("application/json; charset=UTF-8");
+		if(result>0) {
+			System.out.println("답변수정 실행되나?");
+			response.getWriter().print(result);
+			
+		} else {
+			
+		}
 	}
 
 	/**

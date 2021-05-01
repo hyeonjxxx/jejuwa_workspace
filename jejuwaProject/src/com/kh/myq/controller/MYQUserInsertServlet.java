@@ -49,7 +49,7 @@ public class MYQUserInsertServlet extends HttpServlet {
 			// 2. request => multipartRequest
 			// 이 코드 하나로 내가 지정한 폴더에 파일들이 업로드 될 것임!!! 
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
-			System.out.println("멀티 리퀘스트" + multiRequest);
+			
 			// 3.DB에 기록할 요청시 전달된 값 뽑기
 			// 3_1. MYQ테이블에 insert할 데이터 뽑기
 			MYQ q = new MYQ();
@@ -65,7 +65,7 @@ public class MYQUserInsertServlet extends HttpServlet {
 			ArrayList<Attachment> list = new ArrayList<>();
 			
 			for(int i=1; i<=3; i++) {
-				String key ="upfile";
+				String key ="upfile" + i;
 				System.out.println("multiRequest.getOriginalFileName(key)" + multiRequest.getOriginalFileName(key));
 				if(multiRequest.getOriginalFileName(key) != null) {
 					// Attachment 객체 생성 + 원본명, 수정명, 폴더경로, 파일레벨(0/1)
@@ -80,9 +80,10 @@ public class MYQUserInsertServlet extends HttpServlet {
 				}
 			}
 			
-			// 4. (리스트 다시 조회하기)
+			// 4. 문의글, 첨부파일 서비스 호출 및 결과 받기
 			int result = new MYQService().insertUser(q, list);
-
+			
+			System.out.println("조회된 q, list 받아오기 " + q + list);
 
 			if(result > 0 ) { // 성공 => /list.th url 재요청 => 사진게시판 리스트페이지
 				

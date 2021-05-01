@@ -148,9 +148,9 @@ public class MYQDao {
 		return q;
 	}
 
-	public Attachment selectAttachmentAdmin(Connection conn, int myqNo) {
+	public ArrayList<Attachment> selectAttachmentAdmin(Connection conn, int myqNo) {
 		// SELECT
-		Attachment at = null;
+		ArrayList<Attachment> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -164,16 +164,19 @@ public class MYQDao {
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) { 
-				at = new Attachment(rset.getInt("FILE_NO")
-						  , rset.getString("ORG_FILENAME")
-						  , rset.getString("MDF_FILENAME")
-						  , rset.getString("FILE_PATH")
-						  , rset.getString("REF_BOARD_TYPE")
-						  , rset.getInt("REF_BOARD_NO")
-						  , rset.getInt("MYQ_NO")
-						  , rset.getString("P_CODE"));
-						}
+			while(rset.next()) { 
+				Attachment at = new Attachment();
+				at.setFileNo(rset.getInt("FILE_NO"));
+				at.setOrgFileName(rset.getString("ORG_FILENAME"));
+				at.setMdfFileName(rset.getString("MDF_FILENAME"));
+				at.setFilePath(rset.getString("FILE_PATH"));
+				at.setRefBoardType(rset.getString("REF_BOARD_TYPE"));
+				at.setRefBoardNo(rset.getInt("REF_BOARD_NO"));
+				at.setMyqNo(rset.getInt("MYQ_NO"));
+				at.setpCode(rset.getString("P_CODE"));
+				
+				list.add(at);
+				}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -181,7 +184,7 @@ public class MYQDao {
 			close(pstmt);
 		}
 		
-		return at;
+		return list;
 	}
 
 	public int answer(Connection conn, String answer, int getMyq_no) {
@@ -323,9 +326,9 @@ public class MYQDao {
 		return q;
 	}
 
-	public Attachment selectAttachmentUser(Connection conn, int myqNo) {
+	public ArrayList<Attachment> selectAttachmentUser(Connection conn, int myqNo) {
 		// SELECT
-		Attachment at = null;
+		ArrayList<Attachment> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -339,16 +342,22 @@ public class MYQDao {
 			
 			rset = pstmt.executeQuery();
 			
-			if(rset.next()) { 
-				at = new Attachment(rset.getInt("FILE_NO")
-						  , rset.getString("ORG_FILENAME")
-						  , rset.getString("MDF_FILENAME")
-						  , rset.getString("FILE_PATH")
-						  , rset.getString("REF_BOARD_TYPE")
-						  , rset.getInt("REF_BOARD_NO")
-						  , rset.getInt("MYQ_NO")
-						  , rset.getString("P_CODE"));
-						}
+			
+			// 각 객체 반복문 돌려서 list 값에 담고 이따가 detail jsp에서 반복문으로 뿌려주기
+			while(rset.next()) { 
+				Attachment at = new Attachment();
+				at.setFileNo(rset.getInt("FILE_NO"));
+				at.setOrgFileName(rset.getString("ORG_FILENAME"));
+				at.setMdfFileName(rset.getString("MDF_FILENAME"));
+				at.setFilePath(rset.getString("FILE_PATH"));
+				at.setRefBoardType(rset.getString("REF_BOARD_TYPE"));
+				at.setRefBoardNo(rset.getInt("REF_BOARD_NO"));
+				at.setMyqNo(rset.getInt("MYQ_NO"));
+				at.setpCode(rset.getString("P_CODE"));
+				
+				list.add(at);
+				}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -356,7 +365,7 @@ public class MYQDao {
 			close(pstmt);
 		}
 		
-		return at;
+		return list;
 	}
 
 	public int insertUser(Connection conn, MYQ q) {
@@ -397,20 +406,21 @@ public class MYQDao {
 			
 			// 매번 한 행 실행할 때 하나씩 차곡차곡 넣었지만 지금은 배열이므로 반복문 돌리겠다.
 			// list 숫자만큼 at라는 객체에 하나씩 담아줌
-			
+			for( Attachment at : list ) {
+				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, at.getOrgFileName());
 				pstmt.setString(2, at.getMdfFileName());
 				pstmt.setString(3, at.getFilePath());
 				
 				result = pstmt.executeUpdate();	
-			
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 		}
-		
+		System.out.println("Dao에서 담긴 리스트 결과 담기" + list);
 		return result;
 	}
 
@@ -459,7 +469,6 @@ public class MYQDao {
 			pstmt.setString(3, q.getMyq_content());
 			pstmt.setInt(4, q.getMem_no());
 			pstmt.setString(5, q.getP_code());
-			System.out.println("세팅된 p코드" + q.getP_code());
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
