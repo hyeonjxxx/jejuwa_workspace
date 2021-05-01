@@ -56,19 +56,8 @@
         
         <br>
 
-		<!-- 검색창 -->
 		<div class="area1">
-            <div align="right" class="searchArea">
-               
-                <span href="" >
-                    <select name="noticeSearchCtg" id="noticeSearchCtg">
-                        <option value="title">제목</option>
-                        <option value="content">내용</option>
-                        <option value="titleContent">제목+내용</option>
-                    </select>
-                    <input id="keyword" type="text" onkeyup="enterkey();" placeholder="검색">
-                </span>              
-            </div>
+
 		</div>
 
         <!-- 1:1문의 리스트 테이블 -->
@@ -142,8 +131,8 @@
 								
 						<!-- Modal footer -->
 						<div id="modalFooter">
-							<button type="button" id="okBtn" class="btn btn-warning">OK</button>
-							<button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+							<button type="button" id="okBtn" class="btn btn-warning">네</button>
+							<button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">아니요</button>
 						</div>
 					</div>
 				 </div>
@@ -275,15 +264,14 @@
 					data: {
 						myq_no: myq_arr
 					},
-					success: function(jdata){
-						if(jdata != 1) {
-							alert("삭제 오류");
-						}
-						else{
-							alert("삭제 성공");
-						}
+					success: function(){
+						alert("정상적으로 삭제되었습니다");
+						window.location.reload();
 					},
-					error: function(){alert("서버통신 오류");}
+					error: function(){
+						alert("서버통신 오류");
+						window.location.reload();
+					}
 				});
 			});
 		})

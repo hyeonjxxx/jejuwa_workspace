@@ -80,7 +80,7 @@
             <div class="ansArea">
             <div class="title">
                 <!-- 미답변 상태-->
-            	<% if ( q.getMyq_ans_content() == null){ %> 
+            	<% if ( q.getMyq_ans_content() == null ) { %> 
 	            	<div><b> 답변</b></div>
 	                <br>
 	                <div></div>
@@ -123,10 +123,14 @@
             
             
             <div class="btn btn2" align="right">
-                <% if ( q.getMyq_ans_content() == null){ %> 
+                <% if( q.getMyq_ans_content() == null ) { %> 
             	<button id="answer" name="" value="" style="border:0px;">답변하기</button>
+                <button id="answer_mdf" name="" value="" style="border:0px; display:none;">답변수정</button>
+                <button id="answer_mdf_suc" name="" value="" style="border:0px; display:none;">답변수정</button>
                 <% } else{ %> 
+                <button id="answer" name="" value="" style="border:0px; display:none;">답변하기</button>
                 <button id="answer_mdf" name="" value="" style="border:0px;">답변수정</button>
+                <button id="answer_mdf_suc" name="" value="" style="border:0px; display:none;">답변수정</button>
                 <% } %>
                 <a id="btn3" href="<%=contextPath%>/list.amyq?currentPage=1">목록으로</a> 
             </div>               
@@ -148,10 +152,12 @@
                         var date = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate();
                         var el = "<div><b> 답변</b></div><br><div>제주와 관리자</div><div> 답변일 :" + date + "</div>"
                         + "<div class='AnsContent'><p>" + $("#answer_text").val() + "</p></div>";
-                        $("#answer").text('답변수정');
-                        $("#answer").attr('id','#answer_mdf');
-                        
+                       
                         $(".ansArea>.title").html(el);
+
+                        $("#answer").hide();
+                        $("#answer_mdf").show();
+                        $("#answer_mdf_suc").hide();
                         console.log("왜 안바뀌니")
                         
                     } else{
@@ -166,28 +172,31 @@
         })
 
 
-        $("#answer_mdf").click(function(){
-            $.ajax({
-                url: "detail.amyq",
-                type: "get",
-                data: {
-                    mno:<%=q.getMyq_no()%> // answer_text라는 key값으로 id가 answer_text인 값을 넘기겠다
-                },
-                success:function(){
-                    console.log("성공됨??");
-                        $(".ansArea>.title").html("");
-                        
-                		var el = '<div><b> 답변</b></div><br><div></div>' + 
-                                 '<div><textarea style="width:800px; height:200px;" name="answer_text" id="answer_text">' + "<%= q.getMyq_ans_content() %>"
-                                 + '</textarea></div>';  	
-                		
-                		$(".ansArea>.title").html(el);
-                		$("#answer_mdf").attr('id','#answer_mdf_suc');
-                },
-                error:function(){
-                    console.log("답글 작성용 ajax 통신 실패");
-                }
-            })
+        $("#answer_mdf").click(function() {                        
+            var el = '<div><b> 답변</b></div><br><div></div>' + 
+                        '<div><textarea style="width:800px; height:200px;" name="answer_text" id="answer_text">' + $('.AnsContent p').text();
+                        + '</textarea></div>';  	
+            
+            $(".ansArea>.title").html(el);
+
+            $("#answer").hide();
+            $("#answer_mdf").hide();
+            $("#answer_mdf_suc").show();
+
+            // $.ajax({
+            //     url: "detail.amyq",
+            //     type: "get",
+            //     data: {
+            //         mno:<%=q.getMyq_no()%> // answer_text라는 key값으로 id가 answer_text인 값을 넘기겠다
+            //     },
+            //     success:function(result){
+            //         console.log(result);
+                       
+            //     },
+            //     error:function(){
+            //         console.log("답글 작성용 ajax 통신 실패");
+            //     }
+            // })
         })
         
         
@@ -212,8 +221,11 @@
                         + "<div class='AnsContent'><p>" + $("#answer_text").val() + "</p></div>";
                         
                         $(".ansArea>.title").html(el);
-                        $("#answer_mdf_suc").attr('id','#answer_mdf');
                         console.log('답변수정버튼 바뀌어라!');
+
+                        $("#answer").hide();
+                        $("#answer_mdf").show();
+                        $("#answer_mdf_suc").hide();
                     } else{
                         console.log("답글실패?")
                         // 답글 실패

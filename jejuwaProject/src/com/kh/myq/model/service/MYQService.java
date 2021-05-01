@@ -184,7 +184,7 @@ public class MYQService {
 	}
 
 
-	public int deleteUserMYQ(String myq_no) {
+	public int deleteUserMYQ(String[] myq_no) {
 		
 		Connection conn = getConnection();
 		

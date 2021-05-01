@@ -57,7 +57,7 @@
             <div class="title">
                 <div>
                 <% if( q.getP_code() == null){%>
-                	<b> 제목 : <%= q.getMyq_title() %><b>
+                	<b> 제목 : <%= q.getMyq_title() %></b>
                 <% } else { %>
                 	<b> 
 	                	제목 : <span style="color:red; border: 0px;">[<%= q.getP_code() %>]</span>
@@ -107,8 +107,8 @@
 			<% if( list.size() == 0){%>
             	<b>첨부파일 없음</b>
             <% } else {%>
-              <% for(int i=1; i<list.size(); i++){ %>
-               	 첨부파일 <a href="<%=contextPath%>/<%= list().get(i).getFilePath()%>/<%= list.get(i).getMdfFileName() %>"><%= list().get(i).getOrgFileName() %></a><br>
+              <% for(int i=0; i<list.size(); i++){ %>
+               	 첨부파일 <a href="<%=contextPath%>/<%= list.get(i).getFilePath()%>/<%= list.get(i).getMdfFileName() %>"><%= list.get(i).getOrgFileName() %></a><br>
                <% } %>
             <%} %>
             </div>
