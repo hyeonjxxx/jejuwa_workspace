@@ -178,7 +178,7 @@
  <div class="wrap">
 	<div id="header">
             <div id="header_1">
-                <a href="<%=contextPath%>/views/common/mainPage.jsp">
+                <a href="<%=contextPath%>/jejuwa.go">
                 <img id="logo_img" src="<%= request.getContextPath() %>/resources/images/제주와 로고.png" alt="">
                 </a>
             </div>
