@@ -34,11 +34,11 @@ public class AjaxProductSearachUserServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//ajax
-		String keyword = request.getParameter("keyword");
-		System.out.println(keyword);
+		String keyword_pdt = request.getParameter("keyword_pdt");
+		//System.out.println(keyword_pdt);
 	
-		ArrayList<Product> list = new ProductService().searchKeyword(keyword);	
-		System.out.println(list);
+		ArrayList<Product> list = new ProductService().searchKeyword(keyword_pdt);	
+		//System.out.println(list);
 		
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(list, response.getWriter());

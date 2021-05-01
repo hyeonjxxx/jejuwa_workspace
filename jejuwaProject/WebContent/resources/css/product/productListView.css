@@ -31,15 +31,24 @@
     margin-left: 5px;
     position: relative;
 }
+select#searchOp {
+    width: 75px;
+    height: 30px;
+}
 .searchForm{float: left; margin: auto; }
 .searchForm select, .searchForm input{
   height: 30px; 
   border-radius: 3px;
   border:1px solid rgb(146, 145, 145);
 }
+input#keyword {
+    border: 1px solid;
+    outline: none;
+    border-radius: 2px;
+}    
 button#searchBtn {
     float: left;
-    margin:-30px 258px 0;
+    margin:-30px 255px 0;
     position: absolute;
 }
 .searchArea button{
@@ -104,7 +113,12 @@ table *{border:1px solid rgb(226, 225, 225); padding:3px }
 }
 
   /* modal */
-  .modal-content{width: 380px;}
+  .modal-content_pdt{
+	width: 385px;     
+	background: whitesmoke;
+    padding: 15px;
+    border-radius: 2px;  
+  }
   #modalContent{margin-left:50px;}
   #modalContent input{
       border: 1px solid lightgray;
@@ -123,12 +137,18 @@ table *{border:1px solid rgb(226, 225, 225); padding:3px }
   }
   
 /* 페이징 구역 */
-.pagingArea{
+#pagingArea{
     margin: 15px;
     margin-left:260px;
 }
-.pagingArea *{
+#pagingArea *{
     float:left;
     margin-right: 5px;
     margin-top: 9px;
-    border-radius:3px; }       
+    border-radius:3px; 
+}
+    
+#pagingArea>*{
+	border:none;
+	backgroung-color: white;
+}           

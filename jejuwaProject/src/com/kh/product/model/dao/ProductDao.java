@@ -761,7 +761,7 @@ public class ProductDao {
 		}		
 		
 		// 사용자 검색기능
-		public ArrayList<Product> searchKeyword(Connection conn, String keyword)
+		public ArrayList<Product> searchKeyword(Connection conn, String keyword_pdt)
 				{
 			ArrayList<Product>list = new ArrayList<>();
 			ResultSet rset = null;
@@ -771,7 +771,7 @@ public class ProductDao {
 				sql=prop.getProperty("userSearchpName");
 				try {
 					pstmt = conn.prepareStatement(sql);
-					pstmt.setString(1, "%" + keyword + "%");
+					pstmt.setString(1, "%" + keyword_pdt + "%");
 					rset = pstmt.executeQuery();
 					
 					while(rset.next()) {
@@ -876,6 +876,37 @@ public class ProductDao {
 			return list;
 		}
 				
+		public ArrayList<Product> highPriceSelect_TT(Connection conn) {
+			ArrayList<Product> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			String sql = prop.getProperty("highPrice_TT");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				rset = pstmt.executeQuery();
+
+				while(rset.next()) {
+					
+					Product p = new Product();
+					p.setpCode(rset.getString("p_code"));
+					p.setpName(rset.getString("p_name"));
+					p.setPrice(rset.getInt("price"));
+					p.setBasicPath(rset.getString("basic_path"));
+					System.out.println(list);
+					list.add(p);				
+					
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally{
+				close(rset);
+				close(pstmt);
+			}	
+			System.out.println(list);
+			return list;
+		}
 		
 		// 좋아요 카운트
 		

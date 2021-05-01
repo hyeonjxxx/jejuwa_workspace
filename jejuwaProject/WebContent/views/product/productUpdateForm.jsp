@@ -142,7 +142,7 @@
 		        <br><br>        
 		        <!-- 버튼 -->
 		        <div align="right" class="btnArea">
-		            <button id="backBtn"><a href="<%=contextPath%>/list.pdt?currentPage=1">목록으로</a></button>
+		            <button id="backBtn" onclick="'<%=contextPath%>/list.pdt?currentPage=1';">목록으로</button>
 		            <!-- Button to Open the Modal -->
 		            <button type="button" id="enrollBtn" data-toggle="modal" data-target="#updateModal">수 정</button>
 		            <button type="button" id="deleteBtn" data-toggle="modal" data-target="#deleteModal">삭 제</button>
@@ -152,7 +152,7 @@
 		        <!-- The Modal --> 
 		        <div class="modal fade" id="updateModal"  align="center">
 		            <div class="modal-dialog modal-dialog-centered">
-		                <div class="modal-content">
+		                <div class="modal-content_pdt">
 		                
 		                    <!-- Modal body -->
 		                    <div class="modal-body">
@@ -172,13 +172,13 @@
 			    <!-- The Modal -->
 			       <div class="modal fade" id="deleteModal" align="center" >
 			         <div class="modal-dialog modal-dialog-centered">
-			           <div class="modal-content" >
+			           <div class="modal-content_pdt" >
 			           
 			                             
 			             <!-- Modal body -->
 			             
 			             <div class="modal-body">
-			               	싱픔을 삭제하시겠습니까?
+			               	상품을 삭제하시겠습니까?
 			             </div>
 			             
 			             <form action="<%=contextPath%>/delete.pdt?pcode=<%=p.getpCode()%>" method="post">        

@@ -19,7 +19,12 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/prouductCategoryView.css">
     <!-- map -->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/map_s.css">
-    
+	<!--  -->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+	        
 
 </head>
 <body>
@@ -85,8 +90,51 @@
             <div class="main">
                 <div class="sortBar" align="right">
                     <a href="">제주와 추천순<img src="<%=request.getContextPath() %>/resources/images/check_c.png" alt="" width="15"></a> &nbsp;&nbsp;
-                    <a href="">판매순<img src="<%=request.getContextPath() %>/resources/images/check_c.png" alt="" width="15"></a>
-                </div>       
+                    <a onclick="highPrice();">높은 가격순<img src="<%=request.getContextPath() %>/resources/images/check_c.png" alt="" width="15"></a>
+                </div>
+            <script>
+            function highPrice(){
+	            
+	           		
+           			$.ajax({
+           				url:"highList_TT.pdt",
+           				type:"get",
+           				success:function(list){
+           					console.log(list);
+            					
+            					
+           					var result = "";
+           					if(list.length == 0){
+           						result = "<li class=pdtArea>조회 결과가 존재하지 않습니다.</li>"
+           					}
+           					for(var i in list){            						
+            					result += "<li class=pdtArea>"
+            							+ "<input type='hidden' value=" + list[i].pCode +">"
+        					      	    + "<div class='pdtPhoto'>" + "<img src='" + list[i].basicPath  + "' style='width: 220px; height: 147px'>" + "</div>"
+        					            + "<div class='pdtInfo'>" 
+        					            + "<p class='pdtName'>" + list[i].pName + "</p>"
+        					            + "<p class='pdtPrice'>" + list[i].price + "원</p>"
+       						            + "</div>" 
+       						            + "</li>"
+           					}
+            					
+           					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
+            				$(".pdtList").html(result);
+           				
+            				$(function() {
+            					$(".pdtArea").click(function() {
+            						location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+            	        		});	
+            	        	})
+           					
+           					
+           				}, error:function(){
+           					console.log("ajax통신 실패!!");
+           				}
+           			});
+            }
+        </script>
+                   
                 
 		        <div class="pdt_wrap">
 		             <ul class="pdtList">
@@ -105,22 +153,10 @@
 		                  </li>
 					<% } %>		
 					</ul>
-		        </div>
-	   		 </div>
-		        
-		        <script>
-		        	$(function(){
-		        		$(".pdtArea").click(function(){
-		        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
-		        		})	
-		        	})
-		        	
-		        </script>
-
 	        <!-- 페이징 구역 -->
 	        <div class="bottomArea">
 	            <!-- 페이징  -->
-	            <div align="center" class="pagingArea">
+	            <div align="center" id="pagingArea"  class="pagination justify-content-center">
 	                    
                     <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
                     <% if(currentPage == 1) {%>
@@ -150,7 +186,21 @@
 	                    <button onclick="location.href='<%=contextPath%>/ttView.pdt?currentPage=<%=maxPage%>';">&raquo;</button>
                 	<% } %>
              	</div>
-    		</div>
+    		</div>					
+					
+		        </div>
+	   		 </div>
+		        
+		        <script>
+		        	$(function(){
+		        		$(".pdtArea").click(function(){
+		        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+		        		})	
+		        	})
+		        	
+		        </script>
+
+
 
 
 		</div>

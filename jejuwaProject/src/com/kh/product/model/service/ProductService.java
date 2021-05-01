@@ -201,21 +201,20 @@ public class ProductService {
 		return list;
 	}	
 	
-	public ArrayList<Product> searchKeyword(String keyword) {
+	public ArrayList<Product> searchKeyword(String keyword_pdt) {
 		Connection conn = getConnection();
-		ArrayList<Product> list = new ProductDao().searchKeyword(conn, keyword);
+		ArrayList<Product> list = new ProductDao().searchKeyword(conn, keyword_pdt);
 		close(conn);
 		return list;
 	}
 	
 	// 인기순
-	public ArrayList<Product> bestSelect() {
-		Connection conn = getConnection();
-		ArrayList<Product> list = new ProductDao().bestSelect(conn);
-		close(conn);
-		
-		return list;
-	}	
+	/*
+	 * public ArrayList<Product> bestSelect() { Connection conn = getConnection();
+	 * ArrayList<Product> list = new ProductDao().bestSelect(conn); close(conn);
+	 * 
+	 * return list; }
+	 */
 	
 	public ArrayList<Product> saleSelect() {
 		Connection conn = getConnection();
@@ -223,6 +222,15 @@ public class ProductService {
 		close(conn);
 		return list;
 	}	
+	
+	public ArrayList<Product> highPriceSelect_TT() {
+		Connection conn = getConnection();
+		ArrayList<Product> list = new ProductDao().highPriceSelect_TT(conn);
+		close(conn);
+		
+		return list;
+	}	
+		
 	
 	
 	// 좋아요 관련 

@@ -24,6 +24,12 @@
 
     <!-- modal icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+	<!--  -->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+	            
 	
 	
 	
@@ -127,7 +133,7 @@
 	        <!-- The Modal -->
 	        <div class="modal fade" id="deleteModal"  align="center">
 	            <div class="modal-dialog modal-dialog-centered">
-	                <div class="modal-content">
+	                <div class="modal-content_pdt">
 	                
 	                    <!-- Modal body -->
 	                    <div class="modal-body">
@@ -139,13 +145,13 @@
 	                        <div class="input-group-prepend">
 	                        <span class="input-group-text" ><i class="bi bi-key"></i> <!-- i 태그 --></span>
 	                        </div>
-	                        <input name="adminPwd" size="25" type="password" placeholder=" 관리자 비밀번호">
+	                        <input name="adminPw" size="25" type="password" placeholder=" 관리자 비밀번호">
 	                    </div>        
 	                    
 	                    <!-- Modal footer -->
 	                    <div class="modal-footer" align="center">
-	                    <button type="button" id="okBtn" class="btn btn-warning">OK</button>
-	                    <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+	                    <button type="button" id="okBtn" class="btn btn-warning">확 인</button>
+	                    <button type="button" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">취 소</button>
 	                    </div>
 	                    
 			            <script>
@@ -246,7 +252,7 @@
 	        <!-- 페이징 구역 -->
 	        <div class="bottomArea">
 	            <!-- 페이징  -->
-	            <div align="center" class="pagingArea">
+	            <div align="center" id="pagingArea" >
 	                    
                     <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
                     <% if(currentPage == 1) {%>

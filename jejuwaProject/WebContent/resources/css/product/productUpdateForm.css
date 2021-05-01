@@ -45,7 +45,12 @@ td, span{font-size: 14px; padding: 3px 0;}
 
   /* modal */
 
-.modal-content{width: 380px;}
+.modal-content_pdt{
+	width: 385px;     
+	background: whitesmoke;
+    padding: 15px;
+    border-radius: 2px;
+}
 #modalContent{margin-left:50px;}
 #modalContent input{
     border: 1px solid lightgray;
