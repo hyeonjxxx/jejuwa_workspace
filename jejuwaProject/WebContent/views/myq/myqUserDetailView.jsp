@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="com.kh.myq.model.vo.MYQ
-			   , com.kh.common.model.vo.Attachment" %>
+			   , com.kh.common.model.vo.Attachment
+			   , java.util.ArrayList" %>
 <%
 	MYQ q = (MYQ)request.getAttribute("q");
 	Attachment at = (Attachment)request.getAttribute("at");
+	ArrayList<Attachment> list = (ArrayList<Attachment>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -106,7 +108,9 @@
 			<% if( at == null){%>
             	<b>첨부파일 없음</b>
             <% } else {%>
-               	첨부파일 <a href="<%=contextPath%>/<%=at.getFilePath()%>/<%= at.getMdfFileName() %>"><%=at.getOrgFileName() %></a>
+              <% for(int i=1; i<list.size(); i++){ %>
+               	 첨부파일 <a href="<%=contextPath%>/<%=at.getFilePath()%>/<%= at.getMdfFileName() %>"><%=at.getOrgFileName() %></a><br>
+               <% } %>
             <%} %>
             </div>
 

@@ -132,14 +132,14 @@ public class MYQService {
 	}
 
 
-	public int insertUser(MYQ q, ArrayList<Attachment> list) {
+	public int insertUser(MYQ q, Attachment at) {
 		Connection conn = getConnection();
 		
 		int result1 = new MYQDao().insertUser(conn, q);
 		
 		// list에 담긴 값이 없을 때 == 0, 담긴 값이 있을 때 !=0
 		
-		new MYQDao().insertUserAttachment(conn, list);
+		new MYQDao().insertUserAttachment(conn, at);
 
 		if(result1 > 0 ) { // 게시글 insert 성공
 			commit(conn);

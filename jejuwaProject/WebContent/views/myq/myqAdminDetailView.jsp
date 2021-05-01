@@ -110,9 +110,6 @@
                             success:function(res){
                                 if(res > 0){
                                     console.log("실행됨?")
-                                    // 댓글 성공하면 내가 쓴 댓글이 최상단에 붙여지기 (갱신된 리스트 다시 조회해서 뿌려줘야함)
-                                    //selectAnsList();
-                                    // 깔끔하게 입력했던 textarea의 내용도 비워줘야 함 => replyContent에 ""로 깔끔하게 비워줌
                                     
 			                        var today = new Date();
 			                        var date = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate();
@@ -148,7 +145,7 @@
 			<% if( at == null){%>
             	<b>첨부파일 없음</b>
             <% } else {%>
-               	첨부파일 <a href="<%=contextPath%>/<%=at.getFilePath()%>"><%=at.getOrgFileName() %></a>
+               	첨부파일 <a href="<%=contextPath%>/<%=at.getFilePath()%>/<%= at.getMdfFileName() %>"><%=at.getOrgFileName() %></a>
             <%} %>
             </div>
 
@@ -175,12 +172,12 @@
                 success:function(){
                         console.log("실행됨?")
                        
-                        // 깔끔하게 입력했던 textarea의 내용도 비워줘야 함 => replyContent에 ""로 깔끔하게 비워줌
                         $(".ansArea>.title").html("");
                         
+                        
                 		var el = '<div><b> 답변</b></div><br><div><button type="button" id="answer" name="answer">답변하기</button></div>' + 
-                                 '<div><textarea style="width:800px; height:200px;" name="answer_text" id="answer_text">' + "<%= q.getMyq_ans_content()%>"
-                                 +  '</textarea></div>';                	
+                                 '<div><textarea style="width:800px; height:200px;" name="answer_text" id="answer_text">' + '<%= q.getMyq_ans_content() %>'
+                                 + '</textarea></div>';  	
                 		
                 		$(".ansArea>.title").html(el);
                 		$("#answer").click(function(){
@@ -212,13 +209,13 @@
                                     }
                                 },
                                 error:function(){
-                                    console.log("댓글 작성용 ajax 통신 실패");
+                                    console.log("답글 작성용 ajax 통신 실패");
                                 }
                             })
                         })
                     },
                 error:function(){
-                    console.log("댓글 작성용 ajax 통신 실패");
+                    console.log("답글 작성용 ajax 통신 실패");
                 }
             })
         })

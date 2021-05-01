@@ -49,7 +49,7 @@ public class MYQUserInsertServlet extends HttpServlet {
 			// 2. request => multipartRequest
 			// 이 코드 하나로 내가 지정한 폴더에 파일들이 업로드 될 것임!!! 
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
-			
+			System.out.println("멀티 리퀘스트" + multiRequest);
 			// 3.DB에 기록할 요청시 전달된 값 뽑기
 			// 3_1. MYQ테이블에 insert할 데이터 뽑기
 			MYQ q = new MYQ();
@@ -76,10 +76,9 @@ public class MYQUserInsertServlet extends HttpServlet {
 					
 					// 각 객체생성을 차곡차곡 list에 추가하기
 					list.add(at);
-					System.out.println("첨부파일 리스트에 담겨있는 것 확인" + at);
+					
 				}
 			}
-			System.out.println("첨부파일 리스트 확인" + list);
 			
 			// 4. (리스트 다시 조회하기)
 			int result = new MYQService().insertUser(q, list);

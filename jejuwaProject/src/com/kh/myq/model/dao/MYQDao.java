@@ -397,15 +397,14 @@ public class MYQDao {
 			
 			// 매번 한 행 실행할 때 하나씩 차곡차곡 넣었지만 지금은 배열이므로 반복문 돌리겠다.
 			// list 숫자만큼 at라는 객체에 하나씩 담아줌
-			for( Attachment at : list ) {
-				
+			
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, at.getOrgFileName());
 				pstmt.setString(2, at.getMdfFileName());
 				pstmt.setString(3, at.getFilePath());
 				
 				result = pstmt.executeUpdate();	
-			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
