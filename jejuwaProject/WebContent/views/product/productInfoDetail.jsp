@@ -189,7 +189,7 @@
                 </li>
                 <li onclick="" ><p>사용정보</p></li>
                 <li onclick=""><p>최소/환불</p></li>
-                <li onclick="" ><p><a href="<%=request.getContextPath() %>/rvlist.bo">리뷰(<!--리뷰건수 카운트-->)건</a></p></li>
+                <li onclick="" ><p>리뷰</p></li>
                 <% if(loginUser == null){ %>
                 	<li onclick="login();" ><p>상품문의</p></li>
                 	<script>

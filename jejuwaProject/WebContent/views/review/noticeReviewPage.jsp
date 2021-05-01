@@ -187,5 +187,11 @@
              </div>
 	</div>
             
+   </div>
+   </div>
+   </div>
+
+<!-- 푸터와 내려와야,, -->
+<%@ include file = "../common/footer.jsp" %>
 </body>
 </html>
