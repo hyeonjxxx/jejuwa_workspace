@@ -52,7 +52,9 @@
 						      , P_NAME
 		                   FROM TORDER O
                            JOIN MEMBER M USING (MEM_NO)
-                           JOIN PRODUCT P USING (P_CODE)  
+                           JOIN PRODUCT P USING (P_CODE)
+                          ORDER
+ 		    				 BY ORDER_DATE DESC 
 		               )A
 		        )
 		 WHERE RNUM BETWEEN ? AND ?
@@ -87,6 +89,7 @@
 		 , ?
 		 , ?
  		 )
+ 		 
 	</entry>
 	
 	<entry key="selectOrdeNo">
