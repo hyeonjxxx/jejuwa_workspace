@@ -96,7 +96,7 @@
                                <option>선택안함</option>
                            </select>
                            
-                           <!-- 자바스크립트 이용 -->
+                           <!-- 회원정보수정 : 이메일 수정 / 선택안함 -->
                            <script>
                            	$(function(){
                            		$("#domainSelect").change(function(){
@@ -176,8 +176,10 @@
                               <% } %>
                             </select> 일
                             
-                            <button type="button" onclick="memBirthReset();" class="btn btn-secondary">reset</button>
                             
+                            <!-- 회원정보수정 : 생년월일 reset -->
+                            <button type="button" onclick="memBirthReset();" class="btn btn-secondary">reset</button>
+
                             <script>
                             	function memBirthReset(){
                             		$("select[name=byear]").val("----");

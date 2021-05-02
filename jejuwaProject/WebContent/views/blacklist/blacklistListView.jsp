@@ -154,7 +154,7 @@
             	});
             	
             	
-            	// 체크박스 1(낱개로 모두 체크하는 경우 전체 체크 박스 true, 하나라도 체크해제된 경우 전체 체크 박스 false)
+            	// 체크박스 (낱개로 모두 체크하는 경우 전체 체크 박스 true, 하나라도 체크해제된 경우 전체 체크 박스 false)
        			function checkSelectAll()  {
        			  // 전체 체크박스
        			  const checkboxes 
@@ -162,7 +162,7 @@
        			  // 선택된 체크박스
        			  const checked 
        			    = document.querySelectorAll('input[name="selectOne"]:checked');
-       			  // select all 체크박스
+       			  // selectall 체크박스
        			  const selectAll 
        			    = document.querySelector('input[name="selectall"]');
        			  
