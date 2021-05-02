@@ -52,11 +52,11 @@ public class Member {
 	}
 	
 	// 민국(비밀번호 찾기)
-	public Member(String memId, String memPwd, String memName, String phone) {
+	public Member(String memName, String memId, String memPwd, String phone) {
 		super();
+		this.memName = memName;
 		this.memId = memId;
 		this.memPwd = memPwd;
-		this.memName = memName;
 		this.phone = phone;
 	}
 

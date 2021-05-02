@@ -80,15 +80,16 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="buttonArea">
+                    <button type="submit" class="btn btn-warning btn-idPwfind" id="idFind_btn">아이디 찾기 ></button>
+                </div>
             </form>
             <br>
-            <div class="buttonArea">
-                <button type="button" class="btn btn-warning btn-idPwfind" id="idFind_btn">아이디 찾기 ></button>
-            </div>
+
         </div>
         <div class="pwFind_wrap">
             <b style="font-size: 20px;">비밀번호 찾기</b><br><br>
-            <form action="<%= request.getContextPath() %>/PwFindMobileAuth.me" method="post">
+            <form action="<%= request.getContextPath() %>/PwFindSuccess.me" method="post">
                 <input type="hidden" name="memPwd" value="">
                 <div class="pwFind">
                     <table class="tb-pw">
@@ -122,11 +123,12 @@
                     </tbody>
                     </table>
                 </div>
+                <div class="buttonArea">
+                    <button type="submit" class="btn btn-warning btn-idPwfind" id="pwFind_btn"> 비밀번호 찾기 > </button>
+                </div> <br>
             </form>
             <br>
-            <div class="buttonArea">
-                <button type="button" class="btn btn-warning btn-idPwfind" id="pwFind_btn"> 비밀번호 찾기 > </button>
-            </div>  
+ 
         </div>
     </div>
     <%@ include file="../common/footer.jsp" %>

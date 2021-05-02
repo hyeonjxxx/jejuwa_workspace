@@ -37,14 +37,14 @@ public class PwFindMobileAuthServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String memId = request.getParameter("pwFind_id");
+		//String memId = request.getParameter("pwFind_id");
 		String memName = request.getParameter("pwFind_name");
 		String phoneNumber = request.getParameter("pwd_phone");
 		
 		
-		Member m = new MemberService().pwFindCheck(memId, memName, phoneNumber);
+		Member m = new MemberService().pwFindCheck(memName, phoneNumber);
 		
-		
+		System.out.println("m객체 " + m);
 		if( m == null) {
 			// 이름 전화번호 일치하지 않을 경우 
 	        JSONObject jobj = new JSONObject();
