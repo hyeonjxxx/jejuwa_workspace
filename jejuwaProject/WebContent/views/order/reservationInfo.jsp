@@ -23,7 +23,7 @@
 </head>
 <body>
 
-	<%@ include file = "../common/managerMenubar.jsp" %>
+	<%@ include file = "../common/loginUserMenubar.jsp" %>
 	
 	<br><br>
 	

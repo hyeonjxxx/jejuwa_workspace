@@ -110,9 +110,7 @@
                         <!-- 좋아요 버튼 누르는 순간 하트가 바뀌면서 담김 -->
                         <script>
                         	function likeProduct(){
-                        		//console.log("되어라,,,");
                         		$.ajax({
-                        			//url 다시 써야됨
                         			url : "<%=contextPath%>/linsert.li",
                         			type : "post",
                         			data : {
@@ -126,8 +124,8 @@
                         					$("#heart").click(deleteProduct);
                         				}		
 
-                        			}, error:function(){
-                        				console.log("통신실패그림");
+                        			}, error:function(){ // 좋아요 실패
+                        				console.log("통신실패");
                         			}
 
                         		})
