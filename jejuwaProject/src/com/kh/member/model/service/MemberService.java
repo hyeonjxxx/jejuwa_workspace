@@ -63,6 +63,7 @@ public class MemberService {
 		}
 		
 		close(conn);
+		
 		return result;
 	}
 	
@@ -120,8 +121,8 @@ public class MemberService {
 	 * @return
 	 */
 	public Member idFindCheck(String memName, String phoneNumber) {
-	
 		Connection conn = getConnection();
+		
 		Member m = new MemberDao().idFindCheck(conn, memName, phoneNumber);
 		
 		close(conn);
@@ -139,6 +140,7 @@ public class MemberService {
 	
 	public Member pwFindCheck( String memName, String phoneNumber) {
 		Connection conn = getConnection();
+		
 		Member m = new MemberDao().pwFindCheck(conn, memName, phoneNumber);
 		
 		close(conn);
