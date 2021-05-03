@@ -40,10 +40,7 @@ public class IdFindMobileAuthServlet extends HttpServlet {
 		String memName = request.getParameter("idFind_name");
 		String phoneNumber = request.getParameter("id_phone");
 		
-		System.out.println(memName + phoneNumber);
-		
 		Member m = new MemberService().idFindCheck(memName, phoneNumber);
-		
 		
 		if( m == null) {
 			// 이름 전화번호 일치하지 않을 경우 
@@ -62,12 +59,6 @@ public class IdFindMobileAuthServlet extends HttpServlet {
 	    	response.setContentType("application/json");
 	    	PrintWriter out = response.getWriter();			
 	    	out.print(jobj.toJSONString()); 
-	    	
-	    	// 조회한 회원의 아이디 담기
-			//HttpSession session = request.getSession();
-			//session.setAttribute("memId", m);
-			
-			
 		}
 	}
 

@@ -31,13 +31,13 @@ public class IdFindSuccessServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		//String memName = request.getParameter("idFind_name");
-		//String phoneNumber = request.getParameter("id_phone");
+		// 사용자가 입력한 이름, 전화번호, 아이디 받아오기
+		String memName = request.getParameter("idFind_name");
+		String phoneNumber = request.getParameter("id_phone");
 		String memId = request.getParameter("memId");
 		
-		//System.out.println(memName + phoneNumber);
+		Member m = new MemberService().idFindCheck(memName, phoneNumber);
 		
-		//Member m = new MemberService().idFindCheck(memName, phoneNumber);
 		request.setAttribute("memId", memId);
 		request.getRequestDispatcher("views/member/idFindSuccess.jsp").forward(request, response);
 	}

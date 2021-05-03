@@ -17,6 +17,12 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 public class MemberService {
 
+	/**
+	 * 로그인 기능
+	 * @param memId
+	 * @param memPwd
+	 * @return
+	 */
 	public Member loginMember(String memId, String memPwd) {
 		Connection conn = getConnection();
 		Member loginMember = new MemberDao().loginMember(conn, memId, memPwd);
@@ -77,7 +83,7 @@ public class MemberService {
 	}
 	
 	/**
-	 * [민국] 핸드폰 api
+	 * [민국] 핸드폰 api Service단
 	 * @param phoneNumber
 	 * @param numStr
 	 * @return
