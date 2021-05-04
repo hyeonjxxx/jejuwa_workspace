@@ -33,12 +33,12 @@ public class MobileAuthServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    	
 			request.setCharacterEncoding("utf-8");
 		
 			String phoneNumber = request.getParameter("phoneNumber");
 			// ajax에서 사용자가 입력한 값을 변수 phoneNumber로 지정 =>  서블릿으로 넘어온 키값이 phoneNumber를 String phoneNumber라는 변수에 담아줌
 			
+			// 숫자 4글자 랜덤값 생성하기
 	        Random rand  = new Random();
 	        
 	        String numStr = "";
@@ -50,9 +50,9 @@ public class MobileAuthServlet extends HttpServlet {
 	        String result = new MemberService().certifiedPhoneNumber(phoneNumber,numStr);
 	        
 	        if(result.isEmpty()) {
-	        	System.out.println("실패!");
+	        	System.out.println("인증 실패!");
 	        } else {
-	        	System.out.println("성공!");
+	        	System.out.println("인증 성공!");
 	        }
 	        
 	        JSONObject jobj = new JSONObject();

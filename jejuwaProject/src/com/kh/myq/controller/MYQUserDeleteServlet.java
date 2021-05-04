@@ -32,17 +32,11 @@ public class MYQUserDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		ArrayList list = new ArrayList <> (Integer.parseInt(request.getParameter("myq_no")));
 		
-		String[] arrayParam2 = request.getParameterValues("myq_no[]");
+		String[] arrayParam = request.getParameterValues("myq_no[]");
+
+		//String myq_no = String.join("', '", arrayParam);
 		
-		String myq_no = String.join(", ", arrayParam2);
-		
-		
-		
-		System.out.println(arrayParam2);
-		System.out.println(myq_no);
-		System.out.println("DELETE FROM table_name WHEERE myq_no IN (" + myq_no + ");");
-		
-		int result = new MYQService().deleteUserMYQ(myq_no);
+		int result = new MYQService().deleteUserMYQ(arrayParam);
 		
 		//DELETE FROM table_name WHEERE myq_no IN ('23', '25', '32');
 		

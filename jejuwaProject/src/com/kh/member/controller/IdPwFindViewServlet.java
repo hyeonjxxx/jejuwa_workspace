@@ -26,7 +26,6 @@ public class IdPwFindViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.getRequestDispatcher("views/member/idPwFind.jsp").forward(request, response);
 	}
 

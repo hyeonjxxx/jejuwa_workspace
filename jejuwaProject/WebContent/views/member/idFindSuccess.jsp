@@ -50,7 +50,7 @@
             </div>
             <div class="idFind">
                 <b>아이디 : </b>
-                <b style="color:orange;"><%= request.getAttribute("memId") %></b>
+                <b style="color:orange;"><%= request.getAttribute("memId") %>1</b>
             </div> 
             <br>
             <div class="buttonArea">

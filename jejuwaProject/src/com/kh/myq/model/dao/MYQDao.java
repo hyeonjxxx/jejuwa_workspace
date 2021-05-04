@@ -481,18 +481,19 @@ public class MYQDao {
 	}
 	
 
-	public int deleteUserAttachment(Connection conn, String myq_no) {
+	public int deleteUserAttachment(Connection conn, String[] myq_no_list) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("deleteUserAttachment");
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, myq_no);
-			
-			result = pstmt.executeUpdate();
-			
+			for (String myq_no : myq_no_list) {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, myq_no);
+				
+				result = pstmt.executeUpdate();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -502,18 +503,21 @@ public class MYQDao {
 		return result;
 	}
 
-	public int deleteUserMYQ(Connection conn, String myq_no) {
+	public int deleteUserMYQ(Connection conn, String[] myq_no_list) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("deleteUserMYQ");
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, myq_no);
-			
-			result = pstmt.executeUpdate();
+			for (String myq_no : myq_no_list) {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, myq_no);
+				
+				result = pstmt.executeUpdate();
+				System.out.println(myq_no);
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

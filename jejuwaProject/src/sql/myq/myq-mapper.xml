@@ -253,7 +253,7 @@
 		  FROM 
 		       ATTACHMENT
          WHERE 
-               MYQ_NO IN (  ?  )
+               MYQ_NO IN ( ? )
 		
 	</entry>
 	

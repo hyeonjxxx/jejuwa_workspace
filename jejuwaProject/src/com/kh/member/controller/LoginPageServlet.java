@@ -34,15 +34,13 @@ public class LoginPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// request.getRequestDispatcher("views/member/loginPage.jsp");
-		
 		request.setCharacterEncoding("utf-8");
 		
-		// 2. 요청시 전달값(request의 parameter영역) 꺼내서 변수 또는 객체에 기록하기
+		// 1. 요청시 전달값(request의 parameter영역) 꺼내서 변수 또는 객체에 기록하기
 		String memId = request.getParameter("memId"); // "사용자가입력한아이디값"
 		String memPwd = request.getParameter("memPwd"); // "사용자가입력한비밀번호값"
 		
-		// 3. 해당 요청을 처리하는 서비스 클래스의 메소드 호출 및 그 결과 받기
+		// 2. 해당 요청을 처리하는 서비스 클래스의 메소드 호출 및 그 결과 받기
 		Member m = new MemberService().loginMember(memId, memPwd);
 		
 		if( m == null) {

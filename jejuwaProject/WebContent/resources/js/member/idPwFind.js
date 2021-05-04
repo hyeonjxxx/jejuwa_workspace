@@ -3,7 +3,6 @@
 
         // 아이디찾기 핸드폰 인증
         $("#id_mobile_auth").click(function(){
-            console.log("핸드폰 일치 확인");
     
             $.ajax({
                 url:"idFindMobileAuth.me",
@@ -55,18 +54,18 @@
             }) 
         })
     
-        // 아이디 찾기 버튼 클릭시 발생할 이벤트
-        $('#idFind_btn').click(function(e) {
-            e.preventDefault();
+        // // 아이디 찾기 버튼 클릭시 발생할 이벤트
+        // $('#idFind_btn').click(function(e) {
+        //     e.preventDefault();
 
-            // 휴대폰 인증 체크
-            if($('#is_mobile_auth').val() !== 'T') {
-                 alert('휴대폰 인증해주시기 바랍니다.');
-                 return false;
-             }
+        //     // 휴대폰 인증 체크
+        //     if($('#is_mobile_auth').val() !== 'T') {
+        //          alert('휴대폰 인증해주시기 바랍니다.');
+        //          return false;
+        //      }
 
-            $('#idFind_btn').submit();
-        });
+        //     $('#idFind_btn').submit();
+        // });
 
 
 
@@ -78,7 +77,7 @@
                 url:"PwFindMobileAuth.me",
                 type:"POST",
                 data:{
-                    pwFind_id : $("pwFind_id").val(),
+                    //pwFind_id : $("pwFind_id").val(),
                     pwFind_name: $('#pwFind_name').val(),
                     pwd_phone: $('#pwd_phone').val()
                 },
@@ -125,20 +124,16 @@
             }) 
         })
     
-        // 비밀번호 찾기 버튼 클릭시 발생할 이벤트
-        $('#pwFind_btn').click(function(e) {
-            e.preventDefault();
+        // // 비밀번호 찾기 버튼 클릭시 발생할 이벤트
+        // $('#pwFind_btn').click(function(e) {
+        //     e.preventDefault();
 
-            // 휴대폰 인증 체크
-            if($('#is_mobile_auth_pwd').val() !== 'T') {
-                 alert('휴대폰 인증해주시기 바랍니다.');
-                 return false;
-             }
+        //     // 휴대폰 인증 체크
+        //     if($('#is_mobile_auth_pwd').val() !== 'T' || ) {
+        //          alert('휴대폰 인증해주시기 바랍니다.');
+        //          return false;
+        //      }
 
-            $('#pwFind_btn').submit();
+        //     $('#pwFind_btn').submit();
         });
 
-
-
-
-    })    

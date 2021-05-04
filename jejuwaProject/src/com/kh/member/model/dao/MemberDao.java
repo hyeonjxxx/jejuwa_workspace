@@ -54,15 +54,15 @@ public class MemberDao {
 			
 			if(rset.next()) {
 				m = new Member(rset.getInt("mem_no"),
-						   rset.getString("mem_id"),
-						   rset.getString("mem_pwd"),
-						   rset.getString("mem_name"),
-						   rset.getString("phone"),
-						   rset.getString("email"),
-						   rset.getString("mem_birth"),
-						   rset.getDate("enroll_date"),
-						   rset.getDate("modify_date"),
-						   rset.getString("status"));
+							   rset.getString("mem_id"),
+							   rset.getString("mem_pwd"),
+							   rset.getString("mem_name"),
+							   rset.getString("phone"),
+							   rset.getString("email"),
+							   rset.getString("mem_birth"),
+							   rset.getDate("enroll_date"),
+							   rset.getDate("modify_date"),
+							   rset.getString("status"));
 			}
 			
 		} catch (SQLException e) {
@@ -141,7 +141,7 @@ public class MemberDao {
 			pstmt.setString(4, m.getPhone());
 			pstmt.setString(5, m.getEmail());
 			pstmt.setString(6, m.getMemBirth());
-			System.out.println(m);
+			
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -176,7 +176,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				count = rset.getInt("count");
+				count = rset.getInt("COUNT");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -212,7 +212,6 @@ public class MemberDao {
 				m = new Member(rset.getString("MEM_NAME"),
 							   rset.getString("MEM_ID"),
 						       rset.getString("PHONE"));
-				System.out.println(m);
 			}
 			
 		} catch (SQLException e) {
@@ -227,7 +226,7 @@ public class MemberDao {
 	
 	
 	
-	public Member pwFindCheck(Connection conn, String memId, String memName, String phoneNumber) {
+	public Member pwFindCheck(Connection conn, String memName, String phoneNumber) {
 		Member m = null;
 		ResultSet rset = null;
 		PreparedStatement pstmt = null;
@@ -237,9 +236,9 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, memId);
-			pstmt.setString(2, memName);
-			pstmt.setString(3, phoneNumber);
+			//pstmt.setString(1, memId);
+			pstmt.setString(1, memName);
+			pstmt.setString(2, phoneNumber);
 			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
@@ -247,7 +246,6 @@ public class MemberDao {
 							   rset.getString("MEM_ID"),
 							   rset.getString("MEM_PWD"),
 						       rset.getString("PHONE"));
-				System.out.println(m);
 			}
 			
 		} catch (SQLException e) {

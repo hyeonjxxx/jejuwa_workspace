@@ -108,13 +108,14 @@
                     <button id="okBtn" class="btn btn-warning" onclick="return updateMember();">OK</button>
                     <button id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
                     </div>
+                    
+                    <!-- 탈퇴 약관 동의 체크시에만 모달 띄우기 -->
                     <script>
                     	
                     	 	function checkAgree(){
                     	 		if($('input:checkbox[id="agreeBtn"]').is(":checked") == false){
                     	 			alert("탈퇴 약관 동의가 필요합니다.");
                     	 			$("#btn1").attr("data-target", false);
-                    	 			//$('input:checkbox[id="agreeBtn"]').focus();
                     	 			
                     	 		} else{
                     	 			$("#btn1").attr("data-target", "#withdrawal");

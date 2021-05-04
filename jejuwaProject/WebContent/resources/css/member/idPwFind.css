@@ -12,13 +12,18 @@
     color: #777;
 }
 
+.idFind_wrap{
+}
+
 .idFind_wrap, .pwFind_wrap{
     background-color: lightgray;
     width:40%;
     height: 320px;
     margin:auto;
     margin: 20px;
+    margin-left:60px;
     padding:20px;
+    padding-bottom: 330px;
     border-top: 2px solid black;
 }
 
@@ -39,6 +44,10 @@
 
 .full {
     width:100%;
+}
+
+.footer_wrap{
+    padding-top:400px;
 }
 
 .buttonArea{

@@ -26,6 +26,8 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+
+    <script src="<%=request.getContextPath()%>/resources/js/member/member.js"></script>
     
 </head>
 <meta charset="UTF-8">
@@ -71,7 +73,7 @@
                     <br>
                 </div>
                 <div class="email_wrap">
-                    <b>이메일*</b>
+                    <b>이메일</b>
                     <br>
                     <input type="text" name="emailId" id="emailId">
                     @

@@ -36,7 +36,6 @@ public class MemberInsertServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		// 2. 전달값 뽑아서 객체에 기록
-		
 		String memId = request.getParameter("memId");
 		String memPwd = request.getParameter("memPwd");
 		String memName = request.getParameter("memName");
@@ -50,7 +49,6 @@ public class MemberInsertServlet extends HttpServlet {
 		// 4. 요청처리를 위한 Service로 메소드 호출 및 결과받기
 		int result = new MemberService().insertMember(m);
 		
-		// 5. 
 		if(result >0) { // 성공일 경우
 			// alert로 띄워주고자 하는 메세지 담기 => session에 담기
 			HttpSession session = request.getSession();
@@ -60,7 +58,8 @@ public class MemberInsertServlet extends HttpServlet {
 			
 			RequestDispatcher view = request.getRequestDispatcher("views/common/loginPage.jsp");
 		} else { // 실패할 경우
-			System.out.println("실패 야호");
+			HttpSession session = request.getSession();
+			session.setAttribute("alertMsg", "회원가입에 실패했습니다. 다시 확인해주세요.");
 		}
 		
 				

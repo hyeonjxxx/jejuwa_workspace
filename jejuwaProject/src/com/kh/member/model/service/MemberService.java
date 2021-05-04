@@ -17,6 +17,12 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 public class MemberService {
 
+	/**
+	 * 로그인 기능
+	 * @param memId
+	 * @param memPwd
+	 * @return
+	 */
 	public Member loginMember(String memId, String memPwd) {
 		Connection conn = getConnection();
 		Member loginMember = new MemberDao().loginMember(conn, memId, memPwd);
@@ -57,6 +63,7 @@ public class MemberService {
 		}
 		
 		close(conn);
+		
 		return result;
 	}
 	
@@ -77,7 +84,7 @@ public class MemberService {
 	}
 	
 	/**
-	 * [민국] 핸드폰 api
+	 * [민국] 핸드폰 api Service단
 	 * @param phoneNumber
 	 * @param numStr
 	 * @return
@@ -114,8 +121,8 @@ public class MemberService {
 	 * @return
 	 */
 	public Member idFindCheck(String memName, String phoneNumber) {
-	
 		Connection conn = getConnection();
+		
 		Member m = new MemberDao().idFindCheck(conn, memName, phoneNumber);
 		
 		close(conn);
@@ -131,9 +138,10 @@ public class MemberService {
 	 * @return
 	 */
 	
-	public Member pwFindCheck(String memId, String memName, String phoneNumber) {
+	public Member pwFindCheck( String memName, String phoneNumber) {
 		Connection conn = getConnection();
-		Member m = new MemberDao().pwFindCheck(conn, memId, memName, phoneNumber);
+		
+		Member m = new MemberDao().pwFindCheck(conn, memName, phoneNumber);
 		
 		close(conn);
 		

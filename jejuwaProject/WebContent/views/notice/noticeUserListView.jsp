@@ -39,6 +39,7 @@
         <div class="area1">
 
             
+            <!-- 공지사항 검색바 -->
             <div align="right" class="searchArea">
                
                 <span href="" >
@@ -48,7 +49,8 @@
                         <option value="titleContent">제목+내용</option>
                     </select>
                     <input id="keyword" type="text" onkeyup="enterkey();" placeholder="검색">
-                </span>              
+                </span>  
+                            
             </div>
             
         </div>
@@ -85,14 +87,12 @@
                 </tbody>
             </table>
             
+            <!-- 공지사항 키워드 검색 Ajax -->
             <script>
             	function enterkey(){
             		if(window.event.keyCode == 13){
 	            		var searchCtg = $("#noticeSearchCtg option:selected").val();
 	            		var keyword = $("#keyword").val();
-	            		
-	            		//console.log(searchCtg);
-	            		//console.log(keyword);
 	            		
             			$.ajax({
             				url:"searchAjax.no",
@@ -124,7 +124,6 @@
             	            			location.href='<%=request.getContextPath()%>/detail.uno?nno=' + $(this).children().eq(0).text();
             	            		})
             	            	})
-            					
             					
             				}, error:function(){
             					console.log("ajax통신 실패");

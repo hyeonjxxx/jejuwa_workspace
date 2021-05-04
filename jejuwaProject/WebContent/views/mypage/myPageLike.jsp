@@ -60,7 +60,6 @@
 			<ul class="gallery" align = "center">
 				<li>
 					<img src="<%=contextPath %>/<%= l.getBasicPath()%>" width="150" height="150" alt="">
-					<!-- <a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=l.getpCode()%>"><%=l.getBasicPath() %></a> -->
 	        		<ul><li><a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=l.getpCode()%>"><%=l.getpName() %></a></li></ul>
 	  			</li>
 			</ul>
