@@ -28,6 +28,7 @@ public class IdCheckAjax extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 사용자가 입력한 id값 받아오기
 		String checkId = request.getParameter("checkId");
 		
 		int count = new MemberService().idCheck(checkId);

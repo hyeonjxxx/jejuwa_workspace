@@ -26,7 +26,6 @@ public class PwFindSuccessServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String memPwd = request.getParameter("memPwd");
 		
 		request.setAttribute("memPwd", memPwd);

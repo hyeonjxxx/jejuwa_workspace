@@ -423,7 +423,17 @@
 		         WHERE THEME_CODE = 'TT'
 		         ORDER BY PRICE DESC                               
 	</entry>			
-				
+	<entry key="selectThList_SS">
+		SELECT 
+			   P_CODE
+			 , P_NAME
+		     , PRICE
+			 , BASIC_PATH
+		  FROM PRODUCT	
+		 WHERE P_STATUS = 'Y' 
+		   AND LOCAL_CODE = 'SS'
+		 ORDER BY P_CODE DESC 
+	</entry>				
 	
 	<!-- 좋아요 카운트 -->
 	<entry key="likeCount">

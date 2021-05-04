@@ -158,7 +158,6 @@
                         $("#answer").hide();
                         $("#answer_mdf").show();
                         $("#answer_mdf_suc").hide();
-                        console.log("왜 안바뀌니")
                         
                     } else{
                         console.log("답글실패?")

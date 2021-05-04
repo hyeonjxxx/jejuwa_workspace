@@ -66,42 +66,32 @@
         		method: 'post',
         		data:{ 
         		},success:function(list){
-        			console.log(list);
- 
-        			var result = "";
-					if(list.length == 0){
-						result = "<ul class='pdtList'>검색결과가 존재하지 않습니다.</ul>"
-					}
-					for(var i in list){
-	        				result += "<li class='pdtArea'>"
-        						+ "<input type='hidden' name='pcode' value='"+ list[i].pCode + "'>"
-        						+ " <div class='pdtBox'>"
-        						+ "<a>"
-        						+ "<div class='pdtPhoto'><img src='" + document.domain + "/" + list[i].basicPath + "'" + "style='width: 220px;'>"
-        						+ "</div>"
-        						+ "<div class='pdtInfo'>"
-        						+ "<p class='pdtName'>" + list[i].pName + "</p>"
-        						+ "<p class='pdtPrice'>" + list[i].Price + "원</p>"
-        						+ "</div>"
-        						+ "</a>"
-        						+ "</div>"
-        						+ "</li>"
-					}
-					
-					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
-					$(".pdtList").html(result);
-					$(".pagingArea").css("visibility", "hidden");
-					
-			       
-		        	$(function(){
-		        		$(".pdtArea").click(function(){
-		        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
-		        		});	
-		        	});
-        			
-        			
-        		},error:function(){
-        			console.log("ajax통신 실패!!")
+   					console.log(list);
+    				
+   					var result ="";
+   					for(var i in list){            						
+    					result += "<li class=pdtArea>"
+    							+ "<input type='hidden' value=" + list[i].pCode +">"
+					      	    + "<div class='pdtPhoto'>" + "<img src='" + list[i].basicPath  + "'>" + "</div>"
+					            + "<div class='pdtInfo'>" 
+					            + "<p class='pdtName'>" + list[i].pName + "</p>"
+					            + "<p class='pdtPrice'>" + list[i].price + "원</p>"
+						            + "</div>" 
+						            + "</li>"
+   						}
+    					
+   					// 아이디가 memberList인 테이블의 tbody영역안에 result 뿌리기
+    				$(".pdtList").html(result);
+   				
+    				$(function() {
+    					$(".pdtArea").click(function() {
+    						location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+    	        		});	
+    	        	})
+   					
+   					
+   				}, error:function(){
+   					console.log("ajax통신 실패!!");
         		}
         	});
         	
@@ -111,7 +101,7 @@
         </script>
 
 
-        <div class="category">
+<%--         <div class="category">
             <ul class="sub">
                 <li class="current" onclick="top.location.href='<%=contextPath%>/mapSearch.pdt';"><a>전체보기</a></li>
                 <li onclick="top.location.href='<%=contextPath%>/search_TR.pdt';"><a>투어</a></li>
@@ -119,7 +109,7 @@
                 <li><a href="<%=contextPath%>/ayMapSearch.pdt">액티비티</a></li>
             </ul>
         </div>
-        
+         --%>
 
         <div class="sortBar" align="right">
             <a href="">제주와 추천순<img src="<%=contextPath%>/resources/images/check_c.png" alt="" width="15"></a> &nbsp;&nbsp;
