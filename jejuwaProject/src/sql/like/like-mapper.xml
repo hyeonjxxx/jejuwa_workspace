@@ -32,8 +32,8 @@
 		DELETE
 		  FROM
 			   TLIKE
-		 WHERE  
-		       P_CODE = ?
+		 WHERE MEM_NO = ?
+		   AND P_CODE = ?
 	</entry>
 	
 	

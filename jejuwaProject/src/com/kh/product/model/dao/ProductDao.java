@@ -893,7 +893,7 @@ public class ProductDao {
 					p.setpName(rset.getString("p_name"));
 					p.setPrice(rset.getInt("price"));
 					p.setBasicPath(rset.getString("basic_path"));
-					System.out.println(list);
+					//System.out.println(list);
 					list.add(p);				
 					
 				}
@@ -929,6 +929,7 @@ public class ProductDao {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
+				close(rset);
 				close(pstmt);
 			}
 			return result;

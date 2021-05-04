@@ -2,13 +2,13 @@ package com.kh.like.controller;
 
 import java.io.IOException;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.kh.like.model.service.LikeService;
 import com.kh.like.model.vo.Like;
 import com.kh.member.model.vo.Member;
@@ -34,14 +34,14 @@ public class LikeInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("utf-8");
-		String likeProduct = request.getParameter("pno");
 		
 		// 세션에 담긴 로그인한 회원의 회원번호 넘기기
 		int memNo = ((Member)request.getSession().getAttribute("loginUser")).getMemNo();
+		String likeProduct = request.getParameter("pno");
 		
 		Like l = new Like();
-		l.setpCode(likeProduct);
 		l.setMemNo(memNo);
+		l.setpCode(likeProduct);
 		
 		//ajax는 포워딩 x
 		int result = new LikeService().insertLikePro(l);

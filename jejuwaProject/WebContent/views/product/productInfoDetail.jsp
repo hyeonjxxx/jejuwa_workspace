@@ -114,7 +114,8 @@
                         			url : "<%=contextPath%>/linsert.li",
                         			type : "post",
                         			data : {
-                        				pno:'<%=p.getpCode()%>'
+                        				pno:'<%=p.getpCode()%>',
+                        				mno:'<%=p.getMemNo()%>'
                         			},
                         			success : function(result){
 
@@ -131,22 +132,29 @@
                         		})
                         	}
                         	
+                        	
+                        	
                         	function deleteProduct(){
                         		
                         		$.ajax({
             						url : "<%=contextPath%>/delete.li",
             						type : "post",
             						data : {
-            							pno : '<%=p.getpCode()%>'
+            							pno : '<%=p.getpCode()%>',
+            							mno:'<%=p.getMemNo()%>'
             						},
             						success : function(result){
-            							$("#heart").attr("src", '<%=contextPath%>/resources/images/emptyHeart.png');
-            							$("#heart").click(likeProduct);
+            							if(result>0){
+	            							$("#heart").attr("src", '<%=contextPath%>/resources/images/emptyHeart.png');
+            								$("#heart").click(likeProduct);
+            							}
+            						}, error:function(){
+            							console.log("통신실패");
             						}
             					})
                         	}
                         </script>
-				
+                        
 						<script type='text/javascript'>
 						  //<![CDATA[
 						    //  사용할 앱의 JavaScript 키를 설정해 주세요.

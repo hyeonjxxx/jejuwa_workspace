@@ -51,7 +51,7 @@ public class ProductInfoDetailServlet extends HttpServlet {
 		
 		int count = new ProductService().likeCount(pCode, memNo);
 		
-		System.out.println(count);
+		
 		Product p = new ProductService().selectInfoProduct(pCode);
 			
 		request.setAttribute("p", p);

@@ -28,8 +28,8 @@ public class LikeDao {
 	}
 	
 	
+	// 좋아요한 상품 조회
 	public ArrayList<Like> selectLikePro(Connection conn) {
-		// select
 		ArrayList<Like> list = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
@@ -74,6 +74,8 @@ public class LikeDao {
 			
 			result = pstmt.executeUpdate();
 			
+			//System.out.println(result);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -87,7 +89,7 @@ public class LikeDao {
 	
 	
 	// 좋아요 취소
-	public int deleteLike(Connection conn, String pCode) {
+	public int deleteLike(Connection conn, Like l) {
 		
 		int result = 0;
 		
@@ -96,9 +98,12 @@ public class LikeDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, pCode);
+			pstmt.setInt(1, l.getMemNo());
+			pstmt.setString(2, l.getpCode());
 			
 			result = pstmt.executeUpdate();
+			
+			//System.out.println(result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

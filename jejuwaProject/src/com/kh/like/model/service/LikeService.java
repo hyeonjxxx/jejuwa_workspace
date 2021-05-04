@@ -25,6 +25,8 @@ public class LikeService {
 		Connection conn = getConnection();
 		int result = new LikeDao().insertLikePro(conn,l);
 		
+		System.out.println(result);
+		
 		if(result>0) {
 			commit(conn);
 		}else {
@@ -36,10 +38,10 @@ public class LikeService {
 		
 	}
 	
-	public int deleteLike(String pCode) {
+	public int deleteLike(Like l) {
 		
 		Connection conn = getConnection();
-		int result = new LikeDao().deleteLike(conn, pCode);
+		int result = new LikeDao().deleteLike(conn, l);
 		
 		if(result>0) {
 			commit(conn);
