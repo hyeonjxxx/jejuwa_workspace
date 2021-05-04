@@ -218,27 +218,25 @@
 	    </script>        
         <div class="pdtTab">
             <ul class="tap_title">
-                <li onclick="" class="current"><p>상품설명</p>
-                </li>
-                <li class="useInfo" ><p>상품정보</p></li>
-                <script>
-	            $('.useInfo').click(function () {
-	                   $('body,html').animate({
-	                       scrollTop: 7600  //올라갈 위치 
-	                   }, 400);  // 스크롤 속도를 
-	                   return false;
-	               }); 
-                </script>
-                <li class="refund"><p>취소/환불</p></li>
-                <script>
-	            $('.refund').click(function () {
+                <li class="current" id=pdtDetailInfo><p>상품설명</p></li>         
+                <li id="useInfo" ><p>상품정보</p> </li>
+                <li id="refund"><p>취소/환불</p></li>
+	            <script>
+	            $('#useInfo').click(function () {
+		                 $('body,html').animate({
+		                     scrollTop: 7600  //올라갈 위치 
+		                 }, 400);  // 스크롤 속도를 
+		                 return false;
+		             }); 
+	            
+	            $('#refund').click(function () {
 	                   $('body,html').animate({
 	                       scrollTop: 8200  //올라갈 위치 
 	                   }, 400);  // 스크롤 속도를 
 	                   return false;
 	               });                
                 </script>
-                <li onclick="" ><p>리뷰</p></li>
+                <li><p>리뷰</p></li>
                 <% if(loginUser == null){ %>
                 	<li onclick="login();" ><p>상품문의</p></li>
                 	<script>

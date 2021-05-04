@@ -38,7 +38,7 @@
 
             <div class="side">
                 <aside class="detailSearch">
-                    <p>지도로 보기 <img src="<%=request.getContextPath() %>/resources/images/map.png" alt="" width="15"></p>
+                    <p onclick="top.location.href='<%=contextPath%>/mapSearch.pdt';">지도로 보기 <img src="<%=request.getContextPath() %>/resources/images/map.png" alt="" width="15"></p>
                     <div class="map">
                         <img src="<%=request.getContextPath() %>/resources/images/jejuMap.png" alt="제주지도" width="180px">
                         <button class="ss">성산/우도</button>
