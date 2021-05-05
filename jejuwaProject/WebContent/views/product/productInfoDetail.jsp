@@ -59,20 +59,22 @@
         </p>
 
         <div class="pdtWrap">
-            <!-- 상품기본이미지 -->
+            <!-- 상품이미지 -->
             <div class="pdtPhoto">
-                    <div class="mainImg">
-                        <img src="<%=contextPath %>/<%= p.getBasicPath()%>" width="350" height="350" alt="">
-                    </div>
-                    <ul class="subImg">
-                    	<%-- 
-                    	<%for(int i=1; i<list.size(); i++) {%>
-                        	<li><img src="<%=contextPath%>/<%=list.get(i).getFilePath() + list.get(i).getMdfFileName() %>" width="40"></li>
-                    	<%} %>
-                    	 --%>
-                    </ul>
-
-            </div>
+            	
+	            <div class="mainImg">
+	                <img src="<%=contextPath %>/<%= p.getBasicPath()%>" width="350" height="350" alt="">
+	            </div>
+                <!-- 세부이미지 -->
+                <ul class="subImg">
+	               	<%-- 
+	               	<%for(int i=1; i<list.size(); i++) {%>
+	                   	<li><img src="<%=contextPath%>/<%=list.get(i).getFilePath() + list.get(i).getMdfFileName() %>" width="40"></li>
+	               	<%} %>
+	               	 --%>
+                </ul>
+                
+			</div>
 
             <!-- 상품명 -->
             <div class="pdtDetail">
@@ -155,6 +157,7 @@
                         	}
                         </script>
                         
+                        <!-- 카카오 링크 API -->
 						<script type='text/javascript'>
 						  //<![CDATA[
 						    //  사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -206,7 +209,7 @@
 		                    </div>
 		
 		                </div>
-				</form>
+					</form>
             </div>
 
         </div>
