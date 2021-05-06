@@ -45,7 +45,7 @@
                         <p>필터</p>
                         <div class="rating">
                          	   평점<br>
-                            <input type="radio" name="avg" id="total" selected> 전체 <br>
+                            <input type="radio" name="avg" id="total"> 전체 <br>
                             <input type="radio" name="avg" id="4poin"> 4점 이상 <br>
                             <input type="radio" name="avg" id="5point"> 5점 이상 <br>
                         </div>
@@ -63,8 +63,7 @@
                                 <div class="lowest"><input type="text" value=""></div>
                                 <div align="left"> ~ </div> 
                                 <div class="highes"><input type="text" value=""></div>
-                        </div>
-                            
+                       		 </div>
                         </div>
         
                         <div class="btnArea" align="center">
@@ -75,7 +74,7 @@
                     </div>
                     
                 </aside>
-           	 </form>
+           	</form>
             </div>
 
     
@@ -85,37 +84,26 @@
                     <a href="">높은가격순<img src="<%=request.getContextPath() %>/resources/images/check_c.png" alt="" width="15"></a>
                 </div>
         
-<!--                <div class="category">
-                    <ul>
-                        <li class="current"><a href="">전체보기</a></li>
-                        <li><a href="">투어</a></li>
-                        <li><a href="">티켓</a></li>
-                        <li><a href="">액티비티</a></li>
-
-                    </ul>
-                </div>
-                 -->
-
 
 		        <div class="pdt_wrap">
 		             <ul class="pdtList">
 		             <%if(list != null) {%>
-		        	<%for(Product p : list) {%> 
-		             	<li class=pdtArea>
-		                  <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
-		                   <div class="pdtBox">
-			                     <a>
-			                      <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 165px"></div>
-			                       <div class="pdtInfo">
-			                           <p class="pdtName"><%=p.getpName() %></p>
-			                           <p class="pdtPrice"><%=p.getPrice() %>원</p>
-			                         </div>
-			                       </a>
-		                     </div>
-		                  </li>
-					<% } %>	
+		        		<%for(Product p : list) {%> 
+			             	<li class=pdtArea>
+			                  <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
+			                   <div class="pdtBox">
+				                     <a>
+				                      <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 165px"></div>
+				                       <div class="pdtInfo">
+				                           <p class="pdtName"><%=p.getpName() %></p>
+				                           <p class="pdtPrice"><%=p.getPrice() %>원</p>
+				                         </div>
+				                       </a>
+			                     </div>
+			                  </li>
+						<% } %>	
 					<%}else {%>
-							 <li class=pdtArea><div>검색 결과가 없습니다.<br>상품명을 검색해 보세요.</div></li>
+						<li class=pdtArea><div>검색 결과가 없습니다.<br>상품명을 검색해 보세요.</div></li>
 					<%} %>	
 					</ul>
 		        </div>
@@ -125,9 +113,8 @@
 		        	$(function(){
 		        		$(".pdtArea").click(function(){
 		        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
-		        		})	
-		        	})
-		        	
+		        		});	
+		        	});
 		        </script>
 
 

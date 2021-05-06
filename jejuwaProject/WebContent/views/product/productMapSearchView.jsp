@@ -87,7 +87,7 @@
     					$(".pdtArea").click(function() {
     						location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
     	        		});	
-    	        	})
+    	        	});
    					
    					
    				}, error:function(){
@@ -119,20 +119,20 @@
                         
         <div class="pdt_wrap">
              <ul class="pdtList">
-        	<%for(Product p : list) {%> 
-                        <li class="pdtArea">
-                        <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
-                            <div class="pdtBox">
-                                <a >
-                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 147px"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName"><%=p.getpName() %></p>
-                                        <p class="pdtPrice"><%=p.getPrice() %>원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-			<% } %>		
+        		<%for(Product p : list) {%> 
+                    <li class="pdtArea">
+                    <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
+                        <div class="pdtBox">
+                            <a >
+                                <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px;height: 147px"></div>
+                                <div class="pdtInfo">
+                                    <p class="pdtName"><%=p.getpName() %></p>
+                                    <p class="pdtPrice"><%=p.getPrice() %>원</p>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+				<% } %>		
 			</ul>
 
         </div>

@@ -33,7 +33,8 @@
         <div class="pdfInfo">
             <form action="<%=contextPath %>/insert.pdt" method="POST" id="pdtEnrollForm" name="pdtEnrollForm" enctype="multipart/form-data">
                <table>
-                    <tbody><tr>
+                    <tbody>
+                    <tr>
                         <td width="120">*카테고리</td>
                         <td>
                             <select name="loaclCode" id="loaclCode" required>
@@ -53,7 +54,6 @@
                                 <option value="AY">액티비티</option>
                                 <option value="FD">맛집</option>
                             </select>                           
-                            
                         </td>
                     </tr>
                     <tr>
@@ -92,13 +92,13 @@
                         <td>*상품상세 정보</td>
                         <td><input type="file" name="detailImg" id="detailImg" required></td>
                     </tr>
-                </tbody>
+               	 	</tbody>
              </table>
+             
 		      <br><br>
 		      <!-- 버튼 -->
 		       <div align="right" class="btnArea">
 		            <div id="btnBack"><a href="<%=contextPath %>/list.pdt?currentPage=1">목록으로</a></div>
-		            <!-- Button to Open the Modal -->
 		           <button type="button" id="btnEnroll" data-toggle="modal" data-target="#enrollModal">등 록</button>
 		       </div>
 		
@@ -115,12 +115,13 @@
 		                    
 		                    <!-- Modal footer -->
 		                    <div id="modalFooter">
-		                        <button  type="submit" id="okBtn" class="btn btn-warning">OK</button>
-		                        <button type="reset" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">Cancle</button>
+		                        <button  type="submit" id="okBtn" class="btn btn-warning">확 인</button>
+		                        <button type="reset" id="cancleBtn" data-dismiss="modal" class="btn btn-secondary">취 소</button>
 		                    </div>
 		                </div>
 		            </div>
-		        </div>        
+		        </div> 
+		               
             </form>
 
         </div>
