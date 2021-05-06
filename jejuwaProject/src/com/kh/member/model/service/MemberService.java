@@ -138,10 +138,10 @@ public class MemberService {
 	 * @return
 	 */
 	
-	public Member pwFindCheck( String memName, String phoneNumber) {
+	public Member pwFindCheck(String memId, String memName, String phoneNumber) {
 		Connection conn = getConnection();
 		
-		Member m = new MemberDao().pwFindCheck(conn, memName, phoneNumber);
+		Member m = new MemberDao().pwFindCheck(conn, memId, memName, phoneNumber);
 		
 		close(conn);
 		

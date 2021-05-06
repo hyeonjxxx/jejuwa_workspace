@@ -43,10 +43,11 @@
 		     , PHONE
 		  FROM 
 		       MEMBER 
-		 WHERE 
-		 	   
-		    MEM_NAME = ?
+		 WHERE
+		 	   MEM_ID = ?
+ 		   AND MEM_NAME = ?
 		   AND PHONE = ?
+		   
 	</entry>
 	
 	
