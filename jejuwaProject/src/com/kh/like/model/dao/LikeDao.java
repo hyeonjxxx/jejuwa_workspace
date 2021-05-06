@@ -1,8 +1,6 @@
 package com.kh.like.model.dao;
 
 import static com.kh.common.JDBCTemplate.close;
-import static com.kh.common.JDBCTemplate.getConnection;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
