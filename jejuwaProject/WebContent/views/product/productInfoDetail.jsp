@@ -98,9 +98,10 @@
                         <div class="icon" align="right">
                             <a id="kakao-link-btn" href="javascript:sendLink()"><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></a>
                            
-                           	<% if(loginUser == null || count ==0){ %>
+                           	<% if(loginUser == null){ %>
+                           		<img id="heart" onclick="alert('로그인 후 이용가능한 서비스입니다.')" src="<%=contextPath %>/resources/images/emptyHeart.png" width="33">
+                           	<% }else if(count == 0){ %>
                            		<img id="heart" onclick="likeP();" src="<%=contextPath %>/resources/images/emptyHeart.png" width="33">
-                           		
                             <% }else{ %>
                             	<img id="heart" onclick="deleteP();" src="<%=contextPath %>/resources/images/fullHeart.png" width="33">
                             <% } %>
@@ -108,10 +109,9 @@
                         </div>
 						
 						
-                        <!-- 좋아요 버튼 누르는 순간 하트가 바뀌면서 담김 -->
+                        <!-- 좋아요 버튼 누르는 순간 하트모양 바뀜 -->
                         <script>
                         	function likeP(){
-                        		event.stopPropagation();
                         		$.ajax({
                         			url : "<%=contextPath%>/linsert.li",
                         			type : "post",
@@ -153,6 +153,7 @@
             						}
             					})
                         	}
+                        	
                         </script>
                         
                         <!-- 카카오 링크 API -->
