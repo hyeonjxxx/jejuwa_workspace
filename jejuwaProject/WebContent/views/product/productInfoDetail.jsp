@@ -51,7 +51,7 @@
                  return false;
              });
         }); 
-        </script> 
+     </script> 
         
         <p class="groupBar">
            <a href="#"> <%=p.getLocalName() %></a>&nbsp;&nbsp;>
@@ -124,7 +124,7 @@
                         				if(result>0){ // 좋아요 성공
 
                         					$("#heart").attr("src", '<%=contextPath%>/resources/images/fullHeart.png');
-                        					$("#heart").click(deleteP);
+                        					$("#heart").attr("onclick", "deleteP();");
                         				}		
 
                         			}, error:function(){ // 좋아요 실패
@@ -133,8 +133,6 @@
 
                         		})
                         	}
-                        	
-                        	
                         	
                         	function deleteP(){
                         		
@@ -148,7 +146,7 @@
             						success : function(result){
             							if(result>0){
 	            							$("#heart").attr("src", '<%=contextPath%>/resources/images/emptyHeart.png');
-            								$("#heart").click(likeP);
+            								$("#heart").attr("onclick", "likeP();");
             							}
             						}, error:function(){
             							console.log("통신실패");
@@ -185,8 +183,6 @@
 						    });
 						  //]]>
 						</script>
-
-						
                     </div>
 						
 					<form action="<%=contextPath %>/do.pa">
@@ -200,7 +196,7 @@
 	                              		<br> -->
 								<input type="date" name="travleDate" value="yyyy-mm-dd">
 							</div>
-	                   </div>
+	                    </div>
 	
 	
 		                <div class="purchasingInfo">
