@@ -21,10 +21,10 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/product/map_s.css">
  
 	<!--  -->
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 	    
 
 </head>
@@ -73,15 +73,14 @@
                                 <div class="lowest"><input type="text" value=""></div>
                                 <div align="left"> ~ </div> 
                                 <div class="highes"><input type="text" value=""></div>
-                        </div>
+                        	</div>
                             
                         </div>
         
                         <div class="btnArea" align="center">
-                          <a type="submit" class="enter">검색</a>
+                          	<a type="submit" class="enter">검색</a>
                             <a type="reset" class="rset"> 초기화</a>  
                         </div>
-                        
                         
                     </div>
                 </aside>
@@ -96,68 +95,68 @@
                 
 		        <div class="pdt_wrap">
 		             <ul class="pdtList">
-		        	<%for(Product p : list) {%> 
-		                        <li class=pdtArea>
-		                        <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
-		                            <div class="pdtBox">
-		                                <a>
-		                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px; height: 165px"></div>
-		                                    <div class="pdtInfo">
-		                                        <p class="pdtName"><%=p.getpName() %></p>
-		                                        <p class="pdtPrice"><%=p.getPrice() %>원</p>
-		                                    </div>
-		                                </a>
-		                            </div>
-		                        </li>
-					<% } %>		
+		        		<%for(Product p : list) {%> 
+	                        <li class=pdtArea>
+	                        <input type="hidden" name="pcode" value="<%=p.getpCode()%>">
+	                            <div class="pdtBox">
+	                                <a>
+	                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px; height: 165px"></div>
+	                                    <div class="pdtInfo">
+	                                        <p class="pdtName"><%=p.getpName() %></p>
+	                                        <p class="pdtPrice"><%=p.getPrice() %>원</p>
+	                                    </div>
+	                                </a>
+	                            </div>
+	                        </li>
+						<% } %>		
 					</ul>
 					
-		        <!-- 페이징 구역 -->
-		        <div class="bottomArea">
-		            <!-- 페이징  -->
-		            <div align="center" id="pagingArea" class="pagination justify-content-center">
-		                    
-	                    <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
-	                    <% if(currentPage == 1) {%>
-	                    	<button disabled>&laquo;</button>
-		                    <button disabled>&lt;</button>			
-	                    <%} else {%>
-		                    <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=1';">&laquo;</button>
-		                    <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%=currentPage-1%>';">&lt;</button>			
-						<% } %>
-						
-						<!-- 마지막페이지는   endpage보다 작다 -->
-						<% for(int p=startPage; p<=endPage; p++ ) {%>
-						
-							<% if(currentPage == p) {%>
-	                        	<button disabled><%= p %></button>
-	                        <% }else{ %>				
-		                        <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%= p %>';"><%= p %></button>
-	                        <% } %>		
-	                	<% } %>
-	                	
-	                	<!-- 내가 보는 페이지가 마지막 페이지일 경우 >,>> 버튼 disabled -->
-	                	<% if(currentPage == maxPage){ %>
-	                		<button disabled>&gt;</button>
-		                    <button disabled>&raquo;</button>
-	                	<% } else{ %>
-	                		<button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%=currentPage+1%>';">&gt;</button>
-		                    <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%=maxPage%>';">&raquo;</button>
-	                	<% } %>
-	             	</div>
-	    		</div>					
-		
+			        <!-- 페이징 구역 -->
+			        <div class="bottomArea">
+			            <!-- 페이징  -->
+			            <div align="center" id="pagingArea" class="pagination justify-content-center">
+			                    
+		                    <!-- 내가 보는 페이지가 1번 페이지일 경우 <,<< 버튼 disabled -->
+		                    <% if(currentPage == 1) {%>
+		                    	<button disabled>&laquo;</button>
+			                    <button disabled>&lt;</button>			
+		                    <%} else {%>
+			                    <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=1';">&laquo;</button>
+			                    <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%=currentPage-1%>';">&lt;</button>			
+							<% } %>
+							
+							<!-- 마지막페이지는   endpage보다 작다 -->
+							<% for(int p=startPage; p<=endPage; p++ ) {%>
+							
+								<% if(currentPage == p) {%>
+		                        	<button disabled><%= p %></button>
+		                        <% }else{ %>				
+			                        <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%= p %>';"><%= p %></button>
+		                        <% } %>		
+		                	<% } %>
+		                	
+		                	<!-- 내가 보는 페이지가 마지막 페이지일 경우 >,>> 버튼 disabled -->
+		                	<% if(currentPage == maxPage){ %>
+		                		<button disabled>&gt;</button>
+			                    <button disabled>&raquo;</button>
+		                	<% } else{ %>
+		                		<button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%=currentPage+1%>';">&gt;</button>
+			                    <button onclick="location.href='<%=contextPath%>/ayView.pdt?currentPage=<%=maxPage%>';">&raquo;</button>
+		                	<% } %>
+		             	</div>
+		    		</div>					
+			
 		        </div>
 		     </div>  
 		        
-		        <script>
-		        	$(function(){
-		        		$(".pdtArea").click(function(){
-		        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
-		        		})	
-		        	})
-		        	
-		        </script>
+	        <script>
+	        	$(function(){
+	        		$(".pdtArea").click(function(){
+	        			location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
+	        		});	
+	        	});
+	        	
+	        </script>
 
 
 

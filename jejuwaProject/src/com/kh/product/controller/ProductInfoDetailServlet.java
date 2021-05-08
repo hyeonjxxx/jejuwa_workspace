@@ -49,6 +49,7 @@ public class ProductInfoDetailServlet extends HttpServlet {
 			memNo = ((Member)request.getSession().getAttribute("loginUser")).getMemNo();		
 		}
 		
+		
 		int count = new ProductService().likeCount(pCode, memNo);
 		
 		

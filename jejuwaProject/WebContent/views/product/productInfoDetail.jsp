@@ -51,7 +51,7 @@
                  return false;
              });
         }); 
-        </script> 
+     </script> 
         
         <p class="groupBar">
            <a href="#"> <%=p.getLocalName() %></a>&nbsp;&nbsp;>
@@ -59,20 +59,22 @@
         </p>
 
         <div class="pdtWrap">
-            <!-- 상품기본이미지 -->
+            <!-- 상품이미지 -->
             <div class="pdtPhoto">
-                    <div class="mainImg">
-                        <img src="<%=contextPath %>/<%= p.getBasicPath()%>" width="350" height="350" alt="">
-                    </div>
-                    <ul class="subImg">
-                    	<%-- 
-                    	<%for(int i=1; i<list.size(); i++) {%>
-                        	<li><img src="<%=contextPath%>/<%=list.get(i).getFilePath() + list.get(i).getMdfFileName() %>" width="40"></li>
-                    	<%} %>
-                    	 --%>
-                    </ul>
-
-            </div>
+            	
+	            <div class="mainImg">
+	                <img src="<%=contextPath %>/<%= p.getBasicPath()%>" width="350" height="350" alt="">
+	            </div>
+                <!-- 세부이미지 -->
+                <ul class="subImg">
+	               	<%-- 
+	               	<%for(int i=1; i<list.size(); i++) {%>
+	                   	<li><img src="<%=contextPath%>/<%=list.get(i).getFilePath() + list.get(i).getMdfFileName() %>" width="40"></li>
+	               	<%} %>
+	               	 --%>
+                </ul>
+                
+			</div>
 
             <!-- 상품명 -->
             <div class="pdtDetail">
@@ -97,19 +99,19 @@
                             <a id="kakao-link-btn" href="javascript:sendLink()"><img src="<%=contextPath %>/resources/images/shareBtn.png" alt="sns" width="30"></a>
                            
                            	<% if(loginUser == null){ %>
-                           		<img id="heart" onclick="likeProduct();" src="<%=contextPath %>/resources/images/emptyHeart.png" alt="like" width="33">
-                            <% }else if(count == 0){ %>
-                            	<img id="heart" onclick="likeProduct();" src="<%=contextPath %>/resources/images/emptyHeart.png" alt="like" width="33">
+                           		<img id="heart" onclick="alert('로그인 후 이용가능한 서비스입니다.')" src="<%=contextPath %>/resources/images/emptyHeart.png" width="33">
+                           	<% }else if(count == 0){ %>
+                           		<img id="heart" onclick="likeP();" src="<%=contextPath %>/resources/images/emptyHeart.png" width="33">
                             <% }else{ %>
-                            	<img id="heart" onclick="deleteProduct();" src="<%=contextPath %>/resources/images/fullHeart.png" alt="like" width="33">
+                            	<img id="heart" onclick="deleteP();" src="<%=contextPath %>/resources/images/fullHeart.png" width="33">
                             <% } %>
                             
                         </div>
 						
 						
-                        <!-- 좋아요 버튼 누르는 순간 하트가 바뀌면서 담김 -->
+                        <!-- 좋아요 버튼 누르는 순간 하트모양 바뀜 -->
                         <script>
-                        	function likeProduct(){
+                        	function likeP(){
                         		$.ajax({
                         			url : "<%=contextPath%>/linsert.li",
                         			type : "post",
@@ -122,7 +124,7 @@
                         				if(result>0){ // 좋아요 성공
 
                         					$("#heart").attr("src", '<%=contextPath%>/resources/images/fullHeart.png');
-                        					$("#heart").click(deleteProduct);
+                        					$("#heart").attr("onclick", "deleteP();");
                         				}		
 
                         			}, error:function(){ // 좋아요 실패
@@ -132,9 +134,7 @@
                         		})
                         	}
                         	
-                        	
-                        	
-                        	function deleteProduct(){
+                        	function deleteP(){
                         		
                         		$.ajax({
             						url : "<%=contextPath%>/delete.li",
@@ -146,15 +146,17 @@
             						success : function(result){
             							if(result>0){
 	            							$("#heart").attr("src", '<%=contextPath%>/resources/images/emptyHeart.png');
-            								$("#heart").click(likeProduct);
+            								$("#heart").attr("onclick", "likeP();");
             							}
             						}, error:function(){
             							console.log("통신실패");
             						}
             					})
                         	}
+                        	
                         </script>
                         
+                        <!-- 카카오 링크 API -->
 						<script type='text/javascript'>
 						  //<![CDATA[
 						    //  사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -182,8 +184,6 @@
 						    });
 						  //]]>
 						</script>
-
-						
                     </div>
 						
 					<form action="<%=contextPath %>/do.pa">
@@ -197,7 +197,7 @@
 	                              		<br> -->
 								<input type="date" name="travleDate" value="yyyy-mm-dd">
 							</div>
-	                   </div>
+	                    </div>
 	
 	
 		                <div class="purchasingInfo">
@@ -206,7 +206,7 @@
 		                    </div>
 		
 		                </div>
-				</form>
+					</form>
             </div>
 
         </div>

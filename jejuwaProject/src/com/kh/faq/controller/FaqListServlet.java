@@ -72,12 +72,7 @@ public class FaqListServlet extends HttpServlet {
 		
 		request.getRequestDispatcher("views/faq/faqListView.jsp").forward(request, response);
 		
-				
-				
-		
-		
-		
-		
+
 	}
 
 	/**

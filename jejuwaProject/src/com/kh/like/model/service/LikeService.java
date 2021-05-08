@@ -25,7 +25,7 @@ public class LikeService {
 		Connection conn = getConnection();
 		int result = new LikeDao().insertLikePro(conn,l);
 		
-		System.out.println(result);
+		//System.out.println(result);
 		
 		if(result>0) {
 			commit(conn);

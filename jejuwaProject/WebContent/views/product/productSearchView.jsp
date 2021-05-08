@@ -23,21 +23,19 @@
 	
         <div class="searchBar">     
             
-                <div id="searchBox">
-                    <input type="search" id="keyword_pdt" placeholder="[추천상품]제주시티투어"">
-                    <button type="button"><img  onclick="searchGo();" src="<%=contextPath%>/resources/images/loupe_c.png" width="30"></button>
-                </div>
-                    
-                <div id="searchBtn">
-                </div>              
-            
-            <div class="divisionLine"></div>
+            <div id="searchBox">
+                <input type="search" id="keyword_pdt" placeholder="[추천상품]제주시티투어"">
+                <button type="button"><img  onclick="searchGo();" src="<%=contextPath%>/resources/images/loupe_c.png" width="30"></button>
+            </div>
+                
+            <div id="searchBtn">
+            </div>              
+        
+        	<div class="divisionLine"></div>
         </div>
         
-		<!--리스트에 담겨있는하는데 불러서 오질 못하네... 그리고 console엔 있다가 없어짐 왜????? -->
 		<script>
             function searchGo(){
-            	//if(window.event.keyCode == 13){
 	            	var keyword = $("#keyword_pdt").val();
 	           		
 	            	console.log(keyword);
@@ -76,8 +74,7 @@
            				}, error:function(){
            					console.log("ajax통신 실패!!");
            				}
-           			});
-           		//} 
+           		 });
             }
         </script>
             
@@ -99,22 +96,20 @@
 
 		<div class="pdt_wrap">
              <ul class="pdtList">
-        	<%
-        		for (Product p : list) {
-        	%> 
-                        <li class=pdtArea>
-                        <input type="hidden" value="<%=p.getpCode()%>">
-                            <div class="pdtBox">
-                                <a >
-                                    <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px; height: 147px"></div>
-                                    <div class="pdtInfo">
-                                        <p class="pdtName"><%=p.getpName() %></p>
-                                        <p class="pdtPrice"><%=p.getPrice() %>원</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-			<% } %>		
+        		<% for (Product p : list) { %> 
+                  <li class=pdtArea>
+                  <input type="hidden" value="<%=p.getpCode()%>">
+                      <div class="pdtBox">
+                          <a>
+                              <div class="pdtPhoto"><img src="<%=contextPath%>/<%= p.getBasicPath()%>" style="width: 220px; height: 147px"></div>
+                              <div class="pdtInfo">
+                                  <p class="pdtName"><%=p.getpName() %></p>
+                                  <p class="pdtPrice"><%=p.getPrice() %>원</p>
+                              </div>
+                          </a>
+                      </div>
+                  </li>
+				<% } %>		
 			</ul>
 
         </div>
@@ -126,7 +121,7 @@
 				$(".pdtArea").click(function() {
 					location.href = '<%=contextPath%>/infoDetail.pdt?pcode='+ $(this).children().eq(0).val();
         		});	
-        	})
+        	});
         	
         </script>
 

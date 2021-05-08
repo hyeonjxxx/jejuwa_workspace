@@ -226,7 +226,7 @@ public class MemberDao {
 	
 	
 	
-	public Member pwFindCheck(Connection conn, String memName, String phoneNumber) {
+	public Member pwFindCheck(Connection conn, String memId, String memName, String phoneNumber) {
 		Member m = null;
 		ResultSet rset = null;
 		PreparedStatement pstmt = null;
@@ -236,10 +236,10 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			//pstmt.setString(1, memId);
-			pstmt.setString(1, memName);
-			pstmt.setString(2, phoneNumber);
-			
+			pstmt.setString(1, memId);
+			pstmt.setString(2, memName);
+			pstmt.setString(3, phoneNumber);
+			System.out.println(memId + memName + phoneNumber);
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				m = new Member(rset.getString("MEM_NAME"),

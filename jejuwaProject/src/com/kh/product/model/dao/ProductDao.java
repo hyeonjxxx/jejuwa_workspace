@@ -926,6 +926,10 @@ public class ProductDao {
 				
 				rset = pstmt.executeQuery();
 				
+				if(rset.next()) {
+					result = rset.getInt(1);
+						
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
