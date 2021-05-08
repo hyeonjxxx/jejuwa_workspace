@@ -165,7 +165,7 @@
                     }
                 },
                 error:function(){
-                    console.log("댓글 작성용 ajax 통신 실패");
+                    console.log("답변 작성용 ajax 통신 실패");
                 }
             })
         })

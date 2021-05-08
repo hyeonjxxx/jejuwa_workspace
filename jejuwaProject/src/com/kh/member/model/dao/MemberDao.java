@@ -225,7 +225,14 @@ public class MemberDao {
 	}
 	
 	
-	
+	/**
+	 * [민국] 비밀번호 찾기: 핸드폰번호 == 이름 == 아이디 체크여부
+	 * @param conn
+	 * @param memId
+	 * @param memName
+	 * @param phoneNumber
+	 * @return
+	 */
 	public Member pwFindCheck(Connection conn, String memId, String memName, String phoneNumber) {
 		Member m = null;
 		ResultSet rset = null;
@@ -239,7 +246,7 @@ public class MemberDao {
 			pstmt.setString(1, memId);
 			pstmt.setString(2, memName);
 			pstmt.setString(3, phoneNumber);
-			System.out.println(memId + memName + phoneNumber);
+			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
 				m = new Member(rset.getString("MEM_NAME"),

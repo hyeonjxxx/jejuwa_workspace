@@ -44,27 +44,27 @@
 </head>
 <body>
 <%@ include file="../common/loginUserMenubar.jsp" %>
-    <div class="idPwFind_wrap">
-        <p>비밀번호 찾기</p><br><br>
-        <div class="pwFind_wrap">
-            <div class="pwFind_success">
-                <b style="font-size: 25px;">비밀번호 찾기 완료</b><br><br>
-            </div>
-            <div class="pwFind">
-                <b>비밀번호 : </b>
-                <b style="color:orange;"> <%= request.getAttribute("memPwd") %> </b>
-            </div> 
-            <br>
-            <div class="buttonArea">
-                <button type="button" class="btn btn-warning btn-login">
-                    <a href="<%= request.getContextPath() %>/lgview.me">로그인 ></a>
-                </button>
-                <button type="button" class="btn btn-warning btn-idPwfind">
-                    <a href="<%= request.getContextPath() %>/IdPwFind.me">아이디찾기 ></a>
-                </button>
-            </div>
-        </div>
-    </div>
+	    <div class="idPwFind_wrap">
+	        <p>비밀번호 찾기</p><br><br>
+	        <div class="pwFind_wrap">
+	            <div class="pwFind_success">
+	                <b style="font-size: 25px;">비밀번호 찾기 완료</b><br><br>
+	            </div>
+	            <div class="pwFind">
+	                <b>비밀번호 : </b>
+	                <b style="color:orange;"> <%= request.getAttribute("memPwd") %> </b>
+	            </div> 
+	            <br>
+	            <div class="buttonArea">
+	                <button type="button" class="btn btn-warning btn-login">
+	                    <a href="<%= request.getContextPath() %>/lgview.me">로그인 ></a>
+	                </button>
+	                <button type="button" class="btn btn-warning btn-idPwfind">
+	                    <a href="<%= request.getContextPath() %>/IdPwFind.me">아이디찾기 ></a>
+	                </button>
+	            </div>
+	        </div>
+	    </div>
     </div>
     <br><br>
     <%@ include file="../common/footer.jsp" %>

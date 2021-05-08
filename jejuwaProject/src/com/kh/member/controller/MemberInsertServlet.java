@@ -55,7 +55,6 @@ public class MemberInsertServlet extends HttpServlet {
 			session.setAttribute("alertMsg", "성공적으로 회원가입 되었습니다. 로그인해주세요.");
 			
 			response.sendRedirect(request.getContextPath());
-			
 			RequestDispatcher view = request.getRequestDispatcher("views/common/loginPage.jsp");
 		} else { // 실패할 경우
 			HttpSession session = request.getSession();

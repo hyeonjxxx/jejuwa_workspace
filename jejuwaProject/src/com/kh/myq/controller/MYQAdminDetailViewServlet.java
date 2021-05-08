@@ -34,7 +34,6 @@ public class MYQAdminDetailViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
 		
 		// 디테일리스트 뷰 요청시 클릭한 문의글 번호 뽑아서 담기
@@ -43,9 +42,6 @@ public class MYQAdminDetailViewServlet extends HttpServlet {
 		// 1. 문의 상세조회
 		MYQ q = new MYQService().selectDetailAdmin(myqNo);
 		ArrayList<Attachment> list = new MYQService().selectAttachmentAdmin(myqNo);
-		
-		System.out.println(q);
-		System.out.println(list);
 		
 		// 받아온 q, at 값 Attribute영역에 세팅하기
 		request.setAttribute("q", q); 

@@ -77,8 +77,6 @@ public class MYQAdminListViewServlet extends HttpServlet {
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		// ArrayList 에 담긴 값을 뽑아내고 싶으면 어떻게 ??? 내일 물어보자
-		
 		request.getRequestDispatcher("views/myq/myqAdminListView.jsp").forward(request, response);
 	}
 

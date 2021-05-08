@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
+
 /**
  * Servlet implementation class PwFindSuccessServlet
  */
@@ -26,10 +29,16 @@ public class PwFindSuccessServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
+		String memId = request.getParameter("memId");
+		String memName = request.getParameter("idFind_name");
+		String phoneNumber = request.getParameter("id_phone");
 		String memPwd = request.getParameter("memPwd");
 		
-		request.setAttribute("memPwd", memPwd);
+		Member m = new MemberService().pwFindCheck(memId, memName, phoneNumber);
 		
+		request.setAttribute("memPwd", memPwd);
 		request.getRequestDispatcher("views/member/pwFindSuccess.jsp").forward(request, response);
 	}
 

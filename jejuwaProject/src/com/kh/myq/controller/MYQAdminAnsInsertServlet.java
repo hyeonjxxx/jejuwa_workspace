@@ -29,7 +29,6 @@ public class MYQAdminAnsInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("utf-8");
 		
 		// 관리자가 입력한 답글 받기
@@ -38,12 +37,12 @@ public class MYQAdminAnsInsertServlet extends HttpServlet {
 		
 		int result = new MYQService().answer(answer, getMyq_no);
 		
-		if(result>0) {
-			System.out.println("답변수정 실행되나?");
+		if(result>0) { 
+			// 답변 수정 성공
 			response.getWriter().print(result);
 			
 		} else {
-			
+			// 답변 수정 실패
 		}
 	}
 

@@ -49,7 +49,7 @@
         
         <div class="idFind_wrap">
             <b style="font-size: 20px;">아이디 찾기</b><br><br>
-            <form action="<%= request.getContextPath() %>/IdFindSuccess.me" method="post">
+            <form action="<%= request.getContextPath() %>/IdFindSuccess.me" method="post" id="frmFindId">
                 <input type="hidden" id="is_mobile_auth_id" value="F">
                 <input type="hidden" name="memId" value="">
                 
@@ -91,7 +91,7 @@
 
         <div class="pwFind_wrap">
             <b style="font-size: 20px;">비밀번호 찾기</b><br><br>
-            <form action="<%= request.getContextPath() %>/PwFindSuccess.me" method="post">
+            <form action="<%= request.getContextPath() %>/PwFindSuccess.me" method="post" id="frmFindPwd">
                 <input type="hidden" id="is_mobile_auth_pwd" value="F">
                 <input type="hidden" name="memPwd" value="">
                 

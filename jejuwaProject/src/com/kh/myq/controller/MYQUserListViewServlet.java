@@ -34,7 +34,6 @@ public class MYQUserListViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		Member member = (Member)request.getSession().getAttribute("loginUser");
 		
 		String memId = member.getMemId();
@@ -78,8 +77,6 @@ public class MYQUserListViewServlet extends HttpServlet {
 		
 		// 2. 현재 요청한 페이지(currentPage)에 보여질 게시글 리스트 조회해오기
 		ArrayList<MYQ> list = new MYQService().selectListUser(memId, pi);
-		
-		System.out.println(list);
 		
 		// 조회된 pi, list 객체 가져오기
 		request.setAttribute("pi", pi);

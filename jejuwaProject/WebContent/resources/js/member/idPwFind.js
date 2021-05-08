@@ -15,9 +15,6 @@ $(document).ready(function(){
             // 이름 == 휴대폰 맞는것 성공시 실행될 이벤트
             success: function(res){
                 if(res.result == true){
-                        console.log(
-                            "인증번호 오니?"
-                        );
                         $("input[name=memId]").val(res.memId);
                         var phoneNumber = $("#id_phone").val();
                         alert("인증번호 발송 완료!!");
@@ -29,7 +26,6 @@ $(document).ready(function(){
                                 "phoneNumber" : phoneNumber
                             },
                             success: function(res){
-                                console.log(res.result);
                                 $("#id_auth_confirm").click(function(){
                                     if($.trim(res.result) == $("#id_auth_num").val()){
                                         // 체크조건 바꾸기
@@ -40,7 +36,6 @@ $(document).ready(function(){
 
                                     } else{
                                         alert("인증번호가 일치하지 않습니다. 인증번호를 다시 확인해주세요");
-
                                         $('#id_auth_num').one('focus',focus());
                                     }
                                 })
@@ -59,12 +54,12 @@ $(document).ready(function(){
             e.preventDefault();
 
             // 휴대폰 인증 체크
-            if($('#is_mobile_auth').val() !== 'T') {
+            if($('#is_mobile_auth_id').val() !== 'T') {
                 alert('휴대폰 인증해주시기 바랍니다.');
                 return false;
             }
 
-            $('#idFind_btn').submit();
+            $('#frmFindPwd').submit();
         });
 
 
@@ -82,9 +77,6 @@ $(document).ready(function(){
             // 이름 == 휴대폰 맞는것 성공시 실행될 이벤트
             success: function(res){
                 if(res.result == true){
-                        console.log(
-                            "인증번호 오니?"
-                        );
                         $("input[name=memPwd]").val(res.memPwd);
                         var phoneNumber = $("#pwd_phone").val();
                         alert("인증번호 발송 완료!!");
@@ -122,14 +114,14 @@ $(document).ready(function(){
     })
 
         // 비밀번호 찾기 버튼 클릭시 발생할 이벤트
-        $('#pwFind_btn').click(function(e) {
-            e.preventDefault();
-            
-            // 휴대폰 인증 체크
-            if($('#is_mobile_auth_pwd').val() !== 'T' ) {
-                alert('휴대폰 인증해주시기 바랍니다.');
-                return false;
-            }
-            $('#pwFind_btn').submit();
+    $('#pwFind_btn').click(function(e) {
+        e.preventDefault();
+        
+        // 휴대폰 인증 체크
+        if($('#is_mobile_auth_pwd').val() !== 'T' ) {
+            alert('휴대폰 인증해주시기 바랍니다.');
+            return false;
+        }
+        $('#frmFindPwd').submit();
     });
 })

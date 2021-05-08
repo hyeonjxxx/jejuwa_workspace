@@ -42,11 +42,11 @@ public class MYQAdminAnsSuccessServlet extends HttpServlet {
 		int result = new MYQService().answer(answer, getMyq_no);
 		
 		if(result>0) {
-			System.out.println("답변수정 실행되나?");
+			// 답변 수정 성공
 			response.getWriter().print(result);
 			
 		} else {
-			
+			// 답변 수정 실패
 		}
 	}
 

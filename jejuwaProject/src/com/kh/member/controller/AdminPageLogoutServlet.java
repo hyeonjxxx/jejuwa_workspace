@@ -26,7 +26,6 @@ public class AdminPageLogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		// 관리자 && 관리자 페이지에서 로그아웃 요청
 		request.getSession().invalidate();
 		response.sendRedirect(request.getContextPath() + "/admin.go");

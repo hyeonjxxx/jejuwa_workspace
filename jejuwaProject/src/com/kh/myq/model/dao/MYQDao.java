@@ -31,6 +31,10 @@ public class MYQDao {
 		
 	}
 	
+	/**
+	 * 관리자 현재 총 게시글 조회
+	 * @return
+	 */
 	public int selectListCountAdmin(Connection conn) {
 		// SELECT
 		int listCount = 0;
@@ -57,7 +61,12 @@ public class MYQDao {
 		
 		return listCount;
 	}
-
+	
+	/**
+	 * 관리자 게시글 리스트 조회
+	 * @param pi
+	 * @return
+	 */
 	public ArrayList<MYQ> selectListAdmin(Connection conn, PageInfo pi) {
 		// SELECT 
 		ArrayList<MYQ> list = new ArrayList<>();
@@ -69,17 +78,7 @@ public class MYQDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
-			/*
-			 * ex)boardLimit : 10이라는 가정하에
-			 * currentPage = 1 => startRow : 1  endRow : 10
-			 * currentPage = 2 => startRow : 11 endRow : 20
-			 * currentPage = 5 => startRow : 51 endRow : 60
-			 * 
-			 * startRow = (currentPage - 1) * boardLimit + 1
-			 * endRow = currentPage * boardLimit
-			 */
-			
+
 			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
 			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
 			
@@ -107,13 +106,17 @@ public class MYQDao {
 
 		return list;
 	}
-
+	
+	/**
+	 * 관리자 게시글 자세히 보기
+	 * @param myqNo
+	 * @return
+	 */
 	public MYQ selectDetailAdmin(Connection conn, int myqNo) {
 		// SELECT
 		MYQ q = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		System.out.println(myqNo);
 		String sql = prop.getProperty("selectDetailAdmin");
 		
 		try {
@@ -137,17 +140,20 @@ public class MYQDao {
 						  , rset.getString("P_NAME")
 						  , rset.getString("MEM_NAME"));
 						}
-			System.out.println(q);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		
 		return q;
 	}
-
+	
+	/**
+	 * 관리자 첨부파일 보기
+	 * @param myqNo
+	 * @return
+	 */
 	public ArrayList<Attachment> selectAttachmentAdmin(Connection conn, int myqNo) {
 		// SELECT
 		ArrayList<Attachment> list = new ArrayList<>();
@@ -155,7 +161,6 @@ public class MYQDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectAttachmentAdmin");
-		
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -183,13 +188,17 @@ public class MYQDao {
 			close(rset);
 			close(pstmt);
 		}
-		
 		return list;
 	}
-
+	
+	/**
+	 * 관리자 답글
+	 * @param answer
+	 * @param getMyq_no
+	 * @return
+	 */
 	public int answer(Connection conn, String answer, int getMyq_no) {
 		// update
-		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -208,13 +217,12 @@ public class MYQDao {
 		} finally {
 			close(pstmt);
 		}
-		
 		return result;
 	}
 	
 	
 	/** 
-	 * 사용자 게시글 조회
+	 * 사용자 총 게시글 조회
 	 * @param conn
 	 * @return
 	 */
@@ -246,7 +254,13 @@ public class MYQDao {
 		
 		return listCount;
 	}
-
+	
+	/**
+	 * 사용자 게시글 리스트 조회
+	 * @param memId
+	 * @param pi
+	 * @return
+	 */
 	public ArrayList<MYQ> selectListUser(Connection conn, String memId, PageInfo pi) {
 		
 		ArrayList<MYQ> list = new ArrayList<>();
@@ -282,16 +296,19 @@ public class MYQDao {
 				close(rset);
 				close(pstmt);
 			}
-		
 		return list;
 	}
 
+	/**
+	 * 사용자 게시글 자세히 보기
+	 * @param myqNo
+	 * @return
+	 */	
 	public MYQ selectDetailUser(Connection conn, int myqNo) {
 		// SELECT
 		MYQ q = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		System.out.println(myqNo);
 		String sql = prop.getProperty("selectDetailUser");
 		
 		try {
@@ -315,17 +332,20 @@ public class MYQDao {
 						  , rset.getString("P_NAME")
 						  , rset.getString("MEM_NAME"));
 						}
-			System.out.println(q);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		
 		return q;
 	}
-
+	
+	/**
+	 * 사용자 첨부파일 조회
+	 * @param myqNo
+	 * @return
+	 */
 	public ArrayList<Attachment> selectAttachmentUser(Connection conn, int myqNo) {
 		// SELECT
 		ArrayList<Attachment> list = new ArrayList<>();
@@ -334,14 +354,12 @@ public class MYQDao {
 		
 		String sql = prop.getProperty("selectAttachmentUser");
 		
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, myqNo);
 			
 			rset = pstmt.executeQuery();
-			
 			
 			// 각 객체 반복문 돌려서 list 값에 담고 이따가 detail jsp에서 반복문으로 뿌려주기
 			while(rset.next()) { 
@@ -364,10 +382,15 @@ public class MYQDao {
 			close(rset);
 			close(pstmt);
 		}
-		
 		return list;
 	}
 
+	/**
+	 * 사용자 문의글 작성
+	 * @param q
+	 * @param list
+	 * @return
+	 */
 	public int insertUser(Connection conn, MYQ q) {
 		// insert문
 		int result = 0;
@@ -391,10 +414,15 @@ public class MYQDao {
 		} finally {
 			close(pstmt);
 		}
-		
 		return result;
 	}
 
+	/**
+	 * 사용자 첨부파일 작성
+	 * @param q
+	 * @param list
+	 * @return
+	 */
 	public int insertUserAttachment(Connection conn, ArrayList<Attachment> list) {
 		// insert문
 		int result = 0;
@@ -403,9 +431,6 @@ public class MYQDao {
 		String sql = prop.getProperty("insertUserAttachment");
 		
 		try {
-			
-			// 매번 한 행 실행할 때 하나씩 차곡차곡 넣었지만 지금은 배열이므로 반복문 돌리겠다.
-			// list 숫자만큼 at라는 객체에 하나씩 담아줌
 			for( Attachment at : list ) {
 				
 				pstmt = conn.prepareStatement(sql);
@@ -420,13 +445,16 @@ public class MYQDao {
 		} finally {
 			close(pstmt);
 		}
-		System.out.println("Dao에서 담긴 리스트 결과 담기" + list);
 		return result;
 	}
-
+	
+	/**
+	 * 사용자 상품문의글 조회
+	 * @param pcode
+	 * @return
+	 */
 	public Product selectProduct(Connection conn, String pcode) {
 		// select문
-		
 		Product p = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -451,10 +479,15 @@ public class MYQDao {
 			close(rset);
 			close(pstmt);
 		}
-		
 		return p;
 	}
 
+	/**
+	 * 사용자 상품문의글 작성
+	 * @param q
+	 * @param list
+	 * @return
+	 */
 	public int insertProductUser(Connection conn, MYQ q) {
 		// insert문
 		int result = 0;
@@ -476,11 +509,14 @@ public class MYQDao {
 		} finally {
 			close(pstmt);
 		}
-		
 		return result;
 	}
 	
-
+	/**
+	 * 사용자 문의글 첨부파일 삭제
+	 * @param myq_no
+	 * @return
+	 */
 	public int deleteUserAttachment(Connection conn, String[] myq_no_list) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -499,12 +535,15 @@ public class MYQDao {
 		} finally {
 			close(pstmt);
 		}
-		
 		return result;
 	}
-
+	
+	/**
+	 * 사용자 문의글 삭제
+	 * @param myq_no
+	 * @return
+	 */
 	public int deleteUserMYQ(Connection conn, String[] myq_no_list) {
-		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("deleteUserMYQ");
@@ -516,7 +555,6 @@ public class MYQDao {
 				pstmt.setString(1, myq_no);
 				
 				result = pstmt.executeUpdate();
-				System.out.println(myq_no);
 			}
 			
 		} catch (SQLException e) {
@@ -524,8 +562,6 @@ public class MYQDao {
 		} finally {
 			close(pstmt);
 		}
-		
-		
 		return result;
 	}
 

@@ -37,7 +37,6 @@ public class MYQUserInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		System.out.println("여기는 일반문의");
 		// 첨부파일 넣기 
 		if(ServletFileUpload.isMultipartContent(request)) {
 			// 1_1. 용량 제한
@@ -47,7 +46,6 @@ public class MYQUserInsertServlet extends HttpServlet {
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/myq_upfiles/");
 			
 			// 2. request => multipartRequest
-			// 이 코드 하나로 내가 지정한 폴더에 파일들이 업로드 될 것임!!! 
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
 			// 3.DB에 기록할 요청시 전달된 값 뽑기
@@ -58,15 +56,12 @@ public class MYQUserInsertServlet extends HttpServlet {
 			q.setMyq_content(multiRequest.getParameter("content"));
 			q.setMem_no(Integer.parseInt(multiRequest.getParameter("memNo")));
 			
-			
 			// 3_2. Attachment테이블에 insert할 데이터뽑기 => Attachment객체
 			// 단, 여러개의  첨부파일이 있을것이기 때문에 해당 Attachment객체들을 ArrayList에 담기
-			
 			ArrayList<Attachment> list = new ArrayList<>();
 			
 			for(int i=1; i<=3; i++) {
 				String key ="upfile" + i;
-				System.out.println("multiRequest.getOriginalFileName(key)" + multiRequest.getOriginalFileName(key));
 				if(multiRequest.getOriginalFileName(key) != null) {
 					// Attachment 객체 생성 + 원본명, 수정명, 폴더경로, 파일레벨(0/1)
 					Attachment at = new Attachment();
@@ -76,22 +71,16 @@ public class MYQUserInsertServlet extends HttpServlet {
 					
 					// 각 객체생성을 차곡차곡 list에 추가하기
 					list.add(at);
-					
 				}
 			}
 			
 			// 4. 문의글, 첨부파일 서비스 호출 및 결과 받기
 			int result = new MYQService().insertUser(q, list);
-			
-			System.out.println("조회된 q, list 받아오기 " + q + list);
 
 			if(result > 0 ) { // 성공 => /list.th url 재요청 => 사진게시판 리스트페이지
-				
 				request.getSession().setAttribute("alertMsg", "문의 등록 성공");
 				response.sendRedirect(request.getContextPath() + "/list.umyq?currentPage=1");
-				
 			} else { // 실패 => 에러문구 담아서 에러페이지 포워딩
-				
 				request.getSession().setAttribute("alertMsg", "문의 등록 실패");
 			}
 			
