@@ -130,12 +130,10 @@
                         			}, error:function(){ // 좋아요 실패
                         				console.log("통신실패");
                         			}
-
                         		})
                         	}
                         	
                         	function deleteP(){
-                        		
                         		$.ajax({
             						url : "<%=contextPath%>/delete.li",
             						type : "post",
@@ -153,7 +151,6 @@
             						}
             					})
                         	}
-                        	
                         </script>
                         
                         <!-- 카카오 링크 API -->

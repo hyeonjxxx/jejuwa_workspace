@@ -4,7 +4,6 @@
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
-	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
@@ -21,8 +20,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- content css-->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/order/orderListView.css">   
-
-
 </head>
 <body>
 
@@ -43,7 +40,6 @@
                     <option value="memNo">회원번호</option>
                 </select>
                    <input type="text" id = "keyword" onkeyup="enterkey();">
-                   
             </div>
          	
          	<!-- jquery 방식을 통한 검색-->
@@ -98,89 +94,85 @@
 	                        
   	                        <!-- 변경 모달창 -->
 	                       	<td>
-                            <div class="container">
-                                <!-- Button to Open the Modal -->
-								<button id = "change" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#orderModal<%=i%>" style="width: 50px; height: 30px;">
-									
-                                 	변경
-                                </button>
-                                <!-- The Modal -->
-                                <div class="modal fade" id="orderModal<%=i%>">
-                                  <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-		                              <form action = "<%=contextPath%>/update.cor" id = "changeOrderForm" method = "post">
-		                              	 <input type="hidden" name="ono" value="<%=o.getOrderNo()%>">
+	                            <div class="container">
+	                                <!-- Button to Open the Modal -->
+									<button id = "change" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#orderModal<%=i%>" style="width: 50px; height: 30px;">
+										
+	                                 	변경
+	                                </button>
+	                                <!-- The Modal -->
+	                                <div class="modal fade" id="orderModal<%=i%>">
+	                                  <div class="modal-dialog modal-dialog-centered">
+	                                    <div class="modal-content">
+			                              <form action = "<%=contextPath%>/update.cor" id = "changeOrderForm" method = "post">
+			                              	 <input type="hidden" name="ono" value="<%=o.getOrderNo()%>">
+				                                      
+		                                      <!-- Modal Header -->
+		                                      <div class="modal-header">
+		                                        <h4 class="modal-title" >주문내역</h4>
+		                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		                                      </div>
 			                                      
-	                                      <!-- Modal Header -->
-	                                      <div class="modal-header">
-	                                        <h4 class="modal-title" >주문내역</h4>
-	                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	                                      </div>
-		                                      
-	                                      <!-- Modal body -->
-	                                      <div class="modal-body">
-	                                        <table class="table table-bordered" id = "modalTable" style="text-align: center;">
-	                                            <tr>
-	                                                <th>예약번호</th>
-	                                                <td><%= o.getOrderNo()%></td>
-	                                            </tr>
-	                                            <tr>
-	                                                <th>예약자</th>
-	                                                <td><%= o.getTravelUser() %></td>
-	                                            </tr>
-	                                            <tr>
-	                                                <th>예약일자</th>
-	                                                <td><%= o.getOrderDate() %></td>
-	                                            </tr>
-	                                            <tr>
-	                                                <th>상품명</th>
-	                                                <td><%= o.getpCode() %></td>
-	                                            </tr>
-	                                            <tr>
-	                                                <th>결제금액</th>
-	                                                <td><%= o.getAmount() %>원</td>
-	                                            </tr>
-	                                            <tr>
-	                                                <th>입금상태</th>
-	                                                <td>
-                                                    	<select name = "status" style="width: 80%; margin-left: 35px;" id="selectOption">
-									                        <option value="예약접수">예약접수</option>
-									                        <option value="예약확정">예약확정</option>
-									                        <option value="여행완료">여행완료 </option>
-									                        <option value="취소">취소</option>
-								                        </select>
-                                                    	
-	                                                    
-													</td>
-													
-													<script>
-							                        	$(function(){
-							                        		
-							                        		$("#changeOrderForm option").each(function(){
-							                        			if($(this).text() == "<%=o.getStatus()%>"){
-							                        				$(this).attr("selected", true);
-							                        			}
-							                        		})
-							                        		
-							                        	})
-							                        </script>
-							                        
-													
-	                                            </tr>
-                                       		</table>
-	                                        
-	                                      </div>
-	                                      
-	                                      <!-- Modal footer -->
-	                                      <div class="modal-footer">
-	                                      	<button type="submit" class="btn btn-warning">변경</button>
-	                                        <button type="button" class="btn btn-secondary">취소</button>
-	                                      </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-	                                
+		                                      <!-- Modal body -->
+		                                      <div class="modal-body">
+		                                        <table class="table table-bordered" id = "modalTable" style="text-align: center;">
+		                                            <tr>
+		                                                <th>예약번호</th>
+		                                                <td><%= o.getOrderNo()%></td>
+		                                            </tr>
+		                                            <tr>
+		                                                <th>예약자</th>
+		                                                <td><%= o.getTravelUser() %></td>
+		                                            </tr>
+		                                            <tr>
+		                                                <th>예약일자</th>
+		                                                <td><%= o.getOrderDate() %></td>
+		                                            </tr>
+		                                            <tr>
+		                                                <th>상품명</th>
+		                                                <td><%= o.getpCode() %></td>
+		                                            </tr>
+		                                            <tr>
+		                                                <th>결제금액</th>
+		                                                <td><%= o.getAmount() %>원</td>
+		                                            </tr>
+		                                            <tr>
+		                                                <th>입금상태</th>
+		                                                <td>
+	                                                    	<select name = "status" style="width: 80%; margin-left: 35px;" id="selectOption">
+										                        <option value="예약접수">예약접수</option>
+										                        <option value="예약확정">예약확정</option>
+										                        <option value="여행완료">여행완료 </option>
+										                        <option value="취소">취소</option>
+									                        </select>
+	                                                    	
+		                                                    
+														</td>
+														
+														<script>
+								                        	$(function(){
+								                        		
+								                        		$("#changeOrderForm option").each(function(){
+								                        			if($(this).text() == "<%=o.getStatus()%>"){
+								                        				$(this).attr("selected", true);
+								                        			}
+								                        		})
+								                        		
+								                        	})
+								                        </script>
+		                                            </tr>
+	                                       		</table>
+		                                      </div>
+		                                      <!-- Modal footer -->
+		                                      <div class="modal-footer">
+		                                      	<button type="submit" class="btn btn-warning">변경</button>
+		                                        <button type="button" class="btn btn-secondary">취소</button>
+		                                      </div>
+	                                      </form>
+	                                    </div>
+	                                  </div>
+	                                </div>
+		                                
 	                                <script>
 	                                	$(function(){
 	                                		
@@ -203,70 +195,13 @@
 	                                		})
 	                                	})
 			                        </script>
-			                        
-			                        <!--  
-			                        <script>
-							       		function enterkey(){
-							       			// 엔터키 눌렀을 때 실행
-							       			if(window.event.keyCode == 13){
-							       				var search = $("#orderSearch option:selected").val();
-							       				var keyword = $("#keyword").val();
-							       				
-							       				$.ajax({
-							       					url : "searchAjax.or",
-							       					type : "get",
-							       					data : {search : search,
-							       							keyword : keyword},
-							       					success : function(list){
-							       						console.log(list);
-							       						
-							       						var result = "";
-							       						if(list.length == 0){
-							       							result = "<tr><td colspan = '10'> 조회되는 예약 상품이 없습니다.</td></tr>"
-							       						}
-							       						for(var i in list){
-							       							result += "<tr class = 'test4'>"
-							       								    + "<td>" + list[i].orderNo + "</td>"
-							       			                        + "<td>" + list[i].orderDate + "</td>"
-							       			                        + "<td>" + list[i].amount + "</td>"
-							       			                        + "<td>" + list[i].travelDate + "</td>"
-							       			                        + "<td>" + list[i].travelUser + "</td>"
-							       			                        + "<td>" + list[i].travelEmail + "</td>"
-							       			                        + "<td>" + list[i].status + "</td>"
-							       			                        + "<td>" + list[i].cReason + "</td>"
-							       			                        + "<td>" + list[i].memNo + "</td>"
-																	+ "<td><button id = 'change' type='button' class='btn btn-warning btn-sm' data-toggle='modal' data-target='#orderModal<%=i%>' style='width: 50px; height: 30px;'>변경</button></td>"
-							       			                        + "</tr>";
-							       						}
-							       						
-							       						$("#productListView tbody").html(result);
-							       						$("#pagingArea").css("visibility", "hidden");
-							       						
-							       						$(function(){
-							       							$("#change").click(function(){
-							       								// 모달창 나오게
-							       							})
-							       							
-							       						})
-							       					}, error : function(){
-							       						console.log("ajax통신 실패");
-							       					}
-							       				});
-							       			}
-							       		}
-							         </script>
-			                        -->
-	                              
-	                               
-	                            </div>
+		                         </div>
 	                        </td>
-							
                     	</tr>
                     	
                     <% } %>
                    <% } %>
                 </tbody>
-    
             </table>
             <br><br>
     
@@ -291,10 +226,7 @@
 				<% } %>
     
             </div>
-
         </div>
-       	
     </div>
-	
 </body>
 </html>

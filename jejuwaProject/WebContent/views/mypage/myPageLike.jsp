@@ -48,28 +48,22 @@
 		
         <h3>좋아요</h3>
         <hr>
-        <%if(list.isEmpty()){ %>
-        	<ul class="gallery" align = "center">
-				<li>
-	        		좋아요 상품이 없습니다.
-	  			</li>
-			</ul>
-        <%}else{ %>	
 	        <%for(Like l : list){ %>
 	        	<%if(loginUser != null && loginUser.getMemNo()==l.getMemNo()){ %>		
-			<ul class="gallery" align = "center">
-				<li>
-					<img src="<%=contextPath %>/<%= l.getBasicPath()%>" width="150" height="150" alt="">
-	        		<ul><li><a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=l.getpCode()%>"><%=l.getpName() %></a></li></ul>
-	  			</li>
-			</ul>
+					<ul class="gallery" align = "center">
+						<li>
+							<img src="<%=contextPath %>/<%= l.getBasicPath()%>" width="150" height="150" alt="">
+			        		<ul>
+			        			<li>
+			        				<a href = "<%=contextPath%>/infoDetail.pdt?pcode=<%=l.getpCode()%>"><%=l.getpName() %></a>
+			        			</li>
+			        		</ul>
+			  			</li>
+					</ul>
 				<%}else{ %>
-	
+
 				<%} %>
 	        <%} %>		
-	        
-        <%} %>	
-                  
      </div>
      
      </div>
