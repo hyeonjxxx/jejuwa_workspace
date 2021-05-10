@@ -95,16 +95,15 @@
 					                	<option value=""><%=c.getCpn_Name() %></option>
 					                <%} %>
 					            </select>
-					            <br><br>
 					            <hr>
-					            <p style="font-size: 18px; font-weight: bold;">총 할인 금액</p>
+					            <p style="font-size: 12px;">* 쿠폰을 선택하시면 총 결제금액에 자동으로 반영됩니다. </p>
 					
 					        </li>
 							
 							
 							<li id="resultCash">
 					            <p>총결제금액</p>
-					            <p id="amount" name = "price"><%=p.getPrice() %>원</p>
+					            <p id="amount" name = "price"><%=p.getPrice() - p.getPrice() * c.getCpn_Dc()/100 %> 원 </p>
 					        </li>
 							
 					        <li id="paymentMethod" class="container p-3 my-3 bg-dark text-white">

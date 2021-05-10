@@ -85,7 +85,7 @@
 		    height: 68%;
     }
 
-    #header_3{position:relative;}    
+    #header_3{position:relative;}
 
     #info_1 *{
         text-decoration: none;
@@ -93,9 +93,7 @@
         font-size: 10px;
         list-style-type: none; 
         margin-left: 2px;
-
         }
-
 
     #search_text{
         float: left;
@@ -205,8 +203,8 @@
 			<div id="header_3">
 			<br><br>
              	<ul id="info_1">
-                     <li><a href="<%= request.getContextPath() %>/lgview.me">로그인</a></li>
-                     <li><a href="<%= request.getContextPath() %>/enroll.me">회원가입</a></li>
+                     <li><a href="<%= request.getContextPath() %>/lgview.me" style="color : black;">로그인</a></li>
+                     <li><a href="<%= request.getContextPath() %>/enroll.me" style="color : black;">회원가입</a></li>
                  </ul>
             </div>
             <!-- 로그인 후(관리자) -->
@@ -214,11 +212,11 @@
 			<div id="header_3">
 			<br><br>
              	<ul id="info_1">
-                     <li><a href="<%= request.getContextPath() %>/myPageMain.jsp"><%= login.getMemName() %>님 환영합니다</a></li>
-                     <li><a href="<%= request.getContextPath() %>/logout.me">로그아웃</a></li>
+                     <li><a href="<%= request.getContextPath() %>/myPageMain.jsp" style="color : black;"><%= login.getMemName() %>님 환영합니다</a></li>
+                     <li><a href="<%= request.getContextPath() %>/logout.me" style="color : black;">로그아웃</a></li>
                      
                      <%  if( login.getStatus().equals("A")){ %>
-                     <li><a href="<%=request.getContextPath()%>/admin.go">관리자</a></li>
+                     <li><a href="<%=request.getContextPath()%>/admin.go" style="color : black;">관리자</a></li>
                      <% } %>
                      
                  </ul>
@@ -228,19 +226,19 @@
                     <div class="coupon">
                             <a href="<%= request.getContextPath() %>/list.mpr">
                                 <img src="<%= request.getContextPath() %>/resources/images/마이페이지.png" width="40px" alt="">
-                            <p><a href = "<%= request.getContextPath() %>/list.mpr">마이페이지</a></p>
+                            <p><a href = "<%= request.getContextPath() %>/list.mpr" style="color : black;">마이페이지</a></p>
                             </a>
                     </div>
                     <div class="coupon">
                             <a href="<%=request.getContextPath()%>/list.mpl">
                                 <img src="<%= request.getContextPath() %>/resources/images/좋아요.png" width="40px" alt="">
-                                <p><a href = "<%=request.getContextPath()%>/list.mpl">좋아요</a></p>
+                                <p><a href = "<%=request.getContextPath()%>/list.mpl" style="color : black;">좋아요</a></p>
                             </a>
                     </div>
                     <div class="coupon">
                             <a href="">
                             <img src="<%= request.getContextPath() %>/resources/images/쿠폰.png" width="40px" alt="">
-                                <p><a href = "<%=request.getContextPath()%>/list.mycpn?currentPage=1">쿠폰</a></p>
+                                <p><a href = "<%=request.getContextPath()%>/list.mycpn?currentPage=1" style="color : black;">쿠폰</a></p>
                             </a>
                     </div>
                     <div class="clear"></div>

@@ -52,10 +52,7 @@
         <br>
         <h2>FAQ 관리</h2>
         <div class="divisionLine"></div>
-        <br>
-        
-        <br><br>
-        
+        <br><br><br>
 	        <div class="area1">
 	            <!-- FAQ 검색 -->
 	            <div align="right" class="searchArea" style = "margin-left:10px;">
@@ -105,12 +102,10 @@
 	            		});
 	            	}
 	            }
-	            
 	            </script>
-	            
 	        </div>
 
-	        <!-- 공지사항 리스트 테이블 -->
+	        <!-- FAQ 리스트 테이블 -->
 	        <div class="listArea">
 	            <table align="center" class="faqList" id = "faqTable">
 	                <thead>
@@ -118,16 +113,13 @@
 	                        <th width="80">번호</th>
 	                        <th width="160">구분</th>
 	                        <th width="440">제목</th>
-	                        
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                
 	                <%if(list.isEmpty()){ %>
 	                	<tr>
 	                		<td colspan = "5">존재하는 FAQ가 없습니다.</td>
 	                	</tr>
-	                
 	                <%}else{ %>
 	                	<%for(Faq f : list){ %>
 		                    <tr>
@@ -138,7 +130,6 @@
 		                    </tr>
 		                <%} %>
 	                <%} %>   
-	
 	                </tbody>
 	            </table>
 	        </div>
@@ -155,34 +146,28 @@
 		        <!--로그인했고, 로그인한 사용자가 admin일 경우 보여지는 div-->                
 		        <a href="<%= contextPath %>/enrollForm.fa" id = "writeButton" class="btn btn-secondary btn-sm" style = "margin-left:30px;">글작성</a>
 		        <br><br>
-		        
 		    <%} %>
-		        
+		    
 		        <!-- 버튼, 페이징 구역 -->
-	            <!-- 페이징  -->
 	            <div id="pagingArea" class="pagination">
 					<% if(currentPage != 1) { %>
 	            	    <li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%=currentPage-1%>';" style="color: black;">이전</button></li>
-				<% } %>
+					<% } %>
 				
-				<% for(int p=startPage; p<=endPage; p++) { %>
+					<% for(int p=startPage; p<=endPage; p++) { %>
+						
+						<% if(currentPage == p){ %>
+		            		<li class="page-item active"><button class="page-link" disabled style="background-color: orange; border: none;"><%= p %></button></li>
+		            	<% }else{ %>
+		            		<li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%= p %>';" style="color: black;" ><%= p %></button></li>
+		            	<% } %>
+		            	
+					<% } %>
 					
-					<% if(currentPage == p){ %>
-	            		<li class="page-item active"><button class="page-link" disabled style="background-color: orange; border: none;"><%= p %></button></li>
-	            	<% }else{ %>
-	            		<li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%= p %>';" style="color: black;" ><%= p %></button></li>
-	            	<% } %>
-	            	
-				<% } %>
-				
-				<% if(currentPage != maxPage){ %>
-	            	<li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%=currentPage+1%>';" style="color: black;">다음</button></li>
-				<% } %>
-	             </div>
-			
-			
+					<% if(currentPage != maxPage){ %>
+		            	<li class="page-item"><button class="page-link" onclick="location.href='<%=contextPath%>/list.fa?currentPage=<%=currentPage+1%>';" style="color: black;">다음</button></li>
+					<% } %>
+		         </div>
 		</div>
-
-
 </body>
 </html>
